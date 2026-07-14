@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Phonics Land — یادگیری خواندن انگلیسی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FDF6EC;--surface:#FFFFFF;--primary:#3D7B6F;--primary-light:#E8F4F0;
+  --primary-dark:#2B5A50;--accent:#E8856C;--accent-light:#FDF0EC;
+  --gold:#D4A650;--gold-light:#FDF6E3;--text:#2D2926;--text-mid:#5A524C;
+  --text-light:#8A837D;--success:#6BAF7E;--success-light:#EDF7EF;
+  --danger:#D96B6B;--radius:16px;--radius-sm:10px;--radius-lg:24px;
+  --shadow:0 2px 12px rgba(45,41,38,0.08);
+  --shadow-lg:0 8px 32px rgba(45,41,38,0.12);
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#app{min-height:100vh;display:flex;flex-direction:column;max-width:900px;margin:0 auto}
+.app-header{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border-bottom:1px solid rgba(0,0,0,0.05);position:sticky;top:0;z-index:100}
+.app-header h1{font-size:1.15rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hdr-btn{background:var(--primary-light);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:1.15rem;color:var(--primary)}
+.hdr-btn:hover{background:var(--primary);color:#fff}
+.main-content{flex:1;padding:16px 16px 110px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+.screen{display:none;animation:fadeIn .4s ease}.screen.active{display:block}
+.section-title{font-size:1.2rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.btn{padding:13px 24px;border-radius:var(--radius-sm);border:none;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:8px}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--primary);color:#fff;flex:1;justify-content:center}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-secondary{background:var(--primary-light);color:var(--primary);flex:1;justify-content:center}
+.btn-accent{background:var(--accent);color:#fff;flex:1;justify-content:center}
+.btn-gold{background:var(--gold);color:#fff;flex:1;justify-content:center}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary);flex:1;justify-content:center}
+.btn-large{padding:16px 32px;font-size:1.05rem;border-radius:var(--radius)}
+
+/* HOME */
+.home-hero{text-align:center;padding:36px 20px;background:linear-gradient(145deg,var(--primary-light),var(--accent-light));border-radius:var(--radius-lg);margin-bottom:28px;animation:slideUp .6s ease}
+.home-hero .emoji-big{font-size:3.5rem;margin-bottom:10px;display:block}
+.home-hero h2{font-size:1.6rem;font-weight:900;margin-bottom:6px;color:var(--primary-dark)}
+.home-hero p{font-size:.95rem;color:var(--text-mid);line-height:1.6}
+.tip-bar{display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);color:var(--gold);padding:6px 14px;border-radius:20px;font-size:.82rem;font-weight:700;margin-bottom:20px}
+.phase-grid{display:grid;gap:14px}
+.phase-card{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:14px;border:2px solid transparent;animation:slideUp .5s ease both}
+.phase-card:nth-child(2){animation-delay:.05s}.phase-card:nth-child(3){animation-delay:.1s}.phase-card:nth-child(4){animation-delay:.15s}
+.phase-card:nth-child(5){animation-delay:.2s}.phase-card:nth-child(6){animation-delay:.25s}.phase-card:nth-child(7){animation-delay:.3s}.phase-card:nth-child(8){animation-delay:.35s}
+.phase-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.phase-card:active{transform:scale(.98)}
+.phase-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.phase-info{flex:1;min-width:0}
+.phase-info h3{font-size:1rem;font-weight:800;margin-bottom:3px}
+.phase-info p{font-size:.78rem;color:var(--text-light)}
+.phase-bar{width:100%;height:5px;background:#eee;border-radius:3px;margin-top:6px;overflow:hidden}
+.phase-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.phase-badge{font-size:.65rem;padding:3px 9px;border-radius:20px;font-weight:700;white-space:nowrap}
+
+/* SOUND GRID */
+.sound-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:10px;margin-bottom:28px}
+.sound-card{background:var(--surface);border-radius:var(--radius);padding:14px 6px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);border:2px solid transparent;position:relative;animation:popIn .3s ease both}
+.sound-card:active{transform:scale(.93)}
+.sound-card:hover{border-color:var(--primary)}
+.sound-card .letter{font-size:2rem;font-weight:900;color:var(--primary);line-height:1}
+.sound-card .letter-upper{font-size:.75rem;color:var(--text-light);font-weight:600}
+.sound-card .emoji{font-size:1.3rem;margin-top:3px}
+.sound-card.done{border-color:var(--success);background:var(--success-light)}
+.sound-card.done::after{content:'✓';position:absolute;top:3px;right:5px;color:var(--success);font-weight:800;font-size:.7rem}
+
+/* SOUND DETAIL */
+.sound-detail{text-align:center;animation:fadeIn .4s ease}
+.sound-big{width:160px;height:160px;border-radius:50%;background:linear-gradient(145deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;cursor:pointer;transition:var(--transition);box-shadow:0 8px 28px rgba(61,123,111,.3);position:relative;animation:popIn .5s ease}
+.sound-big:active{transform:scale(.93)}
+.sound-big.playing{animation:bounce .6s ease}
+.sound-big .letter-display{font-size:4.5rem;font-weight:900;color:#fff}
+.sound-big .tap-hint{position:absolute;bottom:-8px;background:var(--gold);color:#fff;font-size:.65rem;padding:3px 12px;border-radius:20px;font-weight:700}
+.letter-cases{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px}
+.letter-box{background:var(--surface);border-radius:var(--radius-sm);padding:10px 18px;box-shadow:var(--shadow);font-size:1.4rem;font-weight:800;cursor:pointer;transition:var(--transition)}
+.letter-box:active{transform:scale(.95);background:var(--primary-light)}
+.letter-box span{display:block;font-size:.7rem;color:var(--text-light);font-weight:600;margin-top:2px}
+.example-section{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:14px;text-align:right;direction:rtl}
+.example-section h4{font-size:.85rem;color:var(--text-light);margin-bottom:10px;font-weight:700}
+.example-word{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);padding:10px 20px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition);font-size:1.2rem;font-weight:700;color:var(--primary-dark);direction:ltr}
+.example-word:active{transform:scale(.95);background:var(--primary);color:#fff}
+.example-word .ew-emoji{font-size:1.6rem}
+.example-words-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;direction:ltr}
+.more-words-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;direction:ltr}
+.more-word-chip{background:var(--primary-light);color:var(--primary-dark);padding:6px 14px;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--transition)}
+.more-word-chip:active{background:var(--primary);color:#fff}
+.tip-box{background:var(--gold-light);border-radius:var(--radius-sm);padding:14px;margin-top:14px;font-size:.88rem;color:var(--text-mid);text-align:right;direction:rtl;line-height:1.7}
+.nav-buttons{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+
+/* WORD CARDS */
+.word-card{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:10px;cursor:pointer;transition:var(--transition);animation:slideUp .4s ease both;border-left:4px solid var(--primary)}
+.word-card:hover{box-shadow:var(--shadow-lg)}
+.word-card:active{transform:scale(.98)}
+.word-top{display:flex;align-items:center;justify-content:space-between}
+.word-left{display:flex;align-items:center;gap:10px}
+.word-emoji-big{font-size:2rem}
+.word-text{font-size:1.4rem;font-weight:900;color:var(--text)}
+.word-meaning{font-size:.8rem;color:var(--text-light);direction:rtl}
+.word-sounds{display:flex;gap:4px;margin-top:8px}
+.sound-chip{padding:4px 10px;border-radius:6px;font-weight:700;font-size:.85rem;cursor:pointer;transition:var(--transition)}
+.sound-chip:active{transform:scale(1.1)}
+.play-sm{background:var(--accent-light);color:var(--accent);border:none;padding:8px 16px;border-radius:20px;font-family:inherit;font-weight:700;cursor:pointer;transition:var(--transition);font-size:.85rem}
+.play-sm:hover{background:var(--accent);color:#fff}
+
+/* BLEND / SWIPE */
+.swipe-area{display:flex;gap:6px;justify-content:center;padding:20px;background:var(--bg-warm,var(--bg));border-radius:var(--radius);margin-bottom:14px;touch-action:none;user-select:none;-webkit-user-select:none}
+.swipe-letter{width:54px;height:64px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:900;color:var(--text);background:var(--surface);border:2px solid #eee;transition:all .15s ease}
+.swipe-letter.highlight{background:var(--primary);color:#fff;border-color:var(--primary);transform:scale(1.12)}
+.swipe-letter.done{background:var(--success);color:#fff;border-color:var(--success)}
+
+/* TRICKY */
+.tricky-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.tricky-card{background:var(--surface);border-radius:var(--radius);padding:16px 10px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);border:2px solid transparent;animation:popIn .3s ease both}
+.tricky-card:active{transform:scale(.93)}
+.tricky-card:hover{border-color:var(--gold)}
+.tricky-card .tw{font-size:1.3rem;font-weight:800;color:var(--accent)}
+.tricky-card .tm{font-size:.7rem;color:var(--text-light);margin-top:3px;direction:rtl}
+.tricky-card.learned{border-color:var(--success);background:var(--success-light)}
+
+/* QUIZ */
+.quiz-card{background:var(--surface);border-radius:var(--radius-lg);padding:28px 20px;box-shadow:var(--shadow-lg);text-align:center;animation:slideUp .5s ease}
+.quiz-progress{display:flex;gap:5px;justify-content:center;margin-bottom:16px}
+.quiz-dot{width:10px;height:10px;border-radius:50%;background:#ddd;transition:var(--transition)}
+.quiz-dot.current{background:var(--primary);transform:scale(1.3)}
+.quiz-dot.correct{background:var(--success)}.quiz-dot.wrong{background:var(--danger)}
+.quiz-q{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.quiz-sound-btn{width:90px;height:90px;border-radius:50%;background:linear-gradient(145deg,var(--primary),var(--primary-dark));border:none;color:#fff;font-size:1.8rem;cursor:pointer;margin:12px auto;display:flex;align-items:center;justify-content:center;transition:var(--transition);box-shadow:0 4px 14px rgba(61,123,111,.3)}
+.quiz-sound-btn:active{transform:scale(.9)}
+.quiz-sound-btn.playing{animation:pulse .5s ease}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.quiz-opt{padding:16px 14px;border-radius:var(--radius);border:2px solid #eee;background:var(--surface);font-family:inherit;font-size:1.1rem;font-weight:700;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:8px}
+.quiz-opt:hover{border-color:var(--primary);background:var(--primary-light)}
+.quiz-opt.correct{border-color:var(--success);background:var(--success-light);color:var(--success)}
+.quiz-opt.wrong{border-color:var(--danger);background:#FDECEC;color:var(--danger)}
+.quiz-opt.disabled{pointer-events:none}
+.quiz-opt .qo-emoji{font-size:1.4rem}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat-card{background:var(--surface);border-radius:var(--radius);padding:18px 10px;text-align:center;box-shadow:var(--shadow)}
+.stat-num{font-size:1.8rem;font-weight:900;color:var(--primary)}
+.stat-lbl{font-size:.7rem;color:var(--text-light);margin-top:3px}
+.progress-list{display:grid;gap:10px}
+.progress-item{background:var(--surface);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
+.progress-item .pi-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.progress-item .pi-info{flex:1}
+.progress-item .pi-info h4{font-size:.9rem;font-weight:700}
+.progress-item .pi-bar{width:100%;height:5px;background:#eee;border-radius:3px;margin-top:5px;overflow:hidden}
+.progress-item .pi-bar-fill{height:100%;border-radius:3px}
+.progress-item .pi-pct{font-size:.75rem;color:var(--text-light);margin-top:2px}
+
+/* SENTENCES */
+.sentence-card{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:12px;cursor:pointer;transition:var(--transition);animation:slideUp .4s ease both}
+.sentence-card:active{transform:scale(.98)}
+.sentence-emoji{font-size:2.5rem;text-align:center;margin-bottom:8px}
+.sentence-text{font-size:1.3rem;font-weight:800;text-align:center;line-height:1.8;color:var(--text)}
+.sentence-word{display:inline-block;padding:2px 4px;border-radius:4px;cursor:pointer;transition:var(--transition)}
+.sentence-word:hover{background:var(--primary-light);color:var(--primary)}
+.sentence-farsi{font-size:.85rem;color:var(--text-light);text-align:center;margin-top:8px;direction:rtl}
+
+/* WORD FAMILIES */
+.family-card{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px;animation:slideUp .4s ease both}
+.family-title{font-size:1.1rem;font-weight:800;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.family-words{display:flex;flex-wrap:wrap;gap:8px}
+.family-word{background:var(--primary-light);color:var(--primary-dark);padding:8px 16px;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:6px}
+.family-word:active{background:var(--primary);color:#fff}
+.family-word .fw-emoji{font-size:1.2rem}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid rgba(0,0,0,.06);display:flex;justify-content:center;padding:6px 0;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:100}
+.bottom-nav .nav-inner{display:flex;gap:2px;max-width:520px;width:100%;justify-content:space-around}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 8px;border-radius:12px;background:none;border:none;cursor:pointer;font-family:inherit;transition:var(--transition);color:var(--text-light);font-size:.6rem;font-weight:700;min-width:52px}
+.nav-item .nav-icon{font-size:1.2rem}
+.nav-item.active{color:var(--primary);background:var(--primary-light)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--surface);border-radius:var(--radius-lg);padding:28px 22px;max-width:380px;width:100%;text-align:center;animation:popIn .3s ease}
+.modal h3{font-size:1.2rem;font-weight:800;margin-bottom:10px}
+.modal p{color:var(--text-mid);margin-bottom:18px;line-height:1.6}
+.modal .btn{width:100%}
+
+/* RESPONSIVE */
+@media(min-width:600px){
+  .sound-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .quiz-opts{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:380px){
+  .sound-grid{grid-template-columns:repeat(4,1fr);gap:7px}
+  .sound-card .letter{font-size:1.6rem}
+  .swipe-letter{width:44px;height:54px;font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="app-header">
+    <button class="hdr-btn" id="backBtn" style="visibility:hidden" onclick="goBack()">←</button>
+    <h1>📚 Phonics Land</h1>
+    <button class="hdr-btn" id="soundToggle" onclick="toggleSound()">🔊</button>
+  </header>
+  <main class="main-content" id="mainContent"></main>
+</div>
+<div class="bottom-nav">
+  <div class="nav-inner">
+    <button class="nav-item active" onclick="navTo('home')" data-nav="home"><span class="nav-icon">🏠</span>خانه</button>
+    <button class="nav-item" onclick="navTo('allSounds')" data-nav="allSounds"><span class="nav-icon">🔤</span>صداها</button>
+    <button class="nav-item" onclick="navTo('wordFamilies')" data-nav="wordFamilies"><span class="nav-icon">📖</span>کلمات</button>
+    <button class="nav-item" onclick="navTo('tricky')" data-nav="tricky"><span class="nav-icon">⭐</span>ویژه</button>
+    <button class="nav-item" onclick="navTo('progress')" data-nav="progress"><span class="nav-icon">📊</span>پیشرفت</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay"><div class="modal" id="modalContent"></div></div>
+
+<script>
+// ====================================================================
+// COMPLETE PHONICS DATA
+// ====================================================================
+const PHONEMES = [
+  {id:'s',lower:'s',upper:'S',word:'sun',emoji:'☀️',farsi:'خورشید',tip:'زبانت رو پشت دندونات بذار و هوا رو رد کن. صدای «سسس» مثل مار!',moreWords:[['snake','🐍'],['sock','🧦'],['sand','🏖️'],['sea','🌊'],['star','⭐'],['six','6️⃣']]},
+  {id:'a',lower:'a',upper:'A',word:'apple',emoji:'🍎',farsi:'سیب',tip:'دهنت رو باز کن و صدای «اَ» بده. مثل وقتی دکتر میگی آآآ!',moreWords:[['ant','🐜'],['axe','🪓'],['arrow','🏹'],['add','➕'],['arm','💪'],['angel','😇']]},
+  {id:'t',lower:'t',upper:'T',word:'tree',emoji:'🌳',farsi:'درخت',tip:'نوک زبانت رو پشت دندون بالا بزن و هوا رو آزاد کن. صدای «ت»!',moreWords:[['top','🔝'],['toy','🧸'],['tent','⛺'],['tiger','🐯'],['tail','🐾'],['turtle','🐢']]},
+  {id:'p',lower:'p',upper:'P',word:'pig',emoji:'🐷',farsi:'خوک',tip:'لبات رو کامل ببند و بعد با یه فشار کوچولو بازشون کن. «پ»!',moreWords:[['pan','🍳'],['pen','🖊️'],['pot','🍲'],['panda','🐼'],['pizza','🍕'],['peach','🍑']]},
+  {id:'i',lower:'i',upper:'I',word:'insect',emoji:'🐛',farsi:'حشره',tip:'دهنت رو کمی باز کن. صدای «ای» کوتاه. نه بلند! کوتاه!',moreWords:[['igloo','🧊'],['ink','🖋️'],['inside','🏠'],['ill','🤒'],['Indian','🇮🇳']]},
+  {id:'n',lower:'n',upper:'N',word:'net',emoji:'🥅',farsi:'تور',tip:'نوک زبانت پشت دندونات باشه و صدا از بینیت بیاد. «ن»!',moreWords:[['nut','🥜'],['nose','👃'],['nest','🪹'],['nine','9️⃣'],['nap','😴'],['nail','🔩']]},
+  {id:'m',lower:'m',upper:'M',word:'mouse',emoji:'🐭',farsi:'موش',tip:'لبات رو ببند. صدا از بینیت بیاد. مثل وقتی «ممم» میگی!',moreWords:[['map','🗺️'],['moon','🌙'],['milk','🥛'],['mango','🥭'],['monkey','🐒'],['man','👨']]},
+  {id:'d',lower:'d',upper:'D',word:'dog',emoji:'🐶',farsi:'سگ',tip:'مثل «ت» ولی با صدای بیشتر. زبانت پشت دندونات و گلوت میلرزه!',moreWords:[['duck','🦆'],['door','🚪'],['doll','🧸'],['desk','🪑'],['dolphin','🐬'],['drum','🥁']]},
+  {id:'g',lower:'g',upper:'G',word:'goat',emoji:'🐐',farsi:'بز',tip:'صدای «گ» از ته گلو. زبونت عقب باشه!',moreWords:[['grape','🍇'],['green','🟢'],['gift','🎁'],['gate','🚪'],['garden','🏡'],['giraffe','🦒']]},
+  {id:'o',lower:'o',upper:'O',word:'octopus',emoji:'🐙',farsi:'هشت‌پا',tip:'دهنت رو گرد کن! صدای «او» کوتاه. مثل صدای تعجب!',moreWords:[['orange','🍊'],['ox','🐂'],['olive','🫒'],['on','🔛'],['off','⏹️']]},
+  {id:'c',lower:'c',upper:'C',word:'cat',emoji:'🐈',farsi:'گربه',tip:'صدای «ک». از ته گلو با زبون عقب!',moreWords:[['cup','☕'],['cow','🐄'],['car','🚗'],['cake','🎂'],['cloud','☁️'],['crab','🦀']]},
+  {id:'k',lower:'k',upper:'K',word:'kite',emoji:'🪁',farsi:'بادبادک',tip:'صدای «ک». درست مثل «c»! بعضی کلمات با k شروع میشن!',moreWords:[['key','🔑'],['king','👑'],['kid','👧'],['kangaroo','🦘'],['koala','🐨'],['kitchen','🍳']]},
+  {id:'e',lower:'e',upper:'E',word:'egg',emoji:'🥚',farsi:'تخم‌مرغ',tip:'دهنت رو کمی باز کن. صدای «اِ» کوتاه!',moreWords:[['elf','🧝'],['end','🔚'],['elephant','🐘'],['elbow','💪'],['ever','♻️']]},
+  {id:'u',lower:'u',upper:'U',word:'umbrella',emoji:'☂️',farsi:'چتر',tip:'دهنت نیمه باز و لبات کمی جلو. صدای «اَ» کوتاه!',moreWords:[['up','⬆️'],['us','👥'],['under','👇'],['uncle','👨'],['umpire','⚖️']]},
+  {id:'r',lower:'r',upper:'R',word:'rainbow',emoji:'🌈',farsi:'رنگین‌کمان',tip:'زبانت رو بالا ببر و غرغر کن! «ررر»!',moreWords:[['rain','🌧️'],['ring','💍'],['robot','🤖'],['rose','🌹'],['rocket','🚀'],['rabbit','🐰']]},
+  {id:'h',lower:'h',upper:'H',word:'hat',emoji:'🎩',farsi:'کلاه',tip:'مثل وقتی که بخار از دهنت میاد بیرون. «هَه»!',moreWords:[['hen','🐔'],['hill','⛰️'],['house','🏠'],['horse','🐴'],['hand','✋'],['heart','❤️']]},
+  {id:'b',lower:'b',upper:'B',word:'ball',emoji:'⚽',farsi:'توپ',tip:'لبات رو ببند و با صدا بازشون کن. «ب»! برادر صدادار «p»!',moreWords:[['bus','🚌'],['bed','🛏️'],['bat','🦇'],['bear','🐻'],['banana','🍌'],['bird','🐦']]},
+  {id:'f',lower:'f',upper:'F',word:'fish',emoji:'🐟',farsi:'ماهی',tip:'دندون بالا رو روی لب پایین بذار و هوا رو رد کن. «ف»!',moreWords:[['fox','🦊'],['fan','🪭'],['frog','🐸'],['food','🍔'],['fire','🔥'],['feather','🪶']]},
+  {id:'l',lower:'l',upper:'L',word:'lion',emoji:'🦁',farsi:'شیر',tip:'نوک زبانت پشت دندونات باشه. «للل»!',moreWords:[['leaf','🍂'],['leg','🦵'],['lamp','💡'],['lemon','🍋'],['lizard','🦎'],['love','❤️']]},
+  {id:'j',lower:'j',upper:'J',word:'jam',emoji:'🍯',farsi:'مربا',tip:'صدای «ج». زبونت بالا و عقب!',moreWords:[['jug','🏺'],['jet','✈️'],['jelly','🍮'],['juice','🧃'],['jungle','🌴'],['jacket','🧥']]},
+  {id:'v',lower:'v',upper:'V',word:'van',emoji:'🚐',farsi:'ون',tip:'دندون بالا روی لب پایین با صدا. لب پایینت میلرزه!',moreWords:[['vet','👩‍⚕️'],['violin','🎻'],['vase','🏺'],['volcano','🌋'],['village','🏘️']]},
+  {id:'w',lower:'w',upper:'W',word:'whale',emoji:'🐋',farsi:'نهنگ',tip:'لبات رو گرد کن مثل «و». «ووو»!',moreWords:[['web','🕸️'],['well','⛲'],['witch','🧙‍♀️'],['water','💧'],['window','🪟'],['wolf','🐺']]},
+  {id:'x',lower:'x',upper:'X',word:'fox',emoji:'🦊',farsi:'روباه',tip:'ترکیب «ک» و «س». «اکس»!',moreWords:[['box','📦'],['six','6️⃣'],['mix','🔀'],['fix','🔧'],['wax','🕯️'],['exit','🚪']]},
+  {id:'y',lower:'y',upper:'Y',word:'yak',emoji:'🐂',farsi:'یاک',tip:'صدای «ی». لبات رو جلو ببر!',moreWords:[['yes','✅'],['yell','📢'],['yarn','🧶'],['yellow','🟡'],['yummy','😋'],['yoga','🧘']]},
+  {id:'z',lower:'z',upper:'Z',word:'zebra',emoji:'🦓',farsi:'گورخر',tip:'مثل «س» ولی با صدای لرزان! زبانت میلرزه!',moreWords:[['zip','🤐'],['zoo','🦁'],['zero','0️⃣'],['zigzag','⚡'],['zone','📍']]},
+  {id:'q',lower:'q',upper:'Q',word:'queen',emoji:'👸',farsi:'ملکه',tip:'همیشه با «u» میاد! صدای «کو»!',moreWords:[['quiz','📝'],['quick','⚡'],['quiet','🤫'],['question','❓']]},
+];
+
+const DIGRAPHS = [
+  {id:'ch',display:'ch',word:'chip',emoji:'🍟',farsi:'چیپس',tip:'ترکیب «چ». زبونت بالا و عقب!',moreWords:[['chin','😊'],['chat','💬'],['cheese','🧀'],['church','⛪'],['chicken','🍗'],['chain','🔗']]},
+  {id:'sh',display:'sh',word:'ship',emoji:'🚢',farsi:'کشتی',tip:'مثل وقتی میگی ساکت باش! «ششش»!',moreWords:[['shop','🏪'],['shell','🐚'],['sheep','🐑'],['shirt','👕'],['shoe','👟'],['fish','🐟']]},
+  {id:'th',display:'th',word:'think',emoji:'🤔',farsi:'فکر کردن',tip:'زبانت بین دندونات! «ث» یا «ذ»!',moreWords:[['this','👆'],['that','🫵'],['three','3️⃣'],['thumb','👍'],['thin','📏'],['thick','📐']]},
+  {id:'ng',display:'ng',word:'ring',emoji:'💍',farsi:'انگشتر',tip:'صدای «نگ» از ته گلو!',moreWords:[['sing','🎤'],['song','🎵'],['king','👑'],['long','📏'],['strong','💪'],['young','👶']]},
+  {id:'ai',display:'ai',word:'rain',emoji:'🌧️',farsi:'باران',tip:'صدای بلند «ای». همون صدای اسم حرف A!',moreWords:[['train','🚂'],['wait','⏳'],['tail','🦮'],['paint','🎨'],['sail','⛵'],['brain','🧠']]},
+  {id:'ee',display:'ee',word:'tree',emoji:'🌳',farsi:'درخت',tip:'صدای بلند «اییی». لبات کشیده!',moreWords:[['bee','🐝'],['see','👀'],['feet','🦶'],['green','🟢'],['seed','🌱'],['teeth','🦷']]},
+  {id:'igh',display:'igh',word:'light',emoji:'💡',farsi:'نور',tip:'صدای بلند «آی»!',moreWords:[['night','🌙'],['right','✅'],['high','⬆️'],['fight','⚔️'],['sight','🔭'],['might','⚡']]},
+  {id:'oa',display:'oa',word:'boat',emoji:'🚤',farsi:'قایق',tip:'صدای بلند «او». همون صدای اسم حرف O!',moreWords:[['coat','🧥'],['goat','🐐'],['road','🛣️'],['soap','🧼'],['toad','🐸'],['load','📦']]},
+  {id:'oo',display:'oo',word:'moon',emoji:'🌙',farsi:'ماه',tip:'صدای بلند «اووو». لبات گرد!',moreWords:[['food','🍔'],['cool','😎'],['pool','🏊'],['boot','🥾'],['zoo','🦁'],['room','🏠']]},
+  {id:'oo_short',display:'oo',word:'book',emoji:'📖',farsi:'کتاب',tip:'صدای کوتاه «او». مثل «بُک»!',moreWords:[['cook','👨‍🍳'],['look','👀'],['good','👍'],['wood','🪵'],['hook','🪝'],['foot','🦶']]},
+  {id:'ar',display:'ar',word:'star',emoji:'⭐',farsi:'ستاره',tip:'صدای بلند «آر». مثل «آ» + «ر»!',moreWords:[['car','🚗'],['park','🏞️'],['farm','🌾'],['dark','🌑'],['arm','💪'],['card','🃏']]},
+  {id:'or',display:'or',word:'fork',emoji:'🍴',farsi:'چنگال',tip:'صدای «اور»!',moreWords:[['corn','🌽'],['horn','📯'],['port','⚓'],['sport','⚽'],['born','👶'],['horse','🐴']]},
+  {id:'ur',display:'ur',word:'burn',emoji:'🔥',farsi:'سوختن',tip:'صدای «اِر»!',moreWords:[['turn','🔄'],['fur','🧸'],['hurt','🤕'],['nurse','👩‍⚕️'],['surf','🏄'],['curl','➰']]},
+  {id:'ow',display:'ow',word:'cow',emoji:'🐄',farsi:'گاو',tip:'صدای «اَو»! لبات گرد میشه!',moreWords:[['now','⏰'],['how','❓'],['town','🏘️'],['down','⬇️'],['brown','🟤'],['owl','🦉']]},
+  {id:'oi',display:'oi',word:'coin',emoji:'🪙',farsi:'سکه',tip:'صدای «اوی»!',moreWords:[['oil','🫒'],['join','🤝'],['boil','♨️'],['point','👉'],['soil','🌍'],['noise','🔊']]},
+  {id:'ear',display:'ear',word:'ear',emoji:'👂',farsi:'گوش',tip:'صدای «ایر»!',moreWords:[['hear','🔊'],['near','📍'],['dear','💕'],['fear','😨'],['year','📅'],['clear','✨']]},
+  {id:'air',display:'air',word:'chair',emoji:'🪑',farsi:'صندلی',tip:'صدای «اِر»!',moreWords:[['hair','💇'],['fair','🎪'],['pair','👥'],['stair','🪜'],['bear','🐻'],['pear','🍐']]},
+  {id:'ure',display:'ure',word:'pure',emoji:'✨',farsi:'خالص',tip:'صدای «یوئر»!',moreWords:[['sure','👌'],['cure','💊'],['nature','🌿'],['picture','🖼️']]},
+  {id:'er',display:'er',word:'her',emoji:'👩',farsi:'او (زن)',tip:'صدای «اِر» کوتاه!',moreWords:[['term','📚'],['verb','📝'],['fern','🌿'],['summer','☀️'],['dinner','🍽️'],['letter','✉️']]},
+];
+
+const PHASES = [
+  {id:1,title:'صداهای حروف',titleEn:'Letter Sounds',desc:'صدای ۲۶ حروف الفبا',icon:'🔤',color:'#3D7B6F',bg:'#E8F4F0',type:'sounds',items:PHONEMES.map(p=>p.id)},
+  {id:2,title:'کلمات ساده CVC',titleEn:'CVC Words',desc:'کلمات ۳ حرفی: بخون و بساز',icon:'📖',color:'#E8856C',bg:'#FDF0EC',type:'words',
+    letters:['s','a','t','p','i','n','m','d','o'],
+    words:[
+      {w:'sat',s:['s','a','t'],m:'نشست',e:'🧎'},{w:'pat',s:['p','a','t'],m:'نوازش',e:'🤚'},{w:'tap',s:['t','a','p'],m:'ضربه',e:'👆'},
+      {w:'sip',s:['s','i','p'],m:'جرعه',e:'🥤'},{w:'tip',s:['t','i','p'],m:'نوک',e:'☝️'},{w:'dip',s:['d','i','p'],m:'فرو بردن',e:'🫗'},
+      {w:'pin',s:['p','i','n'],m:'سوزن',e:'📌'},{w:'tin',s:['t','i','n'],m:'قلع',e:'🥫'},{w:'sin',s:['s','i','n'],m:'گناه',e:'😇'},
+      {w:'nap',s:['n','a','p'],m:'چرت',e:'😴'},{w:'map',s:['m','a','p'],m:'نقشه',e:'🗺️'},{w:'mad',s:['m','a','d'],m:'عصبانی',e:'😡'},
+      {w:'sad',s:['s','a','d'],m:'ناراحت',e:'😢'},{w:'dad',s:['d','a','d'],m:'بابا',e:'👨'},{w:'mat',s:['m','a','t'],m:'زیرانداز',e:'🧶'},
+      {w:'man',s:['m','a','n'],m:'مرد',e:'👨'},{w:'pan',s:['p','a','n'],m:'ماهیتابه',e:'🍳'},{w:'tan',s:['t','a','n'],m:'برنزه',e:'☀️'},
+      {w:'sit',s:['s','i','t'],m:'بشین',e:'🪑'},{w:'it',s:['i','t'],m:'آن',e:'👆'},{w:'at',s:['a','t'],m:'در',e:'📍'},
+      {w:'in',s:['i','n'],m:'درون',e:'📦'},{w:'an',s:['a','n'],m:'یک',e:'1️⃣'},{w:'on',s:['o','n'],m:'روی',e:'⬆️'},
+      {w:'is',s:['i','s'],m:'هست',e:'✅'},{w:'ant',s:['a','n','t'],m:'مورچه',e:'🐜'},{w:'and',s:['a','n','d'],m:'و',e:'➕'},
+      {w:'pot',s:['p','o','t'],m:'قابلمه',e:'🍲'},{w:'hot',s:['h','o','t'],m:'داغ',e:'🔥'},{w:'dot',s:['d','o','t'],m:'نقطه',e:'⚫'},
+      {w:'not',s:['n','o','t'],m:'نه',e:'🚫'},{w:'got',s:['g','o','t'],m:'گرفت',e:'🤲'},{w:'top',s:['t','o','p'],m:'بالا',e:'🔝'},
+      {w:'pop',s:['p','o','p'],m:'صدای ترکیدن',e:'💥'},{w:'mop',s:['m','o','p'],m:'تی',e:'🧹'},{w:'hop',s:['h','o','p'],m:'پریدن',e:'🐰'},
+    ]},
+  {id:3,title:'حروف بیشتر',titleEn:'More Letters',desc:'با c,k,e,u,r,h,b,f کلمه بساز',icon:'📚',color:'#D4A650',bg:'#FDF6E3',type:'words',
+    letters:['c','k','ck','e','u','r','h','b','f'],
+    words:[
+      {w:'cat',s:['c','a','t'],m:'گربه',e:'🐈'},{w:'cup',s:['c','u','p'],m:'لیوان',e:'☕'},{w:'cot',s:['c','o','t'],m:'تخت کوچک',e:'🛏️'},
+      {w:'can',s:['c','a','n'],m:'قادر است',e:'💪'},{w:'cap',s:['c','a','p'],m:'کلاه',e:'🧢'},{w:'kid',s:['k','i','d'],m:'بچه',e:'👧'},
+      {w:'kit',s:['k','i','t'],m:'جعبه ابزار',e:'🧰'},{w:'kin',s:['k','i','n'],m:'خویشاوند',e:'👨‍👩‍👧'},
+      {w:'dig',s:['d','i','g'],m:'کندن',e:'⛏️'},{w:'fig',s:['f','i','g'],m:'انجیر',e:'🫐'},{w:'pig',s:['p','i','g'],m:'خوک',e:'🐷'},
+      {w:'big',s:['b','i','g'],m:'بزرگ',e:'🔵'},{w:'set',s:['s','e','t'],m:'تنظیم',e:'⚙️'},{w:'pet',s:['p','e','t'],m:'حیوان خانگی',e:'🐕'},
+      {w:'net',s:['n','e','t'],m:'تور',e:'🥅'},{w:'get',s:['g','e','t'],m:'گرفتن',e:'🤲'},{w:'let',s:['l','e','t'],m:'اجازه',e:'👌'},
+      {w:'bed',s:['b','e','d'],m:'تختخواب',e:'🛏️'},{w:'red',s:['r','e','d'],m:'قرمز',e:'🔴'},{w:'fed',s:['f','e','d'],m:'غذا داد',e:'🍽️'},
+      {w:'hen',s:['h','e','n'],m:'مرغ',e:'🐔'},{w:'ten',s:['t','e','n'],m:'ده',e:'🔟'},
+      {w:'run',s:['r','u','n'],m:'دویدن',e:'🏃'},{w:'sun',s:['s','u','n'],m:'خورشید',e:'☀️'},{w:'fun',s:['f','u','n'],m:'تفریح',e:'🎉'},
+      {w:'bus',s:['b','u','s'],m:'اتوبوس',e:'🚌'},{w:'rug',s:['r','u','g'],m:'فرش',e:'🧶'},{w:'bug',s:['b','u','g'],m:'حشره',e:'🐛'},
+      {w:'hug',s:['h','u','g'],m:'بغل',e:'🤗'},{w:'mug',s:['m','u','g'],m:'لیوان',e:'🍵'},{w:'rub',s:['r','u','b'],m:'مالیدن',e:'🧴'},
+      {w:'but',s:['b','u','t'],m:'اما',e:'🔄'},{w:'cut',s:['c','u','t'],m:'بریدن',e:'✂️'},{w:'put',s:['p','u','t'],m:'گذاشتن',e:'📦'},
+      {w:'hut',s:['h','u','t'],m:'کلبه',e:'🛖'},{w:'hat',s:['h','a','t'],m:'کلاه',e:'🎩'},{w:'hit',s:['h','i','t'],m:'زدن',e:'👊'},
+      {w:'him',s:['h','i','m'],m:'او (مفعولی)',e:'👦'},{w:'hop',s:['h','o','p'],m:'پریدن',e:'🐰'},
+      {w:'bat',s:['b','a','t'],m:'خفاش',e:'🦇'},{w:'bit',s:['b','i','t'],m:'یه ذره',e:'🤏'},{w:'bag',s:['b','a','g'],m:'کیف',e:'👜'},
+      {w:'bad',s:['b','a','d'],m:'بد',e:'👎'},{w:'ban',s:['b','a','n'],m:'ممنوع',e:'🚫'},{w:'bin',s:['b','i','n'],m:'سطل',e:'🗑️'},
+      {w:'fit',s:['f','i','t'],m:'مناسب',e:'👌'},{w:'fin',s:['f','i','n'],m:'باله',e:'🐟'},{w:'fat',s:['f','a','t'],m:'چاق',e:'🍔'},
+      {w:'fan',s:['f','a','n'],m:'پنکه',e:'🪭'},{w:'fun',s:['f','u','n'],m:'تفریح',e:'🎈'},
+      {w:'back',s:['b','a','ck'],m:'پشت',e:'🔙'},{w:'pack',s:['p','a','ck'],m:'بسته',e:'📦'},{w:'sack',s:['s','a','ck'],m:'کیسه',e:'🛍️'},
+      {w:'kick',s:['k','i','ck'],m:'لگد',e:'🦵'},{w:'sick',s:['s','i','ck'],m:'بیمار',e:'🤒'},{w:'tick',s:['t','i','ck'],m:'تیک',e:'✅'},
+      {w:'dock',s:['d','o','ck'],m:'اسکله',e:'⚓'},{w:'lock',s:['l','o','ck'],m:'قفل',e:'🔒'},{w:'sock',s:['s','o','ck'],m:'جوراب',e:'🧦'},
+      {w:'neck',s:['n','e','ck'],m:'گردن',e:'🦒'},{w:'peck',s:['p','e','ck'],m:'نوک زدن',e:'🐦'},{w:'deck',s:['d','e','ck'],m:'عرشه',e:'🚢'},
+    ]},
+  {id:4,title:'باقی حروف',titleEn:'Remaining Letters',desc:'با l,j,v,w,x,y,z کلمه بساز',icon:'✨',color:'#7B6BAF',bg:'#EEE8F5',type:'words',
+    letters:['l','ll','ff','ss','j','v','w','x','y','z','zz'],
+    words:[
+      {w:'leg',s:['l','e','g'],m:'پا',e:'🦵'},{w:'log',s:['l','o','g'],m:'تنه درخت',e:'🪵'},{w:'lap',s:['l','a','p'],m:'دامن',e:'🧑'},
+      {w:'lip',s:['l','i','p'],m:'لب',e:'👄'},{w:'lot',s:['l','o','t'],m:'خیلی',e:'📦'},
+      {w:'fill',s:['f','i','ll'],m:'پر کردن',e:'🪣'},{w:'hill',s:['h','i','ll'],m:'تپه',e:'⛰️'},{w:'bell',s:['b','e','ll'],m:'زنگ',e:'🔔'},
+      {w:'tell',s:['t','e','ll'],m:'گفتن',e:'💬'},{w:'well',s:['w','e','ll'],m:'خوب',e:'👍'},{w:'doll',s:['d','o','ll'],m:'عروسک',e:'🪆'},
+      {w:'miss',s:['m','i','ss'],m:'از دست دادن',e:'😔'},{w:'kiss',s:['k','i','ss'],m:'بوسه',e:'💋'},{w:'hiss',s:['h','i','ss'],m:'هیس',e:'🐍'},
+      {w:'boss',s:['b','o','ss'],m:'رئیس',e:'👔'},{w:'buzz',s:['b','u','zz'],m:'وزوز',e:'🐝'},{w:'fizz',s:['f','i','zz'],m:'جیز',e:'🥤'},
+      {w:'jam',s:['j','a','m'],m:'مربا',e:'🍯'},{w:'jar',s:['j','a','r'],m:'شیشه',e:'🫙'},{w:'jet',s:['j','e','t'],m:'جت',e:'✈️'},
+      {w:'job',s:['j','o','b'],m:'شغل',e:'💼'},{w:'jog',s:['j','o','g'],m:'دوی آهسته',e:'🏃'},{w:'jug',s:['j','u','g'],m:'پارچ',e:'🫗'},
+      {w:'van',s:['v','a','n'],m:'ون',e:'🚐'},{w:'vet',s:['v','e','t'],m:'دامپزشک',e:'👩‍⚕️'},{w:'vat',s:['v','a','t'],m:'وان',e:'🪣'},
+      {w:'web',s:['w','e','b'],m:'تار عنکبوت',e:'🕸️'},{w:'wet',s:['w','e','t'],m:'خیس',e:'💧'},{w:'win',s:['w','i','n'],m:'بردن',e:'🏆'},
+      {w:'wig',s:['w','i','g'],m:'کلاه گیس',e:'💇'},{w:'wax',s:['w','a','x'],m:'موم',e:'🕯️'},
+      {w:'box',s:['b','o','x'],m:'جعبه',e:'📦'},{w:'fox',s:['f','o','x'],m:'روباه',e:'🦊'},{w:'six',s:['s','i','x'],m:'شش',e:'6️⃣'},
+      {w:'mix',s:['m','i','x'],m:'مخلوط',e:'🔀'},{w:'fix',s:['f','i','x'],m:'تعمیر',e:'🔧'},
+      {w:'yak',s:['y','a','k'],m:'یاک',e:'🐂'},{w:'yap',s:['y','a','p'],m:'پارس',e:'🐕'},{w:'yes',s:['y','e','s'],m:'بله',e:'✅'},
+      {w:'yell',s:['y','e','ll'],m:'فریاد',e:'📢'},{w:'yam',s:['y','a','m'],m:'سیب‌زمینی شیرین',e:'🍠'},
+      {w:'zap',s:['z','a','p'],m:'برق',e:'⚡'},{w:'zip',s:['z','i','p'],m:'زیپ',e:'🤐'},{w:'zoo',s:['z','o','o'],m:'باغ وحش',e:'🦁'},
+      {w:'quiz',s:['q','u','i','z'],m:'مسابقه',e:'📝'},
+      {w:'hill',s:['h','i','ll'],m:'تپه',e:'⛰️'},{w:'well',s:['w','e','ll'],m:'چاه',e:'🕳️'},{w:'sell',s:['s','e','ll'],m:'فروختن',e:'💰'},
+      {w:'pull',s:['p','u','ll'],m:'کشیدن',e:'🫳'},{w:'full',s:['f','u','ll'],m:'پر',e:'🪣'},{w:'call',s:['c','a','ll'],m:'تماس',e:'📞'},
+      {w:'fall',s:['f','a','ll'],m:'افتادن',e:'🍂'},{w:'ball',s:['b','a','ll'],m:'توپ',e:'⚽'},{w:'tall',s:['t','a','ll'],m:'بلند',e:'📏'},
+    ]},
+  {id:5,title:'ترکیب صداها',titleEn:'Digraphs',desc:'ترکیب‌های صوتی ch,sh,th,ee,ai,oa,oo,ar,or...',icon:'🔗',color:'#6B8FAF',bg:'#E8EFF5',type:'words',
+    letters:['ch','sh','th','ng','ai','ee','igh','oa','oo','ar','or','ur','ow','oi','ear','air','er'],
+    words:[
+      {w:'chip',s:['ch','i','p'],m:'چیپس',e:'🍟'},{w:'chin',s:['ch','i','n'],m:'چانه',e:'😊'},{w:'chop',s:['ch','o','p'],m:'خرد کردن',e:'🔪'},
+      {w:'chat',s:['ch','a','t'],m:'گپ',e:'💬'},{w:'chest',s:['ch','e','st'],m:'قفسه سینه',e:'🫁'},{w:'much',s:['m','u','ch'],m:'خیلی',e:'📐'},
+      {w:'rich',s:['r','i','ch'],m:'پولدار',e:'💰'},{w:'lunch',s:['l','u','n','ch'],m:'ناهار',e:'🍱'},
+      {w:'ship',s:['sh','i','p'],m:'کشتی',e:'🚢'},{w:'shop',s:['sh','o','p'],m:'مغازه',e:'🏪'},{w:'shed',s:['sh','e','d'],m:'انبار',e:'🏚️'},
+      {w:'shut',s:['sh','u','t'],m:'بستن',e:'🚪'},{w:'shell',s:['sh','e','ll'],m:'صدف',e:'🐚'},{w:'fish',s:['f','i','sh'],m:'ماهی',e:'🐟'},
+      {w:'wish',s:['w','i','sh'],m:'آرزو',e:'⭐'},{w:'brush',s:['br','u','sh'],m:'مسواک',e:'🪥'},
+      {w:'this',s:['th','i','s'],m:'این',e:'👆'},{w:'that',s:['th','a','t'],m:'آن',e:'🫵'},{w:'them',s:['th','e','m'],m:'آنها',e:'👥'},
+      {w:'then',s:['th','e','n'],m:'بعد',e:'⏭️'},{w:'thin',s:['th','i','n'],m:'نازک',e:'📏'},{w:'thick',s:['th','i','ck'],m:'ضخیم',e:'📐'},
+      {w:'math',s:['m','a','th'],m:'ریاضی',e:'🔢'},{w:'bath',s:['b','a','th'],m:'حمام',e:'🛁'},
+      {w:'ring',s:['r','i','ng'],m:'انگشتر',e:'💍'},{w:'sing',s:['s','i','ng'],m:'آواز',e:'🎤'},{w:'king',s:['k','i','ng'],m:'پادشاه',e:'👑'},
+      {w:'song',s:['s','o','ng'],m:'آهنگ',e:'🎵'},{w:'long',s:['l','o','ng'],m:'بلند',e:'📏'},{w:'bang',s:['b','a','ng'],m:'انفجار',e:'💥'},
+      {w:'rain',s:['r','ai','n'],m:'باران',e:'🌧️'},{w:'train',s:['tr','ai','n'],m:'قطار',e:'🚂'},{w:'wait',s:['w','ai','t'],m:'صبر',e:'⏳'},
+      {w:'tail',s:['t','ai','l'],m:'دم',e:'🐾'},{w:'sail',s:['s','ai','l'],m:'بادبان',e:'⛵'},{w:'brain',s:['br','ai','n'],m:'مغز',e:'🧠'},
+      {w:'paint',s:['p','ai','nt'],m:'رنگ',e:'🎨'},{w:'snail',s:['sn','ai','l'],m:'حلزون',e:'🐌'},
+      {w:'bee',s:['b','ee'],m:'زنبور',e:'🐝'},{w:'tree',s:['tr','ee'],m:'درخت',e:'🌳'},{w:'see',s:['s','ee'],m:'دیدن',e:'👀'},
+      {w:'free',s:['fr','ee'],m:'رایگان',e:'🆓'},{w:'feet',s:['f','ee','t'],m:'پاها',e:'🦶'},{w:'green',s:['gr','ee','n'],m:'سبز',e:'🟢'},
+      {w:'seed',s:['s','ee','d'],m:'بذر',e:'🌱'},{w:'teeth',s:['t','ee','th'],m:'دندان‌ها',e:'🦷'},
+      {w:'light',s:['l','igh','t'],m:'نور',e:'💡'},{w:'night',s:['n','igh','t'],m:'شب',e:'🌙'},{w:'right',s:['r','igh','t'],m:'درست',e:'✅'},
+      {w:'high',s:['h','igh'],m:'بلند',e:'⬆️'},{w:'fight',s:['f','igh','t'],m:'جنگیدن',e:'⚔️'},{w:'sight',s:['s','igh','t'],m:'دید',e:'🔭'},
+      {w:'might',s:['m','igh','t'],m:'شاید',e:'🤷'},{w:'tight',s:['t','igh','t'],m:'تنگ',e:'🤏'},
+      {w:'boat',s:['b','oa','t'],m:'قایق',e:'🚤'},{w:'coat',s:['c','oa','t'],m:'کت',e:'🧥'},{w:'goat',s:['g','oa','t'],m:'بز',e:'🐐'},
+      {w:'road',s:['r','oa','d'],m:'جاده',e:'🛣️'},{w:'soap',s:['s','oa','p'],m:'صابون',e:'🧼'},{w:'toad',s:['t','oa','d'],m:'قورباغه',e:'🐸'},
+      {w:'moon',s:['m','oo','n'],m:'ماه',e:'🌙'},{w:'food',s:['f','oo','d'],m:'غذا',e:'🍔'},{w:'cool',s:['c','oo','l'],m:'خنک',e:'😎'},
+      {w:'pool',s:['p','oo','l'],m:'استخر',e:'🏊'},{w:'boot',s:['b','oo','t'],m:'چکمه',e:'🥾'},{w:'spoon',s:['sp','oo','n'],m:'قاشق',e:'🥄'},
+      {w:'book',s:['b','oo','k'],m:'کتاب',e:'📖'},{w:'cook',s:['c','oo','k'],m:'آشپزی',e:'👨‍🍳'},{w:'look',s:['l','oo','k'],m:'نگاه',e:'👀'},
+      {w:'good',s:['g','oo','d'],m:'خوب',e:'👍'},{w:'wood',s:['w','oo','d'],m:'چوب',e:'🪵'},{w:'hook',s:['h','oo','k'],m:'قلاب',e:'🪝'},
+      {w:'car',s:['c','ar'],m:'ماشین',e:'🚗'},{w:'star',s:['st','ar'],m:'ستاره',e:'⭐'},{w:'park',s:['p','ar','k'],m:'پارک',e:'🏞️'},
+      {w:'dark',s:['d','ar','k'],m:'تاریک',e:'🌑'},{w:'farm',s:['f','ar','m'],m:'مزرعه',e:'🌾'},{w:'arm',s:['ar','m'],m:'بازو',e:'💪'},
+      {w:'card',s:['c','ar','d'],m:'کارت',e:'🃏'},{w:'barn',s:['b','ar','n'],m:'انبار',e:'🏚️'},
+      {w:'for',s:['f','or'],m:'برای',e:'➡️'},{w:'born',s:['b','or','n'],m:'متولد',e:'👶'},{w:'corn',s:['c','or','n'],m:'ذرت',e:'🌽'},
+      {w:'fork',s:['f','or','k'],m:'چنگال',e:'🍴'},{w:'horn',s:['h','or','n'],m:'شاخ',e:'📯'},{w:'port',s:['p','or','t'],m:'بندر',e:'⚓'},
+      {w:'sport',s:['sp','or','t'],m:'ورزش',e:'⚽'},{w:'horse',s:['h','or','se'],m:'اسب',e:'🐴'},
+      {w:'burn',s:['b','ur','n'],m:'سوختن',e:'🔥'},{w:'turn',s:['t','ur','n'],m:'چرخیدن',e:'🔄'},{w:'fur',s:['f','ur'],m:'پوست',e:'🧸'},
+      {w:'hurt',s:['h','ur','t'],m:'درد',e:'🤕'},{w:'nurse',s:['n','ur','se'],m:'پرستار',e:'👩‍⚕️'},{w:'surf',s:['s','ur','f'],m:'موج‌سواری',e:'🏄'},
+      {w:'now',s:['n','ow'],m:'الان',e:'⏰'},{w:'cow',s:['c','ow'],m:'گاو',e:'🐄'},{w:'how',s:['h','ow'],m:'چطور',e:'❓'},
+      {w:'town',s:['t','ow','n'],m:'شهر',e:'🏘️'},{w:'down',s:['d','ow','n'],m:'پایین',e:'⬇️'},{w:'brown',s:['br','ow','n'],m:'قهوه‌ای',e:'🟤'},
+      {w:'owl',s:['ow','l'],m:'جغد',e:'🦉'},{w:'flower',s:['fl','ow','er'],m:'گل',e:'🌸'},
+      {w:'oil',s:['oi','l'],m:'روغن',e:'🫒'},{w:'coin',s:['c','oi','n'],m:'سکه',e:'🪙'},{w:'join',s:['j','oi','n'],m:'پیوستن',e:'🤝'},
+      {w:'boil',s:['b','oi','l'],m:'جوشیدن',e:'♨️'},{w:'point',s:['p','oi','nt'],m:'نقطه',e:'📍'},{w:'soil',s:['s','oi','l'],m:'خاک',e:'🌍'},
+      {w:'ear',s:['ear'],m:'گوش',e:'👂'},{w:'hear',s:['h','ear'],m:'شنیدن',e:'🔊'},{w:'near',s:['n','ear'],m:'نزدیک',e:'📍'},
+      {w:'dear',s:['d','ear'],m:'عزیز',e:'💕'},{w:'fear',s:['f','ear'],m:'ترس',e:'😨'},{w:'year',s:['y','ear'],m:'سال',e:'📅'},
+      {w:'chair',s:['ch','air'],m:'صندلی',e:'🪑'},{w:'hair',s:['h','air'],m:'مو',e:'💇'},{w:'fair',s:['f','air'],m:'عادلانه',e:'⚖️'},
+      {w:'pair',s:['p','air'],m:'جفت',e:'👟'},{w:'bear',s:['b','ear'],m:'خرس',e:'🐻'},{w:'pear',s:['p','ear'],m:'گلابی',e:'🍐'},
+      {w:'her',s:['h','er'],m:'او (زن)',e:'👩'},{w:'term',s:['t','er','m'],m:'ترم',e:'📚'},{w:'fern',s:['f','er','n'],m:'سرخس',e:'🌿'},
+      {w:'summer',s:['s','u','mm','er'],m:'تابستان',e:'☀️'},{w:'dinner',s:['d','i','nn','er'],m:'شام',e:'🍽️'},
+      {w:'better',s:['b','e','tt','er'],m:'بهتر',e:'👍'},{w:'letter',s:['l','e','tt','er'],m:'نامه',e:'✉️'},
+    ]},
+  {id:6,title:'کلمات ویژه',titleEn:'Tricky Words',desc:'کلماتی که باید حفظ بشن',icon:'⭐',color:'#AF6B8F',bg:'#F5E8EF',type:'tricky'},
+  {id:7,title:'خانواده کلمات',titleEn:'Word Families',desc:'کلمات هم‌خانواده رو یاد بگیر',icon:'👨‍👩‍👧‍👦',color:'#8F6BAF',bg:'#EDE8F5',type:'families'},
+  {id:8,title:'جملات ساده',titleEn:'Simple Sentences',desc:'جملات کوتاه بخوان',icon:'✍️',color:'#6BAFAF',bg:'#E8F5F5',type:'sentences'},
+];
+
+const TRICKY_WORDS = [
+  {w:'the',m:'حرف تعریف'},{w:'a',m:'یک'},{w:'I',m:'من'},{w:'no',m:'نه'},
+  {w:'go',m:'برو'},{w:'to',m:'به'},{w:'he',m:'او (مرد)'},{w:'she',m:'او (زن)'},
+  {w:'me',m:'من (مفعولی)'},{w:'we',m:'ما'},{w:'be',m:'بودن'},{w:'was',m:'بود'},
+  {w:'you',m:'تو'},{w:'they',m:'آنها'},{w:'are',m:'هستند'},{w:'said',m:'گفت'},
+  {w:'has',m:'دارد'},{w:'his',m:'مال او'},{w:'her',m:'مال او (زن)'},
+  {w:'have',m:'داشتن'},{w:'like',m:'دوست داشتن'},{w:'so',m:'پس'},
+  {w:'do',m:'انجام دادن'},{w:'come',m:'بیا'},{w:'some',m:'بعضی'},
+  {w:'were',m:'بودند'},{w:'there',m:'آنجا'},{w:'here',m:'اینجا'},
+  {w:'little',m:'کوچک'},{w:'one',m:'یک'},{w:'when',m:'وقتی'},
+  {w:'what',m:'چه'},{w:'who',m:'چه کسی'},{w:'out',m:'بیرون'},
+  {w:'oh',m:'اوه'},{w:'their',m:'مال آنها'},{w:'your',m:'مال تو'},
+  {w:'could',m:'می‌توانست'},{w:'would',m:'می‌خواست'},{w:'should',m:'باید'},
+  {w:'about',m:'درباره'},{w:'many',m:'زیاد'},{w:'any',m:'هر'},
+  {w:'most',m:'بیشتر'},{w:'both',m:'هر دو'},{w:'only',m:'فقط'},
+  {w:'old',m:'قدیمی'},{w:'after',m:'بعد از'},{w:'also',m:'همچنین'},
+  {w:'back',m:'برگشت'},{w:'other',m:'دیگر'},{w:'been',m:'بوده'},
+  {w:'find',m:'پیدا کردن'},{w:'kind',m:'مهربان'},{w:'mind',m:'ذهن'},
+  {w:'behind',m:'پشت سر'},{w:'want',m:'می‌خوام'},{w:'walk',m:'راه رفتن'},
+  {w:'talk',m:'حرف زدن'},{w:'look',m:'نگاه کردن'},{w:'good',m:'خوب'},
+  {w:'food',m:'غذا'},{w:'school',m:'مدرسه'},{w:'where',m:'کجا'},
+  {w:'which',m:'کدام'},{w:'why',m:'چرا'},{w:'because',m:'چون'},
+  {w:'people',m:'مردم'},{w:'again',m:'دوباره'},{w:'every',m:'هر'},
+  {w:'really',m:'واقعا'},{w:'would',m:'would'},{w:'know',m:'می‌دونم'},
+  {w:'through',m:'از میان'},{w:'thought',m:'فکر کرد'},{w:'enough',m:'کافی'},
+];
+
+const WORD_FAMILIES = [
+  {family:'-at', words:[['bat','🦇','خفاش'],['cat','🐈','گربه'],['fat','🍔','چاق'],['hat','🎩','کلاه'],['mat','🧶','زیرانداز'],['pat','🤚','نوازش'],['rat','🐀','موش'],['sat','🧎','نشست']]},
+  {family:'-an', words:[['ban','🚫','ممنوع'],['can','💪','قادر'],['fan','🪭','پنکه'],['man','👨','مرد'],['pan','🍳','ماهیتابه'],['ran','🏃','دوید'],['tan','☀️','برنزه'],['van','🚐','ون']]},
+  {family:'-ap', words:[['cap','🧢','کلاه'],['lap','🧑','دامن'],['map','🗺️','نقشه'],['nap','😴','چرت'],['tap','👆','ضربه'],['gap','🕳️','فاصله'],['snap','📸','عکس']]},
+  {family:'-ig', words:[['big','🔵','بزرگ'],['dig','⛏️','کندن'],['fig','🫐','انجیر'],['pig','🐷','خوک'],['wig','💇','کلاه گیس'],['jig','💃','رقص'],['rig','🔧','نصب']]},
+  {family:'-og', words:[['dog','🐶','سگ'],['fog','🌫️','مه'],['hog','🐗','خوک'],['jog','🏃','دوی آهسته'],['log','🪵','تنه'],['bog','💧','باتلاق']]},
+  {family:'-ug', words:[['bug','🐛','حشره'],['dug','⛏️','کندن'],['hug','🤗','بغل'],['jug','🏺','پارچ'],['mug','🍵','لیوان'],['rug','🧶','فرش'],['tug','🫳','کشیدن']]},
+  {family:'-en', words:[['den','🏠','لانه'],['hen','🐔','مرغ'],['men','👨‍👩‍👦','مردان'],['pen','🖊️','خودکار'],['ten','🔟','ده'],['when','⏰','وقتی']]},
+  {family:'-et', words:[['bet','🎲','شرط'],['get','🤲','گرفتن'],['jet','✈️','جت'],['let','👌','اجازه'],['net','🥅','تور'],['pet','🐕','حیوان خانگی'],['set','⚙️','تنظیم'],['wet','💧','خیس']]},
+  {family:'-it', words:[['bit','🤏','ذره'],['fit','👌','مناسب'],['hit','👊','زدن'],['kit','🧰','جعبه'],['pit','🕳️','گودال'],['sit','🪑','بشین'],['wit','🧠','هوش']]},
+  {family:'-op', words:[['cop','👮','پلیس'],['hop','🐰','پریدن'],['mop','🧹','تی'],['pop','💥','ترکیدن'],['top','🔝','بالا'],['drop','💧','قطره'],['stop','🛑','ایست']]},
+  {family:'-ot', words:[['dot','⚫','نقطه'],['got','🤲','گرفتن'],['hot','🔥','داغ'],['lot','📦','زیاد'],['not','🚫','نه'],['pot','🍲','قابلمه'],['rot','🤢','پوسیدن']]},
+  {family:'-ut', words:[['but','🔄','اما'],['cut','✂️','بریدن'],['gut','🫁','روده'],['hut','🛖','کلبه'],['nut','🥜','مغز'],['put','📦','گذاشتن'],['shut','🚪','بستن']]},
+  {family:'-ick', words:[['kick','🦵','لگد'],['lick','👅','لیسیدن'],['pick','⛏️','انتخاب'],['sick','🤒','بیمار'],['tick','✅','تیک'],['trick','🎩','ترفند'],['quick','⚡','سریع'],['stick','🪵','چوب']]},
+  {family:'-ack', words:[['back','🔙','پشت'],['pack','📦','بسته'],['sack','🛍️','کیسه'],['rack','🪝','قفسه'],['black','⬛','سیاه'],['crack','💥','ترک'],['track','🛤️','مسیر']]},
+  {family:'-ock', words:[['dock','⚓','اسکله'],['lock','🔒','قفل'],['rock','🪨','سنگ'],['sock','🧦','جوراب'],['block','🧱','بلوک'],['clock','🕐','ساعت'],['knock','👊','در زدن']]},
+  {family:'-eck', words:[['deck','🚢','عرشه'],['neck','🦒','گردن'],['peck','🐦','نوک زدن'],['check','✅','بررسی'],['freckle','😊','کک‌ومک']]},
+  {family:'-ink', words:[['drink','🥤','نوشیدن'],['pink','🩷','صورتی'],['sink','🚰','سینک'],['think','🤔','فکر کردن'],['link','🔗','لینک'],['wink','😉','پلک زدن']]},
+  {family:'-unk', words:[['bunk','🛏️','تخت'],['chunk','📦','تکه'],['dunk','🏀','پرتاب'],['junk','🗑️','آشغال'],['trunk','🐘','خرطوم/صندوق']]},
+  {family:'-ank', words:[['bank','🏦','بانک'],['blank','📄','خالی'],['drank','🥤','نوشید'],['rank','📊','رتبه'],['tank','🪖','تانک'],['thank','🙏','ممنون']]},
+  {family:'-all', words:[['ball','⚽','توپ'],['call','📞','تماس'],['fall','🍂','افتادن'],['hall','🚪','راهرو'],['mall','🏬','مرکز خرید'],['tall','📏','بلند'],['wall','🧱','دیوار']]},
+  {family:'-ell', words:[['bell','🔔','زنگ'],['fell','⬇️','افتاد'],['sell','💰','فروختن'],['tell','💬','گفتن'],['well','👍','خوب'],['shell','🐚','صدف'],['smell','👃','بو']]},
+  {family:'-ill', words:[['bill','💵','قبض'],['fill','🪣','پر کردن'],['hill','⛰️','تپه'],['kill','☠️','کشتن'],['pill','💊','قرص'],['sick','🤒','بیمار'],['still','🤫','هنوز'],['will','✅','خواهد']]},
+  {family:'-oll', words:[['doll','🪆','عروسک'],['roll','🧻','رول'],['toll','🔔','زنگ'],['poll','🗳️','نظرسنجی'],['stroll','🚶','قدم زدن']]},
+  {family:'-ull', words:[['bull','🐂','گاو نر'],['full','🪣','پر'],['pull','🫳','کشیدن'],['dull','😐','کسل'],['hull','🚢','بدنه'],['null','❌','باطل']]},
+];
+
+const SIMPLE_SENTENCES = [
+  {text:'The cat sat on the mat.',emoji:'🐈🧎🧶',farsi:'گربه روی زیرانداز نشست.',words:['The','cat','sat','on','the','mat']},
+  {text:'A big red bus.',emoji:'🚌🔴',farsi:'یک اتوبوس بزرگ قرمز.',words:['A','big','red','bus']},
+  {text:'I can see a dog.',emoji:'👀🐶',farsi:'من می‌تونم یه سگ ببینم.',words:['I','can','see','a','dog']},
+  {text:'The sun is hot.',emoji:'☀️🔥',farsi:'خورشید داغه.',words:['The','sun','is','hot']},
+  {text:'She has a hat.',emoji:'👩🎩',farsi:'اون یه کلاه داره.',words:['She','has','a','hat']},
+  {text:'He can run fast.',emoji:'🏃💨',farsi:'اون می‌تونه تند بدوه.',words:['He','can','run','fast']},
+  {text:'The fish is in the pond.',emoji:'🐟💧',farsi:'ماهی داخل برکه است.',words:['The','fish','is','in','the','pond']},
+  {text:'A fat pig in the mud.',emoji:'🐷💧',farsi:'یه خوک چاق توی گِل.',words:['A','fat','pig','in','the','mud']},
+  {text:'The man got on the bus.',emoji:'👨🚌',farsi:'مرد سوار اتوبوس شد.',words:['The','man','got','on','the','bus']},
+  {text:'It is a red fox.',emoji:'🦊🔴',farsi:'این یه روباه قرمزه.',words:['It','is','a','red','fox']},
+  {text:'We like to play.',emoji:'👶🎈',farsi:'ما دوست داریم بازی کنیم.',words:['We','like','to','play']},
+  {text:'The hen is on the egg.',emoji:'🐔🥚',farsi:'مرغ روی تخم‌مرغ نشسته.',words:['The','hen','is','on','the','egg']},
+  {text:'Pat the dog.',emoji:'🤚🐶',farsi:'سگ رو نوازش کن.',words:['Pat','the','dog']},
+  {text:'The boy can hop.',emoji:'👦🐰',farsi:'پسر می‌تونه بپره.',words:['The','boy','can','hop']},
+  {text:'I see the moon and stars.',emoji:'👀🌙⭐',farsi:'من ماه و ستاره‌ها رو می‌بینم.',words:['I','see','the','moon','and','stars']},
+  {text:'A bug is on the leaf.',emoji:'🐛🍃',farsi:'یه حشره روی برگه.',words:['A','bug','is','on','the','leaf']},
+  {text:'Come and sit here.',emoji:'🪑',farsi:'بیا و اینجا بشین.',words:['Come','and','sit','here']},
+  {text:'She has a little duck.',emoji:'👩🐥',farsi:'اون یه اردک کوچولو داره.',words:['She','has','a','little','duck']},
+  {text:'The shop is shut.',emoji:'🏪🔒',farsi:'مغازه بسته‌ست.',words:['The','shop','is','shut']},
+  {text:'I want a drink.',emoji:'🥤',farsi:'من یه نوشیدنی می‌خوام.',words:['I','want','a','drink']},
+];
+
+// ====================================================================
+// STATE
+// ====================================================================
+const state = {
+  currentScreen: 'home',
+  history: [],
+  selectedPhase: null,
+  selectedSound: null,
+  selectedWordObj: null,
+  quizState: null,
+  soundEnabled: true,
+  progress: JSON.parse(localStorage.getItem('pl_prog') || '{}'),
+};
+const save = () => localStorage.setItem('pl_prog', JSON.stringify(state.progress));
+const sDone = id => state.progress['s_'+id] || false;
+const sMark = id => { state.progress['s_'+id] = true; save(); };
+const wDone = w => state.progress['w_'+w] || false;
+const wMark = w => { state.progress['w_'+w] = true; save(); };
+const tDone = w => state.progress['t_'+w] || false;
+const tMark = w => { state.progress['t_'+w] = true; save(); };
+const quizGet = id => state.progress['q_'+id] ?? null;
+const quizSave = (id, s) => { state.progress['q_'+id] = s; save(); };
+
+// ====================================================================
+// SPEECH (FIXED — uses demo words for reliable pronunciation)
+// ====================================================================
+let prefVoice = null;
+function loadV() {
+  const v = speechSynthesis.getVoices();
+  prefVoice = v.find(x=>x.lang==='en-GB')||v.find(x=>x.lang.startsWith('en-GB'))||v.find(x=>x.lang==='en-US')||v.find(x=>x.lang.startsWith('en'))||null;
+}
+speechSynthesis.onvoiceschanged = loadV;
+loadV();
+
+function speak(text, rate=0.75, pitch=1) {
+  if (!state.soundEnabled) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB'; u.rate = rate; u.pitch = pitch;
+  if (prefVoice) u.voice = prefVoice;
+  speechSynthesis.speak(u);
+  return u;
+}
+
+// FIXED: For letter sounds, speak the WORD slowly (most reliable way)
+function speakLetterSound(id) {
+  const item = PHONEMES.find(p=>p.id===id) || DIGRAPHS.find(d=>d.id===id);
+  if (!item) return;
+  const phonemeMap={s:"s",a:"a",t:"t",p:"p",i:"i",n:"n",m:"m",d:"d",g:"g",o:"o",c:"c",k:"k",e:"e",u:"u",r:"r",h:"h",b:"b",f:"f",l:"l",j:"j",v:"v",w:"w",x:"x",y:"y",z:"z",ch:"ch",sh:"sh",th:"th",ng:"ng",ai:"ai",ee:"ee",igh:"igh",oa:"oa",oo:"oo",ar:"ar",or:"or",ur:"ur",ow:"ow",oi:"oi",ear:"ear",air:"air",ure:"ure",er:"er"};
+  speak(phonemeMap[id]||item.id,0.55,0.9);
+}
+
+function speakWord(w) { speak(w, 0.7, 1); }
+function speakWordSlow(w) { speak(w, 0.45, 1); }
+function speakSentence(text) { speak(text, 0.6, 1); }
+
+// ====================================================================
+// NAVIGATION
+// ====================================================================
+function navTo(screen) {
+  if (state.currentScreen !== screen) state.history.push(state.currentScreen);
+  state.currentScreen = screen;
+  render(); updateNav(); updateBack();
+  window.scrollTo(0,0);
+}
+function goBack() {
+  if (state.history.length) {
+    state.currentScreen = state.history.pop();
+    render(); updateNav(); updateBack();
+  }
+}
+function updateNav() {
+  const map = {
+    home:['home'], allSounds:['allSounds','soundDetail'],
+    wordFamilies:['wordFamilies','phaseWords','blendWord'],
+    tricky:['tricky'], progress:['progress','quiz','quizResult','sentences']
+  };
+  document.querySelectorAll('.nav-item').forEach(el => {
+    const n = el.dataset.nav;
+    el.classList.toggle('active', (map[n]||[]).includes(state.currentScreen));
+  });
+}
+function updateBack() {
+  document.getElementById('backBtn').style.visibility = state.history.length ? 'visible' : 'hidden';
+}
+function toggleSound() {
+  state.soundEnabled = !state.soundEnabled;
+  document.getElementById('soundToggle').textContent = state.soundEnabled ? '🔊' : '🔇';
+}
+function showModal(html) {
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function hideModal() { document.getElementById('modalOverlay').classList.remove('show'); }
+
+// ====================================================================
+// RENDER
+// ====================================================================
+function render() {
+  const mc = document.getElementById('mainContent');
+  const r = {
+    home: renderHome, allSounds: renderAllSounds, soundDetail: renderSoundDetail,
+    wordFamilies: renderWordFamilies, phaseWords: renderPhaseWords, blendWord: renderBlendWord,
+    tricky: renderTricky, quiz: renderQuiz, quizResult: renderQuizResult,
+    progress: renderProgress, sentences: renderSentences,
+  };
+  mc.innerHTML = (r[state.currentScreen] || renderHome)();
+  attachSwipe();
+}
+
+// ---- HOME ----
+function renderHome() {
+  const allS = PHONEMES.length + DIGRAPHS.length;
+  const doneS = PHONEMES.filter(p=>sDone(p.id)).length + DIGRAPHS.filter(d=>sDone(d.id)).length;
+  const allW = PHASES.filter(p=>p.words).reduce((a,p)=>a+p.words.length,0);
+  const doneW = PHASES.filter(p=>p.words).reduce((a,p)=>a+p.words.filter(w=>wDone(w.w)).length,0);
+
+  return `
+    <div class="home-hero">
+      <span class="emoji-big">📚✨</span>
+      <h2>به Phonics Land خوش آمدید!</h2>
+      <p>اینجا بچه‌ها یاد می‌گیرن انگلیسی بخونن<br>با صدای حروف، کلمات و تمرین</p>
+    </div>
+    <div class="tip-bar">👆 روی هر چیزی بزن تا صداش رو بشنوی!</div>
+    <div class="section-title">📍 مراحل یادگیری</div>
+    <div class="phase-grid">
+      ${PHASES.map((ph,i) => {
+        let total=0,done=0;
+        if(ph.type==='sounds'){total=ph.items.length;done=ph.items.filter(id=>sDone(id)).length;}
+        else if(ph.type==='words'){total=ph.words.length;done=ph.words.filter(w=>wDone(w.w)).length;}
+        else if(ph.type==='tricky'){total=TRICKY_WORDS.length;done=TRICKY_WORDS.filter(w=>tDone(w.w)).length;}
+        else if(ph.type==='families'){total=WORD_FAMILIES.reduce((a,f)=>a+f.words.length,0);done=0;}
+        else if(ph.type==='sentences'){total=SIMPLE_SENTENCES.length;done=0;}
+        const pct=total?Math.round(done/total*100):0;
+        const badge=pct===100?'✓':pct>0?pct+'%':'شروع';
+        const badgeBg=pct===100?'var(--success)':pct>0?ph.bg:'#f0f0f0';
+        const badgeCol=pct===100?'#fff':ph.color;
+        return `<div class="phase-card" onclick="selectPhase(${ph.id})" style="animation-delay:${i*0.04}s">
+          <div class="phase-icon" style="background:${ph.bg};color:${ph.color}">${ph.icon}</div>
+          <div class="phase-info">
+            <h3>مرحله ${ph.id}: ${ph.title}</h3>
+            <p>${ph.desc}</p>
+            ${ph.type!=='families'&&ph.type!=='sentences'?`<div class="phase-bar"><div class="phase-bar-fill" style="width:${pct}%;background:${ph.color}"></div></div>`:''}
+          </div>
+          <span class="phase-badge" style="color:${badgeCol};background:${badgeBg}">${badge}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="margin-top:28px">
+      <div class="section-title">📊 خلاصه</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">${doneS}/${allS}</div><div class="stat-lbl">صدا</div></div>
+        <div class="stat-card"><div class="stat-num">${doneW}/${allW}</div><div class="stat-lbl">کلمه</div></div>
+        <div class="stat-card"><div class="stat-num">${TRICKY_WORDS.filter(w=>tDone(w.w)).length}/${TRICKY_WORDS.length}</div><div class="stat-lbl">ویژه</div></div>
+      </div>
+    </div>`;
+}
+
+function selectPhase(id) {
+  state.selectedPhase = PHASES.find(p=>p.id===id);
+  const t = state.selectedPhase.type;
+  if(t==='sounds') navTo('allSounds');
+  else if(t==='words') navTo('phaseWords');
+  else if(t==='tricky') navTo('tricky');
+  else if(t==='families') navTo('wordFamilies');
+  else if(t==='sentences') navTo('sentences');
+}
+
+// ---- ALL SOUNDS ----
+function renderAllSounds() {
+  const items = state.selectedPhase && state.selectedPhase.type==='sounds' ? state.selectedPhase.items : PHONEMES.map(p=>p.id);
+  const all = [...PHONEMES,...DIGRAPHS];
+  const phaseLabel = state.selectedPhase ? state.selectedPhase.title : 'همه صداهای حروف';
+
+  return `
+    <div class="section-title">🔤 ${phaseLabel}</div>
+    <p style="color:var(--text-mid);margin-bottom:16px;font-size:.9rem">روی هر حرف بزن و صداش رو با کلمه‌اش یاد بگیر!</p>
+    <div class="sound-grid">
+      ${items.map((id,i) => {
+        const item = all.find(s=>s.id===id);
+        if(!item) return '';
+        const done = sDone(id);
+        return `<div class="sound-card ${done?'done':''}" style="animation-delay:${i*0.025}s" onclick="pickSound('${id}')">
+          <div class="letter">${item.lower||item.display}</div>
+          ${item.upper?`<div class="letter-upper">${item.upper}</div>`:''}
+          <div class="emoji">${item.emoji}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function pickSound(id) { state.selectedSound = id; navTo('soundDetail'); }
+
+// ---- SOUND DETAIL ----
+function renderSoundDetail() {
+  const id = state.selectedSound;
+  const all = [...PHONEMES,...DIGRAPHS];
+  const item = all.find(s=>s.id===id);
+  if(!item) return '<p>صدا پیدا نشد</p>';
+
+  const isPh = PHONEMES.find(p=>p.id===id);
+  const items = state.selectedPhase && state.selectedPhase.type==='sounds' ? state.selectedPhase.items : PHONEMES.map(p=>p.id);
+  const idx = items.indexOf(id);
+  const prev = idx>0?items[idx-1]:null;
+  const next = idx<items.length-1?items[idx+1]:null;
+  const done = sDone(id);
+
+  // Find words from all phases containing this sound
+  const allWords = PHASES.filter(p=>p.words).flatMap(p=>p.words);
+  const exWords = allWords.filter(w=>w.s.includes(id)).slice(0,8);
+
+  return `
+    <div class="sound-detail">
+      <div class="sound-big" id="soundBig" onclick="playSoundBig('${id}')">
+        <div class="letter-display">${item.lower||item.display}</div>
+        <div class="tap-hint">👆 بشنو</div>
+      </div>
+
+      <div class="letter-cases">
+        <div class="letter-box" onclick="speakLetterSound('${id}')">
+          ${item.lower||item.display}<span>کوچک</span>
+        </div>
+        ${item.upper?`<div class="letter-box" onclick="speakLetterSound('${id}')">
+          ${item.upper}<span>بزرگ</span>
+        </div>`:''}
+      </div>
+
+      <div class="example-section">
+        <h4>🔊 اول این کلمه رو بشنو:</h4>
+        <div class="example-word" onclick="speakWord('${item.word}')" style="margin:0 auto;direction:ltr;display:flex;width:fit-content">
+          <span class="ew-emoji">${item.emoji}</span>
+          <span style="font-size:1.4rem">${item.word}</span>
+        </div>
+        <div style="text-align:center;margin-top:6px;color:var(--text-light);font-size:.85rem">${item.farsi||''}</div>
+      </div>
+
+      ${item.tip?`<div class="tip-box">💡 <strong>نکته تلفظ:</strong> ${item.tip}</div>`:''}
+
+      ${item.moreWords?`
+        <div class="example-section" style="margin-top:14px">
+          <h4>📖 کلمات بیشتر با صدای «${item.lower||item.display}»:</h4>
+          <div class="example-words-grid">
+            ${item.moreWords.map(([w,e])=>`
+              <div class="example-word" style="font-size:1rem;padding:8px 14px" onclick="speakWord('${w}')">
+                <span class="ew-emoji">${e}</span>${w}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `:''}
+
+      ${exWords.length>0?`
+        <div class="example-section" style="margin-top:14px">
+          <h4>📚 کلمات تمرینی با این صدا:</h4>
+          <div class="more-words-row">
+            ${exWords.map(w=>`<span class="more-word-chip" onclick="speakWord('${w.w}')">${w.e||''} ${w.w}</span>`).join('')}
+          </div>
+        </div>
+      `:''}
+
+      <div class="nav-buttons">
+        ${prev?`<button class="btn btn-secondary" onclick="pickSound('${prev}')">← قبلی</button>`:''}
+        ${!done?`<button class="btn btn-primary" onclick="markSound('${id}')">✓ یاد گرفتم!</button>`:`<button class="btn btn-gold" style="flex:1;justify-content:center">✓ یاد گرفته شده</button>`}
+        ${next?`<button class="btn btn-secondary" onclick="pickSound('${next}')">بعدی →</button>`:''}
+      </div>
+    </div>`;
+}
+
+function playSoundBig(id) {
+  const el = document.getElementById('soundBig');
+  if(el){el.classList.add('playing');setTimeout(()=>el.classList.remove('playing'),600);}
+  speakLetterSound(id);
+}
+
+function markSound(id) {
+  sMark(id);
+  const items = state.selectedPhase && state.selectedPhase.type==='sounds' ? state.selectedPhase.items : PHONEMES.map(p=>p.id);
+  const idx = items.indexOf(id);
+  const next = idx<items.length-1?items[idx+1]:null;
+  if(next) pickSound(next); else navTo('allSounds');
+}
+
+// ---- PHASE WORDS ----
+function renderPhaseWords() {
+  const ph = state.selectedPhase;
+  if(!ph||!ph.words) return '<p>مرحله‌ای انتخاب نشده</p>';
+  const doneC = ph.words.filter(w=>wDone(w.w)).length;
+  const pct = Math.round(doneC/ph.words.length*100);
+
+  return `
+    <div class="section-title">${ph.icon} ${ph.title}</div>
+    <p style="color:var(--text-mid);margin-bottom:10px;font-size:.9rem">${ph.desc}</p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <div class="phase-bar" style="flex:1"><div class="phase-bar-fill" style="width:${pct}%;background:${ph.color}"></div></div>
+      <span style="font-weight:800;color:${ph.color}">${doneC}/${ph.words.length}</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px">
+      ${ph.letters.map(l=>`<span style="background:${ph.bg};color:${ph.color};padding:6px 14px;border-radius:8px;font-weight:800;font-size:1rem;cursor:pointer" onclick="speakLetterSound('${l}')">${l}</span>`).join('')}
+    </div>
+    <div class="section-title" style="font-size:1rem">📖 کلمات</div>
+    ${ph.words.map((wo,i)=>`
+      <div class="word-card" style="animation-delay:${i*0.03}s;border-left-color:${wDone(wo.w)?'var(--success)':ph.color}" onclick="pickWord('${wo.w}')">
+        <div class="word-top">
+          <div class="word-left">
+            <span class="word-emoji-big">${wo.e||'📝'}</span>
+            <div>
+              <div class="word-text">${wo.w}</div>
+              <div class="word-meaning">${wo.m}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            ${wDone(wo.w)?'<span style="color:var(--success);font-weight:800;font-size:1.1rem">✓</span>':''}
+            <button class="play-sm" onclick="event.stopPropagation();speakWord('${wo.w}')">🔊</button>
+          </div>
+        </div>
+        <div class="word-sounds">
+          ${wo.s.map(s=>`<span class="sound-chip" style="background:${ph.bg};color:${ph.color}" onclick="event.stopPropagation();speakLetterSound('${s}')">${s}</span>`).join('')}
+        </div>
+      </div>
+    `).join('')}`;
+}
+
+function pickWord(w) {
+  const ph = state.selectedPhase;
+  if(!ph) return;
+  state.selectedWordObj = ph.words.find(x=>x.w===w);
+  navTo('blendWord');
+}
+
+// ---- BLEND WORD ----
+function renderBlendWord() {
+  const wo = state.selectedWordObj;
+  if(!wo) return '<p>کلمه‌ای انتخاب نشده</p>';
+  const ph = state.selectedPhase || PHASES.find(p=>p.words&&p.words.some(w=>w.w===wo.w));
+  const color=ph?ph.color:'var(--primary)';
+  const bg=ph?ph.bg:'var(--primary-light)';
+  const done=wDone(wo.w);
+  const idx=ph?ph.words.indexOf(wo):0;
+  const prev=idx>0?ph.words[idx-1]:null;
+  const next=idx<ph.words.length-1?ph.words[idx+1]:null;
+
+  return `
+    <div class="sound-detail">
+      <div class="section-title" style="justify-content:center;font-size:1.3rem">${wo.e||'📖'} بخوان!</div>
+      <p style="color:var(--text-mid);text-align:center;margin-bottom:16px;font-size:.9rem">
+        انگشتت رو روی حروف بکش تا صداشون رو بشنوی 🔊
+      </p>
+
+      <div class="swipe-area" data-word="${wo.w}" style="background:${bg}">
+        ${wo.s.map((s,i)=>`<div class="swipe-letter" data-index="${i}" data-sound="${s}">${s}</div>`).join('')}
+      </div>
+
+      <div style="text-align:center;margin-bottom:12px">
+        <span style="font-size:2.2rem;font-weight:900;color:${color}">${wo.w}</span>
+        <div style="font-size:1rem;color:var(--text-mid);direction:rtl;margin-top:4px">${wo.e||''} ${wo.m}</div>
+      </div>
+
+      <button class="btn btn-accent btn-large" style="width:100%;margin-bottom:10px" onclick="speakWord('${wo.w}')">🔊 گوش بده به کلمه</button>
+      <button class="btn btn-outline btn-large" style="width:100%;margin-bottom:16px" onclick="speakWordSlow('${wo.w}')">🔉 آهسته‌تر</button>
+
+      <div class="nav-buttons">
+        ${prev?`<button class="btn btn-secondary" onclick="pickWord('${prev.w}')">← قبلی</button>`:''}
+        ${!done?`<button class="btn btn-primary" onclick="markWord('${wo.w}')">✓ یاد گرفتم!</button>`:`<button class="btn btn-gold" style="flex:1;justify-content:center">✓ یاد گرفته شده</button>`}
+        ${next?`<button class="btn btn-secondary" onclick="pickWord('${next.w}')">بعدی →</button>`:''}
+      </div>
+    </div>`;
+}
+
+function markWord(w) {
+  wMark(w);
+  const ph = state.selectedPhase;
+  if(!ph||!ph.words){navTo('phaseWords');return;}
+  const idx = ph.words.findIndex(x=>x.w===w);
+  const next = idx<ph.words.length-1?ph.words[idx+1]:null;
+  if(next) pickWord(next.w);
+  else {
+    showModal(`<h3>🎉 آفرین!</h3><p>همه کلمات این مرحله رو تمرین کردی!<br>میخوای آزمون بدی؟</p>
+      <div style="display:grid;gap:10px;margin-top:14px">
+        <button class="btn btn-primary btn-large" onclick="hideModal();startQuiz(${ph.id})">📝 آزمون!</button>
+        <button class="btn btn-secondary" onclick="hideModal();navTo('phaseWords')">برگشت</button>
+      </div>`);
+  }
+}
+
+// ---- WORD FAMILIES ----
+function renderWordFamilies() {
+  return `
+    <div class="section-title">👨‍👩‍👧‍👦 خانواده کلمات</div>
+    <p style="color:var(--text-mid);margin-bottom:20px;font-size:.9rem">
+      کلماتی که آخرشون مثل همه رو یاد بگیر! مثلاً: bat, cat, hat, mat همه به «-at» ختم میشن.
+    </p>
+    ${WORD_FAMILIES.map((fam,i)=>`
+      <div class="family-card" style="animation-delay:${i*0.04}s">
+        <div class="family-title"><span style="font-size:1.3rem">${fam.family}</span></div>
+        <div class="family-words">
+          ${fam.words.map(([w,e,m])=>`
+            <div class="family-word" onclick="speakWord('${w}')">
+              <span class="fw-emoji">${e}</span>
+              <span>${w}</span>
+              <span style="font-size:.7rem;color:var(--text-light)">${m}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('')}`;
+}
+
+// ---- TRICKY WORDS ----
+function renderTricky() {
+  const doneC = TRICKY_WORDS.filter(w=>tDone(w.w)).length;
+  return `
+    <div class="section-title">⭐ کلمات ویژه (Tricky Words)</div>
+    <p style="color:var(--text-mid);margin-bottom:10px;font-size:.9rem">
+      این کلمات قوانین معمولی ندارن و باید حفظ بشن! روی هر کلمه بزن تا صداش رو بشنوی.
+    </p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <div class="phase-bar" style="flex:1"><div class="phase-bar-fill" style="width:${Math.round(doneC/TRICKY_WORDS.length*100)}%;background:var(--gold)"></div></div>
+      <span style="font-weight:800;color:var(--gold)">${doneC}/${TRICKY_WORDS.length}</span>
+    </div>
+    <div class="tricky-grid">
+      ${TRICKY_WORDS.map((tw,i)=>`
+        <div class="tricky-card ${tDone(tw.w)?'learned':''}" style="animation-delay:${i*0.02}s" onclick="speakWord('${tw.w}')">
+          <div class="tw">${tw.w}</div>
+          <div class="tm">${tw.m}</div>
+          ${tDone(tw.w)?'<div style="color:var(--success);font-size:.75rem;margin-top:3px">✓</div>':
+            `<button class="btn" style="margin-top:6px;padding:4px 10px;font-size:.7rem;background:var(--gold-light);color:var(--gold);border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:700" onclick="event.stopPropagation();tMark('${tw.w}');render()">✓ یاد گرفتم</button>`}
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+// ---- SENTENCES ----
+function renderSentences() {
+  return `
+    <div class="section-title">✍️ جملات ساده</div>
+    <p style="color:var(--text-mid);margin-bottom:16px;font-size:.9rem">
+      روی جمله بزن تا برات بخونه! روی هر کلمه هم میتونی بزنی.
+    </p>
+    ${SIMPLE_SENTENCES.map((s,i)=>`
+      <div class="sentence-card" style="animation-delay:${i*0.05}s" onclick="speakSentence('${s.text.replace(/'/g,"\\'")}')">
+        <div class="sentence-emoji">${s.emoji}</div>
+        <div class="sentence-text">
+          ${s.words.map(w=>`<span class="sentence-word" onclick="event.stopPropagation();speakWord('${w}')">${w}</span>`).join(' ')}
+        </div>
+        <div class="sentence-farsi">${s.farsi}</div>
+      </div>
+    `).join('')}`;
+}
+
+// ---- QUIZ ----
+function startQuiz(phaseId) {
+  const ph = PHASES.find(p=>p.id===phaseId);
+  if(!ph) return;
+  state.selectedPhase = ph;
+  const qs = genQuiz(ph);
+  state.quizState = {phaseId, questions:qs, currentQ:0, answers:[], score:0};
+  navTo('quiz');
+}
+
+function genQuiz(ph) {
+  const qs = [];
+  const allS = [...PHONEMES,...DIGRAPHS];
+
+  if(ph.type==='sounds') {
+    const items = ph.items;
+    // Type 1: hear word → pick the starting letter
+    const picked = [...items].sort(()=>Math.random()-.5).slice(0,4);
+    for(const id of picked) {
+      const item = allS.find(s=>s.id===id);
+      if(!item) continue;
+      const opts=[item.word];
+      const others = allS.filter(s=>s.id!==id).sort(()=>Math.random()-.5).slice(0,3);
+      others.forEach(o=>opts.push(o.word));
+      qs.push({type:'hearWord',question:'کدوم کلمه با این صدا شروع میشه؟',playWord:item.word,display:item.lower||item.display,
+        options:opts.sort(()=>Math.random()-.5),answer:item.word});
+    }
+    // Type 2: see letter → pick word that starts with it
+    const picked2 = [...items].sort(()=>Math.random()-.5).slice(0,3);
+    for(const id of picked2) {
+      const item = allS.find(s=>s.id===id);
+      if(!item) continue;
+      const opts=[item.word];
+      const others = allS.filter(s=>s.id!==id).sort(()=>Math.random()-.5).slice(0,3);
+      others.forEach(o=>opts.push(o.word));
+      qs.push({type:'letterMatch',question:'کدوم کلمه با حرف زیر شروع میشه؟',letter:item.lower||item.display,
+        options:opts.sort(()=>Math.random()-.5),answer:item.word,emoji:item.emoji});
+    }
+  } else if(ph.type==='words'&&ph.words) {
+    const picked = [...ph.words].sort(()=>Math.random()-.5).slice(0,4);
+    for(const wo of picked) {
+      const opts=[wo.w];
+      ph.words.filter(w=>w.w!==wo.w).sort(()=>Math.random()-.5).slice(0,3).forEach(o=>opts.push(o.w));
+      qs.push({type:'hearWord',question:'کدوم کلمه رو میشنوی؟',playWord:wo.w,display:'🔊',
+        options:opts.sort(()=>Math.random()-.5),answer:wo.w});
+    }
+    // Type: emoji → word
+    const picked2 = [...ph.words].sort(()=>Math.random()-.5).slice(0,3);
+    for(const wo of picked2) {
+      if(!wo.e) continue;
+      const opts=[wo.w];
+      ph.words.filter(w=>w.w!==wo.w&&w.e).sort(()=>Math.random()-.5).slice(0,3).forEach(o=>opts.push(o.w));
+      qs.push({type:'emojiMatch',question:'این شکلک چیه؟',emoji:wo.e,
+        options:opts.sort(()=>Math.random()-.5),answer:wo.w});
+    }
+    // Type: blend
+    const picked3 = [...ph.words].sort(()=>Math.random()-.5).slice(0,2);
+    for(const wo of picked3) {
+      const opts=[wo.w];
+      ph.words.filter(w=>w.w!==wo.w).sort(()=>Math.random()-.5).slice(0,3).forEach(o=>opts.push(o.w));
+      qs.push({type:'blend',question:'این صداها چه کلمه‌ای میسازن؟',sounds:wo.s,
+        options:opts.sort(()=>Math.random()-.5),answer:wo.w,e:wo.e,m:wo.m});
+    }
+  }
+  return qs.slice(0,10);
+}
+
+function renderQuiz() {
+  const qs = state.quizState;
+  if(!qs) return '';
+  if(qs.currentQ>=qs.questions.length) { state.currentScreen='quizResult'; return renderQuizResult(); }
+  const q = qs.questions[qs.currentQ];
+  const dots = qs.questions.map((_,i)=>{
+    let c='quiz-dot';
+    if(i===qs.currentQ) c+=' current';
+    else if(i<qs.currentQ) c+=qs.answers[i]?' correct':' wrong';
+    return `<div class="${c}"></div>`;
+  }).join('');
+
+  let main = '';
+  if(q.type==='hearWord'||q.type==='emojiMatch') {
+    main = q.type==='emojiMatch' ? `<div style="font-size:4rem;margin:12px 0">${q.emoji}</div>` :
+      `<button class="quiz-sound-btn" onclick="this.classList.add('playing');setTimeout(()=>this.classList.remove('playing'),500);speakWord('${q.playWord}')">🔊</button>
+       <div style="font-size:.8rem;color:var(--text-light);margin-bottom:8px">برای شنیدن بزن</div>`;
+  } else if(q.type==='letterMatch') {
+    main = `<div style="font-size:4rem;font-weight:900;color:var(--primary);margin:12px 0">${q.letter}</div>`;
+  } else if(q.type==='blend') {
+    main = `<div style="display:flex;gap:5px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+      ${q.sounds.map(s=>`<span style="background:var(--primary-light);color:var(--primary);padding:8px 14px;border-radius:8px;font-weight:800;font-size:1.2rem">${s}</span>`).join('')}
+    </div>
+    <button class="play-sm" onclick="speakWord('${q.answer}')" style="margin-bottom:8px">🔊 گوش بده</button>
+    ${q.e?`<div style="font-size:2rem;margin:4px 0">${q.e}</div>`:''}`;
+  }
+
+  return `
+    <div class="quiz-card">
+      <div class="quiz-progress">${dots}</div>
+      <div style="font-size:.8rem;color:var(--text-light);margin-bottom:6px">سوال ${qs.currentQ+1} از ${qs.questions.length}</div>
+      <div class="quiz-q">${q.question}</div>
+      ${main}
+      <div class="quiz-opts">
+        ${q.options.map(opt=>`<button class="quiz-opt" onclick="ansQuiz(this,'${opt}','${q.answer}')">${opt}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function ansQuiz(btn, sel, correct) {
+  const qs = state.quizState;
+  if(!qs) return;
+  const ok = sel===correct;
+  qs.answers.push(ok);
+  if(ok) qs.score++;
+  document.querySelectorAll('.quiz-opt').forEach(el=>{
+    el.classList.add('disabled');
+    if(el.textContent.trim()===correct) el.classList.add('correct');
+    if(el.textContent.trim()===sel&&!ok) el.classList.add('wrong');
+  });
+  if(ok) speak('Good job!',0.8,1.2); else speak(correct,0.55,1);
+  setTimeout(()=>{ qs.currentQ++; render(); },1400);
+}
+
+function renderQuizResult() {
+  const qs = state.quizState;
+  if(!qs) return '';
+  quizSave(qs.phaseId, qs.score);
+  const pct = Math.round(qs.score/qs.questions.length*100);
+  let emoji,text;
+  if(pct>=90){emoji='🌟';text='عالی! فوق‌العاده‌ای!';}
+  else if(pct>=70){emoji='🎉';text='خیلی خوب بود!';}
+  else if(pct>=50){emoji='👍';text='خوبه! ادامه بده!';}
+  else{emoji='💪';text='بیشتر تمرین کن!';}
+  return `<div class="quiz-card">
+    <div style="font-size:3.5rem;margin-bottom:8px;animation:bounce .6s ease">${emoji}</div>
+    <div style="font-size:1.2rem;font-weight:800;margin-bottom:6px">${text}</div>
+    <div style="font-size:1rem;color:var(--text-mid)">${qs.score} از ${qs.questions.length} درست (${pct}%)</div>
+    <div class="nav-buttons" style="margin-top:20px">
+      <button class="btn btn-primary btn-large" style="flex:1" onclick="startQuiz(${qs.phaseId})">🔄 دوباره</button>
+      <button class="btn btn-secondary btn-large" style="flex:1" onclick="navTo('home')">🏠 خانه</button>
+    </div>
+  </div>`;
+}
+
+// ---- PROGRESS ----
+function renderProgress() {
+  const allS=PHONEMES.length+DIGRAPHS.length;
+  const doneS=PHONEMES.filter(p=>sDone(p.id)).length+DIGRAPHS.filter(d=>sDone(d.id)).length;
+  const allW=PHASES.filter(p=>p.words).reduce((a,p)=>a+p.words.length,0);
+  const doneW=PHASES.filter(p=>p.words).reduce((a,p)=>a+p.words.filter(w=>wDone(w.w)).length,0);
+  const doneT=TRICKY_WORDS.filter(w=>tDone(w.w)).length;
+
+  return `
+    <div class="section-title">📊 پیشرفت</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">${doneS}</div><div class="stat-lbl">صدا از ${allS}</div></div>
+      <div class="stat-card"><div class="stat-num">${doneW}</div><div class="stat-lbl">کلمه از ${allW}</div></div>
+      <div class="stat-card"><div class="stat-num">${doneT}</div><div class="stat-lbl">ویژه از ${TRICKY_WORDS.length}</div></div>
+    </div>
+    <div class="section-title" style="font-size:1rem">📈 هر مرحله</div>
+    <div class="progress-list">
+      ${PHASES.map(ph=>{
+        let total=0,done=0;
+        if(ph.type==='sounds'){total=ph.items.length;done=ph.items.filter(id=>sDone(id)).length;}
+        else if(ph.type==='words'){total=ph.words?ph.words.length:0;done=ph.words?ph.words.filter(w=>wDone(w.w)).length:0;}
+        else if(ph.type==='tricky'){total=TRICKY_WORDS.length;done=TRICKY_WORDS.filter(w=>tDone(w.w)).length;}
+        else return '';
+        const pct=total?Math.round(done/total*100):0;
+        const q=quizGet(ph.id);
+        return `<div class="progress-item">
+          <div class="pi-icon" style="background:${ph.bg};color:${ph.color}">${ph.icon}</div>
+          <div class="pi-info">
+            <h4>مرحله ${ph.id}: ${ph.title}</h4>
+            <div class="pi-bar"><div class="pi-bar-fill" style="width:${pct}%;background:${ph.color}"></div></div>
+            <div class="pi-pct">${done}/${total} (${pct}%) ${q!==null?`| آزمون: ${q}`:''}</div>
+          </div>
+          ${ph.type!=='tricky'?`<button class="btn" style="padding:8px 12px;font-size:.8rem;background:${ph.bg};color:${ph.color};border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:700" onclick="startQuiz(${ph.id})">📝</button>`:''}
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="margin-top:28px;text-align:center">
+      <button class="btn btn-outline" onclick="showModal('<h3>⚠️ ریست</h3><p>همه پیشرفت‌ها پاک بشن؟</p><div style=\\'display:grid;gap:10px;margin-top:14px\\'><button class=\\'btn btn-accent btn-large\\' onclick=\\'resetProg()\\'>بله</button><button class=\\'btn btn-secondary\\' onclick=\\'hideModal()\\'>نه</button></div>')">🔄 ریست</button>
+    </div>`;
+}
+function resetProg(){state.progress={};save();hideModal();navTo('home');}
+
+// ====================================================================
+// SWIPE HANDLER
+// ====================================================================
+function attachSwipe() {
+  document.querySelectorAll('.swipe-area').forEach(el => {
+    let active=false, played=new Set();
+    const letters=el.querySelectorAll('.swipe-letter');
+    const word=el.dataset.word;
+    function handle(e) {
+      const t=e.touches?e.touches[0]:e;
+      const target=document.elementFromPoint(t.clientX,t.clientY);
+      if(target&&target.classList.contains('swipe-letter')) {
+        const idx=parseInt(target.dataset.index);
+        if(!played.has(idx)) {
+          played.add(idx);
+          target.classList.add('highlight');
+          speakLetterSound(target.dataset.sound);
+          setTimeout(()=>{target.classList.remove('highlight');target.classList.add('done');},350);
+        }
+        if(played.size===letters.length) setTimeout(()=>speakWord(word),400);
+      }
+    }
+    el.addEventListener('touchstart',e=>{active=true;played.clear();handle(e);},{passive:true});
+    el.addEventListener('touchmove',e=>{if(active)handle(e);},{passive:true});
+    el.addEventListener('touchend',()=>{active=false;});
+    el.addEventListener('mousedown',e=>{active=true;played.clear();handle(e);});
+    el.addEventListener('mousemove',e=>{if(active)handle(e);});
+    el.addEventListener('mouseup',()=>{active=false;});
+    el.addEventListener('mouseleave',()=>{active=false;});
+  });
+}
+
+// ====================================================================
+// INIT
+// ====================================================================
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target.id==='modalOverlay')hideModal();});
+document.addEventListener('click',()=>{loadV();},{once:true});
+render();
+</script>
+</body>
+</html>
