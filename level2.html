@@ -11,138 +11,271 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 #app{min-height:100vh;display:flex;flex-direction:column;max-width:900px;margin:0 auto}
-.hdr{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:var(--sf);border-bottom:1px solid rgba(0,0,0,.05);position:sticky;top:0;z-index:100}
-.hdr h1{font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--p),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hb{background:var(--pl);border:none;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--tr);font-size:1.1rem;color:var(--p)}
+.hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;background:var(--sf);border-bottom:1px solid rgba(0,0,0,.05);position:sticky;top:0;z-index:100}
+.hdr h1{font-size:.95rem;font-weight:800;background:linear-gradient(135deg,var(--p),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hb{background:var(--pl);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--tr);font-size:1rem;color:var(--p)}
 .hb:hover{background:var(--p);color:#fff}
-.mc{flex:1;padding:14px 14px 110px}
+.stars-badge{background:var(--gl);color:var(--gd);padding:4px 10px;border-radius:20px;font-size:.75rem;font-weight:800;display:flex;align-items:center;gap:4px}
+.mc{flex:1;padding:12px 12px 100px}
 @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes su{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes cl{0%{transform:scale(1)}25%{transform:scale(1.15) rotate(-3deg)}50%{transform:scale(1.2) rotate(3deg)}100%{transform:scale(1)}}
-.st{font-size:1.1rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.btn{padding:12px 20px;border-radius:var(--rs);border:none;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:var(--tr);display:inline-flex;align-items:center;gap:6px}
-.btn:active{transform:scale(.96)}.bp{background:var(--p);color:#fff;flex:1;justify-content:center}.bs{background:var(--pl);color:var(--p);flex:1;justify-content:center}.ba{background:var(--ac);color:#fff;flex:1;justify-content:center}.bg{background:var(--gd);color:#fff;flex:1;justify-content:center}.bok{background:var(--ok);color:#fff;flex:1;justify-content:center}.bo{background:transparent;color:var(--p);border:2px solid var(--p);flex:1;justify-content:center}.bl{padding:14px 28px;font-size:1rem;border-radius:var(--r)}.sm{padding:8px 16px;font-size:.8rem;flex:none}
-.nb{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.hh{text-align:center;padding:28px 16px;background:linear-gradient(145deg,var(--pl),var(--al));border-radius:var(--rl);margin-bottom:22px;animation:su .5s ease}
-.hh .eb{font-size:3rem;margin-bottom:6px;display:block}.hh h2{font-size:1.35rem;font-weight:900;margin-bottom:4px;color:var(--pd)}.hh p{font-size:.85rem;color:var(--tm);line-height:1.6}
-.pg{display:grid;gap:12px}
-.pc{background:var(--sf);border-radius:var(--r);padding:16px;box-shadow:var(--sh);cursor:pointer;transition:var(--tr);display:flex;align-items:center;gap:12px;border:2px solid transparent;animation:su .4s ease both}
-.pc:hover{transform:translateY(-2px);box-shadow:var(--shl);border-color:var(--pl)}.pc:active{transform:scale(.98)}
-.pi2{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.pinf{flex:1;min-width:0}.pinf h3{font-size:.9rem;font-weight:800;margin-bottom:2px}.pinf p{font-size:.72rem;color:var(--tl)}
-.pbar{width:100%;height:5px;background:#eee;border-radius:3px;margin-top:5px;overflow:hidden}.pbf{height:100%;border-radius:3px;transition:width .5s ease}
-.pbadge{font-size:.58rem;padding:3px 8px;border-radius:20px;font-weight:700;white-space:nowrap}
-.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
-.sc{background:var(--sf);border-radius:var(--r);padding:14px 8px;text-align:center;box-shadow:var(--sh)}
-.sn{font-size:1.5rem;font-weight:900;color:var(--p)}.sl{font-size:.62rem;color:var(--tl);margin-top:2px}
-.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
-.lc{background:var(--sf);border-radius:var(--r);padding:10px 4px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr);border:2px solid transparent;position:relative}
-.lc:active{transform:scale(.92)}.lc:hover{border-color:var(--p)}
-.lc .lm{font-size:.65rem;color:var(--tl);font-weight:600;letter-spacing:2px}.lc .lx{font-size:1.5rem;font-weight:900;color:var(--p);line-height:1.1}
-.lc.done{border-color:var(--ok);background:var(--okl)}.lc.done::after{content:'✓';position:absolute;top:2px;right:4px;color:var(--ok);font-weight:800;font-size:.6rem}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(74,111,165,.3)}50%{box-shadow:0 0 20px 8px rgba(74,111,165,.15)}}
+.st{font-size:1.05rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.btn{padding:11px 18px;border-radius:var(--rs);border:none;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;transition:var(--tr);display:inline-flex;align-items:center;gap:5px}
+.btn:active{transform:scale(.96)}
+.bp{background:var(--p);color:#fff;flex:1;justify-content:center}
+.bs{background:var(--pl);color:var(--p);flex:1;justify-content:center}
+.ba{background:var(--ac);color:#fff;flex:1;justify-content:center}
+.bg{background:var(--gd);color:#fff;flex:1;justify-content:center}
+.bok{background:var(--ok);color:#fff;flex:1;justify-content:center}
+.bo{background:transparent;color:var(--p);border:2px solid var(--p);flex:1;justify-content:center}
+.bl{padding:14px 28px;font-size:1rem;border-radius:var(--r)}
+.sm{padding:7px 14px;font-size:.78rem;flex:none}
+.nb{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.hh{text-align:center;padding:26px 14px;background:linear-gradient(145deg,var(--pl),var(--al));border-radius:var(--rl);margin-bottom:20px;animation:su .5s ease}
+.hh .eb{font-size:2.8rem;margin-bottom:6px;display:block}
+.hh h2{font-size:1.3rem;font-weight:900;margin-bottom:4px;color:var(--pd)}
+.hh p{font-size:.82rem;color:var(--tm);line-height:1.6}
+.pg{display:grid;gap:10px}
+.pc{background:var(--sf);border-radius:var(--r);padding:14px;box-shadow:var(--sh);cursor:pointer;transition:var(--tr);display:flex;align-items:center;gap:10px;border:2px solid transparent}
+.pc:hover{transform:translateY(-2px);box-shadow:var(--shl);border-color:var(--pl)}
+.pc:active{transform:scale(.98)}
+.pi2{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.pinf{flex:1;min-width:0}
+.pinf h3{font-size:.88rem;font-weight:800;margin-bottom:2px}
+.pinf p{font-size:.7rem;color:var(--tl)}
+.pbar{width:100%;height:4px;background:#eee;border-radius:2px;margin-top:4px;overflow:hidden}
+.pbf{height:100%;border-radius:2px;transition:width .5s ease}
+.pbadge{font-size:.56rem;padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
+.sc{background:var(--sf);border-radius:var(--r);padding:12px 6px;text-align:center;box-shadow:var(--sh)}
+.sn{font-size:1.3rem;font-weight:900;color:var(--p)}
+.sl{font-size:.58rem;color:var(--tl);margin-top:2px}
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:7px}
+.lc{background:var(--sf);border-radius:var(--r);padding:8px 4px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr);border:2px solid transparent;position:relative}
+.lc:active{transform:scale(.92)}
+.lc .lm{font-size:.6rem;color:var(--tl);font-weight:600;letter-spacing:1px}
+.lc .lx{font-size:1.4rem;font-weight:900;color:var(--p);line-height:1.1}
+.lc.done{border-color:var(--ok);background:var(--okl)}
+.lc.done::after{content:'✓';position:absolute;top:1px;right:3px;color:var(--ok);font-weight:800;font-size:.55rem}
 .wa{text-align:center;animation:fi .4s ease}
-.wex{display:flex;align-items:flex-end;justify-content:center;gap:24px;margin-bottom:8px}
-.wex .wu{font-size:4.5rem;font-weight:900;color:var(--p);line-height:1}.wex .wl{font-size:3.5rem;font-weight:900;color:var(--ac);line-height:1;opacity:.8}
-.wrlbl{display:flex;justify-content:center;gap:20px;margin-bottom:6px}.wrlbl span{font-size:.75rem;color:var(--tl);font-weight:700}
-.cw{position:relative;width:95%;max-width:420px;margin:0 auto 8px;border-radius:var(--r);overflow:hidden;border:3px solid var(--pl);background:#fff;touch-action:none}
-.cwu{height:180px}.cwl{height:140px}.cww{height:160px}
+.wex{display:flex;align-items:flex-end;justify-content:center;gap:20px;margin-bottom:6px}
+.wex .wu{font-size:4rem;font-weight:900;color:var(--p);line-height:1}
+.wex .wl{font-size:3rem;font-weight:900;color:var(--ac);line-height:1;opacity:.8}
+.cw{position:relative;width:95%;max-width:400px;margin:0 auto 6px;border-radius:var(--r);overflow:hidden;border:3px solid var(--pl);background:#fff;touch-action:none}
+.cwu{height:160px}.cwl{height:120px}.cww{height:140px}
 .cw canvas{display:block;width:100%;height:100%}
-.wc{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
-.wcb{padding:9px 16px;border-radius:20px;border:2px solid var(--pl);background:#fff;font-family:inherit;font-weight:700;font-size:.8rem;color:var(--p);cursor:pointer;transition:var(--tr)}
+.wc{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.wcb{padding:8px 14px;border-radius:20px;border:2px solid var(--pl);background:#fff;font-family:inherit;font-weight:700;font-size:.78rem;color:var(--p);cursor:pointer;transition:var(--tr)}
 .wcb:active{transform:scale(.95);background:var(--pl)}
-.ws{background:var(--sf);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:12px;text-align:right;direction:rtl}
-.ws h4{font-size:.82rem;color:var(--tl);margin-bottom:6px;font-weight:700}
-.si2{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.83rem;direction:ltr}
-.sn2{width:22px;height:22px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
-.wt2{background:var(--gl);border-radius:var(--rs);padding:10px;font-size:.8rem;color:var(--tm);direction:rtl;margin-bottom:12px}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:18px}
-.cc{background:var(--sf);border-radius:var(--r);padding:16px 10px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr)}
-.cc:active{transform:scale(.95)}.cc .ce{font-size:2rem;margin-bottom:3px}.cc .cn{font-size:.82rem;font-weight:800}.cc .cd{font-size:.65rem;color:var(--tl)}
-.cc .cb{width:100%;height:4px;background:#eee;border-radius:2px;margin-top:5px;overflow:hidden}.cc .cbf{height:100%;border-radius:2px}
-.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
-.vc{background:var(--sf);border-radius:var(--r);padding:14px 8px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr);border:2px solid transparent;position:relative}
+.ws{background:var(--sf);border-radius:var(--r);padding:12px;box-shadow:var(--sh);margin-bottom:10px;text-align:right;direction:rtl}
+.ws h4{font-size:.78rem;color:var(--tl);margin-bottom:5px;font-weight:700}
+.si2{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:.8rem;direction:ltr}
+.sn2{width:20px;height:20px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0}
+.wt2{background:var(--gl);border-radius:var(--rs);padding:8px;font-size:.78rem;color:var(--tm);direction:rtl;margin-bottom:10px}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+.cc{background:var(--sf);border-radius:var(--r);padding:14px 8px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr)}
+.cc:active{transform:scale(.95)}
+.cc .ce{font-size:1.8rem;margin-bottom:2px}
+.cc .cn{font-size:.78rem;font-weight:800}
+.cc .cd{font-size:.62rem;color:var(--tl)}
+.cc .cb{width:100%;height:3px;background:#eee;border-radius:2px;margin-top:4px;overflow:hidden}
+.cc .cbf{height:100%;border-radius:2px}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.vc{background:var(--sf);border-radius:var(--r);padding:12px 6px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:var(--tr);border:2px solid transparent;position:relative}
 .vc:active{transform:scale(.92)}.vc:hover{border-color:var(--pl)}
-.vc .ve{font-size:2.2rem;margin-bottom:3px}.vc .vw{font-size:.92rem;font-weight:800}.vc .vf{font-size:.65rem;color:var(--tl);direction:rtl}
-.vc.done{border-color:var(--ok);background:var(--okl)}.vc.done::after{content:'✓';position:absolute;top:3px;right:4px;color:var(--ok);font-weight:800;font-size:.6rem}
+.vc .ve{font-size:2rem;margin-bottom:2px}
+.vc .vw{font-size:.88rem;font-weight:800}
+.vc .vf{font-size:.62rem;color:var(--tl);direction:rtl}
+.vc.done{border-color:var(--ok);background:var(--okl)}
+.vc.done::after{content:'✓';position:absolute;top:2px;right:3px;color:var(--ok);font-weight:800;font-size:.55rem}
 .wd2{text-align:center;animation:fi .4s ease}
-.wpb{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#d06a50);border:none;color:#fff;font-size:1.4rem;cursor:pointer;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;transition:var(--tr)}.wpb:active{transform:scale(.88)}
-.wps{background:var(--pl);border-radius:var(--rs);padding:10px 14px;font-size:.92rem;color:var(--pd);font-weight:600;margin-bottom:12px;cursor:pointer}.wps:active{background:var(--p);color:#fff}
-.sptb{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.spc{background:var(--sf);border-radius:var(--rl);padding:20px 14px;box-shadow:var(--shl);text-align:center;animation:su .5s ease;margin-bottom:14px}
-.spemoji{font-size:3rem;margin-bottom:6px}
-.spword{font-size:1.8rem;font-weight:900;letter-spacing:4px;margin-bottom:10px;display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
-.spch{width:40px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;border:2px solid #ddd;background:#fff}
+.wpb{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#d06a50);border:none;color:#fff;font-size:1.3rem;cursor:pointer;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.wpb:active{transform:scale(.88)}
+.wps{background:var(--pl);border-radius:var(--rs);padding:8px 12px;font-size:.88rem;color:var(--pd);font-weight:600;margin-bottom:10px;cursor:pointer}
+.wps:active{background:var(--p);color:#fff}
+.sptb{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.spc{background:var(--sf);border-radius:var(--rl);padding:18px 12px;box-shadow:var(--shl);text-align:center;animation:su .5s ease;margin-bottom:12px}
+.spemoji{font-size:2.8rem;margin-bottom:5px}
+.spword{font-size:1.6rem;font-weight:900;letter-spacing:3px;margin-bottom:8px;display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
+.spch{width:36px;height:44px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;border:2px solid #ddd;background:#fff}
 .spch.blank{border-color:var(--p);background:var(--pl)}
-.spopts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
-.spopt{padding:11px 20px;border-radius:var(--rs);border:2px solid #eee;background:var(--sf);font-family:inherit;font-size:1.1rem;font-weight:800;cursor:pointer;transition:var(--tr);min-width:46px}
-.spopt:hover{border-color:var(--p);background:var(--pl)}.spopt.ok{background:var(--ok)!important;color:#fff!important;border-color:var(--ok)!important}.spopt.bad{background:#FDECEC!important;border-color:var(--bd)!important}.spopt.dis{pointer-events:none;opacity:.6}
-.spprog{display:flex;gap:4px;justify-content:center;margin-bottom:14px}.spd{width:8px;height:8px;border-radius:50%;background:#ddd}.spd.cur{background:var(--p);transform:scale(1.3)}.spd.ok2{background:var(--ok)}.spd.fl{background:var(--bd)}
-.strc{background:var(--sf);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:12px;cursor:pointer;transition:var(--tr)}.strc:active{transform:scale(.98)}
-.strt{font-size:.95rem;font-weight:800;display:flex;align-items:center;gap:6px;margin-bottom:3px}.strp{font-size:.8rem;color:var(--tm);line-height:1.5}
-.strf{background:var(--sf);border-radius:var(--r);padding:20px;box-shadow:var(--sh);animation:fi .4s ease}.strf h3{font-size:1.15rem;font-weight:900;text-align:center;margin-bottom:8px}
-.spctrl{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;padding:10px;background:var(--pl);border-radius:var(--rs)}
-.spctrl label{font-size:.8rem;font-weight:700;color:var(--p)}.spctrl input[type=range]{width:120px;accent-color:var(--p)}.spctrl span{font-size:.8rem;color:var(--tm);min-width:30px}
-.strline{font-size:1.05rem;line-height:2;color:var(--tx);margin-bottom:4px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:var(--tr);display:flex;align-items:center;gap:8px}
-.strline:hover{background:var(--pl)}.strline .slp{font-size:1rem;opacity:.5;transition:var(--tr);flex-shrink:0}.strline:hover .slp{opacity:1}
-.strw{display:inline;padding:1px 2px;border-radius:3px;transition:var(--tr);font-weight:600;cursor:pointer}.strw:hover{background:var(--pl);color:var(--p)}
-.strq{background:var(--pl);border-radius:var(--r);padding:14px;margin-top:14px;margin-bottom:8px;direction:rtl;text-align:right}.strq h4{font-size:.85rem;color:var(--p);margin-bottom:8px}
-.qo{padding:11px;border-radius:var(--rs);border:2px solid #ddd;background:#fff;font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:var(--tr);text-align:right;direction:rtl;margin-bottom:6px;display:block;width:100%}
-.qo:hover{border-color:var(--p)}.qo.corr{border-color:var(--ok);background:var(--okl);color:var(--ok)}.qo.wro{border-color:var(--bd);background:#FDECEC}.qo.dis{pointer-events:none}
-.bn2{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid rgba(0,0,0,.06);padding:6px 0;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:100}
-.bn2 .ni{display:flex;gap:2px;max-width:520px;width:100%;justify-content:space-around;margin:0 auto}
-.nv{display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 8px;border-radius:12px;background:none;border:none;cursor:pointer;font-family:inherit;transition:var(--tr);color:var(--tl);font-size:.56rem;font-weight:700;min-width:52px}.nv .ni2{font-size:1.1rem}.nv.active{color:var(--p);background:var(--pl)}
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}.mo.show{display:flex}
-.md{background:var(--sf);border-radius:var(--rl);padding:26px 20px;max-width:360px;width:100%;text-align:center}.md h3{font-size:1.1rem;font-weight:800;margin-bottom:8px}.md p{color:var(--tm);margin-bottom:14px;line-height:1.6}
-@media(min-width:600px){.lg{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}.vg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.cw{max-width:500px}}
-@media(max-width:380px){.lg{grid-template-columns:repeat(5,1fr);gap:6px}.vg{grid-template-columns:repeat(2,1fr)}.wex .wu{font-size:3.5rem}.wex .wl{font-size:2.5rem}}
+.spopts{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:8px}
+.spopt{padding:10px 18px;border-radius:var(--rs);border:2px solid #eee;background:var(--sf);font-family:inherit;font-size:1rem;font-weight:800;cursor:pointer;transition:var(--tr);min-width:42px}
+.spopt:hover{border-color:var(--p);background:var(--pl)}
+.spopt.ok{background:var(--ok)!important;color:#fff!important;border-color:var(--ok)!important}
+.spopt.bad{background:#FDECEC!important;border-color:var(--bd)!important}
+.spopt.dis{pointer-events:none;opacity:.6}
+.spprog{display:flex;gap:3px;justify-content:center;margin-bottom:12px}
+.spd{width:7px;height:7px;border-radius:50%;background:#ddd}
+.spd.cur{background:var(--p);transform:scale(1.3)}
+.spd.ok2{background:var(--ok)}.spd.fl{background:var(--bd)}
+/* MATCH GAME */
+.match-emoji{font-size:5rem;margin-bottom:8px;animation:fi .4s ease}
+.match-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.match-opt{padding:16px;border-radius:var(--r);border:3px solid #eee;background:var(--sf);font-family:inherit;font-size:1.1rem;font-weight:800;cursor:pointer;transition:var(--tr);display:flex;flex-direction:column;align-items:center;gap:4px}
+.match-opt .mo-emoji{font-size:2rem}
+.match-opt:hover{border-color:var(--p);background:var(--pl)}
+.match-opt:active{transform:scale(.95)}
+.match-opt.correct{border-color:var(--ok);background:var(--okl);animation:cl .6s ease}
+.match-opt.wrong{border-color:var(--bd);background:#FDECEC}
+.match-opt.dis{pointer-events:none;opacity:.5}
+/* STORIES */
+.strc{background:var(--sf);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;cursor:pointer;transition:var(--tr)}
+.strc:active{transform:scale(.98)}
+.strt{font-size:.92rem;font-weight:800;display:flex;align-items:center;gap:5px;margin-bottom:2px}
+.strp{font-size:.78rem;color:var(--tm);line-height:1.5}
+.strf{background:var(--sf);border-radius:var(--r);padding:18px;box-shadow:var(--sh);animation:fi .4s ease}
+.strf h3{font-size:1.1rem;font-weight:900;text-align:center;margin-bottom:8px}
+.spctrl{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;padding:8px;background:var(--pl);border-radius:var(--rs)}
+.spctrl label{font-size:.75rem;font-weight:700;color:var(--p)}
+.spctrl input[type=range]{width:100px;accent-color:var(--p)}
+.spctrl span{font-size:.75rem;color:var(--tm);min-width:25px}
+.strline{font-size:1rem;line-height:2;color:var(--tx);margin-bottom:2px;cursor:pointer;padding:3px 6px;border-radius:6px;transition:var(--tr);display:flex;align-items:center;gap:6px}
+.strline:hover{background:var(--pl)}
+.strline .slp{font-size:.9rem;opacity:.4;transition:var(--tr);flex-shrink:0}
+.strline:hover .slp{opacity:1}
+.strq{background:var(--pl);border-radius:var(--r);padding:12px;margin-top:12px;margin-bottom:6px;direction:rtl;text-align:right}
+.strq h4{font-size:.82rem;color:var(--p);margin-bottom:6px}
+.qo{padding:10px;border-radius:var(--rs);border:2px solid #ddd;background:#fff;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:var(--tr);text-align:right;direction:rtl;margin-bottom:5px;display:block;width:100%}
+.qo:hover{border-color:var(--p)}
+.qo.corr{border-color:var(--ok);background:var(--okl);color:var(--ok)}
+.qo.wro{border-color:var(--bd);background:#FDECEC}
+.qo.dis{pointer-events:none}
+/* WELCOME */
+.welcome{text-align:center;padding:40px 20px;animation:fi .6s ease}
+.welcome .we{font-size:5rem;margin-bottom:16px;display:block}
+.welcome h2{font-size:1.6rem;font-weight:900;color:var(--pd);margin-bottom:8px}
+.welcome p{font-size:.9rem;color:var(--tm);margin-bottom:28px;line-height:1.6}
+.welcome-btn{width:80%;max-width:300px;margin:0 auto;padding:18px;font-size:1.15rem;border-radius:var(--r);border:none;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;font-family:inherit;font-weight:800;cursor:pointer;animation:pulse-glow 2s ease infinite}
+.welcome-btn:active{transform:scale(.96)}
+/* REWARD */
+.reward-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:300}
+.reward-overlay.show{display:flex}
+.reward-card{background:var(--sf);border-radius:var(--rl);padding:30px 24px;text-align:center;animation:cl .8s ease;max-width:300px;width:90%}
+.reward-card .rstar{font-size:4rem;margin-bottom:8px}
+.reward-card h3{font-size:1.3rem;font-weight:900;margin-bottom:6px}
+.reward-card p{color:var(--tm);font-size:.9rem;margin-bottom:16px}
+/* NAV */
+.bn2{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid rgba(0,0,0,.06);padding:5px 0;padding-bottom:max(5px,env(safe-area-inset-bottom));z-index:100}
+.bn2 .ni{display:flex;gap:1px;max-width:520px;width:100%;justify-content:space-around;margin:0 auto}
+.nv{display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 6px;border-radius:10px;background:none;border:none;cursor:pointer;font-family:inherit;transition:var(--tr);color:var(--tl);font-size:.54rem;font-weight:700;min-width:50px}
+.nv .ni2{font-size:1rem}.nv.active{color:var(--p);background:var(--pl)}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.mo.show{display:flex}
+.md{background:var(--sf);border-radius:var(--rl);padding:24px 18px;max-width:340px;width:100%;text-align:center}
+.md h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}.md p{color:var(--tm);margin-bottom:12px;line-height:1.5}
+@media(min-width:600px){.lg{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}.vg{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}.cw{max-width:480px}}
+@media(max-width:380px){.lg{grid-template-columns:repeat(5,1fr);gap:5px}.vg{grid-template-columns:repeat(2,1fr)}.wex .wu{font-size:3rem}.wex .wl{font-size:2.2rem}}
 </style>
 </head>
 <body>
 <div id="app">
-  <header class="hdr">
+  <header class="hdr" id="header">
     <button class="hb" id="backBtn" style="visibility:hidden" onclick="goBack()">←</button>
-    <h1>✏️ Writing & Words — Level 2</h1>
-    <button class="hb" id="sndBtn" onclick="toggleSound()">🔊</button>
+    <h1 id="titleH">✏️ Writing & Words</h1>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="stars-badge" id="starsBadge">⭐ 0</span>
+      <button class="hb" id="sndBtn" onclick="toggleSound()">🔊</button>
+    </div>
   </header>
   <main class="mc" id="mc"></main>
 </div>
-<div class="bn2"><div class="ni">
+<div class="bn2" id="bottomNav"><div class="ni">
   <button class="nv active" onclick="navTo('home')" data-nav="home"><span class="ni2">🏠</span>خانه</button>
   <button class="nv" onclick="navTo('letters')" data-nav="letters"><span class="ni2">✏️</span>نوشتن</button>
   <button class="nv" onclick="navTo('vocab')" data-nav="vocab"><span class="ni2">📚</span>لغات</button>
-  <button class="nv" onclick="navTo('spelling')" data-nav="spelling"><span class="ni2">🧩</span>املاء</button>
+  <button class="nv" onclick="navTo('spelling')" data-nav="spelling"><span class="ni2">🧩</span>بازی</button>
   <button class="nv" onclick="navTo('stories')" data-nav="stories"><span class="ni2">📖</span>داستان</button>
 </div></div>
 <div class="mo" id="mo"><div class="md" id="md2"></div></div>
+<div class="reward-overlay" id="rewardOverlay"><div class="reward-card" id="rewardCard"></div></div>
 
 <script>
 // ====================================================================
-// AUDIO
+// iOS-COMPATIBLE AUDIO SYSTEM
 // ====================================================================
-var curAudio = null;
+var audioReady = false;
+var englishVoice = null;
 var speechRate = 0.8;
 
-function speak(text, rate) {
-  if (!state.soundOn || !text) return;
-  if (curAudio) { try { curAudio.pause(); } catch(e) {} curAudio = null; }
-  speechSynthesis.cancel();
-  var r = rate || speechRate;
+function loadVoices() {
   try {
-    var a = new Audio();
-    a.src = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=' + encodeURIComponent(text);
-    curAudio = a;
-    a.play().catch(function() { fbSpeak(text, r); });
-    a.onended = function() { curAudio = null; };
-  } catch(e) { fbSpeak(text, r); }
+    var voices = speechSynthesis.getVoices();
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang.indexOf('en') === 0) {
+        englishVoice = voices[i];
+        if (voices[i].lang === 'en-US' || voices[i].lang === 'en-GB') break;
+      }
+    }
+  } catch(e) {}
 }
 
-function fbSpeak(text, rate) {
-  speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-US';
-  u.rate = rate || 0.8;
-  u.pitch = 1;
-  speechSynthesis.speak(u);
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices();
+}
+
+function initAudio() {
+  if (audioReady) return;
+  audioReady = true;
+  try {
+    loadVoices();
+    var u = new SpeechSynthesisUtterance(' ');
+    u.volume = 0;
+    u.lang = 'en-US';
+    u.rate = 10;
+    speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
+function speak(text, rate) {
+  if (!state.soundOn || !text || !text.trim()) return;
+  if (!audioReady) initAudio();
+  try { speechSynthesis.cancel(); } catch(e) {}
+  setTimeout(function() {
+    try {
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = rate || speechRate;
+      u.pitch = 1.1;
+      if (englishVoice) u.voice = englishVoice;
+      speechSynthesis.speak(u);
+    } catch(e) {}
+  }, 120);
+}
+
+// ====================================================================
+// STARS SYSTEM
+// ====================================================================
+function addStars(n) {
+  state.stars = (state.stars || 0) + n;
+  save();
+  updateStarsDisplay();
+  var milestones = [10, 25, 50, 100, 200];
+  for (var i = 0; i < milestones.length; i++) {
+    if (state.stars >= milestones[i] && (state.stars - n) < milestones[i]) {
+      showReward(milestones[i]);
+      break;
+    }
+  }
+}
+
+function updateStarsDisplay() {
+  var el = document.getElementById('starsBadge');
+  if (el) el.textContent = '⭐ ' + (state.stars || 0);
+}
+
+function showReward(count) {
+  var el = document.getElementById('rewardCard');
+  el.innerHTML = '<div class="rstar">🌟</div><h3>آفرین!</h3><p>' + count + ' ستاره جمع کردی!</p>'
+    + '<button class="btn bp bl" style="width:100%" onclick="hideReward()">ادامه بده!</button>';
+  document.getElementById('rewardOverlay').classList.add('show');
+}
+
+function hideReward() {
+  document.getElementById('rewardOverlay').classList.remove('show');
 }
 
 // ====================================================================
@@ -197,10 +330,10 @@ var CATS = [
     {w:'pizza',e:'🍕',f:'پیتزا'},{w:'burger',e:'🍔',f:'همبرگر'},{w:'cheese',e:'🧀',f:'پنیر'},{w:'soup',e:'🍲',f:'سوپ'},
     {w:'tomato',e:'🍅',f:'گوجه'},{w:'potato',e:'🥔',f:'سیب‌زمینی'},{w:'carrot',e:'🥕',f:'هویج'},{w:'candy',e:'🍬',f:'آبنبات'},
     {w:'ice cream',e:'🍦',f:'بستنی'},{w:'honey',e:'🍯',f:'عسل'},{w:'lemon',e:'🍋',f:'لیمو'},{w:'mango',e:'🥭',f:'انبه'},
-    {w:'strawberry',e:'🍓',f:'توت‌فرنگی'},{w:'peach',e:'🍑',f:'هلو'},{w:'pear',e:'🍐',f:'گلابی'},{w:'cherry',e:'🍒',f:'گیلاس'},
-    {w:'sandwich',e:'🥪',f:'ساندویچ'},{w:'salad',e:'🥗',f:'سالاد'},{w:'pasta',e:'🍝',f:'پاستا'},{w:'chocolate',e:'🍫',f:'شکلات'},
-    {w:'butter',e:'🧈',f:'کره'},{w:'corn',e:'🌽',f:'ذرت'},{w:'onion',e:'🧅',f:'پیاز'},{w:'cucumber',e:'🥒',f:'خیار'},
-    {w:'mushroom',e:'🍄',f:'قارچ'},{w:'pepper',e:'🫑',f:'فلفل'},{w:'tea',e:'🍵',f:'چای'},{w:'meat',e:'🥩',f:'گوشت'}
+    {w:'strawberry',e:'🍓',f:'توت‌فرنگی'},{w:'peach',e:'🍑',f:'هلو'},{w:'cherry',e:'🍒',f:'گیلاس'},{w:'sandwich',e:'🥪',f:'ساندویچ'},
+    {w:'salad',e:'🥗',f:'سالاد'},{w:'pasta',e:'🍝',f:'پاستا'},{w:'chocolate',e:'🍫',f:'شکلات'},{w:'butter',e:'🧈',f:'کره'},
+    {w:'corn',e:'🌽',f:'ذرت'},{w:'onion',e:'🧅',f:'پیاز'},{w:'cucumber',e:'🥒',f:'خیار'},{w:'mushroom',e:'🍄',f:'قارچ'},
+    {w:'tea',e:'🍵',f:'چای'},{w:'meat',e:'🥩',f:'گوشت'},{w:'coconut',e:'🥥',f:'نارگیل'},{w:'watermelon',e:'🍉',f:'هندوانه'}
   ]},
   {id:'family',icon:'👨‍👩‍👧‍👦',t:'Family',f:'خانواده',col:'#AF6B8F',bg:'#F5E8EF',words:[
     {w:'mother',e:'👩',f:'مادر'},{w:'father',e:'👨',f:'پدر'},{w:'sister',e:'👧',f:'خواهر'},{w:'brother',e:'👦',f:'برادر'},
@@ -228,20 +361,18 @@ var CATS = [
   {id:'clothes',icon:'👕',t:'Clothes',f:'لباس',col:'#E8856C',bg:'#FDF0EC',words:[
     {w:'shirt',e:'👕',f:'پیراهن'},{w:'pants',e:'👖',f:'شلوار'},{w:'dress',e:'👗',f:'لباس'},{w:'shoes',e:'👟',f:'کفش'},
     {w:'socks',e:'🧦',f:'جوراب'},{w:'hat',e:'🎩',f:'کلاه'},{w:'coat',e:'🧥',f:'پالتو'},{w:'scarf',e:'🧣',f:'شال'},
-    {w:'gloves',e:'🧤',f:'دستکش'},{w:'boots',e:'🥾',f:'چکمه'},{w:'bag',e:'👜',f:'کیف'},{w:'watch',e:'⌚',f:'ساعت'},
-    {w:'skirt',e:'👗',f:'دامن'},{w:'jacket',e:'🧥',f:'ژاکت'},{w:'cap',e:'🧢',f:'کلاه'},{w:'belt',e:'🪢',f:'کمربند'}
+    {w:'gloves',e:'🧤',f:'دستکش'},{w:'boots',e:'🥾',f:'چکمه'},{w:'bag',e:'👜',f:'کیف'},{w:'watch',e:'⌚',f:'ساعت'}
   ]},
   {id:'weather',icon:'🌤️',t:'Weather',f:'هوا',col:'#6BAFAF',bg:'#E8F5F5',words:[
     {w:'sunny',e:'☀️',f:'آفتابی'},{w:'rainy',e:'🌧️',f:'بارانی'},{w:'cloudy',e:'☁️',f:'ابری'},{w:'windy',e:'🌬️',f:'بادی'},
     {w:'snowy',e:'🌨️',f:'برفی'},{w:'hot',e:'🔥',f:'داغ'},{w:'cold',e:'🥶',f:'سرد'},{w:'rain',e:'🌧️',f:'باران'},
-    {w:'snow',e:'❄️',f:'برف'},{w:'sun',e:'☀️',f:'خورشید'},{w:'moon',e:'🌙',f:'ماه'},{w:'star',e:'⭐',f:'ستاره'},
-    {w:'sky',e:'🌤️',f:'آسمان'},{w:'rainbow',e:'🌈',f:'رنگین‌کمان'},{w:'storm',e:'⛈️',f:'طوفان'},{w:'ice',e:'🧊',f:'یخ'}
+    {w:'snow',e:'❄️',f:'برف'},{w:'sun',e:'☀️',f:'خورشید'},{w:'moon',e:'🌙',f:'ماه'},{w:'star',e:'⭐',f:'ستاره'}
   ]},
   {id:'school',icon:'🏫',t:'School',f:'مدرسه',col:'#4A6FA5',bg:'#E8EFF8',words:[
     {w:'teacher',e:'👩‍🏫',f:'معلم'},{w:'book',e:'📖',f:'کتاب'},{w:'pencil',e:'✏️',f:'مداد'},{w:'pen',e:'🖊️',f:'خودکار'},
     {w:'desk',e:'🪑',f:'میز'},{w:'chair',e:'🪑',f:'صندلی'},{w:'bag',e:'🎒',f:'کیف'},{w:'paper',e:'📄',f:'کاغذ'},
     {w:'eraser',e:'🧽',f:'پاک‌کن'},{w:'ruler',e:'📏',f:'خط‌کش'},{w:'art',e:'🎨',f:'هنر'},{w:'music',e:'🎵',f:'موسیقی'},
-    {w:'classroom',e:'🏫',f:'کلاس'},{w:'homework',e:'📝',f:'تکلیف'},{w:'test',e:'📝',f:'آزمون'},{w:'math',e:'🔢',f:'ریاضی'}
+    {w:'homework',e:'📝',f:'تکلیف'},{w:'math',e:'🔢',f:'ریاضی'},{w:'science',e:'🔬',f:'علوم'},{w:'library',e:'📚',f:'کتابخانه'}
   ]},
   {id:'transport',icon:'🚗',t:'Transport',f:'نقلیه',col:'#8F6BAF',bg:'#EDE8F5',words:[
     {w:'car',e:'🚗',f:'ماشین'},{w:'bus',e:'🚌',f:'اتوبوس'},{w:'train',e:'🚂',f:'قطار'},{w:'airplane',e:'✈️',f:'هواپیما'},
@@ -261,8 +392,8 @@ var CATS = [
   ]},
   {id:'home',icon:'🏠',t:'Home',f:'خانه',col:'#AF6B6B',bg:'#F5E8E8',words:[
     {w:'house',e:'🏠',f:'خانه'},{w:'door',e:'🚪',f:'در'},{w:'window',e:'🪟',f:'پنجره'},{w:'table',e:'🪑',f:'میز'},
-    {w:'bed',e:'🛏️',f:'تختخواب'},{w:'kitchen',e:'🍳',f:'آشپزخانه'},{w:'bathroom',e:'🛁',f:'حمام'},{w:'garden',e:'🏡',f:'باغچه'},
-    {w:'mirror',e:'🪞',f:'آینه'},{w:'lamp',e:'💡',f:'لامپ'},{w:'sofa',e:'🛋️',f:'مبل'},{w:'clock',e:'🕐',f:'ساعت'}
+    {w:'bed',e:'🛏️',f:'تختخواب'},{w:'kitchen',e:'🍳',f:'آشپزخانه'},{w:'bathroom',e:'🛁',f:'حمام'},{w:'mirror',e:'🪞',f:'آینه'},
+    {w:'lamp',e:'💡',f:'لامپ'},{w:'sofa',e:'🛋️',f:'مبل'},{w:'clock',e:'🕐',f:'ساعت'},{w:'shelf',e:'📚',f:'قفسه'}
   ]}
 ];
 
@@ -272,108 +403,84 @@ var SPELL_WORDS = [
   {w:'cat',e:'🐈',f:'گربه'},{w:'dog',e:'🐶',f:'سگ'},{w:'sun',e:'☀️',f:'خورشید'},{w:'run',e:'🏃',f:'دویدن'},
   {w:'hat',e:'🎩',f:'کلاه'},{w:'big',e:'🔵',f:'بزرگ'},{w:'red',e:'🔴',f:'قرمز'},{w:'cup',e:'☕',f:'لیوان'},
   {w:'pen',e:'🖊️',f:'خودکار'},{w:'bed',e:'🛏️',f:'تخت'},{w:'map',e:'🗺️',f:'نقشه'},{w:'bus',e:'🚌',f:'اتوبوس'},
-  {w:'egg',e:'🥚',f:'تخم‌مرغ'},{w:'fox',e:'🦊',f:'روباه'},{w:'jam',e:'🍯',f:'مربا'},{w:'fan',e:'🪭',f:'پنکه'},
-  {w:'leg',e:'🦵',f:'پا'},{w:'pig',e:'🐷',f:'خوک'},{w:'top',e:'🔝',f:'بالا'},{w:'box',e:'📦',f:'جعبه'},
-  {w:'ant',e:'🐜',f:'مورچه'},{w:'owl',e:'🦉',f:'جغد'},{w:'bee',e:'🐝',f:'زنبور'},{w:'cow',e:'🐄',f:'گاو'},
-  {w:'hen',e:'🐔',f:'مرغ'},{w:'ball',e:'⚽',f:'توپ'},{w:'fish',e:'🐟',f:'ماهی'},{w:'book',e:'📖',f:'کتاب'},
-  {w:'cake',e:'🎂',f:'کیک'},{w:'milk',e:'🥛',f:'شیر'},{w:'tree',e:'🌳',f:'درخت'},{w:'star',e:'⭐',f:'ستاره'},
-  {w:'bird',e:'🐦',f:'پرنده'},{w:'hand',e:'✋',f:'دست'},{w:'nose',e:'👃',f:'بینی'},{w:'rain',e:'🌧️',f:'باران'},
-  {w:'frog',e:'🐸',f:'قورباغه'},{w:'duck',e:'🦆',f:'اردک'},{w:'bear',e:'🐻',f:'خرس'},{w:'lion',e:'🦁',f:'شیر'},
-  {w:'ship',e:'🚢',f:'کشتی'},{w:'door',e:'🚪',f:'در'},{w:'baby',e:'👶',f:'نوزاد'},{w:'apple',e:'🍎',f:'سیب'},
-  {w:'house',e:'🏠',f:'خانه'},{w:'horse',e:'🐴',f:'اسب'},{w:'shirt',e:'👕',f:'پیراهن'},{w:'flower',e:'🌸',f:'گل'},
-  {w:'table',e:'🪑',f:'میز'},{w:'chair',e:'🪑',f:'صندلی'},{w:'pencil',e:'✏️',f:'مداد'},{w:'banana',e:'🍌',f:'موز'},
-  {w:'orange',e:'🍊',f:'پرتقال'},{w:'grape',e:'🍇',f:'انگور'},{w:'rabbit',e:'🐰',f:'خرگوش'},{w:'turtle',e:'🐢',f:'لاک‌پشت'},
-  {w:'pot',e:'🍲',f:'قابلمه'},{w:'hot',e:'🔥',f:'داغ'},{w:'not',e:'🚫',f:'نه'},{w:'dot',e:'⚫',f:'نقطه'},
-  {w:'hop',e:'🐰',f:'پریدن'},{w:'dig',e:'⛏️',f:'کندن'},{w:'bug',e:'🐛',f:'حشره'},{w:'hug',e:'🤗',f:'بغل'},
-  {w:'cut',e:'✂️',f:'بریدن'},{w:'sit',e:'🪑',f:'بشین'},{w:'hit',e:'👊',f:'زدن'},{w:'bag',e:'👜',f:'کیف'},
-  {w:'bat',e:'🦇',f:'خفاش'},{w:'bad',e:'👎',f:'بد'},{w:'sad',e:'😢',f:'ناراحت'},{w:'dad',e:'👨',f:'بابا'},
-  {w:'mom',e:'👩',f:'مامان'},{w:'boy',e:'👦',f:'پسر'},{w:'toy',e:'🧸',f:'اسباب‌بازی'},{w:'toy',e:'🧸',f:'بازی'}
+  {w:'egg',e:'🥚',f:'تخم‌مرغ'},{w:'fox',e:'🦊',f:'روباه'},{w:'jam',e:'🍯',f:'مربا'},{w:'leg',e:'🦵',f:'پا'},
+  {w:'pig',e:'🐷',f:'خوک'},{w:'top',e:'🔝',f:'بالا'},{w:'box',e:'📦',f:'جعبه'},{w:'ant',e:'🐜',f:'مورچه'},
+  {w:'owl',e:'🦉',f:'جغد'},{w:'bee',e:'🐝',f:'زنبور'},{w:'cow',e:'🐄',f:'گاو'},{w:'hen',e:'🐔',f:'مرغ'},
+  {w:'ball',e:'⚽',f:'توپ'},{w:'fish',e:'🐟',f:'ماهی'},{w:'book',e:'📖',f:'کتاب'},{w:'cake',e:'🎂',f:'کیک'},
+  {w:'milk',e:'🥛',f:'شیر'},{w:'tree',e:'🌳',f:'درخت'},{w:'star',e:'⭐',f:'ستاره'},{w:'bird',e:'🐦',f:'پرنده'},
+  {w:'hand',e:'✋',f:'دست'},{w:'nose',e:'👃',f:'بینی'},{w:'rain',e:'🌧️',f:'باران'},{w:'frog',e:'🐸',f:'قورباغه'},
+  {w:'duck',e:'🦆',f:'اردک'},{w:'bear',e:'🐻',f:'خرس'},{w:'lion',e:'🦁',f:'شیر'},{w:'ship',e:'🚢',f:'کشتی'},
+  {w:'door',e:'🚪',f:'در'},{w:'baby',e:'👶',f:'نوزاد'},{w:'apple',e:'🍎',f:'سیب'},{w:'house',e:'🏠',f:'خانه'},
+  {w:'horse',e:'🐴',f:'اسب'},{w:'shirt',e:'👕',f:'پیراهن'},{w:'flower',e:'🌸',f:'گل'},{w:'table',e:'🪑',f:'میز'},
+  {w:'chair',e:'🪑',f:'صندلی'},{w:'pencil',e:'✏️',f:'مداد'},{w:'banana',e:'🍌',f:'موز'},{w:'orange',e:'🍊',f:'پرتقال'},
+  {w:'grape',e:'🍇',f:'انگور'},{w:'rabbit',e:'🐰',f:'خرگوش'},{w:'turtle',e:'🐢',f:'لاک‌پشت'},
+  {w:'pot',e:'🍲',f:'قابلمه'},{w:'hot',e:'🔥',f:'داغ'},{w:'dot',e:'⚫',f:'نقطه'},{w:'hop',e:'🐰',f:'پریدن'},
+  {w:'dig',e:'⛏️',f:'کندن'},{w:'bug',e:'🐛',f:'حشره'},{w:'hug',e:'🤗',f:'بغل'},{w:'cut',e:'✂️',f:'بریدن'},
+  {w:'sit',e:'🪑',f:'بشین'},{w:'bag',e:'👜',f:'کیف'},{w:'bat',e:'🦇',f:'خفاش'},{w:'sad',e:'😢',f:'ناراحت'},
+  {w:'dad',e:'👨',f:'بابا'},{w:'mom',e:'👩',f:'مامان'},{w:'boy',e:'👦',f:'پسر'},{w:'toy',e:'🧸',f:'اسباب‌بازی'}
 ];
 
+// 30 stories
 var STORIES = [
-  {id:1,t:'My Cat',e:'🐈',f:'گربه من',lines:['I have a cat.','My cat is small and black.','She likes to play with a ball.','She eats fish every day.','I love my cat very much!'],
-   qs:[{q:'What color is the cat?',o:['Black','White','Red'],a:0},{q:'What does the cat eat?',o:['Fish','Bread','Rice'],a:0}]},
-  {id:2,t:'At the Park',e:'🏞️',f:'در پارک',lines:['Today is a sunny day.','I go to the park with my father.','I see a big tree and green grass.','There is a dog and a bird in the park.','I like to run and play here!'],
-   qs:[{q:'What is the weather like?',o:['Sunny','Rainy','Snowy'],a:0},{q:'Who goes to the park?',o:['Father and I','Mother','Sister'],a:0}]},
-  {id:3,t:'My Family',e:'👨‍👩‍👧‍👦',f:'خانواده من',lines:['I have a big family.','My mother is very kind.','My father is tall and strong.','I have one sister and one brother.','We like to eat dinner together.','I love my family!'],
-   qs:[{q:'Is the family big or small?',o:['Big','Small'],a:0},{q:'What is the mother like?',o:['Kind','Angry','Sad'],a:0}]},
-  {id:4,t:'My School Day',e:'🏫',f:'روز مدرسه',lines:['I go to school every day.','My teacher is very nice.','I like math and art.','At recess I play with my friends.','After school I do my homework.'],
-   qs:[{q:'What does the child like?',o:['Math and art','Music','Science'],a:0},{q:'What happens after school?',o:['Do homework','Go to park','Watch TV'],a:0}]},
-  {id:5,t:'The Weather',e:'🌦️',f:'هوا',lines:['In the morning the sky is blue.','The sun is hot and bright.','In the afternoon clouds come.','It starts to rain!','After the rain I see a rainbow!'],
-   qs:[{q:'What is the sky like in the morning?',o:['Blue','Gray','Black'],a:0},{q:'What happens in the afternoon?',o:['It rains','It snows','It is sunny'],a:0}]},
-  {id:6,t:'At the Zoo',e:'🦁',f:'باغ وحش',lines:['Today I go to the zoo!','I see a big elephant and a tall giraffe.','The monkeys are funny and fast.','I see a lion sleeping under a tree.','My favorite animal is the panda!'],
-   qs:[{q:'Which animal is tall?',o:['Giraffe','Monkey','Lion'],a:0},{q:'What is the favorite animal?',o:['Panda','Lion','Elephant'],a:0}]},
-  {id:7,t:'My Breakfast',e:'🥞',f:'صبحانه',lines:['Every morning I eat breakfast.','I like bread with butter.','I drink a glass of milk.','Sometimes I eat an egg.','My mother makes pancakes on Sunday.'],
-   qs:[{q:'What does the child drink?',o:['Milk','Juice','Water'],a:0},{q:'What does the mother make on Sunday?',o:['Pancakes','Pizza','Soup'],a:0}]},
-  {id:8,t:'The Seasons',e:'🍂',f:'فصل‌ها',lines:['There are four seasons.','In spring flowers grow.','In summer it is hot.','In autumn leaves fall from trees.','In winter it is cold and it snows.','I love all the seasons!'],
-   qs:[{q:'How many seasons?',o:['Four','Three','Two'],a:0},{q:'What happens in autumn?',o:['Leaves fall','It snows','Flowers grow'],a:0}]},
-  {id:9,t:'My Pet Dog',e:'🐶',f:'سگ من',lines:['I have a pet dog.','His name is Max.','Max is brown and big.','He likes to play in the park.','He eats dog food every day.','Max is my best friend!'],
-   qs:[{q:'What is the dog name?',o:['Max','Tom','Sam'],a:0},{q:'What color is the dog?',o:['Brown','Black','White'],a:0}]},
-  {id:10,t:'At the Beach',e:'🏖️',f:'ساحل',lines:['Today we go to the beach!','The water is blue.','I see sand and shells.','I play in the sand with my sister.','We build a big sand castle.','The beach is fun!'],
-   qs:[{q:'What color is the water?',o:['Blue','Green','Red'],a:0},{q:'What do they build?',o:['A sand castle','A house','A tower'],a:0}]},
-  {id:11,t:'My Birthday',e:'🎂',f:'تولد',lines:['Today is my birthday!','I am six years old.','My mother makes a big cake.','My friends come to my house.','We play games and eat cake.','I get many nice gifts!'],
-   qs:[{q:'How old is the child?',o:['Six','Five','Seven'],a:0},{q:'What do they eat?',o:['Cake','Pizza','Ice cream'],a:0}]},
-  {id:12,t:'Going Shopping',e:'🛒',f:'خرید',lines:['Today I go shopping with my mother.','We go to a big shop.','I see apples and bananas.','My mother buys bread and milk.','I get a chocolate cookie!'],
-   qs:[{q:'Who goes shopping?',o:['Mother and I','Father','Sister'],a:0},{q:'What does the child get?',o:['A cookie','An apple','A toy'],a:0}]},
-  {id:13,t:'My Toys',e:'🧸',f:'اسباب‌بازی',lines:['I have many toys.','I have a teddy bear and a ball.','I have a car and a doll.','I like to play with my toys.','My favorite toy is my teddy bear.'],
-   qs:[{q:'What is the favorite toy?',o:['Teddy bear','Ball','Car'],a:0}]},
-  {id:14,t:'In the Garden',e:'🌻',f:'باغچه',lines:['My father has a garden.','There are red flowers and green trees.','I see a butterfly and a bee.','I water the flowers every day.','The garden is very beautiful!'],
-   qs:[{q:'What color are the flowers?',o:['Red','Blue','Yellow'],a:0},{q:'What does the child do every day?',o:['Water the flowers','Eat fruit','Play ball'],a:0}]},
-  {id:15,t:'My Best Friend',e:'👫',f:'بهترین دوستم',lines:['My best friend is Sara.','She is very kind and funny.','We go to the same school.','We like to play together.','Sometimes she comes to my house.','I am happy to have a good friend!'],
-   qs:[{q:'What is the friend name?',o:['Sara','Lily','Emma'],a:0},{q:'What do they do together?',o:['Play','Cook','Read'],a:0}]},
-  {id:16,t:'Making Lunch',e:'🥪',f:'ناهار درست کردن',lines:['Today I help my mother.','We make a sandwich together.','I put cheese on the bread.','My mother adds tomato and egg.','The sandwich is yummy!'],
-   qs:[{q:'What do they make?',o:['A sandwich','A cake','A pizza'],a:0}]},
-  {id:17,t:'My Room',e:'🛏️',f:'اتاقم',lines:['I have my own room.','There is a bed and a desk.','I have many books.','My favorite color is blue.','The walls are blue and white.','I love my room!'],
-   qs:[{q:'What color are the walls?',o:['Blue and white','Red','Green'],a:0}]},
-  {id:18,t:'Walking to School',e:'🚶',f:'راه مدرسه',lines:['Every morning I walk to school.','I walk with my brother.','We see a big dog on the way.','We pass a red house and a green park.','The school is near the park.'],
-   qs:[{q:'Who does the child walk with?',o:['Brother','Sister','Father'],a:0},{q:'What color is the house?',o:['Red','Blue','White'],a:0}]},
-  {id:19,t:'The Lost Duck',e:'🦆',f:'اردک گمشده',lines:['One day I find a little duck.','The duck is yellow and small.','It is lost and sad.','I give the duck some water.','Then I find the mother duck.','The mother duck is happy!'],
-   qs:[{q:'What color is the duck?',o:['Yellow','White','Brown'],a:0},{q:'What does the child give the duck?',o:['Water','Food','Bread'],a:0}]},
-  {id:20,t:'Cooking with Dad',e:'👨‍🍳',f:'آشپزی با بابا',lines:['On Saturday I cook with my father.','We make pasta with tomato sauce.','My father lets me stir the pot.','The pasta smells very good.','We eat together as a family.','It is the best pasta ever!'],
-   qs:[{q:'What do they make?',o:['Pasta','Rice','Soup'],a:0},{q:'What day is it?',o:['Saturday','Sunday','Monday'],a:0}]},
-  {id:21,t:'The Rainbow',e:'🌈',f:'رنگین‌کمان',lines:['After the rain I go outside.','I look up at the sky.','I see a beautiful rainbow!','The rainbow has many colors.','I can see red and blue and green.','I count seven colors!'],
-   qs:[{q:'When does the child see the rainbow?',o:['After the rain','Before rain','At night'],a:0},{q:'How many colors?',o:['Seven','Five','Three'],a:0}]},
-  {id:22,t:'My Favorite Book',e:'📖',f:'کتاب مورد علاقه',lines:['I have a favorite book.','It is about a little bear.','The bear goes on an adventure.','He meets a rabbit and a fox.','They find a treasure box.','I read this book every night!'],
-   qs:[{q:'What is the book about?',o:['A little bear','A cat','A dog'],a:0},{q:'What do they find?',o:['A treasure box','A house','A car'],a:0}]},
-  {id:23,t:'At the Farm',e:'🌾',f:'مزرعه',lines:['Today I visit a farm.','I see many animals.','There are cows and chickens.','I feed the baby lamb.','The farmer gives me fresh milk.','I love going to the farm!'],
-   qs:[{q:'What animal does the child feed?',o:['A baby lamb','A cow','A pig'],a:0},{q:'What does the farmer give?',o:['Fresh milk','Eggs','Bread'],a:0}]},
-  {id:24,t:'The Snowy Day',e:'🌨️',f:'روز برفی',lines:['Today it is snowing!','Everything is white.','I put on my coat and boots.','I go outside to play.','I build a big snowman.','The snowman has a hat and a nose!'],
-   qs:[{q:'What does the child build?',o:['A snowman','A sand castle','A house'],a:0},{q:'What color is everything?',o:['White','Blue','Gray'],a:0}]},
-  {id:25,t:'First Day at School',e:'🏫',f:'اولین روز مدرسه',lines:['Today is my first day at school.','I am a little bit scared.','My mother holds my hand.','The teacher says hello with a smile.','I meet a new friend named Tom.','We play together at recess.','I love my new school!'],
-   qs:[{q:'How does the child feel?',o:['A little scared','Very happy','Angry'],a:0},{q:'What is the new friend name?',o:['Tom','Sam','Max'],a:0}]},
-  {id:26,t:'Fruit Party',e:'🍎',f:'مهمانی میوه',lines:['My mother buys many fruits.','We have apples and bananas.','We have oranges and grapes too.','I wash the fruits in the kitchen.','I put them on a big plate.','My family eats fruits together.','Fruits are healthy and yummy!'],
-   qs:[{q:'Where does the child wash the fruits?',o:['In the kitchen','In the bathroom','Outside'],a:0},{q:'Are fruits healthy?',o:['Yes','No','Maybe'],a:0}]},
-  {id:27,t:'Going to the Doctor',e:'🏥',f:'دکتر',lines:['Today I go to the doctor.','The doctor is very kind.','She checks my ears and eyes.','She listens to my heart.','The doctor says I am healthy!','She gives me a sticker for being brave.'],
-   qs:[{q:'Is the doctor kind?',o:['Yes','No'],a:0},{q:'What does the doctor give?',o:['A sticker','A toy','Candy'],a:0}]},
-  {id:28,t:'Night Time',e:'🌙',f:'وقت خواب',lines:['It is night time now.','The moon is big and bright.','I can see many stars.','My mother reads me a story.','The story is about a little star.','I say goodnight and close my eyes.'],
-   qs:[{q:'What is big and bright in the sky?',o:['The moon','The sun','A cloud'],a:0},{q:'What does the mother do?',o:['Reads a story','Sings a song','Plays music'],a:0}]},
-  {id:29,t:'My Bicycle',e:'🚲',f:'دوچرخه‌ام',lines:['I have a new bicycle!','It is red and blue.','My father teaches me to ride it.','I fall down two times.','But I do not give up!','Now I can ride very fast.','Riding a bicycle is fun!'],
-   qs:[{q:'What color is the bicycle?',o:['Red and blue','Green','Yellow'],a:0},{q:'How many times does the child fall?',o:['Two','One','Three'],a:0}]},
-  {id:30,t:'The Picnic',e:'🧺',f:'پیک‌نیک',lines:['Today we go on a picnic!','We go to a big green park.','My mother packs sandwiches and fruit.','We sit on a red blanket under a tree.','I play football with my father.','We eat and laugh together.','The picnic is wonderful!'],
-   qs:[{q:'What color is the blanket?',o:['Red','Blue','Green'],a:0},{q:'What does the child play?',o:['Football','Basketball','Tennis'],a:0}]}
+  {id:1,t:'My Cat',e:'🐈',f:'گربه من',lines:['I have a cat.','My cat is small and black.','She likes to play with a ball.','She eats fish every day.','I love my cat very much!'],qs:[{q:'What color is the cat?',o:['Black','White','Red'],a:0},{q:'What does the cat eat?',o:['Fish','Bread','Rice'],a:0}]},
+  {id:2,t:'At the Park',e:'🏞️',f:'در پارک',lines:['Today is a sunny day.','I go to the park with my father.','I see a big tree and green grass.','There is a dog and a bird.','I like to run and play here!'],qs:[{q:'What is the weather like?',o:['Sunny','Rainy','Snowy'],a:0},{q:'Who goes to the park?',o:['Father and I','Mother','Sister'],a:0}]},
+  {id:3,t:'My Family',e:'👨‍👩‍👧‍👦',f:'خانواده من',lines:['I have a big family.','My mother is very kind.','My father is tall and strong.','I have one sister and one brother.','We eat dinner together.','I love my family!'],qs:[{q:'Is the family big or small?',o:['Big','Small'],a:0},{q:'What is the mother like?',o:['Kind','Angry','Sad'],a:0}]},
+  {id:4,t:'My School Day',e:'🏫',f:'روز مدرسه',lines:['I go to school every day.','My teacher is very nice.','I like math and art.','At recess I play with friends.','After school I do homework.'],qs:[{q:'What does the child like?',o:['Math and art','Music','Science'],a:0},{q:'What happens after school?',o:['Do homework','Go to park','Watch TV'],a:0}]},
+  {id:5,t:'The Weather',e:'🌦️',f:'هوا',lines:['In the morning the sky is blue.','The sun is hot and bright.','In the afternoon clouds come.','It starts to rain!','After the rain I see a rainbow!'],qs:[{q:'What is the sky like in the morning?',o:['Blue','Gray','Black'],a:0},{q:'What happens in the afternoon?',o:['It rains','It snows','It is sunny'],a:0}]},
+  {id:6,t:'At the Zoo',e:'🦁',f:'باغ وحش',lines:['Today I go to the zoo!','I see a big elephant and a tall giraffe.','The monkeys are funny.','I see a lion sleeping.','My favorite animal is the panda!'],qs:[{q:'Which animal is tall?',o:['Giraffe','Monkey','Lion'],a:0},{q:'What is the favorite animal?',o:['Panda','Lion','Elephant'],a:0}]},
+  {id:7,t:'My Breakfast',e:'🥞',f:'صبحانه',lines:['Every morning I eat breakfast.','I like bread with butter.','I drink a glass of milk.','Sometimes I eat an egg.','My mother makes pancakes on Sunday.'],qs:[{q:'What does the child drink?',o:['Milk','Juice','Water'],a:0},{q:'What does the mother make on Sunday?',o:['Pancakes','Pizza','Soup'],a:0}]},
+  {id:8,t:'The Seasons',e:'🍂',f:'فصل‌ها',lines:['There are four seasons.','In spring flowers grow.','In summer it is hot.','In autumn leaves fall.','In winter it snows.','I love all the seasons!'],qs:[{q:'How many seasons?',o:['Four','Three','Two'],a:0},{q:'What happens in autumn?',o:['Leaves fall','It snows','Flowers grow'],a:0}]},
+  {id:9,t:'My Pet Dog',e:'🐶',f:'سگ من',lines:['I have a pet dog.','His name is Max.','Max is brown and big.','He likes to play in the park.','He eats dog food every day.','Max is my best friend!'],qs:[{q:'What is the dog name?',o:['Max','Tom','Sam'],a:0},{q:'What color is the dog?',o:['Brown','Black','White'],a:0}]},
+  {id:10,t:'At the Beach',e:'🏖️',f:'ساحل',lines:['Today we go to the beach!','The water is blue.','I see sand and shells.','I play in the sand.','We build a sand castle.','The beach is fun!'],qs:[{q:'What color is the water?',o:['Blue','Green','Red'],a:0},{q:'What do they build?',o:['A sand castle','A house','A tower'],a:0}]},
+  {id:11,t:'My Birthday',e:'🎂',f:'تولد',lines:['Today is my birthday!','I am six years old.','My mother makes a big cake.','My friends come to my house.','We play games and eat cake.','I get many gifts!'],qs:[{q:'How old is the child?',o:['Six','Five','Seven'],a:0},{q:'What do they eat?',o:['Cake','Pizza','Ice cream'],a:0}]},
+  {id:12,t:'Going Shopping',e:'🛒',f:'خرید',lines:['I go shopping with my mother.','We go to a big shop.','I see apples and bananas.','My mother buys bread and milk.','I get a chocolate cookie!'],qs:[{q:'Who goes shopping?',o:['Mother and I','Father','Sister'],a:0},{q:'What does the child get?',o:['A cookie','An apple','A toy'],a:0}]},
+  {id:13,t:'My Toys',e:'🧸',f:'اسباب‌بازی',lines:['I have many toys.','I have a teddy bear and a ball.','I have a car and a doll.','I play with my toys every day.','My favorite toy is my teddy bear.'],qs:[{q:'What is the favorite toy?',o:['Teddy bear','Ball','Car'],a:0}]},
+  {id:14,t:'In the Garden',e:'🌻',f:'باغچه',lines:['My father has a garden.','There are red flowers and green trees.','I see a butterfly and a bee.','I water the flowers every day.','The garden is beautiful!'],qs:[{q:'What color are the flowers?',o:['Red','Blue','Yellow'],a:0},{q:'What does the child do every day?',o:['Water flowers','Eat fruit','Play ball'],a:0}]},
+  {id:15,t:'My Best Friend',e:'👫',f:'بهترین دوستم',lines:['My best friend is Sara.','She is kind and funny.','We go to the same school.','We like to play together.','She comes to my house.','I am happy to have a good friend!'],qs:[{q:'What is the friend name?',o:['Sara','Lily','Emma'],a:0},{q:'What do they do together?',o:['Play','Cook','Read'],a:0}]},
+  {id:16,t:'Making Lunch',e:'🥪',f:'ناهار',lines:['I help my mother today.','We make a sandwich together.','I put cheese on the bread.','My mother adds tomato.','The sandwich is yummy!'],qs:[{q:'What do they make?',o:['A sandwich','A cake','A pizza'],a:0}]},
+  {id:17,t:'My Room',e:'🛏️',f:'اتاقم',lines:['I have my own room.','There is a bed and a desk.','I have many books.','My favorite color is blue.','The walls are blue and white.','I love my room!'],qs:[{q:'What color are the walls?',o:['Blue and white','Red','Green'],a:0}]},
+  {id:18,t:'Walking to School',e:'🚶',f:'راه مدرسه',lines:['Every morning I walk to school.','I walk with my brother.','We see a big dog on the way.','We pass a red house.','The school is near the park.'],qs:[{q:'Who does the child walk with?',o:['Brother','Sister','Father'],a:0},{q:'What color is the house?',o:['Red','Blue','White'],a:0}]},
+  {id:19,t:'The Lost Duck',e:'🦆',f:'اردک گمشده',lines:['One day I find a little duck.','The duck is yellow and small.','It is lost and sad.','I give the duck some water.','Then I find the mother duck.','The mother duck is happy!'],qs:[{q:'What color is the duck?',o:['Yellow','White','Brown'],a:0},{q:'What does the child give?',o:['Water','Food','Bread'],a:0}]},
+  {id:20,t:'Cooking with Dad',e:'👨‍🍳',f:'آشپزی با بابا',lines:['On Saturday I cook with my father.','We make pasta with tomato sauce.','My father lets me stir the pot.','The pasta smells good.','We eat together as a family.'],qs:[{q:'What do they make?',o:['Pasta','Rice','Soup'],a:0},{q:'What day is it?',o:['Saturday','Sunday','Monday'],a:0}]},
+  {id:21,t:'The Rainbow',e:'🌈',f:'رنگین‌کمان',lines:['After the rain I go outside.','I look up at the sky.','I see a beautiful rainbow!','The rainbow has many colors.','I can see red and blue and green.','I count seven colors!'],qs:[{q:'When does the child see the rainbow?',o:['After rain','Before rain','At night'],a:0},{q:'How many colors?',o:['Seven','Five','Three'],a:0}]},
+  {id:22,t:'My Favorite Book',e:'📖',f:'کتاب مورد علاقه',lines:['I have a favorite book.','It is about a little bear.','The bear goes on an adventure.','He meets a rabbit and a fox.','They find a treasure box.','I read this book every night!'],qs:[{q:'What is the book about?',o:['A little bear','A cat','A dog'],a:0},{q:'What do they find?',o:['A treasure box','A house','A car'],a:0}]},
+  {id:23,t:'At the Farm',e:'🌾',f:'مزرعه',lines:['Today I visit a farm.','I see many animals.','There are cows and chickens.','I feed the baby lamb.','The farmer gives me milk.','I love the farm!'],qs:[{q:'What animal does the child feed?',o:['A baby lamb','A cow','A pig'],a:0},{q:'What does the farmer give?',o:['Fresh milk','Eggs','Bread'],a:0}]},
+  {id:24,t:'The Snowy Day',e:'🌨️',f:'روز برفی',lines:['Today it is snowing!','Everything is white.','I put on my coat and boots.','I go outside to play.','I build a big snowman.','The snowman has a hat!'],qs:[{q:'What does the child build?',o:['A snowman','A castle','A house'],a:0},{q:'What color is everything?',o:['White','Blue','Gray'],a:0}]},
+  {id:25,t:'First Day at School',e:'🏫',f:'اولین روز مدرسه',lines:['Today is my first day.','I am a little bit scared.','My mother holds my hand.','The teacher says hello.','I meet a new friend Tom.','We play at recess.','I love my new school!'],qs:[{q:'How does the child feel?',o:['A little scared','Very happy','Angry'],a:0},{q:'What is the friend name?',o:['Tom','Sam','Max'],a:0}]},
+  {id:26,t:'Fruit Party',e:'🍎',f:'مهمانی میوه',lines:['My mother buys many fruits.','We have apples and bananas.','We have oranges and grapes.','I wash the fruits.','I put them on a plate.','My family eats together.','Fruits are healthy!'],qs:[{q:'Where does the child wash fruits?',o:['In the kitchen','In the bathroom','Outside'],a:0},{q:'Are fruits healthy?',o:['Yes','No','Maybe'],a:0}]},
+  {id:27,t:'The Doctor',e:'🏥',f:'دکتر',lines:['Today I go to the doctor.','The doctor is very kind.','She checks my ears and eyes.','She listens to my heart.','The doctor says I am healthy!','She gives me a sticker.'],qs:[{q:'Is the doctor kind?',o:['Yes','No'],a:0},{q:'What does the doctor give?',o:['A sticker','A toy','Candy'],a:0}]},
+  {id:28,t:'Night Time',e:'🌙',f:'وقت خواب',lines:['It is night time now.','The moon is big and bright.','I can see many stars.','My mother reads me a story.','The story is about a star.','I say goodnight.'],qs:[{q:'What is big and bright?',o:['The moon','The sun','A cloud'],a:0},{q:'What does the mother do?',o:['Reads a story','Sings','Plays music'],a:0}]},
+  {id:29,t:'My Bicycle',e:'🚲',f:'دوچرخه‌ام',lines:['I have a new bicycle!','It is red and blue.','My father teaches me to ride.','I fall down two times.','But I do not give up!','Now I can ride fast!'],qs:[{q:'What color is the bicycle?',o:['Red and blue','Green','Yellow'],a:0},{q:'How many times does the child fall?',o:['Two','One','Three'],a:0}]},
+  {id:30,t:'The Picnic',e:'🧺',f:'پیک‌نیک',lines:['Today we go on a picnic!','We go to a green park.','My mother packs sandwiches.','We sit on a red blanket.','I play football with my father.','We eat and laugh together.','The picnic is wonderful!'],qs:[{q:'What color is the blanket?',o:['Red','Blue','Green'],a:0},{q:'What does the child play?',o:['Football','Basketball','Tennis'],a:0}]}
 ];
 
 // ====================================================================
 // STATE
 // ====================================================================
 var state = {
-  screen:'home', history:[], selLetter:null, selCat:null, selWord:null,
-  selStory:null, storyAns:{}, spellState:null, soundOn:true,
+  screen:'welcome', history:[], selLetter:null, selCat:null, selWord:null,
+  selStory:null, storyAns:{}, spellState:null, matchState:null,
+  soundOn:true, stars:0,
   progress: JSON.parse(localStorage.getItem('lv2p') || '{}')
 };
 
 function save() { localStorage.setItem('lv2p', JSON.stringify(state.progress)); }
 function lD(id) { return state.progress['l_'+id] || false; }
-function lM(id) { state.progress['l_'+id] = true; save(); }
+function lM(id) { state.progress['l_'+id] = true; save(); addStars(2); }
 function vD(c,w) { return state.progress['v_'+c+'_'+w] || false; }
-function vM(c,w) { state.progress['v_'+c+'_'+w] = true; save(); }
+function vM(c,w) { state.progress['v_'+c+'_'+w] = true; save(); addStars(1); }
 function stD(id) { return state.progress['st_'+id] || false; }
-function stM(id) { state.progress['st_'+id] = true; save(); }
+function stM(id) { state.progress['st_'+id] = true; save(); addStars(3); }
+
+// Restore stars from progress
+state.stars = parseInt(localStorage.getItem('lv2stars') || '0');
+var origSave = save;
+save = function() { localStorage.setItem('lv2p', JSON.stringify(state.progress)); localStorage.setItem('lv2stars', state.stars.toString()); };
 
 // ====================================================================
 // NAV
 // ====================================================================
-var navMap = {home:['home'],letters:['letters','letterWrite'],vocab:['vocab','cat','wd'],spelling:['spelling'],stories:['stories','storyRead'],wordWrite:['wordWrite','wwCanvas']};
+var navMap = {home:['home'],letters:['letters','letterWrite'],vocab:['vocab','cat','wd'],spelling:['spelling','match'],stories:['stories','storyRead'],wordWrite:['wordWrite','wwCanvas']};
 
 function navTo(s) {
   if (state.screen !== s) state.history.push(state.screen);
@@ -396,18 +503,20 @@ function goBack() {
 function updateNav() {
   var els = document.querySelectorAll('.nv');
   for (var i = 0; i < els.length; i++) {
-    var el = els[i];
-    var n = el.getAttribute('data-nav');
+    var n = els[i].getAttribute('data-nav');
     var screens = navMap[n] || [];
     var isActive = screens.indexOf(state.screen) >= 0;
-    if (isActive) el.classList.add('active');
-    else el.classList.remove('active');
+    if (isActive) els[i].classList.add('active');
+    else els[i].classList.remove('active');
   }
+  var nav = document.getElementById('bottomNav');
+  nav.style.display = state.screen === 'welcome' ? 'none' : '';
+  var hdr = document.getElementById('header');
+  hdr.style.display = state.screen === 'welcome' ? 'none' : '';
 }
 
 function updateBack() {
-  var btn = document.getElementById('backBtn');
-  btn.style.visibility = state.history.length > 0 ? 'visible' : 'hidden';
+  document.getElementById('backBtn').style.visibility = state.history.length > 0 ? 'visible' : 'hidden';
 }
 
 function toggleSound() {
@@ -419,7 +528,7 @@ function showMod(h) { document.getElementById('md2').innerHTML = h; document.get
 function hideMod() { document.getElementById('mo').classList.remove('show'); }
 
 // ====================================================================
-// CANVAS HELPER
+// CANVAS
 // ====================================================================
 var canvasRefs = {};
 
@@ -437,39 +546,29 @@ function initCanvas(wrapId, guideText) {
   c.scale(dpr, dpr);
   cvs.style.width = w + 'px';
   cvs.style.height = h + 'px';
-
-  var drawing = false;
-  var lastP = null;
+  var drawing = false, lastP = null;
 
   function drawGuide() {
-    c.clearRect(0, 0, w, h);
-    c.strokeStyle = 'rgba(74,111,165,0.08)';
-    c.lineWidth = 1;
-    c.setLineDash([]);
-    c.beginPath(); c.moveTo(0, h*0.33); c.lineTo(w, h*0.33); c.stroke();
-    c.setLineDash([4,4]);
-    c.beginPath(); c.moveTo(0, h*0.5); c.lineTo(w, h*0.5); c.stroke();
-    c.setLineDash([]);
-    c.beginPath(); c.moveTo(0, h*0.67); c.lineTo(w, h*0.67); c.stroke();
-    var sz = Math.min(w, h) * 0.6;
+    c.clearRect(0,0,w,h);
+    c.strokeStyle = 'rgba(74,111,165,0.08)'; c.lineWidth = 1; c.setLineDash([]);
+    c.beginPath(); c.moveTo(0,h*0.33); c.lineTo(w,h*0.33); c.stroke();
+    c.setLineDash([4,4]); c.beginPath(); c.moveTo(0,h*0.5); c.lineTo(w,h*0.5); c.stroke();
+    c.setLineDash([]); c.beginPath(); c.moveTo(0,h*0.67); c.lineTo(w,h*0.67); c.stroke();
+    var sz = Math.min(w,h)*0.6;
     c.font = 'bold ' + sz + 'px Nunito';
-    c.textAlign = 'center';
-    c.textBaseline = 'middle';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
     c.fillStyle = 'rgba(74,111,165,0.1)';
     c.fillText(guideText, w/2, h/2);
   }
 
   function showFull() {
     drawGuide();
-    var sz = Math.min(w, h) * 0.6;
+    var sz = Math.min(w,h)*0.6;
     c.font = 'bold ' + sz + 'px Nunito';
-    c.textAlign = 'center';
-    c.textBaseline = 'middle';
-    c.fillStyle = 'rgba(74,111,165,0.22)';
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.fillStyle = 'rgba(74,111,165,0.25)';
     c.fillText(guideText, w/2, h/2);
   }
-
-  function clearIt() { drawGuide(); }
 
   function getPos(e) {
     var r = cvs.getBoundingClientRect();
@@ -482,56 +581,63 @@ function initCanvas(wrapId, guideText) {
     e.preventDefault();
     if (!drawing) return;
     var p = getPos(e);
-    c.beginPath();
-    c.moveTo(lastP.x, lastP.y);
-    c.lineTo(p.x, p.y);
-    c.strokeStyle = '#E8856C';
-    c.lineWidth = 5;
-    c.lineCap = 'round';
-    c.lineJoin = 'round';
-    c.stroke();
-    lastP = p;
+    c.beginPath(); c.moveTo(lastP.x, lastP.y); c.lineTo(p.x, p.y);
+    c.strokeStyle = '#E8856C'; c.lineWidth = 5; c.lineCap = 'round'; c.lineJoin = 'round';
+    c.stroke(); lastP = p;
   }
-  function ed(e) { if (e) e.preventDefault(); drawing = false; }
+  function ed(e) { if(e) e.preventDefault(); drawing = false; }
 
-  cvs.addEventListener('mousedown', sd);
-  cvs.addEventListener('mousemove', dd);
-  cvs.addEventListener('mouseup', ed);
-  cvs.addEventListener('mouseleave', ed);
-  cvs.addEventListener('touchstart', sd, {passive:false});
-  cvs.addEventListener('touchmove', dd, {passive:false});
-  cvs.addEventListener('touchend', ed, {passive:false});
+  cvs.addEventListener('mousedown',sd); cvs.addEventListener('mousemove',dd);
+  cvs.addEventListener('mouseup',ed); cvs.addEventListener('mouseleave',ed);
+  cvs.addEventListener('touchstart',sd,{passive:false}); cvs.addEventListener('touchmove',dd,{passive:false});
+  cvs.addEventListener('touchend',ed,{passive:false});
 
   drawGuide();
-
-  canvasRefs[wrapId] = { clear: clearIt, show: showFull };
+  canvasRefs[wrapId] = { clear: drawGuide, show: showFull };
 }
 
 // ====================================================================
-// RENDER
+// ALL VIEWS
 // ====================================================================
+function getAllWords() {
+  var all = [];
+  for (var i = 0; i < CATS.length; i++) {
+    for (var j = 0; j < CATS[i].words.length; j++) {
+      all.push(CATS[i].words[j]);
+    }
+  }
+  return all;
+}
+
+function findWordEmoji(w) {
+  var all = getAllWords();
+  for (var i = 0; i < all.length; i++) { if (all[i].w === w) return all[i].e; }
+  return '📝';
+}
+
+// RENDER
 function render() {
   canvasRefs = {};
   var mc = document.getElementById('mc');
-  var html = '';
-
+  var h = '';
   switch(state.screen) {
-    case 'home': html = RH(); break;
-    case 'letters': html = RL(); break;
-    case 'letterWrite': html = RLW(); break;
-    case 'wordWrite': html = RWW(); break;
-    case 'wwCanvas': html = RWWC(); break;
-    case 'vocab': html = RV(); break;
-    case 'cat': html = RC(); break;
-    case 'wd': html = RWD(); break;
-    case 'spelling': html = RSp(); break;
-    case 'stories': html = RSt(); break;
-    case 'storyRead': html = RStR(); break;
-    default: html = RH();
+    case 'welcome': h = RWelcome(); break;
+    case 'home': h = RH(); break;
+    case 'letters': h = RL(); break;
+    case 'letterWrite': h = RLW(); break;
+    case 'wordWrite': h = RWW(); break;
+    case 'wwCanvas': h = RWWC(); break;
+    case 'vocab': h = RV(); break;
+    case 'cat': h = RC(); break;
+    case 'wd': h = RWD(); break;
+    case 'spelling': h = RSp(); break;
+    case 'match': h = RMatch(); break;
+    case 'stories': h = RSt(); break;
+    case 'storyRead': h = RStR(); break;
+    default: h = RH();
   }
-
-  mc.innerHTML = html;
-
+  mc.innerHTML = h;
+  updateStarsDisplay();
   if (state.screen === 'letterWrite' && state.selLetter) {
     setTimeout(function() {
       initCanvas('upperWrap', state.selLetter.u);
@@ -539,479 +645,307 @@ function render() {
     }, 100);
   }
   if (state.screen === 'wwCanvas' && state.selWord) {
-    setTimeout(function() {
-      initCanvas('wordWrap', state.selWord);
-    }, 100);
+    setTimeout(function() { initCanvas('wordWrap', state.selWord); }, 100);
   }
 }
 
-// ====================================================================
+// WELCOME
+function RWelcome() {
+  return '<div class="welcome"><span class="we">📚✏️🌟</span>'
+    + '<h2>Writing & Words</h2>'
+    + '<p>یادگیری نوشتن، لغات، املاء و داستان<br>برای فعال شدن صدا، دکمه رو بزن</p>'
+    + '<button class="welcome-btn" onclick="initAudio();speak(\'Hello! Let us learn English!\');state.screen=\'home\';render();updateNav();updateBack()">🎤 شروع کن!</button>'
+    + '</div>';
+}
+
 // HOME
-// ====================================================================
 function RH() {
-  var dL = LETTERS.filter(function(l){return lD(l.id);}).length;
-  var tV = 0; CATS.forEach(function(c){ tV += c.words.length; });
-  var dV = 0; CATS.forEach(function(c){ c.words.forEach(function(w){ if(vD(c.id,w.w)) dV++; }); });
-  var dS = STORIES.filter(function(s){return stD(s.id);}).length;
+  var dL = 0; for(var i=0;i<LETTERS.length;i++) if(lD(LETTERS[i].id)) dL++;
+  var tV=0,dV=0; for(var i=0;i<CATS.length;i++){tV+=CATS[i].words.length;for(var j=0;j<CATS[i].words.length;j++) if(vD(CATS[i].id,CATS[i].words[j].w)) dV++;}
+  var dS=0; for(var i=0;i<STORIES.length;i++) if(stD(STORIES[i].id)) dS++;
 
   return '<div class="hh"><span class="eb">✏️📚</span><h2>Writing & Words — Level 2</h2><p>نوشتن حروف، لغات جدید، املاء و داستان</p></div>'
     + '<div class="st">📍 بخش‌ها</div><div class="pg">'
-    + '<div class="pc" onclick="navTo(\'letters\')"><div class="pi2" style="background:#E8EFF8;color:#4A6FA5">✏️</div><div class="pinf"><h3>نوشتن حروف</h3><p>بزرگ و کوچک باهم</p><div class="pbar"><div class="pbf" style="width:' + Math.round(dL/LETTERS.length*100) + '%;background:#4A6FA5"></div></div></div><span class="pbadge" style="color:#4A6FA5;background:#E8EFF8">' + dL + '/' + LETTERS.length + '</span></div>'
-    + '<div class="pc" onclick="navTo(\'vocab\')"><div class="pi2" style="background:#FDF0EC;color:#E8856C">📚</div><div class="pinf"><h3>لغات جدید</h3><p>' + CATS.length + ' دسته — ' + tV + ' کلمه</p><div class="pbar"><div class="pbf" style="width:' + Math.round(dV/tV*100) + '%;background:#E8856C"></div></div></div><span class="pbadge" style="color:#E8856C;background:#FDF0EC">' + dV + '</span></div>'
-    + '<div class="pc" onclick="navTo(\'spelling\')"><div class="pi2" style="background:#EEE8F5;color:#7B6BAF">🧩</div><div class="pinf"><h3>تمرین املاء</h3><p>۴ نوع تمرین</p></div></div>'
-    + '<div class="pc" onclick="navTo(\'stories\')"><div class="pi2" style="background:#EDF7EF;color:#6BAF7E">📖</div><div class="pinf"><h3>داستان‌ها</h3><p>' + STORIES.length + ' داستان با صدا</p><div class="pbar"><div class="pbf" style="width:' + Math.round(dS/STORIES.length*100) + '%;background:#6BAF7E"></div></div></div><span class="pbadge" style="color:#6BAF7E;background:#EDF7EF">' + dS + '/' + STORIES.length + '</span></div>'
+    + pc('navTo(\'letters\')','#E8EFF8','#4A6FA5','✏️','نوشتن حروف','بزرگ و کوچک باهم',dL,LETTERS.length,'#4A6FA5')
+    + pc('navTo(\'vocab\')','#FDF0EC','#E8856C','📚','لغات جدید',CATS.length+' دسته — '+tV+' کلمه',dV,tV,'#E8856C')
+    + '<div class="pc" onclick="navTo(\'spelling\')"><div class="pi2" style="background:#EEE8F5;color:#7B6BAF">🧩</div><div class="pinf"><h3>بازی و املاء</h3><p>۴ نوع تمرین + بازی تطبیق</p></div></div>'
+    + pc('navTo(\'stories\')','#EDF7EF','#6BAF7E','📖','داستان‌ها',STORIES.length+' داستان با صدا',dS,STORIES.length,'#6BAF7E')
     + '<div class="pc" onclick="navTo(\'wordWrite\')"><div class="pi2" style="background:#FDF6E3;color:#D4A650">✍️</div><div class="pinf"><h3>نوشتن کلمات</h3><p>کلمات ساده ۳ و ۴ حرفی</p></div></div>'
-    + '</div><div style="margin-top:20px"><div class="st">📊 خلاصه</div><div class="sg">'
-    + '<div class="sc"><div class="sn">' + dL + '</div><div class="sl">حرف</div></div>'
-    + '<div class="sc"><div class="sn">' + dV + '</div><div class="sl">کلمه</div></div>'
-    + '<div class="sc"><div class="sn">' + dS + '</div><div class="sl">داستان</div></div></div></div>';
+    + '</div><div style="margin-top:18px"><div class="st">📊 خلاصه</div><div class="sg">'
+    + '<div class="sc"><div class="sn">'+dL+'</div><div class="sl">حرف</div></div>'
+    + '<div class="sc"><div class="sn">'+dV+'</div><div class="sl">کلمه</div></div>'
+    + '<div class="sc"><div class="sn">'+dS+'</div><div class="sl">داستان</div></div>'
+    + '<div class="sc"><div class="sn">'+(state.stars||0)+'</div><div class="sl">⭐ ستاره</div></div>'
+    + '</div></div>';
 }
 
-// ====================================================================
+function pc(click,bg,icoC,ico,t,d,done,total,barC) {
+  var pct = total > 0 ? Math.round(done/total*100) : 0;
+  return '<div class="pc" onclick="'+click+'"><div class="pi2" style="background:'+bg+';color:'+icoC+'">'+ico+'</div><div class="pinf"><h3>'+t+'</h3><p>'+d+'</p><div class="pbar"><div class="pbf" style="width:'+pct+'%;background:'+barC+'"></div></div></div><span class="pbadge" style="color:'+icoC+';background:'+bg+'">'+done+'/'+total+'</span></div>';
+}
+
 // LETTERS
-// ====================================================================
 function RL() {
-  var dC = LETTERS.filter(function(l){return lD(l.id);}).length;
-  var h = '<div class="st">✏️ نوشتن حروف (بزرگ و کوچک)</div>';
-  h += '<p style="color:var(--tm);margin-bottom:8px;font-size:.8rem">هر حرف رو انتخاب کن — هم بزرگ هم کوچک رو تمرین میکنی</p>';
-  h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><div class="pbar" style="flex:1"><div class="pbf" style="width:' + Math.round(dC/LETTERS.length*100) + '%;background:var(--p)"></div></div><span style="font-weight:800;color:var(--p)">' + dC + '/' + LETTERS.length + '</span></div>';
-  h += '<div class="lg">';
-  for (var i = 0; i < LETTERS.length; i++) {
-    var l = LETTERS[i];
-    var doneCls = lD(l.id) ? ' done' : '';
-    h += '<div class="lc' + doneCls + '" onclick="pickLetter(\'' + l.id + '\')"><div class="lm">' + l.u + ' ' + l.l + '</div><div class="lx">' + l.u + l.l + '</div></div>';
+  var dC=0; for(var i=0;i<LETTERS.length;i++) if(lD(LETTERS[i].id)) dC++;
+  var h='<div class="st">✏️ نوشتن حروف (بزرگ و کوچک)</div><p style="color:var(--tm);margin-bottom:6px;font-size:.78rem">هر حرف رو انتخاب کن — هم بزرگ هم کوچک</p>';
+  h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="pbar" style="flex:1"><div class="pbf" style="width:'+Math.round(dC/LETTERS.length*100)+'%;background:var(--p)"></div></div><span style="font-weight:800;color:var(--p);font-size:.85rem">'+dC+'/'+LETTERS.length+'</span></div>';
+  h+='<div class="lg">';
+  for(var i=0;i<LETTERS.length;i++){
+    var l=LETTERS[i];
+    h+='<div class="lc'+(lD(l.id)?' done':'')+'" onclick="pickLetter(\''+l.id+'\')"><div class="lm">'+l.u+' '+l.l+'</div><div class="lx">'+l.u+l.l+'</div></div>';
   }
-  h += '</div>';
-  return h;
+  h+='</div>';return h;
 }
 
-function pickLetter(id) {
-  for (var i = 0; i < LETTERS.length; i++) {
-    if (LETTERS[i].id === id) { state.selLetter = LETTERS[i]; break; }
-  }
-  navTo('letterWrite');
+function pickLetter(id){for(var i=0;i<LETTERS.length;i++)if(LETTERS[i].id===id){state.selLetter=LETTERS[i];break;}navTo('letterWrite');}
+
+function RLW(){
+  var l=state.selLetter;if(!l)return'<p>حرفی انتخاب نشده</p>';
+  var idx=LETTERS.indexOf(l),prev=idx>0?LETTERS[idx-1]:null,next=idx<LETTERS.length-1?LETTERS[idx+1]:null,done=lD(l.id);
+  var allW=getAllWords(),exW=[];
+  for(var i=0;i<allW.length&&exW.length<5;i++) if(allW[i].w.toLowerCase().charAt(0)===l.l) exW.push(allW[i]);
+
+  var h='<div class="wa">';
+  h+='<div class="wex"><span class="wu">'+l.u+'</span><span class="wl">'+l.l+'</span></div>';
+  h+='<button class="wpb" onclick="speak(\''+l.u+' '+l.l+'\')">🔊</button>';
+  h+='<p style="font-size:.78rem;font-weight:700;color:var(--p);margin-bottom:5px">✏️ بزرگ: '+l.u+'</p>';
+  h+='<div class="cw cwu" id="upperWrap"><canvas></canvas></div>';
+  h+='<div class="wc"><button class="wcb" onclick="if(canvasRefs.upperWrap)canvasRefs.upperWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.upperWrap)canvasRefs.upperWrap.show()">👁️ نشون بده</button></div>';
+  h+='<p style="font-size:.78rem;font-weight:700;color:var(--ac);margin-bottom:5px;margin-top:8px">✏️ کوچک: '+l.l+'</p>';
+  h+='<div class="cw cwl" id="lowerWrap"><canvas></canvas></div>';
+  h+='<div class="wc"><button class="wcb" onclick="if(canvasRefs.lowerWrap)canvasRefs.lowerWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.lowerWrap)canvasRefs.lowerWrap.show()">👁️ نشون بده</button></div>';
+  h+='<div class="ws"><h4>📝 مراحل نوشتن:</h4>';
+  for(var s=0;s<l.steps.length;s++) h+='<div class="si2"><div class="sn2">'+(s+1)+'</div><span>'+l.steps[s]+'</span></div>';
+  h+='</div><div class="wt2">💡 '+l.tip+'</div>';
+  if(exW.length){h+='<div style="background:var(--sf);border-radius:var(--r);padding:10px;box-shadow:var(--sh);margin-bottom:10px;direction:rtl;text-align:right"><h4 style="font-size:.78rem;color:var(--tl);margin-bottom:5px">📖 کلمات با «'+l.l+'»:</h4><div style="display:flex;flex-wrap:wrap;gap:5px;direction:ltr">';for(var e=0;e<exW.length;e++) h+='<span style="background:var(--pl);padding:4px 9px;border-radius:7px;font-weight:700;font-size:.8rem;cursor:pointer" onclick="speak(\''+exW[e].w+'\')">'+exW[e].e+' '+exW[e].w+'</span>';h+='</div></div>';}
+  h+='<div class="nb">';
+  if(prev) h+='<button class="btn bs" onclick="pickLetter(\''+prev.id+'\')">← '+prev.u+'</button>';
+  if(!done) h+='<button class="btn bok" onclick="lM(\''+l.id+'\');'+(next?'pickLetter(\''+next.id+'\')':'navTo(\'letters\')')+'">✓ نوشتم!</button>';
+  else h+='<button class="btn bg" style="flex:1;justify-content:center">✓ یاد گرفته</button>';
+  if(next) h+='<button class="btn bs" onclick="pickLetter(\''+next.id+'\')">'+next.u+' →</button>';
+  h+='</div></div>';return h;
 }
 
-function RLW() {
-  var l = state.selLetter;
-  if (!l) return '<p>حرفی انتخاب نشده</p>';
-  var idx = LETTERS.indexOf(l);
-  var prev = idx > 0 ? LETTERS[idx-1] : null;
-  var next = idx < LETTERS.length-1 ? LETTERS[idx+1] : null;
-  var done = lD(l.id);
-
-  var allW = [];
-  CATS.forEach(function(c){ c.words.forEach(function(w){ allW.push(w); }); });
-  var exW = [];
-  for (var i = 0; i < allW.length && exW.length < 5; i++) {
-    if (allW[i].w.toLowerCase().charAt(0) === l.l) exW.push(allW[i]);
-  }
-
-  var h = '<div class="wa">';
-  h += '<div class="wex"><span class="wu">' + l.u + '</span><span class="wl">' + l.l + '</span></div>';
-  h += '<div class="wrlbl"><span>بزرگ: ' + l.u + '</span><span>کوچک: ' + l.l + '</span></div>';
-  h += '<button class="wpb" onclick="speak(\'' + l.l + '\')">🔊</button>';
-  h += '<p style="font-size:.82rem;font-weight:700;color:var(--p);margin-bottom:6px">✏️ بزرگ بنویس: ' + l.u + '</p>';
-  h += '<div class="cw cwu" id="upperWrap"><canvas></canvas></div>';
-  h += '<div class="wc"><button class="wcb" onclick="if(canvasRefs.upperWrap)canvasRefs.upperWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.upperWrap)canvasRefs.upperWrap.show()">👁️ نشون بده</button></div>';
-  h += '<p style="font-size:.82rem;font-weight:700;color:var(--ac);margin-bottom:6px;margin-top:10px">✏️ کوچک بنویس: ' + l.l + '</p>';
-  h += '<div class="cw cwl" id="lowerWrap"><canvas></canvas></div>';
-  h += '<div class="wc"><button class="wcb" onclick="if(canvasRefs.lowerWrap)canvasRefs.lowerWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.lowerWrap)canvasRefs.lowerWrap.show()">👁️ نشون بده</button></div>';
-  h += '<div class="ws"><h4>📝 مراحل نوشتن:</h4>';
-  for (var s = 0; s < l.steps.length; s++) {
-    h += '<div class="si2"><div class="sn2">' + (s+1) + '</div><span>' + l.steps[s] + '</span></div>';
-  }
-  h += '</div>';
-  h += '<div class="wt2">💡 ' + l.tip + '</div>';
-  if (exW.length) {
-    h += '<div style="background:var(--sf);border-radius:var(--r);padding:12px;box-shadow:var(--sh);margin-bottom:12px;direction:rtl;text-align:right"><h4 style="font-size:.8rem;color:var(--tl);margin-bottom:6px">📖 کلمات با «' + l.l + '»:</h4><div style="display:flex;flex-wrap:wrap;gap:6px;direction:ltr">';
-    for (var e = 0; e < exW.length; e++) {
-      h += '<span style="background:var(--pl);padding:5px 10px;border-radius:8px;font-weight:700;font-size:.83rem;cursor:pointer" onclick="speak(\'' + exW[e].w + '\')">' + exW[e].e + ' ' + exW[e].w + '</span>';
-    }
-    h += '</div></div>';
-  }
-  h += '<div class="nb">';
-  if (prev) h += '<button class="btn bs" onclick="pickLetter(\'' + prev.id + '\')">← ' + prev.u + '</button>';
-  if (!done) h += '<button class="btn bok" onclick="lM(\'' + l.id + '\');' + (next ? 'pickLetter(\'' + next.id + '\')' : 'navTo(\'letters\')') + '">✓ نوشتم!</button>';
-  else h += '<button class="btn bg" style="flex:1;justify-content:center">✓ یاد گرفته</button>';
-  if (next) h += '<button class="btn bs" onclick="pickLetter(\'' + next.id + '\')">' + next.u + ' →</button>';
-  h += '</div></div>';
-  return h;
-}
-
-// ====================================================================
 // WORD WRITE
-// ====================================================================
-function RWW() {
-  var unique = [];
-  var seen = {};
-  for (var i = 0; i < WRITE_WORDS.length; i++) {
-    if (!seen[WRITE_WORDS[i]]) { unique.push(WRITE_WORDS[i]); seen[WRITE_WORDS[i]] = true; }
-  }
-  var allW = [];
-  CATS.forEach(function(c){ c.words.forEach(function(w){ allW.push(w); }); });
+function RWW(){
+  var unique=[],seen={};
+  for(var i=0;i<WRITE_WORDS.length;i++) if(!seen[WRITE_WORDS[i]]){unique.push(WRITE_WORDS[i]);seen[WRITE_WORDS[i]]=true;}
+  var h='<div class="st">✍️ نوشتن کلمات ('+unique.length+')</div><p style="color:var(--tm);margin-bottom:10px;font-size:.78rem">کلمه‌ای رو انتخاب کن و بنویس</p>';
+  h+='<div style="display:flex;flex-wrap:wrap;gap:6px">';
+  for(var i=0;i<unique.length;i++){var w=unique[i],emoji=findWordEmoji(w);
+    h+='<div style="background:var(--sf);padding:8px 12px;border-radius:var(--rs);box-shadow:var(--sh);cursor:pointer;display:flex;align-items:center;gap:4px" onclick="pickWW(\''+w+'\')"><span style="font-size:1rem">'+emoji+'</span><span style="font-weight:800;font-size:.88rem">'+w+'</span></div>';}
+  h+='</div>';return h;
+}
 
-  var h = '<div class="st">✍️ نوشتن کلمات (' + unique.length + ' کلمه)</div>';
-  h += '<p style="color:var(--tm);margin-bottom:12px;font-size:.8rem">کلمه‌ای رو انتخاب کن و روی خط بنویس</p>';
-  h += '<div style="display:flex;flex-wrap:wrap;gap:7px">';
-  for (var i = 0; i < unique.length; i++) {
-    var w = unique[i];
-    var item = null;
-    for (var j = 0; j < allW.length; j++) { if (allW[j].w === w) { item = allW[j]; break; } }
-    var emoji = item ? item.e : '📝';
-    h += '<div style="background:var(--sf);padding:9px 13px;border-radius:var(--rs);box-shadow:var(--sh);cursor:pointer;display:flex;align-items:center;gap:5px" onclick="pickWW(\'' + w + '\')"><span style="font-size:1.1rem">' + emoji + '</span><span style="font-weight:800;font-size:.92rem">' + w + '</span></div>';
-  }
-  h += '</div>';
+function pickWW(word){state.selWord=word;navTo('wwCanvas');}
+
+function RWWC(){
+  var w=state.selWord;if(!w)return'';
+  var emoji=findWordEmoji(w);
+  var h='<div class="wa"><div style="font-size:2.8rem;margin-bottom:4px">'+emoji+'</div>';
+  h+='<div style="font-size:1.8rem;font-weight:900;color:var(--p);margin-bottom:4px">'+w+'</div>';
+  h+='<button class="wpb" onclick="speak(\''+w+'\')">🔊</button>';
+  h+='<div class="cw cww" id="wordWrap"><canvas></canvas></div>';
+  h+='<div class="wc"><button class="wcb" onclick="if(canvasRefs.wordWrap)canvasRefs.wordWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.wordWrap)canvasRefs.wordWrap.show()">👁️ نشون بده</button></div>';
+  h+='<div class="nb"><button class="btn bs" onclick="navTo(\'wordWrite\')">← برگشت</button><button class="btn bok" onclick="addStars(1);navTo(\'wordWrite\')">✓ نوشتم!</button></div></div>';
   return h;
 }
 
-function pickWW(word) {
-  state.selWord = word;
-  navTo('wwCanvas');
-}
-
-function RWWC() {
-  var word = state.selWord;
-  if (!word) return '';
-  var allW = [];
-  CATS.forEach(function(c){ c.words.forEach(function(w){ allW.push(w); }); });
-  var item = null;
-  for (var j = 0; j < allW.length; j++) { if (allW[j].w === word) { item = allW[j]; break; } }
-  var emoji = item ? item.e : '📝';
-
-  var h = '<div class="wa">';
-  h += '<div style="font-size:3rem;margin-bottom:4px">' + emoji + '</div>';
-  h += '<div style="font-size:2rem;font-weight:900;color:var(--p);margin-bottom:4px">' + word + '</div>';
-  h += '<button class="wpb" onclick="speak(\'' + word + '\')">🔊</button>';
-  h += '<div class="cw cww" id="wordWrap"><canvas></canvas></div>';
-  h += '<div class="wc"><button class="wcb" onclick="if(canvasRefs.wordWrap)canvasRefs.wordWrap.clear()">🧹 پاک</button><button class="wcb" onclick="if(canvasRefs.wordWrap)canvasRefs.wordWrap.show()">👁️ نشون بده</button></div>';
-  h += '<div class="nb"><button class="btn bs" onclick="navTo(\'wordWrite\')">← برگشت</button><button class="btn bok" onclick="navTo(\'wordWrite\')">✓ نوشتم!</button></div>';
-  h += '</div>';
-  return h;
-}
-
-// ====================================================================
 // VOCAB
-// ====================================================================
-function RV() {
-  var tV = 0;
-  CATS.forEach(function(c){ tV += c.words.length; });
-  var h = '<div class="st">📚 لغات جدید (' + CATS.length + ' دسته — ' + tV + ' کلمه)</div><div class="cg">';
-  for (var i = 0; i < CATS.length; i++) {
-    var c = CATS[i];
-    var done = 0;
-    c.words.forEach(function(w){ if(vD(c.id,w.w)) done++; });
-    var pct = Math.round(done/c.words.length*100);
-    h += '<div class="cc" onclick="pickCat(\'' + c.id + '\')"><div class="ce">' + c.icon + '</div><div class="cn">' + c.t + '</div><div class="cd">' + c.f + ' — ' + c.words.length + '</div><div class="cb"><div class="cbf" style="width:' + pct + '%;background:' + c.col + '"></div></div></div>';
-  }
-  h += '</div>';
-  return h;
+function RV(){
+  var tV=0;for(var i=0;i<CATS.length;i++)tV+=CATS[i].words.length;
+  var h='<div class="st">📚 لغات ('+CATS.length+' دسته — '+tV+' کلمه)</div><div class="cg">';
+  for(var i=0;i<CATS.length;i++){var c=CATS[i],done=0;
+    for(var j=0;j<c.words.length;j++) if(vD(c.id,c.words[j].w)) done++;
+    h+='<div class="cc" onclick="pickCat(\''+c.id+'\')"><div class="ce">'+c.icon+'</div><div class="cn">'+c.t+'</div><div class="cd">'+c.f+' — '+c.words.length+'</div><div class="cb"><div class="cbf" style="width:'+Math.round(done/c.words.length*100)+'%;background:'+c.col+'"></div></div></div>';}
+  h+='</div>';return h;
 }
 
-function pickCat(id) { state.selCat = id; navTo('cat'); }
+function pickCat(id){state.selCat=id;navTo('cat');}
 
-function RC() {
-  var cat = null;
-  for (var i = 0; i < CATS.length; i++) { if (CATS[i].id === state.selCat) { cat = CATS[i]; break; } }
-  if (!cat) return '<p>دسته‌ای انتخاب نشده</p>';
-
-  var h = '<div class="st">' + cat.icon + ' ' + cat.t + ' — ' + cat.f + ' (' + cat.words.length + ')</div>';
-  h += '<div style="margin-bottom:12px"><button class="btn bp sm" onclick="spCat(\'' + cat.id + '\')">🔊 همه رو بخون</button></div>';
-  h += '<div class="vg">';
-  for (var i = 0; i < cat.words.length; i++) {
-    var w = cat.words[i];
-    var doneCls = vD(cat.id, w.w) ? ' done' : '';
-    h += '<div class="vc' + doneCls + '" onclick="pickVW(\'' + cat.id + '\',' + i + ')"><div class="ve">' + w.e + '</div><div class="vw">' + w.w + '</div><div class="vf">' + w.f + '</div></div>';
-  }
-  h += '</div>';
-  return h;
+function RC(){
+  var cat=null;for(var i=0;i<CATS.length;i++)if(CATS[i].id===state.selCat){cat=CATS[i];break;}
+  if(!cat)return'<p>دسته‌ای انتخاب نشده</p>';
+  var h='<div class="st">'+cat.icon+' '+cat.t+' — '+cat.f+' ('+cat.words.length+')</div>';
+  h+='<div style="margin-bottom:10px"><button class="btn bp sm" onclick="spCat(\''+cat.id+'\')">🔊 همه رو بخون</button></div>';
+  h+='<div class="vg">';
+  for(var i=0;i<cat.words.length;i++){var w=cat.words[i];
+    h+='<div class="vc'+(vD(cat.id,w.w)?' done':'')+'" onclick="pickVW(\''+cat.id+'\','+i+')"><div class="ve">'+w.e+'</div><div class="vw">'+w.w+'</div><div class="vf">'+w.f+'</div></div>';}
+  h+='</div>';return h;
 }
 
-function spCat(id) {
-  var cat = null;
-  for (var i = 0; i < CATS.length; i++) { if (CATS[i].id === id) { cat = CATS[i]; break; } }
-  if (!cat) return;
-  var idx = 0;
-  function nx() {
-    if (idx < cat.words.length) { speak(cat.words[idx].w); idx++; setTimeout(nx, 1100); }
-  }
-  nx();
+function spCat(id){var cat=null;for(var i=0;i<CATS.length;i++)if(CATS[i].id===id){cat=CATS[i];break;}if(!cat)return;var idx=0;function nx(){if(idx<cat.words.length){speak(cat.words[idx].w);idx++;setTimeout(nx,1200);}}nx();}
+
+function pickVW(catId,idx){state.selCat=catId;state.selWord=idx;navTo('wd');}
+
+function RWD(){
+  var cat=null;for(var i=0;i<CATS.length;i++)if(CATS[i].id===state.selCat){cat=CATS[i];break;}
+  if(!cat)return'';var w=cat.words[state.selWord];if(!w)return'';
+  var idx=state.selWord,prev=idx>0?cat.words[idx-1]:null,next=idx<cat.words.length-1?cat.words[idx+1]:null,done=vD(cat.id,w.w);
+  var h='<div class="wd2"><div style="font-size:4rem;margin-bottom:5px">'+w.e+'</div>';
+  h+='<div style="font-size:2rem;font-weight:900;color:var(--p);margin-bottom:2px">'+w.w+'</div>';
+  h+='<div style="font-size:.88rem;color:var(--tl);direction:rtl;margin-bottom:12px">'+w.f+'</div>';
+  h+='<button class="wpb" onclick="speak(\''+w.w+'\')">🔊</button>';
+  h+='<button class="btn bo sm" style="margin:0 auto 10px;display:flex" onclick="speak(\''+w.w+'\',0.45)">🔉 آهسته</button>';
+  h+='<div class="wps" onclick="speak(\'This is a '+w.w+'.\')">📝 This is a '+w.w+'.</div>';
+  h+='<div style="background:var(--sf);border-radius:var(--r);padding:10px;box-shadow:var(--sh);margin-bottom:12px;cursor:pointer" onclick="speak(\''+w.w+'\')">';
+  h+='<div style="font-size:1.6rem;font-weight:900;color:var(--p);letter-spacing:4px">'+w.w.split('').join(' ')+'</div></div>';
+  h+='<div class="nb">';
+  if(prev) h+='<button class="btn bs" onclick="pickVW(\''+cat.id+'\','+(idx-1)+')">← '+prev.e+'</button>';
+  if(!done) h+='<button class="btn bok" onclick="vM(\''+cat.id+'\',\''+w.w+'\');pickVW(\''+cat.id+'\','+(next?idx+1:idx)+')">✓ یاد گرفتم!</button>';
+  else h+='<button class="btn bg" style="flex:1;justify-content:center">✓ یاد گرفته</button>';
+  if(next) h+='<button class="btn bs" onclick="pickVW(\''+cat.id+'\','+(idx+1)+')">'+next.e+' →</button>';
+  h+='</div></div>';return h;
 }
 
-function pickVW(catId, idx) { state.selCat = catId; state.selWord = idx; navTo('wd'); }
-
-function RWD() {
-  var cat = null;
-  for (var i = 0; i < CATS.length; i++) { if (CATS[i].id === state.selCat) { cat = CATS[i]; break; } }
-  if (!cat) return '';
-  var w = cat.words[state.selWord];
-  if (!w) return '';
-  var idx = state.selWord;
-  var prev = idx > 0 ? cat.words[idx-1] : null;
-  var next = idx < cat.words.length-1 ? cat.words[idx+1] : null;
-  var done = vD(cat.id, w.w);
-
-  var h = '<div class="wd2">';
-  h += '<div style="font-size:4.5rem;margin-bottom:6px">' + w.e + '</div>';
-  h += '<div style="font-size:2.2rem;font-weight:900;color:var(--p);margin-bottom:3px">' + w.w + '</div>';
-  h += '<div style="font-size:.92rem;color:var(--tl);direction:rtl;margin-bottom:14px">' + w.f + '</div>';
-  h += '<button class="wpb" onclick="speak(\'' + w.w + '\')">🔊</button>';
-  h += '<button class="btn bo sm" style="margin:0 auto 12px;display:flex" onclick="speak(\'' + w.w + '\',0.45)">🔉 آهسته</button>';
-  h += '<div class="wps" onclick="speak(\'This is a ' + w.w + '.\')">📝 This is a ' + w.w + '.</div>';
-  h += '<div style="background:var(--sf);border-radius:var(--r);padding:12px;box-shadow:var(--sh);margin-bottom:14px;cursor:pointer" onclick="speak(\'' + w.w + '\')">';
-  h += '<div style="font-size:1.8rem;font-weight:900;color:var(--p);letter-spacing:5px">' + w.w.split('').join(' ') + '</div>';
-  h += '<div style="font-size:.72rem;color:var(--tl);margin-top:3px">هر حرف رو ببین</div></div>';
-  h += '<div class="nb">';
-  if (prev) h += '<button class="btn bs" onclick="pickVW(\'' + cat.id + '\',' + (idx-1) + ')">← ' + prev.e + '</button>';
-  if (!done) h += '<button class="btn bok" onclick="vM(\'' + cat.id + '\',\'' + w.w + '\');pickVW(\'' + cat.id + '\',' + (next ? idx+1 : idx) + ')">✓ یاد گرفتم!</button>';
-  else h += '<button class="btn bg" style="flex:1;justify-content:center">✓ یاد گرفته</button>';
-  if (next) h += '<button class="btn bs" onclick="pickVW(\'' + cat.id + '\',' + (idx+1) + ')">' + next.e + ' →</button>';
-  h += '</div></div>';
-  return h;
-}
-
-// ====================================================================
 // SPELLING
-// ====================================================================
-function RSp() {
-  if (!state.spellState) {
-    return '<div class="st">🧩 تمرین املاء</div><p style="color:var(--tm);margin-bottom:14px;font-size:.8rem">یک تمرین رو انتخاب کن</p><div class="pg">'
-      + '<div class="pc" onclick="startSpell(\'missing\')"><div class="pi2" style="background:#EEE8F5;color:#7B6BAF">🔤</div><div class="pinf"><h3>حرف جا‌افتاده</h3><p>حرف خالی رو پر کن</p></div></div>'
-      + '<div class="pc" onclick="startSpell(\'hear\')"><div class="pi2" style="background:#FDF0EC;color:#E8856C">🔊</div><div class="pinf"><h3>بشنو و انتخاب کن</h3><p>کلمه رو بشنو و پیدا کن</p></div></div>'
-      + '<div class="pc" onclick="startSpell(\'first\')"><div class="pi2" style="background:#E8F4F0;color:#3D7B6F">1️⃣</div><div class="pinf"><h3>حرف اول</h3><p>حرف اول کلمه چیه؟</p></div></div>'
-      + '<div class="pc" onclick="startSpell(\'emoji\')"><div class="pi2" style="background:#FDF6E3;color:#D4A650">🖼️</div><div class="pinf"><h3>شکلک و کلمه</h3><p>از روی شکلک بنویس</p></div></div>'
-      + '</div>';
+function RSp(){
+  if(!state.spellState&&!state.matchState){
+    return'<div class="st">🧩 بازی و املاء</div><p style="color:var(--tm);margin-bottom:12px;font-size:.78rem">یک بازی رو انتخاب کن</p><div class="pg">'
+      +'<div class="pc" onclick="startSpell(\'missing\')"><div class="pi2" style="background:#EEE8F5;color:#7B6BAF">🔤</div><div class="pinf"><h3>حرف جا‌افتاده</h3><p>حرف خالی رو پر کن</p></div></div>'
+      +'<div class="pc" onclick="startSpell(\'hear\')"><div class="pi2" style="background:#FDF0EC;color:#E8856C">🔊</div><div class="pinf"><h3>بشنو و انتخاب کن</h3><p>کلمه رو بشنو</p></div></div>'
+      +'<div class="pc" onclick="startSpell(\'first\')"><div class="pi2" style="background:#E8F4F0;color:#3D7B6F">1️⃣</div><div class="pinf"><h3>حرف اول</h3><p>حرف اول کلمه چیه؟</p></div></div>'
+      +'<div class="pc" onclick="startSpell(\'emoji\')"><div class="pi2" style="background:#FDF6E3;color:#D4A650">🖼️</div><div class="pinf"><h3>شکلک و کلمه</h3><p>از روی شکلک بنویس</p></div></div>'
+      +'<div class="pc" onclick="startMatch()"><div class="pi2" style="background:#FCE8F0;color:#AF4B6B">🎯</div><div class="pinf"><h3>بازی تطبیق</h3><p>صدا رو بشنو و شکلک رو پیدا کن</p></div></div>'
+      +'</div>';
   }
+  if(state.matchState) return renderMatchQ();
   return renderSpellQ();
 }
 
-function startSpell(mode) {
-  var words = SPELL_WORDS.slice().sort(function(){return Math.random()-0.5;});
-  var qs = [];
-  var cnt = Math.min(10, words.length);
-  for (var i = 0; i < cnt; i++) {
-    var w = words[i];
-    if (mode === 'missing') {
-      var letters = w.w.split('');
-      var bl = [];
-      for (var j = 0; j < letters.length; j++) { if (/[a-z]/.test(letters[j])) bl.push(j); }
-      if (!bl.length) continue;
-      var bI = bl[Math.floor(Math.random()*bl.length)];
-      var correct = letters[bI];
-      var opts = [correct];
-      while (opts.length < 4) {
-        var r = 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random()*26)];
-        if (opts.indexOf(r) < 0) opts.push(r);
-      }
-      opts.sort(function(){return Math.random()-0.5;});
-      qs.push({type:'missing',word:w.w,blankIdx:bI,correct:correct,opts:opts,emoji:w.e,farsi:w.f});
-    } else if (mode === 'hear') {
-      var opts = [w.w];
-      var others = words.filter(function(x){return x.w!==w.w;}).sort(function(){return Math.random()-0.5;}).slice(0,3);
-      others.forEach(function(o){opts.push(o.w);});
-      opts.sort(function(){return Math.random()-0.5;});
-      qs.push({type:'hear',word:w.w,opts:opts,emoji:w.e,farsi:w.f});
-    } else if (mode === 'first') {
-      var correct = w.w[0];
-      var opts = [correct];
-      while (opts.length < 4) {
-        var r = 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random()*26)];
-        if (opts.indexOf(r) < 0) opts.push(r);
-      }
-      opts.sort(function(){return Math.random()-0.5;});
-      qs.push({type:'first',word:w.w,correct:correct,opts:opts,emoji:w.e,farsi:w.f});
-    } else if (mode === 'emoji') {
-      var opts = [w.w];
-      var others = words.filter(function(x){return x.w!==w.w;}).sort(function(){return Math.random()-0.5;}).slice(0,3);
-      others.forEach(function(o){opts.push(o.w);});
-      opts.sort(function(){return Math.random()-0.5;});
-      qs.push({type:'emoji',word:w.w,opts:opts,emoji:w.e,farsi:w.f});
-    }
+function startSpell(mode){
+  var words=SPELL_WORDS.slice().sort(function(){return Math.random()-0.5;});
+  var qs=[],cnt=Math.min(10,words.length);
+  for(var i=0;i<cnt;i++){var w=words[i];
+    if(mode==='missing'){var letters=w.w.split(''),bl=[];for(var j=0;j<letters.length;j++)if(/[a-z]/.test(letters[j]))bl.push(j);if(!bl.length)continue;var bI=bl[Math.floor(Math.random()*bl.length)],correct=letters[bI],opts=[correct];while(opts.length<4){var r='abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random()*26)];if(opts.indexOf(r)<0)opts.push(r);}opts.sort(function(){return Math.random()-0.5;});qs.push({t:'missing',w:w.w,bi:bI,c:correct,o:opts,e:w.e,f:w.f});}
+    else if(mode==='hear'){var opts=[w.w];SPELL_WORDS.filter(function(x){return x.w!==w.w;}).sort(function(){return Math.random()-0.5;}).slice(0,3).forEach(function(o){opts.push(o.w);});opts.sort(function(){return Math.random()-0.5;});qs.push({t:'hear',w:w.w,o:opts,e:w.e,f:w.f});}
+    else if(mode==='first'){var correct=w.w[0],opts=[correct];while(opts.length<4){var r='abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random()*26)];if(opts.indexOf(r)<0)opts.push(r);}opts.sort(function(){return Math.random()-0.5;});qs.push({t:'first',w:w.w,c:correct,o:opts,e:w.e,f:w.f});}
+    else if(mode==='emoji'){var opts=[w.w];SPELL_WORDS.filter(function(x){return x.w!==w.w;}).sort(function(){return Math.random()-0.5;}).slice(0,3).forEach(function(o){opts.push(o.w);});opts.sort(function(){return Math.random()-0.5;});qs.push({t:'emoji',w:w.w,o:opts,e:w.e,f:w.f});}
   }
-  state.spellState = {mode:mode,questions:qs,qi:0,score:0,answers:[]};
-  render();
+  state.spellState={m:mode,qs:qs,qi:0,sc:0,ans:[]};state.matchState=null;render();
 }
 
-function cancelSpell() { state.spellState = null; render(); }
+function cancelSpell(){state.spellState=null;state.matchState=null;render();}
 
-function renderSpellQ() {
-  var ss = state.spellState;
-  if (!ss) return '';
-  if (ss.qi >= ss.questions.length) return renderSpellResult();
-  var q = ss.questions[ss.qi];
-
-  var dots = '';
-  for (var i = 0; i < ss.questions.length; i++) {
-    var c = 'spd';
-    if (i === ss.qi) c += ' cur';
-    else if (i < ss.qi) c += ss.answers[i] ? ' ok2' : ' fl';
-    dots += '<div class="' + c + '"></div>';
-  }
-
-  var main = '';
-  if (q.type === 'missing') {
-    var letters = q.word.split('');
-    var wordHtml = '';
-    for (var i = 0; i < letters.length; i++) {
-      if (i === q.blankIdx) wordHtml += '<div class="spch blank">?</div>';
-      else wordHtml += '<div class="spch">' + letters[i] + '</div>';
-    }
-    var optsHtml = '';
-    for (var i = 0; i < q.opts.length; i++) {
-      optsHtml += '<button class="spopt" data-a="' + q.opts[i] + '" data-c="' + q.correct + '" onclick="ansSp(this)">' + q.opts[i] + '</button>';
-    }
-    main = '<div class="spemoji">' + q.emoji + '</div><div style="font-size:.82rem;color:var(--tm);margin-bottom:8px">' + q.farsi + '</div>'
-      + '<div class="spword">' + wordHtml + '</div><div class="spopts">' + optsHtml + '</div>';
-  } else if (q.type === 'hear') {
-    var optsHtml = '';
-    for (var i = 0; i < q.opts.length; i++) {
-      optsHtml += '<button class="spopt" data-a="' + q.opts[i] + '" data-c="' + q.word + '" onclick="ansSp(this)" style="font-size:.95rem;padding:12px 16px">' + q.opts[i] + '</button>';
-    }
-    main = '<button class="wpb" onclick="speak(\'' + q.word + '\')">🔊</button>'
-      + '<div style="font-size:.78rem;color:var(--tl);margin-bottom:8px">برای شنیدن بزن</div>'
-      + '<div class="spemoji">' + q.emoji + '</div><div style="font-size:.82rem;color:var(--tm);margin-bottom:8px">' + q.farsi + '</div>'
-      + '<div class="spopts">' + optsHtml + '</div>';
-  } else if (q.type === 'first') {
-    var optsHtml = '';
-    for (var i = 0; i < q.opts.length; i++) {
-      optsHtml += '<button class="spopt" data-a="' + q.opts[i] + '" data-c="' + q.correct + '" onclick="ansSp(this)">' + q.opts[i] + '</button>';
-    }
-    main = '<div class="spemoji">' + q.emoji + '</div><div style="font-size:.82rem;color:var(--tm);margin-bottom:4px">' + q.farsi + '</div>'
-      + '<div style="font-size:1.8rem;font-weight:900;color:var(--tl);margin-bottom:10px;letter-spacing:5px">? ' + q.word.slice(1) + '</div>'
-      + '<div style="font-size:.8rem;color:var(--tm);margin-bottom:8px">حرف اول چیه؟</div>'
-      + '<div class="spopts">' + optsHtml + '</div>';
-  } else if (q.type === 'emoji') {
-    var optsHtml = '';
-    for (var i = 0; i < q.opts.length; i++) {
-      optsHtml += '<button class="spopt" data-a="' + q.opts[i] + '" data-c="' + q.word + '" onclick="ansSp(this)" style="font-size:.95rem;padding:12px 16px">' + q.opts[i] + '</button>';
-    }
-    main = '<div class="spemoji" style="font-size:4.5rem">' + q.emoji + '</div>'
-      + '<div style="font-size:.92rem;color:var(--tm);margin-bottom:14px">این چیه؟</div>'
-      + '<div class="spopts">' + optsHtml + '</div>';
-  }
-
-  return '<div class="sptb"><button class="btn bs sm" onclick="cancelSpell()">← برگشت</button><span style="font-size:.78rem;color:var(--tl)">' + (ss.qi+1) + '/' + ss.questions.length + '</span></div>'
-    + '<div class="spc"><div class="spprog">' + dots + '</div>' + main + '</div>';
+function renderSpellQ(){
+  var ss=state.spellState;if(!ss)return'';
+  if(ss.qi>=ss.qs.length)return renderSpellResult();
+  var q=ss.qs[ss.qi],dots='';
+  for(var i=0;i<ss.qs.length;i++){var c='spd';if(i===ss.qi)c+=' cur';else if(i<ss.qi)c+=ss.ans[i]?' ok2':' fl';dots+='<div class="'+c+'"></div>';}
+  var main='';
+  if(q.t==='missing'){var letters=q.w.split(''),wh='';for(var i=0;i<letters.length;i++){wh+=(i===q.bi)?'<div class="spch blank">?</div>':'<div class="spch">'+letters[i]+'</div>';}var oh='';for(var i=0;i<q.o.length;i++)oh+='<button class="spopt" data-a="'+q.o[i]+'" data-c="'+q.c+'" onclick="ansSp(this)">'+q.o[i]+'</button>';main='<div class="spemoji">'+q.e+'</div><div style="font-size:.78rem;color:var(--tm);margin-bottom:6px">'+q.f+'</div><div class="spword">'+wh+'</div><div class="spopts">'+oh+'</div>';}
+  else if(q.t==='hear'){var oh='';for(var i=0;i<q.o.length;i++)oh+='<button class="spopt" data-a="'+q.o[i]+'" data-c="'+q.w+'" onclick="ansSp(this)" style="font-size:.9rem;padding:11px 14px">'+q.o[i]+'</button>';main='<button class="wpb" onclick="speak(\''+q.w+'\')">🔊</button><div style="font-size:.72rem;color:var(--tl);margin-bottom:6px">برای شنیدن بزن</div><div class="spemoji">'+q.e+'</div><div style="font-size:.78rem;color:var(--tm);margin-bottom:6px">'+q.f+'</div><div class="spopts">'+oh+'</div>';}
+  else if(q.t==='first'){var oh='';for(var i=0;i<q.o.length;i++)oh+='<button class="spopt" data-a="'+q.o[i]+'" data-c="'+q.c+'" onclick="ansSp(this)">'+q.o[i]+'</button>';main='<div class="spemoji">'+q.e+'</div><div style="font-size:.78rem;color:var(--tm);margin-bottom:3px">'+q.f+'</div><div style="font-size:1.6rem;font-weight:900;color:var(--tl);margin-bottom:8px;letter-spacing:4px">? '+q.w.slice(1)+'</div><div style="font-size:.75rem;color:var(--tm);margin-bottom:6px">حرف اول چیه؟</div><div class="spopts">'+oh+'</div>';}
+  else if(q.t==='emoji'){var oh='';for(var i=0;i<q.o.length;i++)oh+='<button class="spopt" data-a="'+q.o[i]+'" data-c="'+q.w+'" onclick="ansSp(this)" style="font-size:.9rem;padding:11px 14px">'+q.o[i]+'</button>';main='<div class="spemoji" style="font-size:4rem">'+q.e+'</div><div style="font-size:.88rem;color:var(--tm);margin-bottom:12px">این چیه؟</div><div class="spopts">'+oh+'</div>';}
+  return'<div class="sptb"><button class="btn bs sm" onclick="cancelSpell()">← برگشت</button><span style="font-size:.75rem;color:var(--tl)">'+(ss.qi+1)+'/'+ss.qs.length+'</span></div><div class="spc"><div class="spprog">'+dots+'</div>'+main+'</div>';
 }
 
-function ansSp(btn) {
-  var ss = state.spellState;
-  if (!ss) return;
-  var sel = btn.getAttribute('data-a');
-  var correct = btn.getAttribute('data-c');
-  var ok = sel === correct;
-  ss.answers.push(ok);
-  if (ok) ss.score++;
+function ansSp(btn){
+  var ss=state.spellState;if(!ss)return;
+  var sel=btn.getAttribute('data-a'),correct=btn.getAttribute('data-c'),ok=sel===correct;
+  ss.ans.push(ok);if(ok){ss.sc++;addStars(1);}
+  var opts=document.querySelectorAll('.spopt');
+  for(var i=0;i<opts.length;i++){opts[i].classList.add('dis');if(opts[i].getAttribute('data-a')===correct)opts[i].classList.add('ok');if(opts[i].getAttribute('data-a')===sel&&!ok)opts[i].classList.add('bad');}
+  if(ok)speak('Good!');else speak(correct);
+  setTimeout(function(){ss.qi++;render();},1200);
+}
 
-  var opts = document.querySelectorAll('.spopt');
-  for (var i = 0; i < opts.length; i++) {
-    opts[i].classList.add('dis');
-    if (opts[i].getAttribute('data-a') === correct) opts[i].classList.add('ok');
-    if (opts[i].getAttribute('data-a') === sel && !ok) opts[i].classList.add('bad');
+function renderSpellResult(){
+  var ss=state.spellState;if(!ss)return'';
+  var pct=Math.round(ss.sc/ss.qs.length*100);
+  var emoji=pct>=90?'🌟':pct>=70?'🎉':pct>=50?'👍':'💪';
+  var text=pct>=90?'عالی!':pct>=70?'خیلی خوب!':pct>=50?'خوبه!':'بیشتر تمرین کن!';
+  state.spellState=null;
+  return'<div class="spc"><div style="font-size:3rem;margin-bottom:6px;animation:cl .8s ease">'+emoji+'</div><div style="font-size:1.1rem;font-weight:800;margin-bottom:4px">'+text+'</div><div style="font-size:.88rem;color:var(--tm)">'+ss.sc+' از '+ss.qs.length+' ('+pct+'%)</div><div class="nb" style="margin-top:12px"><button class="btn bp bl" style="flex:1" onclick="navTo(\'spelling\')">🔄 بیشتر</button><button class="btn bs bl" style="flex:1" onclick="navTo(\'home\')">🏠 خانه</button></div></div>';
+}
+
+// MATCH GAME
+function startMatch(){
+  var words=SPELL_WORDS.slice().sort(function(){return Math.random()-0.5;});
+  var qs=[],cnt=Math.min(8,words.length);
+  for(var i=0;i<cnt;i++){var w=words[i],opts=[w];
+    SPELL_WORDS.filter(function(x){return x.w!==w.w&&x.e;}).sort(function(){return Math.random()-0.5;}).slice(0,3).forEach(function(o){opts.push(o);});
+    opts.sort(function(){return Math.random()-0.5;});
+    var correctIdx=-1;for(var j=0;j<opts.length;j++)if(opts[j].w===w.w)correctIdx=j;
+    qs.push({word:w.w,emoji:w.e,farsi:w.f,opts:opts,ci:correctIdx});
   }
-  if (ok) speak('Good!'); else speak(correct);
-  setTimeout(function(){ ss.qi++; render(); }, 1200);
+  state.matchState={qs:qs,qi:0,sc:0,ans:[]};state.spellState=null;render();
 }
 
-function renderSpellResult() {
-  var ss = state.spellState;
-  if (!ss) return '';
-  var pct = Math.round(ss.score / ss.questions.length * 100);
-  var emoji = pct >= 90 ? '🌟' : pct >= 70 ? '🎉' : pct >= 50 ? '👍' : '💪';
-  var text = pct >= 90 ? 'عالی!' : pct >= 70 ? 'خیلی خوب!' : pct >= 50 ? 'خوبه!' : 'بیشتر تمرین کن!';
-  state.spellState = null;
-  return '<div class="spc"><div style="font-size:3.5rem;margin-bottom:8px;animation:cl .8s ease">' + emoji + '</div>'
-    + '<div style="font-size:1.2rem;font-weight:800;margin-bottom:5px">' + text + '</div>'
-    + '<div style="font-size:.92rem;color:var(--tm)">' + ss.score + ' از ' + ss.questions.length + ' (' + pct + '%)</div>'
-    + '<div class="nb" style="margin-top:14px"><button class="btn bp bl" style="flex:1" onclick="navTo(\'spelling\')">🔄 بیشتر</button><button class="btn bs bl" style="flex:1" onclick="navTo(\'home\')">🏠 خانه</button></div></div>';
+function RMatch(){
+  var ms=state.matchState;if(!ms)return renderSpellingMenu();
+  if(ms.qi>=ms.qs.length)return renderMatchResult();
+  var q=ms.qs[ms.qi],dots='';
+  for(var i=0;i<ms.qs.length;i++){var c='spd';if(i===ms.qi)c+=' cur';else if(i<ms.qi)c+=ms.ans[i]?' ok2':' fl';dots+='<div class="'+c+'"></div>';}
+  var h='<div class="sptb"><button class="btn bs sm" onclick="cancelSpell()">← برگشت</button><span style="font-size:.75rem;color:var(--tl)">'+(ms.qi+1)+'/'+ms.qs.length+'</span></div>';
+  h+='<div class="spc"><div class="spprog">'+dots+'</div>';
+  h+='<div style="font-size:.78rem;color:var(--tm);margin-bottom:4px">'+q.farsi+'</div>';
+  h+='<button class="wpb" onclick="speak(\''+q.word+'\')">🔊 بشنو</button>';
+  h+='<div class="match-opts">';
+  for(var i=0;i<q.opts.length;i++){
+    h+='<button class="match-opt" data-idx="'+i+'" data-ci="'+q.ci+'" onclick="ansMatch(this,'+i+','+q.ci+')"><span class="mo-emoji">'+q.opts[i].e+'</span><span>'+q.opts[i].w+'</span></button>';
+  }
+  h+='</div></div>';return h;
 }
 
-// ====================================================================
+function ansMatch(btn,sel,correct){
+  var ms=state.matchState;if(!ms)return;
+  var ok=sel===correct;ms.ans.push(ok);if(ok){ms.sc++;addStars(1);}
+  var opts=document.querySelectorAll('.match-opt');
+  for(var i=0;i<opts.length;i++){opts[i].classList.add('dis');if(parseInt(opts[i].getAttribute('data-ci'))===correct)opts[i].classList.add('correct');if(parseInt(opts[i].getAttribute('data-idx'))===sel&&!ok)opts[i].classList.add('wrong');}
+  if(ok)speak('Good job!');else speak(ms.qs[ms.qi].word);
+  setTimeout(function(){ms.qi++;render();},1300);
+}
+
+function renderMatchResult(){
+  var ms=state.matchState;if(!ms)return'';
+  var pct=Math.round(ms.sc/ms.qs.length*100);
+  var emoji=pct>=90?'🌟':pct>=70?'🎉':pct>=50?'👍':'💪';
+  var text=pct>=90?'عالی!':pct>=70?'خیلی خوب!':pct>=50?'خوبه!':'بیشتر تمرین کن!';
+  state.matchState=null;
+  return'<div class="spc"><div style="font-size:3rem;margin-bottom:6px;animation:cl .8s ease">'+emoji+'</div><div style="font-size:1.1rem;font-weight:800;margin-bottom:4px">'+text+'</div><div style="font-size:.88rem;color:var(--tm)">'+ms.sc+' از '+ms.qs.length+' ('+pct+'%)</div><div class="nb" style="margin-top:12px"><button class="btn bp bl" style="flex:1" onclick="navTo(\'spelling\')">🔄 بیشتر</button><button class="btn bs bl" style="flex:1" onclick="navTo(\'home\')">🏠 خانه</button></div></div>';
+}
+
 // STORIES
-// ====================================================================
-function RSt() {
-  var h = '<div class="st">📖 داستان‌ها (' + STORIES.length + ')</div>';
-  h += '<p style="color:var(--tm);margin-bottom:14px;font-size:.8rem">هر خط جدا خونده میشه — سرعت صدا قابل تنظیمه</p>';
-  for (var i = 0; i < STORIES.length; i++) {
-    var s = STORIES[i];
-    var doneMark = stD(s.id) ? '<span style="color:var(--ok);font-size:.7rem;font-weight:700">✓</span>' : '';
-    h += '<div class="strc" onclick="pickStory(' + s.id + ')"><div class="strt">' + s.e + ' ' + s.t + ' <span style="font-size:.75rem;color:var(--tl)">' + s.f + '</span></div><div class="strp">' + s.lines[0] + ' ' + s.lines[1] + '...</div>' + doneMark + '</div>';
-  }
+function RSt(){
+  var h='<div class="st">📖 داستان‌ها ('+STORIES.length+')</div>';
+  h+='<p style="color:var(--tm);margin-bottom:12px;font-size:.78rem">هر خط جدا خونده میشه — سرعت قابل تنظیمه</p>';
+  for(var i=0;i<STORIES.length;i++){var s=STORIES[i];
+    h+='<div class="strc" onclick="pickStory('+s.id+')"><div class="strt">'+s.e+' '+s.t+' <span style="font-size:.72rem;color:var(--tl)">'+s.f+'</span></div><div class="strp">'+s.lines[0]+' '+s.lines[1]+'...</div>'+(stD(s.id)?'<span style="color:var(--ok);font-size:.68rem;font-weight:700">✓</span>':'')+'</div>';}
   return h;
 }
 
-function pickStory(id) {
-  for (var i = 0; i < STORIES.length; i++) {
-    if (STORIES[i].id === id) { state.selStory = STORIES[i]; break; }
-  }
-  state.storyAns = {};
-  navTo('storyRead');
-}
+function pickStory(id){for(var i=0;i<STORIES.length;i++)if(STORIES[i].id===id){state.selStory=STORIES[i];break;}state.storyAns={};navTo('storyRead');}
 
-function RStR() {
-  var s = state.selStory;
-  if (!s) return '';
-
-  var h = '<div class="strf"><h3>' + s.e + ' ' + s.t + ' — ' + s.f + '</h3>';
-  h += '<div class="spctrl"><label>🔊 سرعت:</label><input type="range" min="0.4" max="1.2" step="0.1" value="' + speechRate + '" oninput="speechRate=parseFloat(this.value);document.getElementById(\'spdVal\').textContent=this.value"><span id="spdVal">' + speechRate + '</span></div>';
-
-  for (var i = 0; i < s.lines.length; i++) {
-    var line = s.lines[i];
-    var safeLine = line.replace(/'/g, "\\'");
-    h += '<div class="strline" onclick="speak(\'' + safeLine + '\')"><span class="slp">🔊</span><span>' + line + '</span></div>';
-  }
-
-  h += '<button class="btn ba" style="width:100%;margin:14px 0" onclick="readStory()">🔊 کل داستان رو بخون</button>';
-
-  for (var qi = 0; qi < s.qs.length; qi++) {
-    var q = s.qs[qi];
-    var answered = state.storyAns[qi] !== undefined;
-    h += '<div class="strq"><h4>❓ ' + q.q + '</h4>';
-    for (var oi = 0; oi < q.o.length; oi++) {
-      var cls = 'qo';
-      if (answered) {
-        if (oi === q.a) cls += ' corr';
-        else if (oi === state.storyAns[qi] && oi !== q.a) cls += ' wro';
-        cls += ' dis';
-      }
-      h += '<button class="' + cls + '" onclick="ansStory(' + qi + ',' + oi + ',' + q.a + ')">' + q.o[oi] + '</button>';
-    }
-    h += '</div>';
-  }
-
-  h += '<div class="nb" style="margin-top:14px"><button class="btn bs" onclick="navTo(\'stories\')">← برگشت</button><button class="btn bok" onclick="stM(' + s.id + ');navTo(\'stories\')">✓ تمام شد</button></div>';
-  h += '</div>';
+function RStR(){
+  var s=state.selStory;if(!s)return'';
+  var h='<div class="strf"><h3>'+s.e+' '+s.t+' — '+s.f+'</h3>';
+  h+='<div class="spctrl"><label>🔊 سرعت:</label><input type="range" min="0.4" max="1.2" step="0.1" value="'+speechRate+'" oninput="speechRate=parseFloat(this.value);document.getElementById(\'spdVal\').textContent=this.value"><span id="spdVal">'+speechRate+'</span></div>';
+  for(var i=0;i<s.lines.length;i++){var safeLine=s.lines[i].replace(/'/g,"\\'");h+='<div class="strline" onclick="speak(\''+safeLine+'\')"><span class="slp">🔊</span><span>'+s.lines[i]+'</span></div>';}
+  h+='<button class="btn ba" style="width:100%;margin:12px 0" onclick="readStory()">🔊 کل داستان</button>';
+  for(var qi=0;qi<s.qs.length;qi++){var q=s.qs[qi],answered=state.storyAns[qi]!==undefined;
+    h+='<div class="strq"><h4>❓ '+q.q+'</h4>';
+    for(var oi=0;oi<q.o.length;oi++){var cls='qo';if(answered){if(oi===q.a)cls+=' corr';else if(oi===state.storyAns[qi]&&oi!==q.a)cls+=' wro';cls+=' dis';}h+='<button class="'+cls+'" onclick="ansStory('+qi+','+oi+','+q.a+')">'+q.o[oi]+'</button>';}
+    h+='</div>';}
+  h+='<div class="nb" style="margin-top:12px"><button class="btn bs" onclick="navTo(\'stories\')">← برگشت</button><button class="btn bok" onclick="stM('+s.id+');navTo(\'stories\')">✓ تمام شد</button></div></div>';
   return h;
 }
 
-function ansStory(qi, sel, correct) {
-  state.storyAns[qi] = sel;
-  if (sel === correct) speak('Good!');
-  else speak('Try again');
-  render();
-}
+function ansStory(qi,sel,correct){state.storyAns[qi]=sel;if(sel===correct)speak('Good!');else speak('Try again');render();}
 
-function readStory() {
-  var s = state.selStory;
-  if (!s) return;
-  var idx = 0;
-  function nx() {
-    if (idx < s.lines.length) {
-      speak(s.lines[idx]);
-      idx++;
-      setTimeout(nx, Math.max(2000, s.lines[idx-1].split(' ').length * 600));
-    }
-  }
-  nx();
-}
+function readStory(){var s=state.selStory;if(!s)return;var idx=0;function nx(){if(idx<s.lines.length){speak(s.lines[idx]);idx++;setTimeout(nx,Math.max(2000,s.lines[idx-1].split(' ').length*600));}}nx();}
 
 // ====================================================================
 // INIT
 // ====================================================================
-document.getElementById('mo').addEventListener('click', function(e) {
-  if (e.target.id === 'mo') hideMod();
-});
-render();
+document.getElementById('mo').addEventListener('click',function(e){if(e.target.id==='mo')hideMod();});
+document.getElementById('rewardOverlay').addEventListener('click',function(e){if(e.target.id==='rewardOverlay')hideReward();});
+
+// iOS: warm up audio on any touch
+document.addEventListener('touchstart',function(){if(!audioReady)initAudio();},{once:true});
+document.addEventListener('click',function(){if(!audioReady)initAudio();},{once:true});
+
+render();updateNav();updateBack();
 </script>
 </body>
 </html>
