@@ -144,17 +144,29 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overfl
 var audioEl=null,speechRate=0.8;
 function speak(text,rate){
   if(!state.soundOn||!text||!text.trim())return;
+  try{speechSynthesis.cancel()}catch(e){}
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';
+  u.rate=rate||0.85;
+  u.pitch=1.0;
+  u.volume=1.0;
+  if(engVoice)u.voice=engVoice;
+  speechSynthesis.speak(u);
+}
+function loadVoices(){
   try{
-    if(audioEl){audioEl.pause();audioEl.currentTime=0;audioEl=null}
-    var url='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q='+encodeURIComponent(text);
-    audioEl=new Audio(url);
-    var r=rate||0;
-    if(r>0)audioEl.playbackRate=Math.max(.5,Math.min(2,r+.3));
-    var p=audioEl.play();
-    if(p&&p.catch)p.catch(function(){})
+    var v=speechSynthesis.getVoices();
+    engVoice=null;
+    for(var i=0;i<v.length;i++){
+      if(v[i].name==='Google US English'){engVoice=v[i];return}
+      if(v[i].name==='Google UK English Female'){engVoice=v[i]}
+      if(!engVoice&&v[i].name.indexOf('Google')>=0&&v[i].lang==='en-US'){engVoice=v[i]}
+      if(!engVoice&&v[i].lang==='en-US'){engVoice=v[i]}
+      if(!engVoice&&v[i].lang==='en-GB'){engVoice=v[i]}
+      if(!engVoice&&v[i].lang.indexOf('en')===0){engVoice=v[i]}
+    }
   }catch(e){}
 }
-
 // ==================== STARS & LEVELS ====================
 function addStars(n){state.stars=(state.stars||0)+n;save();updateStars();var ms=[10,25,50,100,200,500];for(var i=0;i<ms.length;i++){if(state.stars>=ms[i]&&(state.stars-n)<ms[i]){showReward(ms[i]);break}}}
 function updateStars(){var el=document.getElementById('starsBadge');if(el)el.textContent='⭐ '+(state.stars||0)}
