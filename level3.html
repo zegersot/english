@@ -59,7 +59,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overfl
 .sent-words{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
 .sent-word{padding:8px 12px;border-radius:8px;border:2px solid #eee;background:var(--sf);font-family:inherit;font-weight:800;font-size:.85rem;color:var(--p);cursor:pointer;transition:var(--tr)}
 .sent-word:active{transform:scale(.95)}.sent-word.used{opacity:.2;pointer-events:none}
-.conv-left{background:var(--pl);border-radius:var(--rs) var(--rs) var(--rs) 0;padding:8px 12px;font-size:.85rem;font-weight:600;max-width:80%;margin-bottom:8px;cursor:pointer;transition:var(--tr)}.conv-left:active{background:var(--p);color:#fff}
+.conv-left{background:var(--pl);border-radius:var(--rs) var(--rs) var(--rs) 0;padding:8px 12px;font-size:.85rem;font-weight:600;max-width:80%;margin-bottom:8px;cursor:pointer}.conv-left:active{background:var(--p);color:#fff}
 .conv-right{background:var(--okl);border-radius:var(--rs) var(--rs) 0 var(--rs);padding:8px 12px;font-size:.85rem;font-weight:600;max-width:80%;margin-left:auto;margin-bottom:8px;text-align:right;cursor:pointer}
 .conv-blank{background:#fff;border:2px dashed var(--p);border-radius:var(--rs);padding:8px 12px;font-size:.82rem;color:var(--p);font-weight:700;cursor:pointer;display:inline-block}
 .result-card{background:var(--sf);border-radius:var(--rl);padding:24px 16px;box-shadow:var(--shl);text-align:center;animation:fi .5s ease;margin-bottom:12px}
@@ -70,21 +70,27 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overfl
 .vocab-card .vc-title{font-size:.82rem;font-weight:800;margin-top:6px}.vocab-card .vc-count{font-size:.65rem;color:var(--tl)}
 .word-item{background:var(--sf);border-radius:var(--r);padding:12px;box-shadow:var(--sh);display:flex;align-items:center;gap:10px;margin-bottom:8px;animation:fi .3s ease;border:2px solid transparent;cursor:pointer;transition:var(--tr)}.word-item:active{border-color:var(--p)}
 .wi-emoji{font-size:1.8rem}.wi-text h4{font-size:.88rem;font-weight:800}.wi-text p{font-size:.7rem;color:var(--tl);direction:rtl;text-align:right}
-.story-line{background:var(--pl);border-radius:8px;padding:10px 14px;margin-bottom:4px;font-size:.92rem;cursor:pointer;transition:var(--tr);display:flex;align-items:center;gap:8px}.story-line:active{background:var(--p);color:#fff}
-.story-line .sl-ico{font-size:.8rem;flex-shrink:0;opacity:.6}
+.story-line{background:var(--pl);border-radius:12px;padding:14px 16px;margin-bottom:6px;cursor:pointer;transition:var(--tr);display:flex;align-items:flex-start;gap:10px;line-height:1.6}.story-line:active{background:var(--p);color:#fff}
+.story-line .sl-ico{font-size:.7rem;flex-shrink:0;margin-top:4px;opacity:.5}
 .section-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .section-card{background:var(--sf);border-radius:var(--rl);padding:20px 14px;box-shadow:var(--shl);text-align:center;cursor:pointer;transition:var(--tr);border:3px solid transparent}.section-card:active{transform:scale(.97);border-color:var(--p)}
 .section-card .sc-emoji{font-size:2.2rem;margin-bottom:6px}.section-card h3{font-size:.9rem;font-weight:900;margin-bottom:3px}.section-card p{font-size:.68rem;color:var(--tl)}
 .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
 .mem-card{aspect-ratio:1;background:var(--pl);border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;cursor:pointer;transition:all .3s;border:2px solid transparent;user-select:none}.mem-card:active{transform:scale(.95)}.mem-card.flipped{background:var(--sf);border-color:var(--p);font-size:.82rem;animation:pop .3s ease}.mem-card.matched{background:var(--okl);border-color:var(--ok);pointer-events:none}
-.gm-desc{background:var(--pl);border-radius:var(--rs);padding:8px 12px;margin:6px 0 0;font-size:.68rem;color:var(--tm);line-height:1.4;direction:rtl;text-align:right}
+.gm-desc{font-size:.68rem;color:var(--tm);line-height:1.3;direction:rtl;text-align:right;margin-top:2px}
+.dict-slots{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+.dict-slot{width:36px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:var(--p);border:2px dashed #ccc;background:#fff;cursor:pointer;transition:var(--tr)}.dict-slot.filled{border-style:solid;border-color:var(--p);background:var(--pl)}.dict-slot.correct{border-color:var(--ok);background:var(--okl);color:var(--ok)}
+.dict-opts{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.dict-opt{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;background:var(--sf);border:2px solid #eee;color:var(--p);cursor:pointer;transition:var(--tr)}.dict-opt:active{transform:scale(.9)}.dict-opt.used{opacity:.15;pointer-events:none}
+.font-ctrl{display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:10px}
+.font-btn{width:32px;height:32px;border-radius:50%;border:2px solid var(--p);background:var(--sf);color:var(--p);font-weight:900;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .bn2{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid rgba(0,0,0,.06);padding:5px 0;padding-bottom:max(5px,env(safe-area-inset-bottom));z-index:100}
 .bn2 .ni{display:flex;gap:1px;max-width:520px;width:100%;justify-content:space-around;margin:0 auto}
 .nv{display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 6px;border-radius:10px;background:none;border:none;cursor:pointer;font-family:inherit;transition:var(--tr);color:var(--tl);font-size:.52rem;font-weight:700;min-width:48px}.nv .ni2{margin-bottom:1px;font-size:1rem}.nv.active{color:var(--p);background:var(--pl)}
 .ro{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:300}.ro.show{display:flex}
 .rc{background:var(--sf);border-radius:var(--rl);padding:28px 22px;text-align:center;animation:cl .8s ease;max-width:280px;width:90%}.rc h3{font-size:1.2rem;font-weight:900;margin-bottom:5px}.rc p{color:var(--tm);font-size:.85rem;margin-bottom:14px}
 @media(min-width:600px){.tense-grid{gap:8px}.vocab-cat{grid-template-columns:repeat(3,1fr)}.section-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:380px){.spopt{padding:9px 14px;font-size:.88rem}.sent-word,.sent-slot{padding:7px 9px;font-size:.78rem}.vocab-cat{grid-template-columns:1fr}}
+@media(max-width:380px){.spopt{padding:9px 14px;font-size:.88rem}.sent-word,.sent-slot{padding:7px 9px;font-size:.78rem}.vocab-cat{grid-template-columns:1fr}.dict-slot{width:30px;height:36px;font-size:.95rem}.dict-opt{width:34px;height:34px;font-size:.9rem}}
 </style>
 </head>
 <body>
@@ -105,7 +111,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);overfl
 <button class="nv" onclick="navTo('writing')" data-nav="writing"><span class="ni2">✏️</span>نوشتن</button>
 <button class="nv" onclick="navTo('words')" data-nav="words"><span class="ni2">📚</span>کلمات</button>
 <button class="nv" onclick="navTo('games')" data-nav="games"><span class="ni2">🎮</span>بازی</button>
-  <button class="nv" onclick="window.location.href='level2.html'"><span class="ni2">⬇️</span>Level 2</button>
 </div></div>
 <div class="ro" id="ro"><div class="rc" id="rc2"></div></div>
 <script>
@@ -114,7 +119,7 @@ function loadV(){try{var v=speechSynthesis.getVoices();if(!v||!v.length)return;E
 if(typeof speechSynthesis!=='undefined'){speechSynthesis.onvoiceschanged=loadV;loadV();setTimeout(loadV,500);setTimeout(loadV,2000)}
 function speak(t,r){if(!S.soundOn||!t)return;try{speechSynthesis.cancel()}catch(e){}setTimeout(function(){try{var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=r||SR;if(EV)u.voice=EV;speechSynthesis.speak(u)}catch(e){}},150)}
 
-var S={screen:'home',hist:[],soundOn:true,stars:0,gView:'menu',qS:null,lR:null,selSent:null,selTense:null,selConv:null,selRead:null,selStory:null,selCat:null,sentSt:null,sbQ:null,sbI:null,sbSt:null,rAns:{},stAns:{},stCh:0,progress:JSON.parse(localStorage.getItem('lv3p')||'{}')};
+var S={screen:'home',hist:[],soundOn:true,stars:0,gView:'menu',qS:null,lR:null,selSent:null,selTense:null,selConv:null,selRead:null,selStory:null,selCat:null,sentSt:null,sbQ:null,sbI:null,sbSt:null,rAns:{},stAns:{},stCh:0,fontSize:16,dictQ:null,dictI:0,dictSt:null,progress:JSON.parse(localStorage.getItem('lv3p')||'{}')};
 function sv(){try{localStorage.setItem('lv3p',JSON.stringify(S.progress));localStorage.setItem('lv3s',(S.stars||0).toString())}catch(e){}}
 S.stars=parseInt(localStorage.getItem('lv3s')||'0');
 function mD(k){return S.progress[k]||false};function mS(k){S.progress[k]=true;sv();addS(2)}
@@ -124,17 +129,17 @@ function showR(c){document.getElementById('rc2').innerHTML='<div style="font-siz
 function gL(p){if(p>=90)return{n:5,l:'استاد',c:'lb5'};if(p>=70)return{n:4,l:'عالی',c:'lb4'};if(p>=50)return{n:3,l:'متوسط',c:'lb3'};if(p>=25)return{n:2,l:'خوب',c:'lb2'};if(p>0)return{n:1,l:'شروع',c:'lb1'};return{n:0,l:'جدید',c:'lb1'}}
 function shuf(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t}return b}
 function se(t){return(t||'').replace(/'/g,"\\'")}
-/* FIX: single shuffle helper */
 function mkQ(q,opts,ans){var so=shuf(opts);return{q:q,opts:so,ci:so.indexOf(ans)}}
-
 function mcI(c,bg,ico,t,d,done,total,barC,pct){var lv=gL(pct);return '<div class="pc" onclick="'+c+'"><div class="pi" style="background:'+bg+'">'+ico+'</div><div class="pinf"><h3>'+t+'<span class="lb '+lv.c+'">'+lv.l+'</span></h3><p>'+d+'</p><div class="pbar"><div class="pbf" style="width:'+pct+'%;background:'+barC+'"></div></div></div>'+(done!=null?'<span class="pbadge" style="color:'+barC+';background:'+bg+'">'+done+'/'+total+'</span>':'')+'</div>'}
 
-var navMap={home:['home'],reading:['reading','phonics','phonD','tenses','tenseD','sentences','sentD','convos','convD','stories','storyD','readpass','readD'],writing:['writing'],words:['words','wordD'],games:['games']};
-function navTo(s){if(S.screen!==s)S.hist.push(S.screen);S.screen=s;S.gView='menu';S.qS=null;S.lR=null;S.sentSt=null;S.sbQ=null;if(s==='words')S.selCat=null;if(s==='phonics')S.selPhonics=null;if(s==='readpass'){S.selRead=null;S.rAns={}}if(s==='stories'){S.stAns={};S.stCh=0}render();uNav();uB();window.scrollTo(0,0)}
-function goBack(){if(S.hist.length){S.screen=S.hist.pop();S.gView='menu';S.qS=null;render();uNav();uB()}}
+var navMap={home:['home'],reading:['reading','phonics','phonD','tenses','tenseD','sentences','sentD','convos','convD','stories','storyD','readpass','readD'],writing:['writing','dictation'],words:['words','wordD'],games:['games']};
+function navTo(s){if(S.screen!==s)S.hist.push(S.screen);S.screen=s;S.gView='menu';S.qS=null;S.lR=null;S.sentSt=null;S.sbQ=null;S.dictQ=null;if(s==='words')S.selCat=null;if(s==='phonics')S.selPhonics=null;if(s==='readpass'){S.selRead=null;S.rAns={}}if(s==='stories'){S.stAns={};S.stCh=0}render();uNav();uB();window.scrollTo(0,0)}
+function goBack(){if(S.hist.length){S.screen=S.hist.pop();S.gView='menu';S.qS=null;S.sentSt=null;render();uNav();uB()}}
 function uNav(){var els=document.querySelectorAll('.nv');for(var i=0;i<els.length;i++){var n=els[i].getAttribute('data-nav');els[i].classList.toggle('active',(navMap[n]||[]).indexOf(S.screen)>=0)}}
 function uB(){document.getElementById('backBtn').style.visibility=S.hist.length>0?'visible':'hidden'}
 function toggleSound(){S.soundOn=!S.soundOn;document.getElementById('sndBtn').textContent=S.soundOn?'🔊':'🔇'}
+function cntW(){var c=0;for(var i=0;i<VOCAB.length;i++)c+=VOCAB[i].words.length;return c}
+function chgFont(d){S.fontSize=Math.max(12,Math.min(24,S.fontSize+d));render()}
 
 /* ==================== DATA ==================== */
 var PHONICS=[
@@ -168,10 +173,10 @@ var TENSES=[
 {v:'drink',fa:'نوشیدن',p:'drank',f:'will drink',eP:'I drink milk.',ePa:'I drank juice.',eF:'I will drink water.'},
 {v:'sleep',fa:'خوابیدن',p:'slept',f:'will sleep',eP:'I sleep at nine.',ePa:'I slept well.',eF:'I will sleep early.'},
 {v:'give',fa:'دادن',p:'gave',f:'will give',eP:'I give a hug.',ePa:'I gave a gift.',eF:'I will give candy.'},
-{v:'sing',fa:'آواز خواندن',p:'sang',f:'will sing',eP:'I sing a song.',ePa:'I sang in the show.',eF:'I will sing for you.'},
+{v:'sing',fa:'آواز',p:'sang',f:'will sing',eP:'I sing a song.',ePa:'I sang in the show.',eF:'I will sing for you.'},
 {v:'buy',fa:'خریدن',p:'bought',f:'will buy',eP:'I buy candy.',ePa:'I bought a book.',eF:'I will buy a toy.'},
 {v:'draw',fa:'نقاشی',p:'drew',f:'will draw',eP:'I draw a picture.',ePa:'I drew a house.',eF:'I will draw a cat.'},
-{v:'speak',fa:'صحبت کردن',p:'spoke',f:'will speak',eP:'I speak English.',ePa:'I spoke to my teacher.',eF:'I will speak louder.'},
+{v:'speak',fa:'صحبت',p:'spoke',f:'will speak',eP:'I speak English.',ePa:'I spoke to my teacher.',eF:'I will speak louder.'},
 {v:'catch',fa:'گرفتن',p:'caught',f:'will catch',eP:'I catch the ball.',ePa:'I caught the ball.',eF:'I will catch it.'},
 {v:'bring',fa:'آوردن',p:'brought',f:'will bring',eP:'I bring my lunch.',ePa:'Mom brought cookies.',eF:'I will bring a gift.'},
 {v:'wear',fa:'پوشیدن',p:'wore',f:'will wear',eP:'I wear a hat.',ePa:'I wore my blue shirt.',eF:'I will wear new shoes.'},
@@ -191,28 +196,28 @@ var SENTS=[
 {fa:'فیل بزرگتر از میمونه',w:['An','elephant','is','bigger','than','a','monkey'],en:'An elephant is bigger than a monkey'},
 {fa:'اگه بارون بیاد خونه میمونیم',w:['If','it','rains','we','will','stay','home'],en:'If it rains we will stay home'},
 {fa:'کی این کتابو نوشته؟',w:['Who','wrote','this','book'],en:'Who wrote this book'},
-{fa:'قبلا هر روز بازی میکردم',w:['I','used','to','play','every','day'],en:'I used to play every day'},
 {fa:'باید قبل امتحان درس بخونم',w:['I','must','study','before','the','exam'],en:'I must study before the exam'},
 {fa:'تکالیفمو انجام دادم',w:['I','have','already','finished','my','homework'],en:'I have already finished my homework'},
 {fa:'وقتی بارون میومد خواب بودم',w:['I','was','sleeping','when','it','rained'],en:'I was sleeping when it rained'},
-{fa:'اون قبلا سگ داشت',w:['She','used','to','have','a','dog'],en:'She used to have a dog'},
 {fa:'بچه‌ها خوشحال بازی میکنن',w:['The','children','play','happily'],en:'The children play happily'},
 {fa:'من هرگز به پاریس نرفتم',w:['I','have','never','been','to','Paris'],en:'I have never been to Paris'},
-{fa:'کیک توسط مامانم درست شد',w:['The','cake','was','made','by','my','mom'],en:'The cake was made by my mom'},
 {fa:'داستان خیلی جالب بود',w:['The','story','was','very','interesting'],en:'The story was very interesting'},
 {fa:'خیلی گرم بود بیرون بریم',w:['It','was','too','hot','to','go','outside'],en:'It was too hot to go outside'},
-{fa:'من هم فوتبال بازی میکنم هم شنا',w:['I','play','both','football','and','swimming'],en:'I play both football and swimming'},
-{fa:'هوا سردتره امروز',w:['It','is','colder','today','than','yesterday'],en:'It is colder today than yesterday'},
 {fa:'مامانم گفت زود بخوابم',w:['My','mom','told','me','to','sleep','early'],en:'My mom told me to sleep early'},
-{fa:'من به اندازه کافی بزرگ شدم',w:['I','am','old','enough','to','go','to','school'],en:'I am old enough to go to school'},
 {fa:'بچه‌ها با هم آواز خوندن',w:['The','children','sang','a','song','together'],en:'The children sang a song together'},
 {fa:'دیروز یه سگ توی پارک دیدم',w:['I','saw','a','dog','in','the','park'],en:'I saw a dog in the park'},
-{fa:'بابام هر روز روزنامه میخونه',w:['My','dad','reads','the','newspaper','every','day'],en:'My dad reads the newspaper every day'},
 {fa:'ما تابستون به دریا میریم',w:['We','go','to','the','sea','in','summer'],en:'We go to the sea in summer'},
+{fa:'پدربزرگم هر شب قصه تعریف میکنه',w:['My','grandpa','tells','a','story','every','night'],en:'My grandpa tells a story every night'},
+{fa:'من به اندازه کافی بزرگ شدم',w:['I','am','old','enough','to','go','to','school'],en:'I am old enough to go to school'},
+{fa:'دوستم امروز مدرسه نیومد',w:['My','friend','did','not','come','to','school','today'],en:'My friend did not come to school today'},
 {fa:'این خونه خیلی بزرگه',w:['This','house','is','very','big'],en:'This house is very big'},
 {fa:'من عاشق شکلاتم',w:['I','love','chocolate'],en:'I love chocolate'},
-{fa:'دوستم امروز مدرسه نیومد',w:['My','friend','did','not','come','to','school','today'],en:'My friend did not come to school today'},
-{fa:'پدربزرگم هر شب قصه تعریف میکنه',w:['My','grandpa','tells','a','story','every','night'],en:'My grandpa tells a story every night'}
+{fa:'هوا سردتره امروز',w:['It','is','colder','today','than','yesterday'],en:'It is colder today than yesterday'},
+{fa:'من هم فوتبال بازی میکنم هم شنا',w:['I','play','both','football','and','swimming'],en:'I play both football and swimming'},
+{fa:'کیک توسط مامانم درست شد',w:['The','cake','was','made','by','my','mom'],en:'The cake was made by my mom'},
+{fa:'قبلا هر روز بازی میکردم',w:['I','used','to','play','every','day'],en:'I used to play every day'},
+{fa:'اون قبلا سگ داشت',w:['She','used','to','have','a','dog'],en:'She used to have a dog'},
+{fa:'اون به اندازه کافی بزرگه',w:['She','is','old','enough','to','go','to','school'],en:'She is old enough to go to school'}
 ];
 
 var CONVOS=[
@@ -223,13 +228,11 @@ var CONVOS=[
 {t:'رستوران 🍽️',lines:[{w:'l',t:'What would you like to eat?'},{w:'r',t:'Pizza, please.',b:1},{w:'l',t:'And to drink?'},{w:'r',t:'Orange juice, please.',b:1}]},
 {t:'باغ وحش 🦁',lines:[{w:'l',t:'Look! A big elephant!'},{w:'r',t:'Wow! It is so big!',b:1},{w:'l',t:'What is your favorite animal?'},{w:'r',t:'I like the panda.',b:1}]},
 {t:'جشن تولد 🎂',lines:[{w:'l',t:'Happy birthday!'},{w:'r',t:'Thank you! Can I open it?',b:1},{w:'l',t:'Of course!'},{w:'r',t:'Wow! I love it!',b:1}]},
-{t:'آدرس پرسیدن 🗺️',lines:[{w:'l',t:'Where is the library?'},{w:'r',t:'Go straight and turn left.',b:1},{w:'l',t:'Is it far?'},{w:'r',t:'No, five minutes.',b:1}]},
-{t:'سرگرمی 🎨',lines:[{w:'l',t:'What do you like to do?'},{w:'r',t:'I like drawing and reading.',b:1},{w:'l',t:'I like football!'},{w:'r',t:'Let us play together!',b:1}]},
 {t:'پارک 🌳',lines:[{w:'l',t:'Do you want to go to the park?'},{w:'r',t:'Yes! I love the park!',b:1},{w:'l',t:'Let us play on the swings.'},{w:'r',t:'Great idea!',b:1}]},
-{t:'خواب 🌙',lines:[{w:'l',t:'Good night, Mom.'},{w:'r',t:'Good night, sweetie. Sleep well.',b:1},{w:'l',t:'Can you read me a story?'},{w:'r',t:'Of course! Come to bed.',b:1}]},
-{t:'فروشگاه لباس 👕',lines:[{w:'l',t:'Can I try this shirt?'},{w:'r',t:'Sure! The fitting room is over there.',b:1},{w:'l',t:'It fits perfectly!'},{w:'r',t:'It looks great on you!',b:1}]}
+{t:'خواب 🌙',lines:[{w:'l',t:'Good night, Mom.'},{w:'r',t:'Good night, sweetie. Sleep well.',b:1},{w:'l',t:'Can you read me a story?'},{w:'r',t:'Of course! Come to bed.',b:1}]}
 ];
 
+/* Stories: each line = one sentence, each chapter = array of sentences */
 var STORIES=[
 {t:"Tom's New Puppy",fa:'تام و توله سگش 🐶',ch:[
 ["Tom gets a new puppy.","The puppy is small and brown.","Tom names him Max.","Max follows Tom everywhere."],
@@ -243,14 +246,6 @@ qs:[{q:'What color is the pencil?',o:['Golden','Red','Blue'],a:0},{q:'What does 
 ["It is raining outside.","Ali cannot go to the park.","He feels sad and bored.","His mom says: Let us cook cookies!"],
 ["They make chocolate cookies together.","The house smells wonderful.","Dad comes home and eats three cookies!","Ali says: Let us cook again tomorrow!"]],
 qs:[{q:'Why can Ali not go outside?',o:['It is raining','It is dark','He is sick'],a:0},{q:'What do they make?',o:['Cookies','Cake','Bread'],a:0},{q:'How many cookies does dad eat?',o:['Three','One','Ten'],a:0}]},
-{t:"The Little Star",fa:'ستاره کوچولو ⭐',ch:[
-["A little star falls from the sky.","It lands in Sara's garden.","The star is small and bright.","Sara picks it up gently."],
-["The star says: Help me go home!","Sara throws the star up high.","It flies back to the sky.","Every night the star winks at Sara."]],
-qs:[{q:'Where does the star fall?',o:["Sara's garden",'The park','The ocean'],a:0},{q:'What does the star say?',o:['Help me go home','I am hungry','Let us play'],a:0},{q:'What does Sara do?',o:['Throws it up','Keeps it','Buries it'],a:0}]},
-{t:"My First Bike",fa:'دوچرخه اولم 🚲',ch:[
-["Dan gets a new red bike.","He tries to ride but falls down.","He feels a little scared.","His dad says: Try again! I am here."],
-["Dan tries again and again.","He rides five meters! Then ten!","Then all around the park.","Dan is so proud and happy."]],
-qs:[{q:'What color is the bike?',o:['Red','Blue','Green'],a:0},{q:'Who helps Dan?',o:['His dad','His mom','His friend'],a:0},{q:'What does Dan learn?',o:['Never give up','Bikes are hard','Parks are fun'],a:0}]},
 {t:"Sharing is Caring",fa:'سخاوتمندی 💝',ch:[
 ["Lily has a big bag of candy.","Her friend Sam has no candy.","Lily thinks for a moment.","She gives half her candy to Sam."],
 ["Sam is so happy!","He shares his apple with Lily.","They eat together and laugh.","Lily learns sharing makes everyone happy."]],
@@ -258,27 +253,19 @@ qs:[{q:'What does Lily have?',o:['Candy','Cookies','Chips'],a:0},{q:'What does s
 {t:"The Lost Dog",fa:'سگ گمشده 🐕',ch:[
 ["Nadia finds a small dog on the street.","The dog looks scared and hungry.","Nadia gives the dog some water.","She puts a note on the school board."],
 ["A boy named Mark sees the note.","It is his lost dog!","Mark hugs his dog and cries happily.","Nadia smiles. Helping others feels great."]],
-qs:[{q:'Where does Nadia find the dog?',o:['On the street','In the park','At school'],a:0},{q:'What does she do first?',o:['Gives water','Puts a note','Calls mom'],a:0},{q:'Whose dog is it?',o:["Mark's",'Nadia\'s','Nobody\'s'],a:0}]},
+qs:[{q:'Where does Nadia find the dog?',o:['On the street','In the park','At school'],a:0},{q:'What does she do first?',o:['Gives water','Puts a note','Calls mom'],a:0},{q:'Whose dog is it?',o:["Mark's dog","Nadia's dog","Nobody's dog"],a:0}]},
 {t:"The Brave Kitten",fa:'بچه گربه شجاع 🐱',ch:[
 ["A small kitten is stuck in a tree.","It is very scared and crying.","Maya hears the kitten.","She climbs the tree carefully."],
 ["Maya brings the kitten down safely.","The kitten purrs and licks her hand.","Maya takes the kitten home.","She names the kitten Brave."]],
-qs:[{q:'Where is the kitten stuck?',o:['In a tree','In a box','In a river'],a:0},{q:'Who saves the kitten?',o:['Maya','Her dad','A firefighter'],a:0},{q:'What does she name the kitten?',o:['Brave','Small','Cute'],a:0}]},
+qs:[{q:'Where is the kitten stuck?',o:['In a tree','In a box','In a river'],a:0},{q:'Who saves the kitten?',o:['Maya','Her dad','A firefighter'],a:0},{q:'What does she name it?',o:['Brave','Small','Cute'],a:0}]},
 {t:"Healthy Food",fa:'غذای سالم 🥗',ch:[
 ["Omar only eats candy and chips.","He feels tired every day.","His mom says: Eat fruits and vegetables!","Omar tries an apple. It is sweet!"],
 ["Next he tries carrots and broccoli.","He drinks milk every morning.","Omar feels strong and happy.","He says: Healthy food is yummy!"]],
-qs:[{q:'What does Omar eat at first?',o:['Candy and chips','Fruits and vegetables','Rice and bread'],a:0},{q:'What fruit does he try?',o:['An apple','A banana','An orange'],a:0},{q:'How does he feel at the end?',o:['Strong and happy','Still tired','Sick'],a:0}]},
-{t:"The Water Drop",fa:'قطره آب 💧',ch:[
-["A small water drop lives in the ocean.","The sun heats the water.","The drop turns into vapor and rises up!","It floats high into the sky."],
-["The vapor becomes a cloud.","The cloud gets heavy with water.","Rain falls down to the ground.","The water drop is back in the river!"]],
-qs:[{q:'Where does the drop live at first?',o:['In the ocean','In a river','In a cloud'],a:0},{q:'What happens when sun heats it?',o:['It rises as vapor','It freezes','It disappears'],a:0},{q:'Where does the drop end up?',o:['Back in the river','In space','In a bottle'],a:0}]},
+qs:[{q:'What does Omar eat at first?',o:['Candy and chips','Fruits','Rice'],a:0},{q:'What fruit does he try?',o:['An apple','A banana','An orange'],a:0},{q:'How does he feel at the end?',o:['Strong and happy','Still tired','Sick'],a:0}]},
 {t:"Our Beautiful Earth",fa:'زمین زیبای ما 🌍',ch:[
 ["The Earth is our home.","It has forests, oceans, and mountains.","Many animals live on Earth.","We must take care of our planet."],
 ["We can plant trees and flowers.","We should not litter.","We can save water every day.","Together we keep Earth beautiful!"]],
-qs:[{q:'What does Earth have?',o:['Forests, oceans, mountains','Only cities','Only deserts'],a:0},{q:'What can we plant?',o:['Trees and flowers','Nothing','Only grass'],a:0},{q:'What should we NOT do?',o:['Litter','Plant trees','Save water'],a:0}]},
-{t:"The Noisy Classroom",fa:'کلاس پر سر و صدا 🔔',ch:[
-["In class, everyone talks very loud.","The teacher cannot speak.","She says: Quiet please!","Nobody listens to her."],
-["The teacher claps three times.","CLAP CLAP CLAP!","Everyone stops and looks.","The teacher smiles. Now we can learn!"]],
-qs:[{q:'What is the problem?',o:['Everyone is too loud','Nobody comes','The teacher is absent'],a:0},{q:'What does the teacher do?',o:['Claps three times','Sings a song','Leaves the room'],a:0},{q:'What happens after the claps?',o:['Everyone stops talking','Everyone talks more','The bell rings'],a:0}]},
+qs:[{q:'What does Earth have?',o:['Forests, oceans, mountains','Only cities','Only deserts'],a:0},{q:'What should we NOT do?',o:['Litter','Plant trees','Save water'],a:0},{q:'What can we plant?',o:['Trees and flowers','Nothing','Only grass'],a:0}]},
 {t:"The Helpful Ant",fa:'مورچه کمک‌کار 🐜',ch:[
 ["A small ant finds a big crumb of bread.","It is too heavy for one ant.","Another ant comes to help.","Together they lift the crumb."],
 ["More ants join them.","They work as a team.","They carry the crumb home together.","The queen ant says: Teamwork is wonderful!"]],
@@ -286,7 +273,7 @@ qs:[{q:'What does the ant find?',o:['A big crumb','A small seed','A leaf'],a:0},
 {t:"Sara's Garden",fa:'باغ سارا 🌱',ch:[
 ["Sara plants small seeds in her garden.","She waters them every day.","She waits and waits.","Nothing happens for many days."],
 ["One morning, green sprouts appear!","Sara is so excited.","Soon beautiful flowers bloom.","Sara learns patience brings beautiful things."]],
-qs:[{q:'What does Sara plant?',o:['Seeds','Trees','Flowers'],a:0},{q:'What appears after many days?',o:['Green sprouts','Fruits','Nothing'],a:0},{q:'What does Sara learn?',o:['Patience brings beautiful things','Gardens are easy','Flowers are pretty'],a:0}]},
+qs:[{q:'What does Sara plant?',o:['Seeds','Trees','Flowers'],a:0},{q:'What appears after days?',o:['Green sprouts','Fruits','Nothing'],a:0},{q:'What does Sara learn?',o:['Patience brings beautiful things','Gardens are easy','Flowers are pretty'],a:0}]},
 {t:"The Snow Day",fa:'روز برفی ☃️',ch:[
 ["It snows a lot at night.","Omar looks out the window and smiles.","He puts on his warm coat and boots.","He runs outside to play."],
 ["Omar builds a snowman with his friend.","They use a carrot for the nose!","They have a snowball fight and laugh.","After, they drink hot chocolate inside."]],
@@ -294,41 +281,66 @@ qs:[{q:'What does Omar build?',o:['A snowman','A house','A sandcastle'],a:0},{q:
 {t:"My Pet Fish",fa:'ماهی من 🐟',ch:[
 ["Yara gets a pet fish named Goldie.","She feeds it every morning.","She cleans the tank every week.","She talks to Goldie every day."],
 ["Goldie is happy and healthy.","It swims around and around.","Yara learns taking care of a pet is hard.","But it is also very rewarding!"]],
-qs:[{q:'What is the fish name?',o:['Goldie','Nemo','Bubbles'],a:0},{q:'How often does Yara feed it?',o:['Every morning','Every week','Every month'],a:0},{q:'What does Yara learn?',o:['Taking care of pets is rewarding','Fish are easy','Pets are boring'],a:0}]}
+qs:[{q:'What is the fish name?',o:['Goldie','Nemo','Bubbles'],a:0},{q:'How often does she feed it?',o:['Every morning','Every week','Every month'],a:0},{q:'What does Yara learn?',o:['Caring for pets is rewarding','Fish are easy','Pets are boring'],a:0}]},
+{t:"The Noisy Classroom",fa:'کلاس پر سر و صدا 🔔',ch:[
+["In class, everyone talks very loud.","The teacher cannot speak.","She says: Quiet please!","Nobody listens to her."],
+["The teacher claps three times.","CLAP CLAP CLAP!","Everyone stops and looks.","The teacher smiles. Now we can learn!"]],
+qs:[{q:'What is the problem?',o:['Everyone is too loud','Nobody comes','Teacher is absent'],a:0},{q:'What does the teacher do?',o:['Claps three times','Sings a song','Leaves'],a:0},{q:'What happens after?',o:['Everyone stops talking','Everyone talks more','Bell rings'],a:0}]},
+{t:"The Water Drop",fa:'قطره آب 💧',ch:[
+["A small water drop lives in the ocean.","The sun heats the water.","The drop turns into vapor and rises up!","It floats high into the sky."],
+["The vapor becomes a cloud.","The cloud gets heavy with water.","Rain falls down to the ground.","The water drop is back in the river!"]],
+qs:[{q:'Where does the drop live?',o:['In the ocean','In a river','In a cloud'],a:0},{q:'What happens when sun heats it?',o:['It rises as vapor','It freezes','It disappears'],a:0},{q:'Where does it end up?',o:['Back in the river','In space','In a bottle'],a:0}]}
 ];
 
 var READINGS=[
-{t:'The Water Cycle',fa:'چرخه آب 💧',text:'Water is always moving. The sun heats water in rivers. It turns into vapor and goes up to the sky. This is evaporation. The vapor becomes clouds. Then water falls as rain. This is precipitation. Water goes back to rivers and starts again.',qs:[{q:'What happens when sun heats water?',o:['It turns into vapor','It freezes','It disappears'],a:0},{q:'What is precipitation?',o:['Rain falling','Sun heating water','Clouds forming'],a:0},{q:'Where does water go after rain?',o:['Back to rivers','To space','Into bottles'],a:0}]},
+{t:'The Water Cycle',fa:'چرخه آب 💧',text:'Water is always moving. The sun heats water in rivers. It turns into vapor and goes up to the sky. This is evaporation. The vapor becomes clouds. Then water falls as rain. This is precipitation. Water goes back to rivers and starts again.',qs:[{q:'What happens when sun heats water?',o:['It turns into vapor','It freezes','It disappears'],a:0},{q:'What is precipitation?',o:['Rain falling','Sun heating','Clouds forming'],a:0},{q:'Where does water go after rain?',o:['Back to rivers','To space','Into bottles'],a:0}]},
 {t:'How Bees Make Honey',fa:'زنبور عسل 🐝',text:'Bees fly from flower to flower. They collect nectar. They bring it to the hive. Other bees chew the nectar. They spread it into the honeycomb. After one week it becomes honey.',qs:[{q:'What do bees collect?',o:['Nectar','Pollen','Water'],a:0},{q:'What does nectar become?',o:['Honey','Wax','Sugar'],a:0},{q:'How long does it take?',o:['One week','One day','One month'],a:0}]},
-{t:'The Fastest Animals',fa:'سریع‌ترین حیوانات 🐆',text:'The cheetah is the fastest land animal. It runs 120 kilometers per hour! But only for 60 seconds. The falcon is faster. It dives at 300 kilometers per hour!',qs:[{q:'How fast is a cheetah?',o:['120 km/h','200 km/h','80 km/h'],a:0},{q:'What is faster than a cheetah?',o:['The falcon','The lion','The horse'],a:0},{q:'How long can a cheetah run fast?',o:['60 seconds','10 minutes','1 hour'],a:0}]},
-{t:'Dinosaurs',fa:'دایناسورها 🦕',text:'Dinosaurs lived millions of years ago. Some were very big. The T-Rex was a dangerous meat eater. The Brachiosaurus was a gentle plant eater. A big space rock hit the Earth. Most dinosaurs died. But birds are related to dinosaurs today!',qs:[{q:'When did dinosaurs live?',o:['Millions of years ago','Last year','In the future'],a:0},{q:'What did T-Rex eat?',o:['Meat','Plants','Fish'],a:0},{q:'What are related to dinosaurs today?',o:['Birds','Dogs','Cats'],a:0}]},
-{t:'The Moon',fa:'ماه 🌙',text:'The Moon goes around the Earth. It takes 28 days to go around once. The Moon has no light of its own. The Sun lights it up. That is why the Moon changes shape. When we see all of it, it is a full Moon. When we see nothing, it is a new Moon.',qs:[{q:'How long does the Moon take to orbit?',o:['28 days','7 days','365 days'],a:0},{q:'Where does Moon light come from?',o:['The Sun','The Moon itself','The Earth'],a:0},{q:'What is it called when we see all the Moon?',o:['Full Moon','New Moon','Half Moon'],a:0}]},
-{t:'Rainbows',fa:'رنگین‌کمان 🌈',text:'Rainbows appear after rain when the Sun comes out. Sunlight looks white but it has seven colors inside. When light goes through water drops, it splits into red, orange, yellow, green, blue, indigo, and violet. That is why we see a rainbow!',qs:[{q:'When do rainbows appear?',o:['After rain when Sun comes out','At night','In winter only'],a:0},{q:'How many colors in a rainbow?',o:['Seven','Five','Ten'],a:0},{q:'What splits the light?',o:['Water drops','Clouds','Wind'],a:0}]},
-{t:'Our Amazing Body',fa:'بدن شگفت‌انگیز ما 🧍',text:'The human body is amazing. The brain controls everything. The heart pumps blood all day. The lungs help us breathe. Our bones give us shape. Muscles help us move. The skin protects everything inside. We have over 200 bones!',qs:[{q:'What controls everything?',o:['The brain','The heart','The lungs'],a:0},{q:'What does the heart do?',o:['Pumps blood','Helps breathe','Makes bones'],a:0},{q:'How many bones do we have?',o:['Over 200','About 50','About 100'],a:0}]},
-{t:'The Four Seasons',fa:'چهار فصل 🍂',text:'There are four seasons in a year. Spring is when flowers bloom and birds sing. Summer is hot and sunny. We go swimming! Autumn is when leaves change color and fall. Winter is cold. Sometimes it snows! Every season is special.',qs:[{q:'How many seasons are there?',o:['Four','Three','Five'],a:0},{q:'What happens in autumn?',o:['Leaves change color and fall','Flowers bloom','It snows'],a:0},{q:'Which season is the hottest?',o:['Summer','Winter','Spring'],a:0}]}
+{t:'The Fastest Animals',fa:'سریع‌ترین حیوانات 🐆',text:'The cheetah is the fastest land animal. It runs 120 kilometers per hour! But only for 60 seconds. The falcon is faster. It dives at 300 kilometers per hour!',qs:[{q:'How fast is a cheetah?',o:['120 km/h','200 km/h','80 km/h'],a:0},{q:'What is faster?',o:['The falcon','The lion','The horse'],a:0},{q:'How long can it run fast?',o:['60 seconds','10 minutes','1 hour'],a:0}]},
+{t:'Dinosaurs',fa:'دایناسورها 🦕',text:'Dinosaurs lived millions of years ago. Some were very big. The T-Rex was dangerous. The Brachiosaurus ate plants. A big space rock hit Earth. Most dinosaurs died. But birds are related to dinosaurs!',qs:[{q:'When did dinosaurs live?',o:['Millions of years ago','Last year','In the future'],a:0},{q:'What did T-Rex eat?',o:['Meat','Plants','Fish'],a:0},{q:'What are related to dinosaurs?',o:['Birds','Dogs','Cats'],a:0}]},
+{t:'The Moon',fa:'ماه 🌙',text:'The Moon goes around Earth. It takes 28 days. The Moon has no light. The Sun lights it up. That is why the Moon changes shape. Full Moon means we see all of it. New Moon means we see nothing.',qs:[{q:'How long to orbit Earth?',o:['28 days','7 days','365 days'],a:0},{q:'Where does Moon light come from?',o:['The Sun','The Moon','The Earth'],a:0},{q:'What is full Moon?',o:['We see all of it','We see nothing','Half of it'],a:0}]},
+{t:'Rainbows',fa:'رنگین‌کمان 🌈',text:'Rainbows appear after rain when the Sun comes out. Sunlight has seven colors inside. When light goes through water drops it splits into red, orange, yellow, green, blue, indigo and violet.',qs:[{q:'When do rainbows appear?',o:['After rain with Sun','At night','In winter only'],a:0},{q:'How many colors?',o:['Seven','Five','Ten'],a:0},{q:'What splits the light?',o:['Water drops','Clouds','Wind'],a:0}]},
+{t:'Our Body',fa:'بدن ما 🧍',text:'The brain controls everything. The heart pumps blood. The lungs help us breathe. Bones give us shape. Muscles help us move. The skin protects us. We have over 200 bones!',qs:[{q:'What controls everything?',o:['The brain','The heart','The lungs'],a:0},{q:'What does the heart do?',o:['Pumps blood','Breathes','Makes bones'],a:0},{q:'How many bones?',o:['Over 200','About 50','About 100'],a:0}]},
+{t:'Four Seasons',fa:'چهار فصل 🍂',text:'There are four seasons. Spring is when flowers bloom. Summer is hot and sunny. Autumn is when leaves change color and fall. Winter is cold. Sometimes it snows! Every season is special.',qs:[{q:'How many seasons?',o:['Four','Three','Five'],a:0},{q:'What happens in autumn?',o:['Leaves change color','Flowers bloom','It snows'],a:0},{q:'Which is hottest?',o:['Summer','Winter','Spring'],a:0}]}
 ];
 
 var VOCAB=[
-{cat:'مشاغل 👨‍⚕️',color:'#E87C6C',words:[{en:'doctor',fa:'دکتر',e:'👨‍⚕️'},{en:'engineer',fa:'مهندس',e:'👷'},{en:'pilot',fa:'خلبان',e:'👨‍✈️'},{en:'chef',fa:'آشپز',e:'👨‍🍳'},{en:'scientist',fa:'دانشمند',e:'🔬'},{en:'artist',fa:'هنرمند',e:'🎨'},{en:'firefighter',fa:'آتش‌نشان',e:'🚒'},{en:'farmer',fa:'کشاورز',e:'👨‍🌾'},{en:'dentist',fa:'دندانپزشک',e:'🦷'},{en:'architect',fa:'معمار',e:'🏛️'},{en:'teacher',fa:'معلم',e:'👩‍🏫'},{en:'nurse',fa:'پرستار',e:'👩‍⚕️'},{en:'police',fa:'پلیس',e:'👮'},{en:'lawyer',fa:'وکیل',e:'⚖️'},{en:'musician',fa:'نوازنده',e:'🎵'}]},
+{cat:'مشاغل 👨‍⚕️',color:'#E87C6C',words:[{en:'doctor',fa:'دکتر',e:'👨‍⚕️'},{en:'engineer',fa:'مهندس',e:'👷'},{en:'pilot',fa:'خلبان',e:'✈️'},{en:'chef',fa:'آشپز',e:'👨‍🍳'},{en:'scientist',fa:'دانشمند',e:'🔬'},{en:'artist',fa:'هنرمند',e:'🎨'},{en:'firefighter',fa:'آتش‌نشان',e:'🚒'},{en:'farmer',fa:'کشاورز',e:'👨‍🌾'},{en:'dentist',fa:'دندانپزشک',e:'🦷'},{en:'architect',fa:'معمار',e:'🏛️'},{en:'teacher',fa:'معلم',e:'👩‍🏫'},{en:'nurse',fa:'پرستار',e:'💉'},{en:'police',fa:'پلیس',e:'👮'},{en:'lawyer',fa:'وکیل',e:'⚖️'},{en:'musician',fa:'نوازنده',e:'🎵'}]},
 {cat:'حمل‌ونقل 🚀',color:'#5B4A8A',words:[{en:'airplane',fa:'هواپیما',e:'✈️'},{en:'helicopter',fa:'هلیکوپتر',e:'🚁'},{en:'motorcycle',fa:'موتورسیکلت',e:'🏍️'},{en:'subway',fa:'مترو',e:'🚇'},{en:'truck',fa:'کامیون',e:'🚛'},{en:'ambulance',fa:'آمبولانس',e:'🚑'},{en:'sailboat',fa:'قایق بادبانی',e:'⛵'},{en:'canoe',fa:'قایق پارویی',e:'🛶'},{en:'scooter',fa:'اسکوتر',e:'🛴'},{en:'bicycle',fa:'دوچرخه',e:'🚲'},{en:'train',fa:'قطار',e:'🚆'},{en:'taxi',fa:'تاکسی',e:'🚕'},{en:'ship',fa:'کشتی',e:'🚢'},{en:'bus',fa:'اتوبوس',e:'🚌'},{en:'tram',fa:' تراموا',e:'🚋'}]},
 {cat:'فناوری 💻',color:'#4A6FA5',words:[{en:'computer',fa:'کامپیوتر',e:'💻'},{en:'robot',fa:'ربات',e:'🤖'},{en:'keyboard',fa:'کیبورد',e:'⌨️'},{en:'battery',fa:'باتری',e:'🔋'},{en:'camera',fa:'دوربین',e:'📷'},{en:'printer',fa:'پرینتر',e:'🖨️'},{en:'tablet',fa:'تبلت',e:'📱'},{en:'screen',fa:'صفحه نمایش',e:'🖥️'},{en:'charger',fa:'شارژر',e:'🔌'},{en:'headphones',fa:'هندزفری',e:'🎧'},{en:'satellite',fa:'ماهواره',e:'📡'},{en:'drone',fa:'پهپاد',e:'🛸'},{en:'wifi',fa:'وای‌فای',e:'📶'},{en:'software',fa:'نرم‌افزار',e:'💿'},{en:'database',fa:'پایگاه داده',e:'🗄️'}]},
-{cat:'طبیعت 🌋',color:'#6BAF7E',words:[{en:'volcano',fa:'آتشفشان',e:'🌋'},{en:'earthquake',fa:'زلزله',e:'🌍'},{en:'glacier',fa:'یخچال طبیعی',e:'🏔️'},{en:'canyon',fa:'دره',e:'🏞️'},{en:'waterfall',fa:'آبشار',e:'🌊'},{en:'desert',fa:'بیابان',e:'🏜️'},{en:'island',fa:'جزیره',e:'🏝️'},{en:'cliff',fa:'صخره',e:'⛰️'},{en:'plateau',fa:'فلات',e:'🌄'},{en:'delta',fa:'دلتا',e:'🏞️'},{en:'cave',fa:'غار',e:'🕳️'},{en:'jungle',fa:'جنگل',e:'🌴'},{en:'valley',fa:'دره سبز',e:'🏔️'},{en:'oasis',fa:'واحه',e:'🏝️'},{en:'lava',fa:'گدازه',e:'🔥'}]},
-{cat:'احساسات 😊',color:'#D4A650',words:[{en:'nervous',fa:'عصبی',e:'😬'},{en:'curious',fa:'کنجکاو',e:'🧐'},{en:'grateful',fa:'سپاسگزار',e:'🙏'},{en:'confident',fa:'مطمئن',e:'😎'},{en:'embarrassed',fa:'خجالت‌زده',e:'😳'},{en:'disappointed',fa:'ناامید',e:'😞'},{en:'relieved',fa:'آسوده',e:'😮‍💨'},{en:'amazed',fa:'شگفت‌زده',e:'🤩'},{en:'worried',fa:'نگران',e:'😟'},{en:'jealous',fa:'حسود',e:'😒'},{en:'proud',fa:'مفتخر',e:'😤'},{en:'lonely',fa:'تنها',e:'😢'},{en:'excited',fa:'هیجان‌زده',e:'🥳'},{en:'calm',fa:'آرام',e:'😌'},{en:'confused',fa:'گیج',e:'😕'}]},
-{cat:'ساز موسیقی 🎵',color:'#8A5B8A',words:[{en:'guitar',fa:'گیتار',e:'🎸'},{en:'piano',fa:'پیانو',e:'🎹'},{en:'violin',fa:'ویولن',e:'🎻'},{en:'drums',fa:'طبل',e:'🥁'},{en:'flute',fa:'فلوت',e:'🎵'},{en:'trumpet',fa:'ترومپت',e:'🎺'},{en:'harp',fa:'چنگ',e:'🎶'},{en:'accordion',fa:'آکوردئون',e:'🪗'},{en:'xylophone',fa:'زایلوفون',e:'🔔'},{en:'harmonica',fa:'هارمونیکا',e:'🎤'},{en:'saxophone',fa:'ساکسوفون',e:'🎷'},{en:'clarinet',fa:'کلارینت',e:'🎵'},{en:'tambourine',fa:'دایره‌زنگی',e:'🪘'},{en:'banjo',fa:'بانجو',e:'🎸'},{en:'organ',fa:'ارگ',e:'🎹'}]},
-{cat:'آشپزخانه 🍳',color:'#E8856C',words:[{en:'refrigerator',fa:'یخچال',e:'🧊'},{en:'microwave',fa:'مایکروویو',e:'📡'},{en:'dishwasher',fa:'ظرفشویی',e:'🍽️'},{en:'blender',fa:'مخلوط‌کن',e:'🥤'},{en:'oven',fa:'فر',e:'🔥'},{en:'kettle',fa:'کتری',e:'☕'},{en:'toaster',fa:'توستر',e:'🍞'},{en:'freezer',fa:'فریزر',e:'❄️'},{en:'sink',fa:'سینک',e:'🚰'},{en:'cabinet',fa:'کابینت',e:'🗄️'},{en:'spatula',fa:'کفگیر',e:'🍳'},{en:'ladle',fa:'ملاقه',e:'🥣'},{en:'grater',fa:'رنده',e:'🧀'},{en:'colander',fa:'آبکش',e:'🍝'},{en:'rolling pin',fa:'وردنورد',e:'🪵'}]},
+{cat:'طبیعت 🌋',color:'#6BAF7E',words:[{en:'volcano',fa:'آتشفشان',e:'🌋'},{en:'earthquake',fa:'زلزله',e:'🌍'},{en:'glacier',fa:'یخچال طبیعی',e:'🏔️'},{en:'canyon',fa:'دره',e:'🏞️'},{en:'waterfall',fa:'آبشار',e:'🌊'},{en:'desert',fa:'بیابان',e:'🏜️'},{en:'island',fa:'جزیره',e:'🏝️'},{en:'cliff',fa:'صخره',e:'⛰️'},{en:'cave',fa:'غار',e:'🕳️'},{en:'jungle',fa:'جنگل',e:'🌴'},{en:'valley',fa:'دره سبز',e:'🏔️'},{en:'oasis',fa:'واحه',e:'🏝️'},{en:'lava',fa:'گدازه',e:'🔥'},{en:'plateau',fa:'فلات',e:'🌄'},{en:'delta',fa:'دلتا',e:'🏞️'}]},
+{cat:'احساسات 😊',color:'#D4A650',words:[{en:'nervous',fa:'عصبی',e:'😬'},{en:'curious',fa:'کنجکاو',e:'🧐'},{en:'grateful',fa:'سپاسگزار',e:'🙏'},{en:'confident',fa:'مطمئن',e:'😎'},{en:'embarrassed',fa:'خجالت‌زده',e:'😳'},{en:'disappointed',fa:'ناامید',e:'😞'},{en:'amazed',fa:'شگفت‌زده',e:'🤩'},{en:'worried',fa:'نگران',e:'😟'},{en:'jealous',fa:'حسود',e:'😒'},{en:'proud',fa:'مفتخر',e:'😤'},{en:'lonely',fa:'تنها',e:'😢'},{en:'excited',fa:'هیجان‌زده',e:'🥳'},{en:'calm',fa:'آرام',e:'😌'},{en:'confused',fa:'گیج',e:'😕'},{en:'brave',fa:'شجاع',e:'🦁'}]},
+{cat:'ساز موسیقی 🎵',color:'#8A5B8A',words:[{en:'guitar',fa:'گیتار',e:'🎸'},{en:'piano',fa:'پیانو',e:'🎹'},{en:'violin',fa:'ویولن',e:'🎻'},{en:'drums',fa:'طبل',e:'🥁'},{en:'flute',fa:'فلوت',e:'🎵'},{en:'trumpet',fa:'ترومپت',e:'🎺'},{en:'harp',fa:'چنگ',e:'🎶'},{en:'accordion',fa:'آکوردئون',e:'🪗'},{en:'xylophone',fa:'زایلوفون',e:'🔔'},{en:'saxophone',fa:'ساکسوفون',e:'🎷'},{en:'clarinet',fa:'کلارینت',e:'🎵'},{en:'tambourine',fa:'دایره‌زنگی',e:'🪘'},{en:'banjo',fa:'بانجو',e:'🎸'},{en:'organ',fa:'ارگ',e:'🎹'},{en:'harmonica',fa:'هارمونیکا',e:'🎤'}]},
+{cat:'آشپزخانه 🍳',color:'#E8856C',words:[{en:'refrigerator',fa:'یخچال',e:'🧊'},{en:'microwave',fa:'مایکروویو',e:'📡'},{en:'dishwasher',fa:'ظرفشویی',e:'🍽️'},{en:'blender',fa:'مخلوط‌کن',e:'🥤'},{en:'oven',fa:'فر',e:'🔥'},{en:'kettle',fa:'کتری',e:'☕'},{en:'toaster',fa:'توستر',e:'🍞'},{en:'freezer',fa:'فریزر',e:'❄️'},{en:'sink',fa:'سینک',e:'🚰'},{en:'cabinet',fa:'کابینت',e:'🗄️'},{en:'spatula',fa:'کفگیر',e:'🍳'},{en:'ladle',fa:'ملاقه',e:'🥣'},{en:'grater',fa:'رنده',e:'🧀'},{en:'colander',fa:'آبکش',e:'🍝'},{en:'rolling pin',fa:'وردنه',e:'🪵'}]},
 {cat:'علوم 🔬',color:'#3D7B6F',words:[{en:'molecule',fa:'مولکول',e:'⚛️'},{en:'gravity',fa:'جاذبه',e:'🌍'},{en:'energy',fa:'انرژی',e:'⚡'},{en:'temperature',fa:'دما',e:'🌡️'},{en:'experiment',fa:'آزمایش',e:'🧪'},{en:'microscope',fa:'میکروسکوپ',e:'🔬'},{en:'telescope',fa:'تلسکوپ',e:'🔭'},{en:'orbit',fa:'مدار',e:'🪐'},{en:'nucleus',fa:'هسته',e:'⚛️'},{en:'magnet',fa:'آهنربا',e:'🧲'},{en:'atom',fa:'اتم',e:'⚛️'},{en:'crystal',fa:'کریستال',e:'💎'},{en:'fossil',fa:'فسیل',e:'🦴'},{en:'solution',fa:'محلول',e:'🧫'},{en:'prism',fa:'منشور',e:'🔺'}]},
 {cat:'ورزش 🏋️',color:'#AF6B6B',words:[{en:'archery',fa:'تیراندازی',e:'🏹'},{en:'gymnastics',fa:'ژیمناستیک',e:'🤸'},{en:'surfing',fa:'موج‌سواری',e:'🏄'},{en:'kayaking',fa:'قایقرانی',e:'🛶'},{en:'fencing',fa:'شمشیربازی',e:'🤺'},{en:'boxing',fa:'بوکس',e:'🥊'},{en:'skating',fa:'اسکیت',e:'⛸️'},{en:'climbing',fa:'صخره‌نوردی',e:'🧗'},{en:'diving',fa:'غواصی',e:'🤿'},{en:'karate',fa:'کاراته',e:'🥋'},{en:'wrestling',fa:'کشتی',e:'🤼'},{en:'judo',fa:'جودو',e:'🥋'},{en:'hockey',fa:'هاکی',e:'🏒'},{en:'badminton',fa:'بدمینتون',e:'🏸'},{en:'bowling',fa:'بولینگ',e:'🎳'}]},
-{cat:'صفات 💎',color:'#4A6FA5',words:[{en:'enormous',fa:'عظیم',e:'🏔️'},{en:'ancient',fa:'باستانی',e:'🏛️'},{en:'brilliant',fa:'درخشان',e:'✨'},{en:'invisible',fa:'نامرئی',e:'👻'},{en:'flexible',fa:'انعطاف‌پذیر',e:'🤸'},{en:'gentle',fa:'ملایم',e:'🕊️'},{en:'fierce',fa:'شدید',e:'🔥'},{en:'fragile',fa:'شکننده',e:'🥚'},{en:'mysterious',fa:'رازآلود',e:'🔮'},{en:'brave',fa:'شجاع',e:'🦁'},{en:'clever',fa:'باهوش',e:'🧠'},{en:'generous',fa:'بخشنده',e:'💝'},{en:'patient',fa:'صبور',e:'⏳'},{en:'creative',fa:'خلاق',e:'🎨'},{en:'graceful',fa:'ظریف',e:'🦢'}]}
+{cat:'صفات 💎',color:'#4A6FA5',words:[{en:'enormous',fa:'عظیم',e:'🏔️'},{en:'ancient',fa:'باستانی',e:'🏛️'},{en:'brilliant',fa:'درخشان',e:'✨'},{en:'invisible',fa:'نامرئی',e:'👻'},{en:'flexible',fa:'انعطاف‌پذیر',e:'🤸'},{en:'gentle',fa:'ملایم',e:'🕊️'},{en:'fierce',fa:'شدید',e:'🔥'},{en:'fragile',fa:'شکننده',e:'🥚'},{en:'mysterious',fa:'رازآلود',e:'🔮'},{en:'clever',fa:'باهوش',e:'🧠'},{en:'generous',fa:'بخشنده',e:'💝'},{en:'patient',fa:'صبور',e:'⏳'},{en:'creative',fa:'خلاق',e:'🎨'},{en:'graceful',fa:'ظریف',e:'🦢'},{en:'elegant',fa:'شیک',e:'👑'}]}
+];
+
+/* DICTATION: hard-to-spell common words */
+var DICT_WORDS=[
+{w:'because',fa:'چون که'},{w:'friend',fa:'دوست'},{w:'school',fa:'مدرسه'},{w:'beautiful',fa:'زیبا'},
+{w:'different',fa:'متفاوت'},{w:'important',fa:'مهم'},{w:'together',fa:'با هم'},{w:'something',fa:'یه چیزی'},
+{w:'sometimes',fa:'بعضی وقتا'},{w:'remember',fa:'یادآوری'},{w:'favorite',fa:'مورد علاقه'},{w:'mountain',fa:'کوه'},
+{w:'Wednesday',fa:'چهارشنبه'},{w:'question',fa:'سوال'},{w:'answer',fa:'جواب'},{w:'enough',fa:'به اندازه'},
+{w:'language',fa:'زبان'},{w:'exercise',fa:'تمرین'},{w:'building',fa:'ساختمان'},{w:'children',fa:'بچه‌ها'},
+{w:'daughter',fa:'دختر'},{w:'knowledge',fa:'دانش'},{w:'necessary',fa:'لازم'},{w:'possible',fa:'ممکن'},
+{w:'wonderful',fa:'شگفت‌انگیز'},{w:'dangerous',fa:'خطرناک'},{w:'comfortable',fa:'راحت'},{w:'experience',fa:'تجربه'},
+{w:'restaurant',fa:'رستوران'},{w:'vegetable',fa:'سبزیجات'},{w:'chocolate',fa:'شکلات'},{w:'umbrella',fa:'چتر'},
+{w:'elephant',fa:'فیل'},{w:'butterfly',fa:'پروانه'},{w:'crocodile',fa:'تمساح'},{w:'dinosaur',fa:'دایناسور'},
+{w:'astronaut',fa:'فضانورد'},{w:'champion',fa:'قهرمان'},{w:'temperature',fa:'دما'},{w:'February',fa:'فوریه'},
+{w:'holiday',fa:'تعطیلات'},{w:'family',fa:'خانواده'},{w:'animal',fa:'حیوان'},{w:'tomorrow',fa:'فردا'},
+{w:'breakfast',fa:'صبحانه'},{w:'homework',fa:'تکلیف'},{w:'sandwich',fa:'ساندویچ'},{w:'triangle',fa:'مثلث'},
+{w:'parachute',fa:'چتر نجات'},{w:'squirrel',fa:'سنجاب'},{w:'adventure',fa:'ماجراجویی'},{w:'surprised',fa:'متعجب'}
 ];
 
 var SPELLW=[{w:'beautiful',fa:'زیبا'},{w:'elephant',fa:'فیل'},{w:'butterfly',fa:'پروانه'},{w:'rainbow',fa:'رنگین‌کمان'},{w:'birthday',fa:'تولد'},{w:'garden',fa:'باغ'},{w:'breakfast',fa:'صبحانه'},{w:'homework',fa:'تکلیف'},{w:'chocolate',fa:'شکلات'},{w:'mountain',fa:'کوه'},{w:'dinosaur',fa:'دایناسور'},{w:'sandwich',fa:'ساندویچ'},{w:'adventure',fa:'ماجراجویی'},{w:'dangerous',fa:'خطرناک'},{w:'wonderful',fa:'شگفت‌انگیز'},{w:'important',fa:'مهم'},{w:'vegetable',fa:'سبزیجات'},{w:'crocodile',fa:'تمساح'},{w:'favorite',fa:'مورد علاقه'},{w:'different',fa:'متفاوت'},{w:'computer',fa:'کامپیوتر'},{w:'astronaut',fa:'فضانورد'},{w:'champion',fa:'قهرمان'},{w:'umbrella',fa:'چتر'},{w:'dolphin',fa:'دلفین'},{w:'triangle',fa:'مثلث'},{w:'parachute',fa:'چتر نجات'},{w:'squirrel',fa:'سنجاب'},{w:'chameleon',fa:'آفتاب‌پرست'},{w:'encyclopedia',fa:'دایره‌المعارف'}];
 
-var FILLB=[{s:'I ___ to school every day.',a:'go',o:['go','goes','going']},{s:'She ___ a beautiful dress.',a:'wears',o:['wear','wears','wore']},{s:'The sun ___ in the morning.',a:'rises',o:['rise','rises','rose']},{s:'They ___ happy today.',a:'are',o:['is','are','am']},{s:'He ___ a big house.',a:'has',o:['have','has','had']},{s:'We ___ to the zoo yesterday.',a:'went',o:['go','goes','went']},{s:'She ___ English very well.',a:'speaks',o:['speak','speaks','spoke']},{s:'I ___ a new book yesterday.',a:'bought',o:['buy','buys','bought']},{s:'He ___ very fast.',a:'runs',o:['run','runs','ran']},{s:'My mother ___ very kind.',a:'is',o:['is','are','am']},{s:'The birds ___ in the sky.',a:'fly',o:['fly','flies','flew']},{s:'She ___ her homework now.',a:'does',o:['do','does','did']},{s:'We ___ dinner at seven.',a:'eat',o:['eat','eats','ate']},{s:'He ___ a letter yesterday.',a:'wrote',o:['write','wrote','writes']},{s:'The cat ___ on the sofa.',a:'sleeps',o:['sleep','sleeps','slept']}];
+var FILLB=[{s:'I ___ to school every day.',a:'go',o:['go','goes','going']},{s:'She ___ a beautiful dress.',a:'wears',o:['wear','wears','wore']},{s:'The sun ___ in the morning.',a:'rises',o:['rise','rises','rose']},{s:'They ___ happy today.',a:'are',o:['is','are','am']},{s:'He ___ a big house.',a:'has',o:['have','has','had']},{s:'We ___ to the zoo yesterday.',a:'went',o:['go','goes','went']},{s:'She ___ English very well.',a:'speaks',o:['speak','speaks','spoke']},{s:'I ___ a new book yesterday.',a:'bought',o:['buy','buys','bought']},{s:'He ___ very fast.',a:'runs',o:['run','runs','ran']},{s:'My mother ___ very kind.',a:'is',o:['is','are','am']},{s:'The birds ___ in the sky.',a:'fly',o:['fly','flies','flew']},{s:'We ___ dinner at seven.',a:'eat',o:['eat','eats','ate']},{s:'He ___ a letter yesterday.',a:'wrote',o:['write','wrote','writes']},{s:'The cat ___ on the sofa.',a:'sleeps',o:['sleep','sleeps','slept']},{s:'She ___ her homework now.',a:'does',o:['do','does','did']}];
 
 var OPP=[{a:'big',b:'small'},{a:'hot',b:'cold'},{a:'happy',b:'sad'},{a:'fast',b:'slow'},{a:'tall',b:'short'},{a:'new',b:'old'},{a:'clean',b:'dirty'},{a:'loud',b:'quiet'},{a:'strong',b:'weak'},{a:'rich',b:'poor'},{a:'open',b:'closed'},{a:'light',b:'dark'},{a:'easy',b:'hard'},{a:'full',b:'empty'},{a:'wet',b:'dry'},{a:'wide',b:'narrow'},{a:'brave',b:'afraid'},{a:'kind',b:'mean'},{a:'safe',b:'dangerous'},{a:'beautiful',b:'ugly'},{a:'young',b:'old'},{a:'heavy',b:'light'},{a:'sweet',b:'sour'},{a:'warm',b:'cool'}];
 var PREPS=[{w:'in',d:'The cat is in the box'},{w:'on',d:'The book is on the table'},{w:'under',d:'The dog is under the bed'},{w:'behind',d:'The ball is behind the door'},{w:'next to',d:'The tree is next to the house'},{w:'between',d:'The cat is between two dogs'},{w:'in front of',d:'The car is in front of the house'},{w:'above',d:'The picture is above the bed'},{w:'near',d:'The school is near the park'}];
-var QWORDS=[{w:'Who',fa:'چه کسی',ex:'Who is your teacher?'},{w:'What',fa:'چه چیزی',ex:'What is your name?'},{w:'Where',fa:'کجا',ex:'Where do you live?'},{w:'When',fa:'کی',ex:'When is your birthday?'},{w:'Why',fa:'چرا',ex:'Why are you happy?'},{w:'How',fa:'چطور',ex:'How are you today?'},{w:'How many',fa:'چند تا',ex:'How many books do you have?'},{w:'Which',fa:'کدام',ex:'Which color do you like?'},{w:'Whose',fa:'مال کی',ex:'Whose bag is this?'}];
-var PHRASES=[{en:'How are you?',fa:'حالت چطوره؟'},{en:'What is your name?',fa:'اسمت چیه؟'},{en:'Thank you very much!',fa:'خیلی ممنون!'},{en:'I am sorry.',fa:'ببخشید'},{en:'Can you help me?',fa:'میتونی کمکم کنی؟'},{en:'Good morning!',fa:'صبح بخیر!'},{en:'Happy birthday!',fa:'تولد مبارک!'},{en:'Be careful!',fa:'مراقب باش!'},{en:'I love my family.',fa:'خانوادمو دوست دارم'},{en:'I am hungry.',fa:'گرسنمه'},{en:'Well done!',fa:'آفرین!'},{en:'See you tomorrow!',fa:'فردا میبینمت!'},{en:'Where are you from?',fa:'اهل کجایی؟'},{en:'I am tired.',fa:'خسته‌ام'},{en:'What happened?',fa:'چی شد؟'},{en:'Good night!',fa:'شب بخیر!'},{en:'Excuse me.',fa:'ببخشید'},{en:'Let us go!',fa:'بریم!'},{en:'Come here.',fa:'بیا اینجا'},{en:'It is raining.',fa:'داره بارون میاد'}];
+var QWORDS=[{w:'Who',fa:'چه کسی',ex:'Who is your teacher?'},{w:'What',fa:'چه چیزی',ex:'What is your name?'},{w:'Where',fa:'کجا',ex:'Where do you live?'},{w:'When',fa:'کی',ex:'When is your birthday?'},{w:'Why',fa:'چرا',ex:'Why are you happy?'},{w:'How',fa:'چطور',ex:'How are you?'},{w:'How many',fa:'چند تا',ex:'How many books?'},{w:'Which',fa:'کدام',ex:'Which color?'},{w:'Whose',fa:'مال کی',ex:'Whose bag is this?'}];
+var PHRASES=[{en:'How are you?',fa:'حالت چطوره؟'},{en:'What is your name?',fa:'اسمت چیه؟'},{en:'Thank you!',fa:'ممنون!'},{en:'I am sorry.',fa:'ببخشید'},{en:'Help me please.',fa:'کمکم کن'},{en:'Good morning!',fa:'صبح بخیر!'},{en:'Happy birthday!',fa:'تولد مبارک!'},{en:'Be careful!',fa:'مراقب باش!'},{en:'I am hungry.',fa:'گرسنمه'},{en:'Well done!',fa:'آفرین!'},{en:'See you tomorrow!',fa:'فردا میبینمت!'},{en:'Good night!',fa:'شب بخیر!'},{en:'Let us go!',fa:'بریم!'},{en:'Come here.',fa:'بیا اینجا'},{en:'I am tired.',fa:'خسته‌ام'}];
 var ODDO=[{w:['cat','dog','fish','table'],a:3},{w:['red','blue','green','banana'],a:3},{w:['Monday','Tuesday','January','Friday'],a:2},{w:['apple','banana','carrot','orange'],a:2},{w:['run','jump','walk','book'],a:3},{w:['elephant','piano','giraffe','lion'],a:1},{w:['shirt','pants','apple','shoes'],a:2},{w:['summer','winter','chair','autumn'],a:2},{w:['piano','guitar','banana','drums'],a:2},{w:['doctor','teacher','pizza','nurse'],a:2},{w:['circle','triangle','square','apple'],a:3},{w:['spring','summer','bread','autumn'],a:2}];
 
 /* ==================== RENDER ==================== */
@@ -342,7 +354,8 @@ case'sentences':h=RSenL();break;case'sentD':h=RSenD();break;
 case'convos':h=RConvL();break;case'convD':h=RConvD();break;
 case'stories':h=RStorL();break;case'storyD':h=RStorD();break;
 case'readpass':h=RPassL();break;case'readD':h=RPassD();break;
-case'writing':if(S.gView==='q')h=rQQ();else if(S.gView==='sb')h=rSB();else if(S.gView==='r')h=rRes();else h=RWr();break;
+case'writing':if(S.gView==='q')h=rQQ();else if(S.gView==='sb')h=rSB();else if(S.gView==='r')h=rRes();else if(S.gView==='dict')h=rDict();else h=RWr();break;
+case'dictation':h=rDict();break;
 case'words':h=RWordL();break;case'wordD':h=RWordD();break;
 case'games':if(S.gView==='q')h=rQQ();else if(S.gView==='r')h=rRes();else if(S.gView==='mem')h=rMem();else h=RGM();break;
 default:h=RH()}mc.innerHTML=h;uS()}
@@ -353,18 +366,17 @@ for(var i=0;i<STORIES.length;i++)if(mD('st_'+i))dR++;
 for(var i=0;i<READINGS.length;i++)if(mD('r_'+i))dR++;
 var dW=0;for(var i=0;i<VOCAB.length;i++)if(mD('v_'+i))dW++;
 var dS=0;for(var i=0;i<SENTS.length;i++)if(mD('s_'+i))dS++;
-return'<div class="hh"><h2>📚 Level 3: خواندن و نوشتن</h2><p>یادگیری زبان انگلیسی از طریق خواندن و نوشتن</p></div>'
+return'<div class="hh"><h2>📚 Level 3: خواندن و نوشتن</h2><p>یادگیری زبان انگلیسی</p></div>'
 +'<div class="section-grid">'
-+'<div class="section-card" onclick="navTo(\'reading\')"><div class="sc-emoji">📖</div><h3>خواندن</h3><p>'+PHONICS.length+' صدا · '+TENSES.length+' فعل · '+SENTS.length+' جمله · '+STORIES.length+' داستان</p></div>'
-+'<div class="section-card" onclick="navTo(\'writing\')"><div class="sc-emoji">✏️</div><h3>نوشتن</h3><p>'+SPELLW.length+' هجی · جمله‌سازی · جای خالی</p></div>'
-+'<div class="section-card" onclick="navTo(\'words\')"><div class="sc-emoji">📚</div><h3>کلمات</h3><p>'+VOCAB.length+' دسته — '+cntW()+' کلمه</p></div>'
-+'<div class="section-card" onclick="navTo(\'games\')"><div class="sc-emoji">🎮</div><h3>بازی</h3><p>۱۴ بازی + حافظه</p></div>'
++'<div class="section-card" onclick="navTo(\'reading\')"><div class="sc-emoji">📖</div><h3>خواندن</h3><p>'+PHONICS.length+' صدا · '+STORIES.length+' داستان</p></div>'
++'<div class="section-card" onclick="navTo(\'writing\')"><div class="sc-emoji">✏️</div><h3>نوشتن</h3><p>هجی · جمله · املا</p></div>'
++'<div class="section-card" onclick="navTo(\'words\')"><div class="sc-emoji">📚</div><h3>کلمات</h3><p>'+cntW()+' کلمه</p></div>'
++'<div class="section-card" onclick="navTo(\'games\')"><div class="sc-emoji">🎮</div><h3>بازی</h3><p>۱۴ بازی</p></div>'
 +'</div><div class="st">📊 پیشرفت</div><div class="sg">'
 +'<div class="sc"><div class="sn">'+dR+'</div><div class="sl">خواندن</div></div>'
 +'<div class="sc"><div class="sn">'+dW+'</div><div class="sl">کلمات</div></div>'
 +'<div class="sc"><div class="sn">'+dS+'/'+SENTS.length+'</div><div class="sl">جمله</div></div>'
 +'<div class="sc"><div class="sn">'+S.stars+'</div><div class="sl">ستاره</div></div></div>'}
-function cntW(){var c=0;for(var i=0;i<VOCAB.length;i++)c+=VOCAB[i].words.length;return c}
 
 function RHub(){
 var dP=0;for(var i=0;i<PHONICS.length;i++)if(mD('ph_'+i))dP++;
@@ -373,51 +385,54 @@ var dS=0;for(var i=0;i<SENTS.length;i++)if(mD('s_'+i))dS++;
 var dC=0;for(var i=0;i<CONVOS.length;i++)if(mD('c_'+i))dC++;
 var dST=0;for(var i=0;i<STORIES.length;i++)if(mD('st_'+i))dST++;
 var dR=0;for(var i=0;i<READINGS.length;i++)if(mD('r_'+i))dR++;
-return'<div class="st">📖 بخش خواندن</div><div class="pg">'
-+mcI("navTo('phonics')",'#EDE8F5','🔤','حروف و صداها',PHONICS.length+' درس فونتیک',dP,PHONICS.length,'#5B4A8A',Math.round(dP/PHONICS.length*100))
-+mcI("navTo('tenses')",'#FDF0EC','⏰','زمان افعال',TENSES.length+' فعل',dT,TENSES.length,'#E87C6C',Math.round(dT/TENSES.length*100))
-+mcI("navTo('sentences')",'#EDF7EF','📝','جمله بخون',SENTS.length+' جمله',dS,SENTS.length,'#6BAF7E',Math.round(dS/SENTS.length*100))
-+mcI("navTo('convos')",'#F5E8F5','💬','مکالمه بخون',CONVOS.length+' مکالمه',dC,CONVOS.length,'#8A5B8A',Math.round(dC/CONVOS.length*100))
-+mcI("navTo('stories')",'#FDF6E3','📖','داستان بخون',STORIES.length+' داستان بچه‌گانه',dST,STORIES.length,'#D4A650',Math.round(dST/STORIES.length*100))
-+mcI("navTo('readpass')",'#E8F4F0','🔬','متن بخون',READINGS.length+' متن علمی',dR,READINGS.length,'#3D7B6F',Math.round(dR/READINGS.length*100))
+return'<div class="st">📖 خواندن</div><div class="pg">'
++mcI("navTo('phonics')",'#EDE8F5','🔤','صداها',PHONICS.length+' درس',dP,PHONICS.length,'#5B4A8A',Math.round(dP/PHONICS.length*100))
++mcI("navTo('tenses')",'#FDF0EC','⏰','افعال',TENSES.length+' فعل',dT,TENSES.length,'#E87C6C',Math.round(dT/TENSES.length*100))
++mcI("navTo('sentences')",'#EDF7EF','📝','جمله',SENTS.length+' جمله',dS,SENTS.length,'#6BAF7E',Math.round(dS/SENTS.length*100))
++mcI("navTo('convos')",'#F5E8F5','💬','مکالمه',CONVOS.length+' مکالمه',dC,CONVOS.length,'#8A5B8A',Math.round(dC/CONVOS.length*100))
++mcI("navTo('stories')",'#FDF6E3','📖','داستان',STORIES.length+' داستان',dST,STORIES.length,'#D4A650',Math.round(dST/STORIES.length*100))
++mcI("navTo('readpass')",'#E8F4F0','🔬','متن',READINGS.length+' متن',dR,READINGS.length,'#3D7B6F',Math.round(dR/READINGS.length*100))
 +'</div>'}
 
+/* Font size control */
+function fCtrl(){return'<div class="font-ctrl"><span style="font-size:.72rem;color:var(--tl)">سایز:</span><button class="font-btn" onclick="chgFont(-2)">-</button><span style="font-size:.78rem;font-weight:800;color:var(--p)">'+S.fontSize+'</span><button class="font-btn" onclick="chgFont(2)">+</button></div>'}
+
 /* PHONICS */
-function RPhon(){var h='<div class="st">🔤 حروف و صداها ('+PHONICS.length+')</div>';for(var i=0;i<PHONICS.length;i++){var p=PHONICS[i],dn=mD('ph_'+i);h+='<div class="pc" onclick="S.selPhonics='+i+';navTo(\'phonD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#EDE8F5;color:#5B4A8A;font-size:.9rem;font-weight:900">'+p.pat.substring(0,3)+'</div><div class="pinf"><h3>'+p.pat+'</h3><p>'+p.sound+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+function RPhon(){var h='<div class="st">🔤 صداها ('+PHONICS.length+')</div>';for(var i=0;i<PHONICS.length;i++){var p=PHONICS[i],dn=mD('ph_'+i);h+='<div class="pc" onclick="S.selPhonics='+i+';navTo(\'phonD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#EDE8F5;color:#5B4A8A;font-size:.8rem;font-weight:900">'+p.pat.substring(0,3)+'</div><div class="pinf"><h3>'+p.pat+'</h3><p>'+p.sound+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RPhonD(){var i=S.selPhonics;if(i==null)return RPhon();var p=PHONICS[i],dn=mD('ph_'+i),pv=i>0?i-1:null,nx=i<PHONICS.length-1?i+1:null;
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'reading\')">← برگرد</button></div>'
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button></div>'
 +'<div class="pc-detail"><div style="font-size:2rem;font-weight:900;color:var(--p);text-align:center;margin-bottom:6px">'+p.pat+'</div><div style="font-size:.85rem;color:var(--tm);text-align:center;margin-bottom:10px">'+p.sound+'</div><div style="text-align:center;margin-bottom:10px">';
 for(var j=0;j<p.words.length;j++)h+='<span style="background:var(--pl);padding:6px 12px;border-radius:8px;font-weight:800;font-size:.88rem;color:var(--pd);cursor:pointer;display:inline-block;margin:3px" onclick="speak(\''+p.words[j]+'\')">'+p.words[j]+'</span>';
-h+='</div><div class="lesson-example" onclick="speak(\''+se(p.ex)+'\')">🔊 '+p.ex+'</div><div class="lesson-fa">جمله نمونه</div></div>'
+h+='</div><div class="lesson-example" onclick="speak(\''+se(p.ex)+'\')">🔊 '+p.ex+'</div></div>'
 +'<div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.selPhonics='+pv+';render()">←</button>':'')
-+(!dn?'<button class="btn bok" onclick="mS(\'ph_'+i+'\');'+(nx!=null?'S.selPhonics='+nx+';render()':'navTo(\'reading\')')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
++(!dn?'<button class="btn bok" onclick="mS(\'ph_'+i+'\');'+(nx!=null?'S.selPhonics='+nx+';render()':'goBack()')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
 +(nx!=null?'<button class="btn bs" onclick="S.selPhonics='+nx+';render()">→</button>':'')+'</div>';return h}
 
 /* TENSES */
-function RTenL(){var h='<div class="st">⏰ زمان افعال ('+TENSES.length+')</div>';for(var i=0;i<TENSES.length;i++){var t=TENSES[i],dn=mD('t_'+i);h+='<div class="pc" onclick="S.selTense='+i+';navTo(\'tenseD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+t.v+' — '+t.fa+'</h3><p>'+t.p+' / '+t.f+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+function RTenL(){var h='<div class="st">⏰ افعال ('+TENSES.length+')</div>';for(var i=0;i<TENSES.length;i++){var t=TENSES[i],dn=mD('t_'+i);h+='<div class="pc" onclick="S.selTense='+i+';navTo(\'tenseD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+t.v+' — '+t.fa+'</h3><p>'+t.p+' / '+t.f+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RTenD(){var i=S.selTense;if(i==null)return'';var t=TENSES[i],dn=mD('t_'+i),pv=i>0?i-1:null,nx=i<TENSES.length-1?i+1:null;
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'reading\')">← برگرد</button></div>'
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button></div>'
 +'<div class="pc-detail"><div style="font-size:1.5rem;font-weight:900;color:var(--pd);margin-bottom:10px">'+t.v+' ('+t.fa+')</div>'
-+'<div class="tense-grid"><div class="tense-cell tense-header">Present حال</div><div class="tense-cell tense-header">Past گذشته</div><div class="tense-cell tense-header">Future آینده</div>'
++'<div class="tense-grid"><div class="tense-cell tense-header">Present</div><div class="tense-cell tense-header">Past</div><div class="tense-cell tense-header">Future</div>'
 +'<div class="tense-cell" onclick="speak(\''+se(t.eP)+'\')">'+t.v+'</div><div class="tense-cell" onclick="speak(\''+se(t.ePa)+'\')">'+t.p+'</div><div class="tense-cell" onclick="speak(\''+se(t.eF)+'\')">'+t.f+'</div></div>'
-+'<div class="lesson-example" onclick="speak(\''+se(t.eP)+'\')">🔊 '+t.eP+'</div><div class="lesson-fa">حال ساده</div>'
-+'<div class="lesson-example" onclick="speak(\''+se(t.ePa)+'\')">🔊 '+t.ePa+'</div><div class="lesson-fa">گذشته ساده</div>'
-+'<div class="lesson-example" onclick="speak(\''+se(t.eF)+'\')">🔊 '+t.eF+'</div><div class="lesson-fa">آینده ساده</div></div>'
++'<div class="lesson-example" onclick="speak(\''+se(t.eP)+'\')">🔊 '+t.eP+'</div><div class="lesson-fa">حال</div>'
++'<div class="lesson-example" onclick="speak(\''+se(t.ePa)+'\')">🔊 '+t.ePa+'</div><div class="lesson-fa">گذشته</div>'
++'<div class="lesson-example" onclick="speak(\''+se(t.eF)+'\')">🔊 '+t.eF+'</div><div class="lesson-fa">آینده</div></div>'
 +'<div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.selTense='+pv+';render()">←</button>':'')
-+(!dn?'<button class="btn bok" onclick="mS(\'t_'+i+'\');'+(nx!=null?'S.selTense='+nx+';render()':'navTo(\'reading\')')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
++(!dn?'<button class="btn bok" onclick="mS(\'t_'+i+'\');'+(nx!=null?'S.selTense='+nx+';render()':'goBack()')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
 +(nx!=null?'<button class="btn bs" onclick="S.selTense='+nx+';render()">→</button>':'')+'</div>';return h}
 
 /* SENTENCES */
-function RSenL(){var h='<div class="st">📝 جمله بخون ('+SENTS.length+')</div>';for(var i=0;i<SENTS.length;i++){var s=SENTS[i],dn=mD('s_'+i);h+='<div class="pc" onclick="S.selSent='+i+';S.sentSt=null;navTo(\'sentD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+s.en+'</h3><p>'+s.fa+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+function RSenL(){var h='<div class="st">📝 جمله ('+SENTS.length+')</div>';for(var i=0;i<SENTS.length;i++){var s=SENTS[i],dn=mD('s_'+i);h+='<div class="pc" onclick="S.selSent='+i+';S.sentSt=null;navTo(\'sentD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+s.en+'</h3><p>'+s.fa+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RSenD(){var i=S.selSent;if(i==null)return'';var s=SENTS[i],dn=mD('s_'+i),pv=i>0?i-1:null,nx=i<SENTS.length-1?i+1:null;
 if(!S.sentSt){var sc=shuf(s.w),at=0;while(sc.join(' ')===s.w.join(' ')&&at<30){sc=shuf(s.w);at++}var u=[];for(var j=0;j<sc.length;j++)u.push(false);S.sentSt={words:sc,ans:[],used:u,lock:false,wrong:false}}
 var ss=S.sentSt,q=ss.words,slots='',lets='';
 for(var j=0;j<s.w.length;j++){if(ss.ans[j]!=null){var cls='sent-slot filled';if(ss.wrong)cls+=' wrong';slots+='<div class="'+cls+'" onclick="sRem('+j+')">'+q[ss.ans[j]]+'</div>'}else slots+='<div class="sent-slot">?</div>'}
 for(var j=0;j<q.length;j++){lets+='<button class="sent-word'+(ss.used[j]?' used':'')+'" onclick="sPl('+j+')">'+q[j]+'</button>'}
-return'<div class="sptb"><button class="btn bs sm" onclick="S.sentSt=null;navTo(\'sentences\')">←</button><span style="font-size:.78rem;color:var(--tm)">'+s.fa+'</span></div>'
+return'<div class="sptb"><button class="btn bs sm" onclick="S.sentSt=null;goBack()">←</button><span style="font-size:.78rem;color:var(--tm)">'+s.fa+'</span></div>'
 +'<div class="pc-detail"><div style="font-size:.95rem;font-weight:800;color:var(--pd);margin-bottom:8px;text-align:right;direction:rtl">'+s.fa+'</div><button class="btn ba sm" style="margin-bottom:12px" onclick="speak(\''+se(s.en)+'\')">🔊 بشنو</button><div class="sent-slots">'+slots+'</div><div class="sent-words">'+lets+'</div></div>'
 +'<div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.sentSt=null;S.selSent='+pv+';render()">←</button>':'')
-+(!dn?'<button class="btn bok" onclick="mS(\'s_'+i+'\');S.sentSt=null;'+(nx!=null?'S.selSent='+nx+';render()':'navTo(\'sentences\')')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
++(!dn?'<button class="btn bok" onclick="mS(\'s_'+i+'\');S.sentSt=null;'+(nx!=null?'S.selSent='+nx+';render()':'goBack()')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
 +(nx!=null?'<button class="btn bs" onclick="S.sentSt=null;S.selSent='+nx+';render()">→</button>':'')+'</div>'}
 function sPl(si){var ss=S.sentSt;if(!ss||ss.lock||ss.used[si])return;var s=SENTS[S.selSent],slot=-1;for(var i=0;i<s.w.length;i++)if(ss.ans[i]==null){slot=i;break}if(slot<0)return;ss.ans[slot]=si;ss.used[si]=true;
 var done=true;for(var i=0;i<s.w.length;i++)if(ss.ans[i]==null){done=false;break}
@@ -426,57 +441,60 @@ if(ok){speak(s.en);addS(2);setTimeout(function(){ss.lock=false;render()},1200)}e
 function sRem(slot){var ss=S.sentSt;if(!ss||ss.lock||ss.ans[slot]==null)return;ss.used[ss.ans[slot]]=false;ss.ans[slot]=null;render()}
 
 /* CONVERSATIONS */
-function RConvL(){var h='<div class="st">💬 مکالمه بخون ('+CONVOS.length+')</div>';for(var i=0;i<CONVOS.length;i++){var c=CONVOS[i],dn=mD('c_'+i);h+='<div class="pc" onclick="S.selConv='+i+';navTo(\'convD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+c.t+'</h3></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+function RConvL(){var h='<div class="st">💬 مکالمه ('+CONVOS.length+')</div>';for(var i=0;i<CONVOS.length;i++){var c=CONVOS[i],dn=mD('c_'+i);h+='<div class="pc" onclick="S.selConv='+i+';navTo(\'convD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pinf"><h3>'+c.t+'</h3></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RConvD(){var i=S.selConv;if(i==null)return'';var c=CONVOS[i],dn=mD('c_'+i),pv=i>0?i-1:null,nx=i<CONVOS.length-1?i+1:null;
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'reading\')">←</button></div><div class="pc-detail"><div style="font-size:1rem;font-weight:900;color:var(--pd);margin-bottom:12px">'+c.t+'</div>';
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button></div><div class="pc-detail"><div style="font-size:1rem;font-weight:900;color:var(--pd);margin-bottom:12px">'+c.t+'</div>';
 for(var j=0;j<c.lines.length;j++){var l=c.lines[j];
 if(l.w==='l')h+='<div class="conv-left" onclick="speak(\''+se(l.t)+'\')">'+l.t+' 🔊</div>';
 else if(l.b)h+='<div class="conv-right"><span class="conv-blank" onclick="speak(\''+se(l.t)+'\')">'+l.t+'</span></div>';
 else h+='<div class="conv-right" onclick="speak(\''+se(l.t)+'\')">'+l.t+' 🔊</div>'}
 h+='</div><div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.selConv='+pv+';render()">←</button>':'')
-+(!dn?'<button class="btn bok" onclick="mS(\'c_'+i+'\');'+(nx!=null?'S.selConv='+nx+';render()':'navTo(\'reading\')')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
++(!dn?'<button class="btn bok" onclick="mS(\'c_'+i+'\');'+(nx!=null?'S.selConv='+nx+';render()':'goBack()')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
 +(nx!=null?'<button class="btn bs" onclick="S.selConv='+nx+';render()">→</button>':'')+'</div>';return h}
 
-/* STORIES */
-function RStorL(){var h='<div class="st">📖 داستان بخون ('+STORIES.length+')</div><p style="font-size:.72rem;color:var(--tl);margin-bottom:10px">هر خط رو جداگانه گوش بده و بخون</p>';for(var i=0;i<STORIES.length;i++){var s=STORIES[i],dn=mD('st_'+i);h+='<div class="pc" onclick="S.selStory='+i+';S.stAns={};S.stCh=0;navTo(\'storyD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#FDF6E3">📖</div><div class="pinf"><h3>'+s.t+'</h3><p>'+s.fa+' — '+s.ch.length+' بخش</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+/* STORIES — line by line, mobile optimized */
+function RStorL(){var h='<div class="st">📖 داستان ('+STORIES.length+')</div><p style="font-size:.72rem;color:var(--tl);margin-bottom:10px">هر خط رو جدا بخون و گوش بده</p>';for(var i=0;i<STORIES.length;i++){var s=STORIES[i],dn=mD('st_'+i);h+='<div class="pc" onclick="S.selStory='+i+';S.stAns={};S.stCh=0;navTo(\'storyD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#FDF6E3">📖</div><div class="pinf"><h3>'+s.t+'</h3><p>'+s.fa+' — '+s.ch.length+' بخش</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RStorD(){var i=S.selStory;if(i==null)return'';var s=STORIES[i],dn=mD('st_'+i),pv=i>0?i-1:null,nx=i<STORIES.length-1?i+1:null,ch=S.stCh||0;
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'reading\')">←</button><span style="font-size:.78rem;color:var(--tm)">'+s.fa+'</span></div>'
-+'<div class="pc-detail"><div style="font-size:1rem;font-weight:900;color:var(--pd);margin-bottom:4px">'+s.t+'</div><div style="font-size:.78rem;color:var(--tl);direction:rtl;text-align:right;margin-bottom:10px">'+s.fa+'</div>';
-if(ch<s.ch.length){h+='<div style="font-size:.7rem;color:var(--p);font-weight:800;margin-bottom:8px">بخش '+(ch+1)+' از '+s.ch.length+'</div>';
-for(var j=0;j<s.ch[ch].length;j++){var line=s.ch[ch][j];h+='<div class="story-line" onclick="speak(\''+se(line)+'\')"><span class="sl-ico">🔊</span>'+line+'</div>'}
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button><span style="font-size:.78rem;color:var(--tm)">'+s.fa+'</span></div>'
++'<div class="pc-detail"><div style="font-size:1rem;font-weight:900;color:var(--pd);margin-bottom:4px">'+s.t+'</div><div style="font-size:.78rem;color:var(--tl);direction:rtl;text-align:right;margin-bottom:10px">'+s.fa+'</div>'
++fCtrl();
+if(ch<s.ch.length){h+='<div style="font-size:.7rem;color:var(--p);font-weight:800;margin-bottom:8px">بخش '+(ch+1)+'/'+s.ch.length+'</div>';
+for(var j=0;j<s.ch[ch].length;j++){var line=s.ch[ch][j];h+='<div class="story-line" onclick="speak(\''+se(line)+'\')" style="font-size:'+S.fontSize+'px"><span class="sl-ico">🔊</span>'+line+'</div>'}
 h+='<div class="nb" style="margin-top:12px">';
-if(ch>0)h+='<button class="btn bs" onclick="S.stCh='+(ch-1)+';render()">← بخش قبل</button>';
-if(ch<s.ch.length-1)h+='<button class="btn bp" style="flex:1" onclick="S.stCh='+(ch+1)+';render()">بخش بعدی →</button>';
+if(ch>0)h+='<button class="btn bs" onclick="S.stCh='+(ch-1)+';render()">← قبل</button>';
+if(ch<s.ch.length-1)h+='<button class="btn bp" style="flex:1" onclick="S.stCh='+(ch+1)+';render()">بعدی →</button>';
 else h+='<button class="btn bok" style="flex:1" onclick="S.stCh='+(ch+1)+';render()">سوالات ❓</button>';
-h+='<button class="btn ba" onclick="speakStory('+i+','+ch+')">🔊 همه</button></div>'}else{h+='<div style="font-size:.88rem;font-weight:800;color:var(--pd);margin-bottom:12px">به سوالات جواب بده!</div>';
+h+='<button class="btn ba" onclick="speakStory('+i+','+ch+')">🔊 همه</button></div>'}else{h+='<div style="font-size:.88rem;font-weight:800;color:var(--pd);margin-bottom:12px">سوالات!</div>';
 for(var qi=0;qi<s.qs.length;qi++){var q=s.qs[qi],aw=S.stAns[qi]!==undefined;
 h+='<div style="background:var(--pl);border-radius:var(--r);padding:10px;margin-bottom:8px;direction:rtl;text-align:right"><h4 style="font-size:.78rem;color:var(--p);margin-bottom:5px">❓ '+q.q+'</h4>';
 for(var oi=0;oi<q.o.length;oi++){var cls='qo';if(aw){if(oi===q.a)cls+=' corr';else if(oi===S.stAns[qi]&&oi!==q.a)cls+=' wro';cls+=' dis'}h+='<button class="'+cls+'" onclick="S.stAns['+qi+']='+oi+';render()">'+q.o[oi]+'</button>'}h+='</div>'}
 var allD=true;for(var qi=0;qi<s.qs.length;qi++)if(S.stAns[qi]===undefined)allD=false;
-if(allD&&!dn)h+='<div class="nb"><button class="btn bok" style="flex:1" onclick="mS(\'st_'+i+'\');'+(nx!=null?'S.selStory='+nx+';S.stAns={};S.stCh=0;render()':'navTo(\'reading\')')+'">✓ عالی بود</button></div>';
+if(allD&&!dn)h+='<div class="nb"><button class="btn bok" style="flex:1" onclick="mS(\'st_'+i+'\');'+(nx!=null?'S.selStory='+nx+';S.stAns={};S.stCh=0;render()':'goBack()')+'">✓</button></div>';
 else if(dn)h+='<div class="nb"><button class="btn bg" style="flex:1;justify-content:center">✓</button></div>'}
 h+='</div><div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.selStory='+pv+';S.stAns={};S.stCh=0;render()">←</button>':'')
 +(nx!=null?'<button class="btn bs" onclick="S.selStory='+nx+';S.stAns={};S.stCh=0;render()">→</button>':'')+'</div>';return h}
 function speakStory(idx,ch){var s=STORIES[idx];if(ch<s.ch.length)speak(s.ch[ch].join('. '))}
 
 /* READINGS */
-function RPassL(){var h='<div class="st">🔬 متن بخون ('+READINGS.length+')</div>';for(var i=0;i<READINGS.length;i++){var r=READINGS[i],dn=mD('r_'+i);h+='<div class="pc" onclick="S.selRead='+i+';S.rAns={};navTo(\'readD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#E8F4F0">🔬</div><div class="pinf"><h3>'+r.t+'</h3><p>'+r.fa+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
+function RPassL(){var h='<div class="st">🔬 متن ('+READINGS.length+')</div>';for(var i=0;i<READINGS.length;i++){var r=READINGS[i],dn=mD('r_'+i);h+='<div class="pc" onclick="S.selRead='+i+';S.rAns={};navTo(\'readD\')" style="'+(dn?'border-color:var(--ok)':'')+'"><div class="pi" style="background:#E8F4F0">🔬</div><div class="pinf"><h3>'+r.t+'</h3><p>'+r.fa+'</p></div>'+(dn?'<span style="color:var(--ok)">✓</span>':'')+'</div>'}return h}
 function RPassD(){var i=S.selRead;if(i==null)return'';var r=READINGS[i],dn=mD('r_'+i),pv=i>0?i-1:null,nx=i<READINGS.length-1?i+1:null;
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'reading\')">←</button><span style="font-size:.78rem;color:var(--tm)">'+r.fa+'</span></div>'
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button><span style="font-size:.78rem;color:var(--tm)">'+r.fa+'</span></div>'
 +'<div class="pc-detail"><div style="font-size:1rem;font-weight:900;color:var(--pd);margin-bottom:4px">'+r.t+'</div><button class="btn ba sm" style="margin:6px 0 12px" onclick="speak(\''+se(r.text)+'\')">🔊 بشنو</button>'
-+'<div style="background:var(--pl);border-radius:8px;padding:14px;font-size:.9rem;line-height:2;text-align:left;margin-bottom:14px">'+r.text+'</div>';
++fCtrl()
++'<div style="background:var(--pl);border-radius:8px;padding:14px;line-height:2;text-align:left;margin-bottom:14px;font-size:'+S.fontSize+'px">'+r.text+'</div>';
 for(var qi=0;qi<r.qs.length;qi++){var q=r.qs[qi],aw=S.rAns[qi]!==undefined;
 h+='<div style="background:var(--pl);border-radius:var(--r);padding:10px;margin-bottom:8px;direction:rtl;text-align:right"><h4 style="font-size:.78rem;color:var(--p);margin-bottom:5px">❓ '+q.q+'</h4>';
 for(var oi=0;oi<q.o.length;oi++){var cls='qo';if(aw){if(oi===q.a)cls+=' corr';else if(oi===S.rAns[qi]&&oi!==q.a)cls+=' wro';cls+=' dis'}h+='<button class="'+cls+'" onclick="S.rAns['+qi+']='+oi+';render()">'+q.o[oi]+'</button>'}h+='</div>'}
 h+='</div><div class="nb">'+(pv!=null?'<button class="btn bs" onclick="S.selRead='+pv+';S.rAns={};render()">←</button>':'')
-+(!dn?'<button class="btn bok" onclick="mS(\'r_'+i+'\');'+(nx!=null?'S.selRead='+nx+';S.rAns={};render()':'navTo(\'reading\')')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
++(!dn?'<button class="btn bok" onclick="mS(\'r_'+i+'\');'+(nx!=null?'S.selRead='+nx+';S.rAns={};render()':'goBack()')+'">✓</button>':'<button class="btn bg" style="flex:1;justify-content:center">✓</button>')
 +(nx!=null?'<button class="btn bs" onclick="S.selRead='+nx+';S.rAns={};render()">→</button>':'')+'</div>';return h}
 
 /* WRITING */
-function RWr(){return'<div class="st">✏️ بخش نوشتن</div><p style="font-size:.72rem;color:var(--tl);margin-bottom:12px">با نوشتن و تمرین یاد میگیری!</p><div class="pg">'
+function RWr(){return'<div class="st">✏️ نوشتن</div><p style="font-size:.72rem;color:var(--tl);margin-bottom:12px">با نوشتن و تمرین یاد بگیر!</p><div class="pg">'
 +'<div class="pc" onclick="startSpell()"><div class="pi" style="background:#FDF0EC">✏️</div><div class="pinf"><h3>هجی کن</h3><p>'+SPELLW.length+' کلمه</p></div></div>'
 +'<div class="pc" onclick="startSB()"><div class="pi" style="background:#EDE8F5">📝</div><div class="pinf"><h3>جمله بساز</h3><p>کلماتو مرتب کن</p></div></div>'
 +'<div class="pc" onclick="startFill()"><div class="pi" style="background:#FDF6E3">📋</div><div class="pinf"><h3>جای خالی</h3><p>کلمه درست رو بذار</p></div></div>'
++'<div class="pc" onclick="startDict()"><div class="pi" style="background:#EDF7EF">🔤</div><div class="pinf"><h3>املای کلمات</h3><p>'+DICT_WORDS.length+' کلمه — حرف به حرف بنویس</p></div></div>'
 +'</div>'}
 function startSpell(){var pool=shuf(SPELLW).slice(0,10),qs=[];for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.w];while(opts.length<4){var r=SPELLW[Math.floor(Math.random()*SPELLW.length)].w;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(w.fa,opts,w.w))}S.qS={mode:'sp',qs:qs,qi:0,sc:0,ans:[],lock:false};S.gView='q';render()}
 function startSB(){S.sbQ=shuf(SENTS).slice(0,8);S.sbI=0;S.sbSt=null;S.gView='sb';render()}
@@ -494,51 +512,76 @@ if(done){ss.lock=true;var ok=true;for(var i=0;i<s.w.length;i++)if(ss.words[ss.an
 if(ok){speak(s.en);addS(2);setTimeout(function(){S.sbI++;S.sbSt=null;render()},1200)}else{ss.wrong=true;render();setTimeout(function(){var u=[];for(var j=0;j<ss.words.length;j++)u.push(false);ss.ans=[];ss.used=u;ss.lock=false;ss.wrong=false;render()},1500)}}render()}
 function sbRem(slot){var ss=S.sbSt;if(!ss||ss.lock||ss.ans[slot]==null)return;ss.used[ss.ans[slot]]=false;ss.ans[slot]=null;render()}
 
+/* DICTATION — letter by letter spelling */
+function startDict(){var cnt=Math.floor(Math.random()*6)+10;S.dictQ=shuf(DICT_WORDS).slice(0,cnt);S.dictI=0;S.dictSt=null;S.screen='dictation';S.gView='dict';render()}
+function rDict(){var dq=S.dictQ,di=S.dictI;
+if(!dq||di>=dq.length)return'<div class="result-card"><div style="font-size:3rem;margin-bottom:8px">🎉</div><h3>آفرین!</h3><p>'+dq.length+' کلمه رو املا کردی!</p><div class="nb"><button class="btn bp bl" style="flex:1" onclick="S.dictQ=null;S.screen=\'writing\';S.gView=\'menu\';render()">بازگشت</button></div></div>';
+var w=dq[di];
+if(!S.dictSt){var letters=w.w.split(''),scram=shuf(letters),abc='abcdefghijklmnopqrstuvwxyz';
+while(scram.length<w.w.length+4){var r=abc[Math.floor(Math.random()*abc.length)];if(scram.indexOf(r)<0)scram.push(r)}
+scram=shuf(scram);S.dictSt={ans:new Array(w.w.length).fill(null),opts:scram,used:new Array(scram.length).fill(false),done:false,correct:false}}
+var ds=S.dictSt,slots='',opts='';
+for(var i=0;i<w.w.length;i++){var cls='dict-slot';if(ds.ans[i]!==null){cls+=' filled';if(ds.correct)cls+=' correct';slots+='<div class="'+cls+'" onclick="dRem('+i+')">'+ds.ans[i]+'</div>'}else{slots+='<div class="dict-slot">_</div>'}}
+for(var i=0;i<ds.opts.length;i++){opts+='<div class="dict-opt'+(ds.used[i]?' used':'')+'" onclick="dPl('+i+')">'+ds.opts[i]+'</div>'}
+return'<div class="sptb"><button class="btn bs sm" onclick="S.dictQ=null;S.screen=\'writing\';S.gView=\'menu\';render()">←</button><span style="font-size:.72rem;color:var(--tl)">'+(di+1)+'/'+dq.length+'</span></div>'
++'<div class="pc-detail" style="text-align:center"><div style="font-size:2.2rem;margin-bottom:6px">📝</div><div style="font-size:1.3rem;font-weight:900;color:var(--pd);margin-bottom:4px">'+w.fa+'</div><div style="font-size:.72rem;color:var(--tl);margin-bottom:4px">'+w.w.length+' حرف</div><button class="btn ba sm" style="margin-bottom:14px" onclick="speak(\''+w.w+'\')">🔊 '+w.w+'</button>'
++'<div class="dict-slots">'+slots+'</div><div class="dict-opts">'+opts+'</div>'
++(ds.correct?'<div style="color:var(--ok);font-weight:800;margin-top:10px">✓ درسته!</div>':'')+'</div>'
++'<div class="nb">'+(di>0?'<button class="btn bs" onclick="S.dictI='+(di-1)+';S.dictSt=null;render()">←</button>':'')
++(ds.correct?'<button class="btn bok" style="flex:1" onclick="S.dictI='+(di+1)+';S.dictSt=null;addS(2);render()">بعدی →</button>':'')+'</div>'}
+function dPl(oi){var ds=S.dictSt;if(!ds||ds.done||ds.used[oi])return;var slot=-1;for(var i=0;i<ds.ans.length;i++)if(ds.ans[i]===null){slot=i;break}if(slot<0)return;ds.ans[slot]=ds.opts[oi];ds.used[oi]=true;
+var filled=true;for(var i=0;i<ds.ans.length;i++)if(ds.ans[i]===null){filled=false;break}
+if(filled){var w=S.dictQ[S.dictI],ok=true;for(var i=0;i<w.w.length;i++)if(ds.ans[i]!==w.w[i]){ok=false;break}
+if(ok){ds.done=true;ds.correct=true;speak(w.w)}else{ds.done=true}
+setTimeout(function(){render()},ok?1000:1500)}render()}
+function dRem(slot){var ds=S.dictSt;if(!ds||ds.done||ds.ans[slot]===null)return;var ch=ds.ans[slot];for(var i=0;i<ds.opts.length;i++)if(ds.opts[i]===ch&&ds.used[i]){ds.used[i]=false;break}ds.ans[slot]=null;render()}
+
 /* WORDS */
-function RWordL(){var h='<div class="st">📚 کلمات ('+cntW()+' کلمه)</div><div class="vocab-cat">';for(var i=0;i<VOCAB.length;i++){var v=VOCAB[i],dn=mD('v_'+i);h+='<div class="vocab-card" onclick="S.selCat='+i+';navTo(\'wordD\')" style="border-color:'+(dn?'var(--ok)':'transparent')+'"><div style="font-size:2rem">'+v.words[0].e+'</div><div class="vc-title">'+v.cat+'</div><div class="vc-count">'+v.words.length+' کلمه</div></div>'}h+='</div>';return h}
+function RWordL(){var h='<div class="st">📚 کلمات ('+cntW()+')</div><div class="vocab-cat">';for(var i=0;i<VOCAB.length;i++){var v=VOCAB[i],dn=mD('v_'+i);h+='<div class="vocab-card" onclick="S.selCat='+i+';navTo(\'wordD\')" style="border-color:'+(dn?'var(--ok)':'transparent')+'"><div style="font-size:2rem">'+v.words[0].e+'</div><div class="vc-title">'+v.cat+'</div><div class="vc-count">'+v.words.length+' کلمه</div></div>'}h+='</div>';return h}
 function RWordD(){var i=S.selCat;if(i==null||!VOCAB[i])return RWordL();var v=VOCAB[i],dn=mD('v_'+i);
-var h='<div class="sptb"><button class="btn bs sm" onclick="navTo(\'words\')">←</button><span style="font-size:.78rem;color:var(--tm)">'+v.cat+'</span></div>'
+var h='<div class="sptb"><button class="btn bs sm" onclick="goBack()">←</button><span style="font-size:.78rem;color:var(--tm)">'+v.cat+'</span></div>'
 +'<div class="pc-detail"><div style="font-size:1.1rem;font-weight:900;color:var(--pd);margin-bottom:12px">'+v.cat+'</div>';
 for(var j=0;j<v.words.length;j++){var w=v.words[j];h+='<div class="word-item" onclick="speak(\''+w.en+'\')"><div class="wi-emoji">'+w.e+'</div><div class="wi-text"><h4>'+w.en+'</h4><p>'+w.fa+'</p></div><span style="margin-right:auto;color:var(--tl)">🔊</span></div>'}
-h+='</div><div class="nb"><button class="btn bs" onclick="navTo(\'words\')">←</button>';
-if(!dn)h+='<button class="btn bok" onclick="mS(\'v_'+i+'\');navTo(\'words\')">✓</button>';else h+='<button class="btn bg" style="flex:1;justify-content:center">✓</button>';
+h+='</div><div class="nb"><button class="btn bs" onclick="goBack()">←</button>';
+if(!dn)h+='<button class="btn bok" onclick="mS(\'v_'+i+'\');goBack()">✓</button>';else h+='<button class="btn bg" style="flex:1;justify-content:center">✓</button>';
 h+='<button class="btn ba" onclick="startCatSp('+i+')">✏️</button></div>';return h}
 function startCatSp(ci){var v=VOCAB[ci],qs=[];for(var i=0;i<v.words.length;i++){var w=v.words[i],opts=[w.en];while(opts.length<4){var r=v.words[Math.floor(Math.random()*v.words.length)].en;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(w.e+' '+w.fa,opts,w.en))}S.qS={mode:'cs',qs:shuf(qs),qi:0,sc:0,ans:[],lock:false};S.gView='q';render()}
 
-/* ===== GAMES — ALL using mkQ() for correct shuffling ===== */
-function RGM(){return'<div class="st">🎮 بازی‌ها</div><div class="pg">'
-+gmG("startG('tense')",'⏰','زمان صحیح','یه فعل فارسی میبینی با زمانش (حال/گذشته/آینده). شکل درست انگلیسی رو انتخاب کن')
-+gmG("startG('qword')",'❓','کلمه سوالی','یه جمله سوالی میبینی. کلمه سوالی درست (Who, What, Where...) رو انتخاب کن')
-+gmG("startG('opposite')",'↔️','متضادها','یه کلمه میبینی. باید متضادش رو پیدا کنی. مثلا big ↔ small')
-+gmG("startG('prep')",'📍','حرف اضافه','یه جمله میبینی. باید حرف اضافه درست رو انتخاب کنی (in, on, under...)')
-+gmG("startG('grammar')",'📖','دستور زبان','یه جمله ناقص میبینی. کلمه گرامری درست رو انتخاب کن')
-+gmG("startG('phrase')",'💬','معنی عبارت','یه عبارت انگلیسی میبینی. معنی فارسیش رو انتخاب کن')
-+gmG("startG('fill')",'📝','جای خالی','یه جمله با ___ میبینی. کلمه درست رو انتخاب کن')
-+gmG("startG('odd')",'🎯','نامربوط','چهار کلمه میبینی. اونی که به بقیه ربطی نداره رو پیدا کن')
-+gmG("startG('spelling')",'✏️','هجی','معنی فارسی میبینی. املای درست انگلیسی رو انتخاب کن')
-+gmG("startG('listen')",'🎧','گوش بده','یه کلمه برات خونده میشه. باید از بین گزینه‌ها درستشو انتخاب کنی')
-+gmG("startG('missing')",'🔤','حرف جاافتاده','یه کلمه با حرف ناقص. بگو کدوم حرف کمه')
-+gmG("startG('scramble')",'🔀','حروف درهم','حروف یه کلمه قاطی شدن. بگو کلمه درست کدومه')
-+gmG("startG('quick')",'⚡','سرعتی','یه ایموجی فارسی میبینی. سریع انگلیسیشو انتخاب کن')
-+gmG("startG('category')",'📦','دسته‌بندی','ببین کدوم کلمه به اون دسته مربوطه')
-+'<div class="pc" onclick="startMem()"><div class="pi" style="background:#E8F4F0">🧠</div><div class="pinf"><h3>حافظه</h3><p>کارت‌ها رو برگردون و جفت پیدا کن</p></div><div class="gm-desc">کارت‌ها رو لمس کن. جفت انگلیسی-فارسی پیدا کن!</div></div></div>'}
-function gmG(c,ico,t,desc){return'<div class="pc" onclick="'+c+'"><div class="pi" style="background:var(--pl)">'+ico+'</div><div class="pinf"><h3>'+t+'</h3></div><div class="gm-desc">'+desc+'</div></div>'}
+/* GAMES — all using mkQ for proper shuffling */
+function RGM(){return'<div class="st">🎮 بازی‌ها (۱۴)</div><div class="pg">'
++gmG("startG('tense')",'⏰','زمان صحیح','یه فعل فارسی میبینی. شکل انگلیسی درستشو انتخاب کن')
++gmG("startG('qword')",'❓','کلمه سوالی','یه جمله سوالی میبینی. Who, What, Where... کدومه؟')
++gmG("startG('opposite')",'↔️','متضادها','متضاد کلمه رو پیدا کن: big ↔ small')
++gmG("startG('prep')",'📍','حرف اضافه','in, on, under... کدوم حرف اضافه درسته؟')
++gmG("startG('grammar')",'📖','دستور زبان','کلمه گرامری درست رو انتخاب کن')
++gmG("startG('phrase')",'💬','معنی عبارت','عبارت انگلیسی رو بخون و معنی فارسیشو انتخاب کن')
++gmG("startG('fill')",'📝','جای خالی','کلمه مناسب رو توی ___ بذار')
++gmG("startG('odd')",'🎯','نامربوط','کدوم کلمه به بقیه ربطی نداره؟')
++gmG("startG('spelling')",'✏️','هجی','املای درست کلمه رو انتخاب کن')
++gmG("startG('listen')",'🎧','گوش بده','کلمه رو گوش بده و درستشو انتخاب کن')
++gmG("startG('missing')",'🔤','حرف جا','کدوم حرف کمه؟')
++gmG("startG('scramble')",'🔀','حروف درهم','حروف قاطی شده → کلمه درست کدومه؟')
++gmG("startG('quick')",'⚡','سرعتی','ایموجی → سریع انگلیسیشو بگو')
++gmG("startG('category')",'📦','دسته‌بندی','کدوم کلمه به این دسته مربوطه؟')
++'<div class="pc" onclick="startMem()"><div class="pi" style="background:#E8F4F0">🧠</div><div class="pinf"><h3>حافظه</h3><p>جفت انگلیسی-فارسی پیدا کن</p></div></div></div>'}
+
+function gmG(c,ico,t,desc){return'<div class="pc" onclick="'+c+'"><div class="pi" style="background:var(--pl)">'+ico+'</div><div style="flex:1;min-width:0"><h3 style="font-size:.85rem;font-weight:800;margin-bottom:2px">'+t+'</h3><p class="gm-desc">'+desc+'</p></div></div>'}
 
 function startG(mode){var cnt=10,qs=[];
 if(mode==='tense'){var pool=shuf(TENSES).slice(0,cnt);for(var i=0;i<pool.length;i++){var t=pool[i],ri=Math.floor(Math.random()*3),forms=[t.v,t.p,t.f],labels=['Present حال','Past گذشته','Future آینده'];qs.push(mkQ(t.fa+' ('+labels[ri]+')',forms,forms[ri]))}}
 else if(mode==='qword'){var pool=shuf(QWORDS).slice(0,cnt);for(var i=0;i<pool.length;i++){var qw=pool[i],opts=[qw.w];while(opts.length<4){var r=QWORDS[Math.floor(Math.random()*QWORDS.length)].w;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(qw.ex+' ('+qw.fa+')',opts,qw.w))}}
 else if(mode==='opposite'){var pool=shuf(OPP).slice(0,cnt);for(var i=0;i<pool.length;i++){var op=pool[i],isF=Math.random()>.5,qW=isF?op.a:op.b,ans=isF?op.b:op.a,opts=[ans];while(opts.length<4){var r=OPP[Math.floor(Math.random()*OPP.length)],w=Math.random()>.5?r.a:r.b;if(opts.indexOf(w)<0&&w!==qW)opts.push(w)}qs.push(mkQ('('+qW+') → متضاد؟',opts,ans))}}
-else if(mode==='prep'){var allP=['in','on','under','behind','next to','between','in front of','above','near'];var pool=shuf(PREPS).slice(0,cnt);for(var i=0;i<pool.length;i++){qs.push(mkQ(pool[i].d,allP.slice(),pool[i].w))}}
-else if(mode==='grammar'){var items=[{q:'___ apple',o:['an','a','the'],c:0},{q:'I ___ swim.',o:['can','is','are'],c:0},{q:'baby → ?',o:['babies','babys','babyes'],c:0},{q:'He ___ a car.',o:['has','have','is'],c:0},{q:'man → ?',o:['men','mans','mens'],c:0},{q:'child → ?',o:['children','childs','childes'],c:0},{q:'He is ___ than me.',o:['taller','tallest','more tall'],c:0},{q:'She ___ reading.',o:['is','are','am'],c:0},{q:'I ___ already done.',o:['have','has','had'],c:0},{q:'foot → ?',o:['feet','foots','feets'],c:0},{q:'tooth → ?',o:['teeth','tooths','teeths'],c:0},{q:'She ___ not eat meat.',o:['does','do','is'],c:0}];items=shuf(items).slice(0,cnt);for(var i=0;i<items.length;i++)qs.push({q:items[i].q,opts:items[i].o,ci:items[i].c})}
+else if(mode==='prep'){var allP=['in','on','under','behind','next to','between','in front of','above','near'];var pool=shuf(PREPS).slice(0,cnt);for(var i=0;i<pool.length;i++)qs.push(mkQ(pool[i].d,allP.slice(),pool[i].w))}
+else if(mode==='grammar'){var items=[{q:'___ apple',a:'an',o:['an','a','the']},{q:'I ___ swim.',a:'can',o:['can','is','are']},{q:'baby → ?',a:'babies',o:['babies','babys','babyes']},{q:'He ___ a car.',a:'has',o:['has','have','is']},{q:'man → ?',a:'men',o:['men','mans','mens']},{q:'child → ?',a:'children',o:['children','childs','childes']},{q:'He is ___ than me.',a:'taller',o:['taller','tallest','more tall']},{q:'She ___ reading.',a:'is',o:['is','are','am']},{q:'foot → ?',a:'feet',o:['feet','foots','feets']},{q:'tooth → ?',a:'teeth',o:['teeth','tooths','teeths']},{q:'She ___ not eat.',a:'does',o:['does','do','is']},{q:'I ___ already done.',a:'have',o:['have','has','had']}];items=shuf(items).slice(0,cnt);for(var i=0;i<items.length;i++)qs.push(mkQ(items[i].q,items[i].o,items[i].a))}
 else if(mode==='phrase'){var pool=shuf(PHRASES).slice(0,cnt);for(var i=0;i<pool.length;i++){var ph=pool[i],opts=[ph.fa];while(opts.length<4){var r=PHRASES[Math.floor(Math.random()*PHRASES.length)].fa;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(ph.en,opts,ph.fa))}}
-else if(mode==='fill'){var pool=shuf(FILLB).slice(0,cnt);for(var i=0;i<pool.length;i++){qs.push(mkQ(pool[i].s,pool[i].o,pool[i].a))}}
-else if(mode==='odd'){var pool=shuf(ODDO).slice(0,cnt);for(var i=0;i<pool.length;i++){qs.push({q:'کدوم ربطی نداره؟',opts:pool[i].w,ci:pool[i].a})}}
+else if(mode==='fill'){var pool=shuf(FILLB).slice(0,cnt);for(var i=0;i<pool.length;i++)qs.push(mkQ(pool[i].s,pool[i].o,pool[i].a))}
+else if(mode==='odd'){var pool=shuf(ODDO).slice(0,cnt);for(var i=0;i<pool.length;i++){var od=pool[i],ansW=od.w[od.a];qs.push(mkQ('کدوم ربطی نداره؟',od.w,ansW))}}
 else if(mode==='spelling'){var pool=shuf(SPELLW).slice(0,cnt);for(var i=0;i<pool.length;i++){var sw=pool[i],opts=[sw.w];while(opts.length<4){var r=SPELLW[Math.floor(Math.random()*SPELLW.length)].w;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(sw.fa,opts,sw.w))}}
 else if(mode==='listen'){var pool=shuf(SPELLW).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.w];while(opts.length<4){var r=SPELLW[Math.floor(Math.random()*SPELLW.length)].w;if(opts.indexOf(r)<0)opts.push(r)}var q=mkQ('🎧 گوش بده! '+w.fa,opts,w.w);q.spk=w.w;qs.push(q)}}
 else if(mode==='missing'){var pool=shuf(SPELLW).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],idx=Math.floor(Math.random()*w.w.length),ch=w.w[idx],disp=w.w.substring(0,idx)+'__'+w.w.substring(idx+1),opts=[ch],abc='abcdefghijklmnopqrstuvwxyz';while(opts.length<4){var r=abc[Math.floor(Math.random()*abc.length)];if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(disp+' ('+w.fa+')',opts,ch))}}
-else if(mode==='scramble'){var pool=shuf(SPELLW).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.w];while(opts.length<4){var r=SPELLW[Math.floor(Math.random()*SPELLW.length)].w;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(w.fa+' — حروف: '+shuf(w.w.split('')).join('').toUpperCase(),opts,w.w))}}
-else if(mode==='quick'){var allWords=[];for(var ci=0;ci<3&&ci<VOCAB.length;ci++)for(var wi=0;wi<VOCAB[ci].words.length;wi++)allWords.push(VOCAB[ci].words[wi]);var pool=shuf(allWords).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.en];while(opts.length<4){var cat=VOCAB[Math.floor(Math.random()*VOCAB.length)],rw=cat.words[Math.floor(Math.random()*cat.words.length)];if(opts.indexOf(rw.en)<0)opts.push(rw.en)}qs.push(mkQ(w.e+' '+w.fa,opts,w.en))}}
-else if(mode==='category'){var cats=[{name:'حیوانات 🐾',words:['cat','dog','elephant','lion','fish']},{name:'غذا 🍎',words:['apple','banana','bread','rice','cake']},{name:'رنگ 🎨',words:['red','blue','green','yellow','pink']}];for(var i=0;i<cnt;i++){var ci2=i%cats.length,cat=cats[ci2],w=cat.words[Math.floor(Math.random()*cat.words.length)],opts=[cat.name];while(opts.length<3){var rc=cats[Math.floor(Math.random()*cats.length)];if(opts.indexOf(rc.name)<0)opts.push(rc.name)}qs.push(mkQ(w+' — کدوم دسته؟',opts,cat.name))}}
+else if(mode==='scramble'){var pool=shuf(SPELLW).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.w];while(opts.length<4){var r=SPELLW[Math.floor(Math.random()*SPELLW.length)].w;if(opts.indexOf(r)<0)opts.push(r)}qs.push(mkQ(w.fa+' → '+shuf(w.w.split('')).join('').toUpperCase(),opts,w.w))}}
+else if(mode==='quick'){var allW=[];for(var ci=0;ci<3&&ci<VOCAB.length;ci++)for(var wi=0;wi<VOCAB[ci].words.length;wi++)allW.push(VOCAB[ci].words[wi]);var pool=shuf(allW).slice(0,cnt);for(var i=0;i<pool.length;i++){var w=pool[i],opts=[w.en];while(opts.length<4){var cat=VOCAB[Math.floor(Math.random()*VOCAB.length)],rw=cat.words[Math.floor(Math.random()*cat.words.length)];if(opts.indexOf(rw.en)<0)opts.push(rw.en)}qs.push(mkQ(w.e+' '+w.fa,opts,w.en))}}
+else if(mode==='category'){var cats=[{n:'حیوانات 🐾',w:['cat','dog','elephant','lion','fish']},{n:'غذا 🍎',w:['apple','banana','bread','rice','cake']},{n:'رنگ 🎨',w:['red','blue','green','yellow','pink']}];for(var i=0;i<cnt;i++){var ci2=i%cats.length,cat=cats[ci2],w2=cat.w[Math.floor(Math.random()*cat.w.length)],opts=[cat.n];while(opts.length<3){var rc=cats[Math.floor(Math.random()*cats.length)];if(opts.indexOf(rc.n)<0)opts.push(rc.n)}qs.push(mkQ(w2+' — کدوم دسته؟',opts,cat.n))}}
 S.qS={mode:mode,qs:qs,qi:0,sc:0,ans:[],lock:false};S.gView='q';render()}
 
 function rQQ(){var ss=S.qS;if(!ss)return'';if(ss.qi>=ss.qs.length)return rShowR();var q=ss.qs[ss.qi],dots='';for(var i=0;i<ss.qs.length;i++){var c='spd';if(i===ss.qi)c+=' cur';else if(i<ss.qi)c+=ss.ans[i]?' ok2':' fl';dots+='<div class="'+c+'"></div>'}
@@ -558,7 +601,7 @@ function cancelQ(){S.qS=null;S.lR=null;S.gView='menu';render()}
 var memC=[],memF=[],memM=[];
 function startMem(){var pairs=[];var pool=shuf(TENSES).slice(0,6);for(var i=0;i<pool.length;i++){pairs.push({id:i,type:'en',text:pool[i].v});pairs.push({id:i,type:'fa',text:pool[i].fa})}memC=shuf(pairs);memF=[];memM=[];S.gView='mem';render()}
 function rMem(){var h='<div class="sptb"><button class="btn bs sm" onclick="S.gView=\'menu\';render()">←</button><span style="font-size:.72rem;color:var(--tl)">جفت: '+(memM.length/2)+'/'+(memC.length/2)+'</span></div>'
-+'<div class="pc-detail" style="text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">🧠</div><div style="font-size:.88rem;font-weight:800;color:var(--pd);margin-bottom:12px">کارت‌های جفت رو پیدا کن!</div><div class="mem-grid">';
++'<div class="pc-detail" style="text-align:center"><div style="font-size:1.5rem;margin-bottom:8px">🧠</div><div style="font-size:.88rem;font-weight:800;color:var(--pd);margin-bottom:12px">جفت پیدا کن!</div><div class="mem-grid">';
 for(var i=0;i<memC.length;i++){var c=memC[i],show=memF.indexOf(i)>=0||memM.indexOf(i)>=0,done=memM.indexOf(i)>=0;
 h+='<div class="mem-card '+(show?'flipped':'')+' '+(done?'matched':'')+'" onclick="memFlip('+i+')">'+(show?c.text:'?')+'</div>'}
 h+='</div></div>';document.getElementById('mc').innerHTML=h;uS()}
