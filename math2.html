@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF7EA">
+<title>مدرسهٔ ستاره‌ای ✦ درس‌به‌درس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFF7EA; --ink:#33254E; --pink:#FF5D9E; --turq:#17B8A6; --sun:#FFC531;
+  --violet:#8A5CF6; --sky:#6EC1FF; --red:#FF6B5E; --yellow:#FFD84D;
+  --mint:#E9FAF2; --rose:#FFF0F5; --butter:#FFF6D9; --lav:#F3EEFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+::selection{background:var(--pink);color:#fff}
+body{
+  font-family:'Vazirmatn',sans-serif;color:var(--ink);line-height:1.9;font-size:16.5px;
+  background:var(--paper);
+  background-image:radial-gradient(#f0dfc0 1.6px,transparent 1.7px);background-size:28px 28px;
+  padding-bottom:env(safe-area-inset-bottom);touch-action:manipulation;
+}
+button{font-family:inherit;cursor:pointer;touch-action:manipulation}
+h1,h2,h3,.disp{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;line-height:1.5}
+.hide{display:none!important}
+#app{max-width:560px;margin-inline:auto;min-height:100dvh;position:relative}
+
+/* ---------- نوار بالا ---------- */
+.topbar{
+  position:sticky;top:0;z-index:60;background:rgba(255,247,234,.97);
+  border-bottom:3px solid var(--ink);display:flex;align-items:center;gap:10px;
+  padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));
+}
+.logo{display:flex;align-items:center;gap:.4rem;font-family:'Lalezar';font-size:1.3rem;white-space:nowrap}
+.logo .st{animation:twinkle 2.4s ease-in-out infinite;display:inline-block}
+@keyframes twinkle{50%{transform:scale(1.25) rotate(18deg)}}
+.top-actions{margin-inline-start:auto;display:flex;gap:8px;align-items:center}
+.star-badge{
+  display:flex;align-items:center;gap:.3rem;font-family:'Lalezar';font-size:1.05rem;
+  background:var(--sun);border:3px solid var(--ink);border-radius:999px;padding:0 .7em;box-shadow:0 3px 0 var(--ink);
+}
+.star-badge.pop{animation:bpop .5s}
+@keyframes bpop{40%{transform:scale(1.3) rotate(-6deg)}}
+.icon-btn{border:2.5px solid var(--ink);background:#fff;border-radius:12px;font-size:1rem;padding:.2em .55em;box-shadow:0 3px 0 var(--ink);min-width:44px;min-height:44px}
+.icon-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+
+/* ---------- دکمه‌ها و کارت‌ها ---------- */
+.btn{
+  display:flex;justify-content:center;align-items:center;gap:.5em;width:100%;
+  font-family:'Lalezar';font-size:1.35rem;padding:.6em 1.2em .5em;
+  border:3px solid var(--ink);border-radius:18px;background:var(--sun);color:var(--ink);
+  box-shadow:0 5px 0 var(--ink);transition:transform .12s,box-shadow .12s;user-select:none;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+.btn.small{width:auto;font-size:1.1rem;padding:.35em 1.1em .25em}
+.b-pink{background:var(--pink);color:#fff}.b-turq{background:var(--turq);color:#fff}
+.b-violet{background:var(--violet);color:#fff}.b-white{background:#fff}
+.card{background:#fff;border:3px solid var(--ink);border-radius:20px;box-shadow:0 6px 0 rgba(51,37,78,.85)}
+
+/* ---------- صفحهٔ مسیر ---------- */
+.greet{margin:18px 16px 8px;padding:16px 18px;display:flex;gap:14px;align-items:center;background:#fff}
+.greet .face{font-size:2.4rem;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-7px)}}
+.greet b{font-family:'Lalezar';font-size:1.25rem;display:block}
+.greet small{font-weight:700;font-size:.82rem}
+.greet .stats{margin-inline-start:auto;text-align:center;background:var(--lav);border:2.5px solid var(--ink);border-radius:14px;padding:.3em .8em}
+.greet .stats b{font-size:1.3rem;color:var(--violet)}
+.rank-chip{margin:12px 16px;padding:.5em 1.1em;text-align:center;font-weight:900;background:var(--ink);color:var(--paper);border-radius:16px}
+.rank-chip b{color:var(--yellow)}
+.rankbar{height:12px;background:#4d3f70;border-radius:99px;overflow:hidden;margin-top:.4em}
+.rankbar i{display:block;height:100%;background:var(--yellow);width:0;transition:width .6s;border-radius:99px}
+
+/* مسیر زیگزاگ */
+.path{position:relative;padding:20px 0 30px}
+.path::before{content:"";position:absolute;top:10px;bottom:20px;right:50%;border-right:4px dashed #dcc9a4;transform:translateX(50%)}
+.chap{position:relative;z-index:2;margin:26px 20px 30px;text-align:center;padding:.6em 1em;border:3px solid var(--ink);border-radius:16px;box-shadow:0 5px 0 var(--ink)}
+.chap h2{font-size:1.5rem}
+.chap small{font-weight:800;font-size:.8rem;opacity:.85}
+.chap1{background:var(--mint)}.chap2{background:var(--rose)}.chap3{background:var(--butter)}
+.prow{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin:34px 0}
+.prow.sideA .pwrap{transform:translateX(-64px)}
+.prow.sideB .pwrap{transform:translateX(64px)}
+.pwrap{display:flex;flex-direction:column;align-items:center;width:130px}
+.pnode{
+  position:relative;width:82px;height:82px;border-radius:50%;border:4px solid var(--ink);
+  background:#fff;box-shadow:0 6px 0 var(--ink);display:grid;place-items:center;
+  font-size:1.9rem;transition:transform .15s;
+}
+.pnode:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+.pnum{
+  position:absolute;top:-8px;left:-8px;width:30px;height:30px;border-radius:50%;
+  background:var(--violet);color:#fff;border:2.5px solid var(--ink);
+  font-family:'Lalezar';font-size:1rem;display:grid;place-items:center;
+}
+.pnode.open{background:var(--yellow);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 6px 0 var(--ink),0 0 0 12px rgba(255,197,49,.35)}}
+.pnode.done{background:var(--turq);color:#fff}
+.pnode.lock{background:#e7e0d2;border-style:dashed;color:#9a917f;box-shadow:0 4px 0 #b3a98f}
+.ptitle{margin-top:8px;font-weight:900;font-size:.8rem;text-align:center;line-height:1.5}
+.pstars{font-size:.75rem;font-weight:800;color:var(--pink)}
+.gotag{
+  font-family:'Lalezar';background:var(--pink);color:#fff;border:2.5px solid var(--ink);
+  border-radius:999px;padding:0 .8em;font-size:.95rem;margin-bottom:8px;animation:bounceTag 1s infinite;
+}
+@keyframes bounceTag{50%{transform:translateY(-6px)}}
+.foot-note{margin:10px 20px 30px;text-align:center;font-size:.85rem;font-weight:700;opacity:.75}
+.reset-link{background:none;border:none;font-weight:800;color:var(--red);text-decoration:underline;font-size:.85rem}
+.done-banner{margin:16px;padding:1em;border:3px dashed var(--turq);border-radius:18px;background:var(--mint);text-align:center;font-weight:900}
+
+/* ---------- صفحهٔ درس ---------- */
+.lbar-row{display:flex;align-items:center;gap:12px;padding:12px 16px 6px}
+.lbar{flex:1;height:18px;background:#fff;border:2.5px solid var(--ink);border-radius:99px;overflow:hidden}
+.lbar i{display:block;height:100%;width:0;background:var(--pink);transition:width .5s;border-radius:99px}
+.lstep{font-weight:900;font-size:.85rem;white-space:nowrap}
+#lbody{padding:10px 16px 40px}
+.fadeup{animation:fadeup .45s cubic-bezier(.2,.9,.3,1)}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}}
+
+/* آموزش */
+.teach-hero{border-radius:20px;overflow:hidden;border:3px solid var(--ink);margin-bottom:16px;position:relative}
+.teach-hero img{width:100%;height:150px;object-fit:cover;display:block}
+.teach-hero .tag{position:absolute;bottom:8px;right:8px;background:var(--ink);color:var(--yellow);font-family:'Lalezar';border-radius:12px;padding:0 .8em;font-size:1.05rem}
+.naghli{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}
+.naghli .av{width:46px;height:46px;flex:none;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);display:grid;place-items:center;font-size:1.3rem}
+.naghli .bub{background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:.5em .9em;font-weight:700;font-size:.92rem;box-shadow:0 4px 0 rgba(51,37,78,.2)}
+.pcard{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:14px 16px;margin-bottom:14px;box-shadow:0 5px 0 rgba(255,93,158,.55)}
+.pcard .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pname{font-family:'Lalezar';font-size:1.35rem}
+.pcap{background:var(--rose);border:2px solid var(--ink);border-radius:999px;padding:.05em .8em;font-weight:900;font-size:.85rem}
+.pcap b{color:var(--pink)}
+.pcities{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pcities small{font-weight:900;font-size:.75rem;opacity:.7}
+.cchip{border:2px dashed var(--turq);background:var(--mint);border-radius:999px;padding:0 .7em;font-weight:800;font-size:.8rem}
+.pfact{margin-top:8px;font-size:.88rem;font-weight:700;background:var(--butter);border-radius:10px;padding:.4em .8em}
+/* آموزش ضرب */
+.mtable{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.mcell{background:#fff;border:2.5px solid var(--ink);border-radius:12px;text-align:center;padding:.25em;font-family:'Lalezar';font-size:1.15rem;box-shadow:0 3px 0 rgba(23,184,166,.6)}
+.mcell b{color:var(--turq)}
+.groups{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.gbox{border:2.5px dashed var(--violet);background:var(--lav);border-radius:14px;padding:.4em .6em;font-size:1.3rem;letter-spacing:.1em}
+.glabel{text-align:center;font-weight:900;margin-bottom:4px}
+.tipbox{background:var(--lav);border:2.5px dashed var(--violet);border-radius:14px;padding:.6em 1em;font-weight:800;font-size:.92rem;margin:12px 0}
+
+/* سؤال‌ها */
+.qcount{font-weight:900;font-size:.85rem;color:var(--pink);text-align:center;margin-top:6px}
+.qtext{font-family:'Lalezar';font-size:clamp(1.5rem,7vw,2.1rem);text-align:center;margin:10px 0 18px;line-height:1.6}
+.qtext .big{font-size:1.35em;color:var(--pink)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{
+  display:flex;align-items:center;gap:12px;width:100%;min-height:62px;
+  background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:0 5px 0 rgba(138,92,246,.75);
+  padding:.5em .9em;font-size:1.12rem;font-weight:800;text-align:right;transition:transform .1s;
+}
+.opt:active{transform:translateY(2px)}
+.onum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--lav);border:2.5px solid var(--ink);display:grid;place-items:center;font-family:'Lalezar'}
+.opt.ok{background:#c9f5da;border-color:#1c7a4b;animation:jump .45s}
+.opt.ok .onum{background:#1c7a4b;color:#fff}
+.opt.bad{background:#ffd9d9;animation:shake .4s}
+@keyframes jump{40%{transform:translateY(-10px) scale(1.02)}}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.fb{min-height:2.6em;text-align:center;font-family:'Lalezar';font-size:1.3rem;margin-top:14px}
+.fb.good{color:#1c7a4b}.fb.badc{color:var(--red)}
+
+/* نتیجه */
+.result{text-align:center;padding:26px 20px}
+.result .rmo{font-size:4rem;animation:bob 2.5s ease-in-out infinite}
+.result h2{font-size:2.1rem;margin:.2em 0}
+.result .score-line{font-weight:900;font-size:1.1rem}
+.stars-win{display:flex;justify-content:center;gap:6px;margin:14px 0;font-size:2rem}
+.stars-win span{animation:starin .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes starin{from{opacity:0;transform:scale(0) rotate(-90deg)}}
+.res-btns{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.res-note{font-size:.85rem;font-weight:800;background:var(--butter);border-radius:12px;padding:.5em .9em;margin-top:14px}
+
+/* توست */
+.toast{
+  position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;font-weight:800;padding:.5em 1.3em;border-radius:999px;
+  border:2.5px solid #fff;z-index:120;opacity:0;pointer-events:none;transition:.3s;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
+#confx{position:fixed;inset:0;pointer-events:none;z-index:130;overflow:hidden}
+.cf{position:absolute;width:11px;height:11px;border:2px solid var(--ink);animation:cfall 1s ease-out forwards}
+@keyframes cfall{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rr));opacity:0}}
+.doodle{position:fixed;z-index:0;font-size:1.5rem;opacity:.35;pointer-events:none;animation:floaty 10s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-22px) rotate(10deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="confx"></div>
+<span class="doodle" style="top:20%;right:4%">⭐</span>
+<span class="doodle" style="top:65%;left:3%;animation-delay:-4s">🌸</span>
+
+<div id="app">
+  <header class="topbar">
+    <span class="logo"><span class="st">⭐</span> مدرسهٔ ستاره‌ای</span>
+    <div class="top-actions">
+      <button class="icon-btn" id="muteBtn" title="صدا">🔊</button>
+      <div class="star-badge" id="starBadge">⭐ <span id="navStars">۰</span></div>
+    </div>
+  </header>
+
+  <!-- ═════ مسیر یادگیری ═════ -->
+  <main id="pathScreen">
+    <div class="greet card">
+      <span class="face">⭐</span>
+      <div><b>سلام! من نقلی‌ام 😊</b><small>درس‌به‌درس جلو برو؛ هر درس رو پاس کنی، درس بعدی باز میشه!</small></div>
+      <div class="stats"><b id="doneCount">۰</b><small>از <span id="allCount">۱۷</span> درس</small></div>
+    </div>
+    <div class="rank-chip">رتبهٔ تو: <b id="rankName">🌱 نوآموز کوچولو</b><div class="rankbar"><i id="rankBar"></i></div></div>
+    <div class="done-banner hide" id="doneBanner">🎓 آفرین قهرمان! همهٔ درس‌ها رو تموم کردی! ⭐</div>
+    <div class="path" id="pathList"></div>
+    <p class="foot-note">پیشرفتت توی همین گوشی ذخیره میشه ✨<br><button class="reset-link" id="resetBtn">🗑️ شروع از اول</button></p>
+  </main>
+
+  <!-- ═════ صفحهٔ درس ═════ -->
+  <section id="lessonScreen" class="hide">
+    <div class="lbar-row">
+      <button class="icon-btn" id="lback" title="برگشت به مسیر">🏠</button>
+      <div class="lbar"><i id="lbarFill"></i></div>
+      <span class="lstep" id="lstep"></span>
+    </div>
+    <div id="lbody"></div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- ابزار ---------- */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FA='۰۱۲۳۴۵۶۷۸۹';
+const toFa=s=>String(s).replace(/[0-9]/g,d=>FA[d]);
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const pickN=(a,n)=>shuffle(a).slice(0,n);
+const $=id=>document.getElementById(id);
+
+/* ---------- داده: ۳۱ استان ---------- */
+const REGIONS=[
+{name:'شمالِ سرسبز',emoji:'🌲',seed:'caspian-green-forest',provinces:[
+ {p:'گیلان',c:'رشت',ci:['بندرانزلی','لاهیجان','فومن','آستارا'],f:'رشت شهر باران‌هاست؛ جنگل‌های سبز و شالیزارهای برنج اینجاست!'},
+ {p:'مازندران',c:'ساری',ci:['آمل','بابل','چالوس','رامسر'],f:'دریای خزر کنار مازندرانه؛ جادهٔ چالوس یکی از قشنگ‌ترین جاده‌های دنیاست!'},
+ {p:'گلستان',c:'گرگان',ci:['گنبدکاووس','بندرترکمن','علی‌آبادکتول'],f:'گلستان سرزمین دشت‌ها و اسب‌های ترکمنه!'}]},
+{name:'شمال‌غرب؛ سرزمین کوه‌ها',emoji:'⛰️',seed:'sahand-mountains',provinces:[
+ {p:'آذربایجان شرقی',c:'تبریز',ci:['مراغه','مرند','میانه','جلفا'],f:'تبریز شهر فرش و شکلاته؛ بازارش بزرگ‌ترین بازار سرپوشیدهٔ دنیاست!'},
+ {p:'آذربایجان غربی',c:'ارومیه',ci:['خوی','مهاباد','بوکان','ماکو'],f:'دریاچهٔ نمکی ارومیه و انگورهای خوشمزه اینجاست!'},
+ {p:'اردبیل',c:'اردبیل',ci:['پارس‌آباد','مشگین‌شهر','سرْعین'],f:'اردبیل خنک و کوهستانیه؛ چشمه‌های آب گرم سرعئین معروفه!'},
+ {p:'زنجان',c:'زنجان',ci:['ابهر','خرم‌دره','قیدار'],f:'زنجان شهر چاقوهای ظریف و فرش دستبافه!'}]},
+{name:'تهران و همسایه‌ها',emoji:'🏙️',seed:'tehran-city-lights',provinces:[
+ {p:'تهران',c:'تهران',ci:['ری','ورامین','دماوند','شهریار'],f:'تهران پایتخت ایرانه؛ برج آزادی نشونهٔ این شهره!'},
+ {p:'البرز',c:'کرج',ci:['نظرآباد','اشتهارد','هشتگرد','فردیس'],f:'کرج نزدیک تهرانه و باغ‌های قشنگی داره!'},
+ {p:'قم',c:'قم',ci:['سلفچگان','جعفریه','کهک'],f:'حرم حضرت معصومه اینجاست؛ سوهان قم هم خیلی معروفه!'},
+ {p:'قزوین',c:'قزوین',ci:['تاکستان','آبیک','بوئین‌زهرا'],f:'قزوین پایتخت خوشنویسی ایرانه؛ قلعهٔ الموت هم نزدیکشه!'},
+ {p:'سمنان',c:'سمنان',ci:['شاهرود','دامغان','گرمسار'],f:'سمنان دروازهٔ کویره؛ شاهرود جنگل‌های قشنگی داره!'}]},
+{name:'غرب؛ سرزمین تاریخ',emoji:'🏰',seed:'zagros-castle-history',provinces:[
+ {p:'همدان',c:'همدان',ci:['ملایر','نهاوند','تویسرکان','لالجین'],f:'همدان یکی از قدیمی‌ترین شهرهای جهانه؛ آرام بوعلی‌سینا اینجاست!'},
+ {p:'کرمانشاه',c:'کرمانشاه',ci:['اسلام‌آباد غرب','کنگاور','هرسین','پاوه'],f:'طاق بستان و بیستون اینجاست؛ کاک و نان برنجی‌ش خوشمزه‌ست!'},
+ {p:'کردستان',c:'سنندج',ci:['سقز','مریوان','بانه','بیجار'],f:'کردستان موسیقی و طبیعت قشنگی داره؛ دریاچهٔ زریوار هم اینجاست!'},
+ {p:'لرستان',c:'خرم‌آباد',ci:['بروجرد','دورود','الیگودرز','کوهدشت'],f:'لرستان سرزمین آبشارهاست؛ قلعهٔ فلک‌الافلاک توی خرم‌آباده!'},
+ {p:'ایلام',c:'ایلام',ci:['دهلران','ایوان','مهران','آبدانان'],f:'ایلام سرزمین بلوط‌ها و کوه‌های قشنگه!'}]},
+{name:'مرکز ایران',emoji:'🕌',seed:'isfahan-historical-city',provinces:[
+ {p:'اصفهان',c:'اصفهان',ci:['کاشان','نجف‌آباد','شاهین‌شهر','گلپایگان'],f:'اصفهان نصف جهان! میدان نقش‌جهان و زاینده‌رود اینجاست!'},
+ {p:'مرکزی',c:'اراک',ci:['ساوه','خمین','محلات','دلیجان'],f:'محلات شهر گل‌هاست و ساوه شهر انار!'},
+ {p:'یزد',c:'یزد',ci:['میبد','اردکان','بافق','تفت'],f:'یزد شهر بادگیرها و قطابه؛ قدیمی‌ترین شهر خشتی جهان!'},
+ {p:'چهارمحال و بختیاری',c:'شهرکرد',ci:['بروجن','فارسان','لردگان','سامان'],f:'سرزمین بختیاری‌های شجاع؛ زاینده‌رود از کوه‌های همین‌جا میاد!'}]},
+{name:'جنوب؛ گرما و دریا',emoji:'🌴',seed:'persian-gulf-palms',provinces:[
+ {p:'فارس',c:'شیراز',ci:['مرودشت','کازرون','جهرم','فسا'],f:'شیراز شهر شعر و گله؛ تخت جمشید هم نزدیک مرودشته!'},
+ {p:'خوزستان',c:'اهواز',ci:['آبادان','دزفول','خرمشهر','شوشتر'],f:'خوزستان سرزمین خرما و کارونه؛ شهر باستانی شوش اینجاست!'},
+ {p:'کهگیلویه و بویراحمد',c:'یاسوج',ci:['دوگنبدان','دهدشت','سی‌سخت'],f:'یاسوج پایتخت طبیعته؛ پر از جنگل بلوط و آبشار!'},
+ {p:'بوشهر',c:'بوشهر',ci:['برازجان','گناوه','کنگان','خورموج'],f:'بوشهر کنار خلیج فارسه؛ نخلستان و موسیقی بندری داره!'},
+ {p:'هرمزگان',c:'بندرعباس',ci:['میناب','بندرلنگه','کیش','قشم'],f:'جزیره‌های رنگی کیش و قشم مال هرمزگانه!'}]},
+{name:'شرق؛ سرزمین خورشید',emoji:'🌅',seed:'khorasan-sunrise-desert',provinces:[
+ {p:'خراسان رضوی',c:'مشهد',ci:['نیشابور','سبزوار','قوچان','تربت حیدریه'],f:'حرم امام‌رضا اینجاست؛ زعفران معروف دنیا مال خراسانه!'},
+ {p:'خراسان شمالی',c:'بجنورد',ci:['شیروان','اسفراین','آشخانه'],f:'لباس‌های رنگی و موسیقی شیرین این منطقه معروفه!'},
+ {p:'خراسان جنوبی',c:'بیرجند',ci:['طبس','قائن','نهبندان'],f:'سرزمین زرشک و زعفرانه؛ طبس نگین کویره!'},
+ {p:'سیستان و بلوچستان',c:'زاهدان',ci:['چابهار','زابل','ایرانشهر','سراوان'],f:'بندر چابهار کنار دریای قشنگه؛ سوزن‌دوزی بلوچ هنر این سرزمینه!'},
+ {p:'کرمان',c:'کرمان',ci:['سیرجان','رفسنجان','بم','جیرفت'],f:'کرمان سرزمین پسته و قالی؛ کویر لوت گرم‌ترین نقطهٔ زمینه!'}]}
+];
+const ALL=REGIONS.flatMap(r=>r.provinces); // ۳۱ استان
+
+/* ---------- فهرست درس‌ها ---------- */
+const M_EMO={2:'🍎',3:'🌸',4:'⭐',5:'🍓',6:'🎈',7:'🦋',8:'🍬',9:'💜',10:'🌷'};
+const M_TIP={2:'دو برابر کردن یعنی عدد رو با خودش جمع کنی: ۲×۴ یعنی ۴+۴!',3:'سه یعنی سه تا دستهٔ یک‌اندازه بسازی!',4:'۴ یعنی دو بار دو برابر کردن!',5:'ضرب در ۵: آخرِ جواب همیشه ۰ یا ۵ میشه!',6:'یادت باشه جابه‌جایی فرقی نمی‌کنه: ۶×۴ یعنی ۴×۶!',7:'هفت، عدد شانس‌ها! آروم و با تمرین حفظش کن.',8:'۸ یعنی دو بار چهار برابر!',9:'ترفند انگشت‌ها: انگشت چندم رو ببندی، قبلش دهگان و بعدش یکانه!',10:'ضرب در ۱۰ راحت‌ترینه: فقط یه صفر بذار! ۷×۱۰=۷۰'};
+const LESSONS=[];
+[2,3,4,5,6,7,8,9,10].forEach(n=>LESSONS.push({id:'m'+n,type:'mult',n,emoji:M_EMO[n],title:'ضرب در '+toFa(n),pass:4,total:6}));
+REGIONS.forEach((r,i)=>LESSONS.push({id:'i'+i,type:'iran',ri:i,emoji:r.emoji,title:r.name,pass:4,total:6}));
+LESSONS.push({id:'fin',type:'final',emoji:'🏆',title:'آزمون بزرگ ایران',pass:7,total:10});
+LESSONS[0].chap={cls:'chap1',t:'فصل ۱ ⭐ دنیای ضرب',s:'اول ضرب رو یاد بگیر!'};
+LESSONS[9].chap={cls:'chap2',t:'فصل ۲ 🗺️ ایرانِ من',s:'۳۱ استان، مرکز و شهرهاشون'};
+LESSONS[16].chap={cls:'chap3',t:'🏆 مرحلهٔ پایانی',s:'همهٔ چیزایی که یاد گرفتی!'};
+
+/* ---------- پیشرفت ---------- */
+let prog=JSON.parse(localStorage.getItem('ss-prog')||'{}');
+function saveProg(){localStorage.setItem('ss-prog',JSON.stringify(prog));}
+function totalStars(){return Object.values(prog).reduce((s,r)=>s+(r.stars||0),0);}
+const RANKS=[[0,'🌱 نوآموز کوچولو'],[25,'✨ ستاره‌ی درخشان'],[55,'🏅 قهرمان کلاس'],[95,'👑 نابغه‌ی کوچولو'],[130,'🌟 افسانهٔ ستاره‌ای']];
+
+/* ---------- صدا و ویبره ---------- */
+let actx=null,muted=localStorage.getItem('ss-mute')==='1';
+function beep(f=600,d=.12,type='triangle',v=.14,when=0){if(muted)return;
+ try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+ const t=actx.currentTime+when,o=actx.createOscillator(),g=actx.createGain();
+ o.type=type;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);
+ o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d);}catch(e){}}
+const sndOK=()=>{beep(660,.12);beep(880,.16,'triangle',.14,.12);};
+const sndBad=()=>beep(200,.22,'sawtooth',.07);
+const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+$('muteBtn').textContent=muted?'🔇':'🔊';
+$('muteBtn').onclick=()=>{muted=!muted;localStorage.setItem('ss-mute',muted?'1':'0');$('muteBtn').textContent=muted?'🔇':'🔊';};
+
+/* ---------- جشن ---------- */
+const CF=['#FF5D9E','#17B8A6','#FFC531','#8A5CF6','#FF6B5E','#6EC1FF'];
+function confetti(x,y,n=18){if(RM)return;
+ for(let i=0;i<n;i++){const s=document.createElement('span');s.className='cf';
+  s.style.left=x+'px';s.style.top=y+'px';s.style.background=CF[ri(0,CF.length-1)];
+  s.style.borderRadius=Math.random()>.5?'50%':'3px';
+  s.style.setProperty('--dx',ri(-150,150)+'px');s.style.setProperty('--dy',ri(60,230)+'px');
+  s.style.setProperty('--rr',ri(-360,360)+'deg');
+  $('confx').appendChild(s);s.addEventListener('animationend',()=>s.remove());}}
+
+/* ---------- توست ---------- */
+let toastT;
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2000);}
+
+/* ---------- ساخت سؤال ---------- */
+function pickOptions(correct,pool){
+  const wrong=shuffle(pool.filter(x=>x!==correct)).slice(0,3);
+  return shuffle([correct,...wrong]);
+}
+function numOptions(a,b){
+  const ans=a*b,s=new Set([ans]);
+  for(const v of shuffle([ans+a,ans-a,ans+b,ans-b,(a+1)*b,a*(b+1),(a-1)*b,a*(b-1),ans+10,ans-10])){
+    if(s.size>=4)break; if(v>0&&!s.has(v))s.add(v);}
+  while(s.size<4)s.add(ans+ri(1,9));
+  return shuffle([...s]);
+}
+function genMultQs(n){
+  return pickN([1,2,3,4,5,6,7,8,9,10],6).map(a=>{
+    const swap=Math.random()<.5,x=swap?a:n,y=swap?n:a;
+    return {html:`<span class="big">${toFa(x)} × ${toFa(y)}</span> = ؟`,ans:x*y,options:numOptions(x,y),num:true};
+  });
+}
+function qCapital(pr){return {html:`🏛️ مرکز «استان ${pr.p}» کجاست؟`,ans:pr.c,options:pickOptions(pr.c,ALL.map(x=>x.c))};}
+function qProvince(pr){return {html:`🏙️ شهر «${pr.c}» مرکز کدام استان است؟`,ans:pr.p,options:pickOptions(pr.p,ALL.map(x=>x.p))};}
+function qCity(pr){const city=pr.ci[ri(0,pr.ci.length-1)];return {html:`📍 «${city}» در کدام استان است؟`,ans:pr.p,options:pickOptions(pr.p,ALL.map(x=>x.p))};}
+function genIranQs(region){
+  const ps=shuffle(region.provinces);
+  return shuffle(['cap','prov','city','cap','prov','city']).map((t,k)=>{
+    const pr=ps[k%ps.length];
+    return t==='cap'?qCapital(pr):t==='prov'?qProvince(pr):qCity(pr);
+  });
+}
+function genFinalQs(){
+  return shuffle([
+    ...pickN(ALL,4).map(qCapital),
+    ...pickN(ALL,3).map(qProvince),
+    ...pickN(ALL,3).map(qCity)
+  ]);
+}
+
+/* ---------- مسیر ---------- */
+function renderPath(){
+  const el=$('pathList');el.innerHTML='';
+  LESSONS.forEach((L,idx)=>{
+    if(L.chap){const b=document.createElement('div');b.className='chap '+L.chap.cls;
+      b.innerHTML=`<h2>${L.chap.t}</h2><small>${L.chap.s}</small>`;el.appendChild(b);}
+    const rec=prog[L.id]||{};
+    const prevOK=idx===0||(prog[LESSONS[idx-1].id]||{}).pass;
+    const status=rec.pass?'done':prevOK?'open':'lock';
+    const row=document.createElement('div');
+    row.className='prow '+(idx%2?'sideB':'sideA');
+    row.innerHTML=`<div class="pwrap">
+      ${status==='open'?'<span class="gotag">بزن بریم! 👇</span>':''}
+      <button class="pnode ${status}" aria-label="${L.title}">
+        <span class="pnum">${toFa(idx+1)}</span>${L.emoji}
+      </button>
+      <div class="ptitle">${L.title}</div>
+      ${rec.pass?`<div class="pstars">⭐ ${toFa(rec.stars)}</div>`:''}
+    </div>`;
+    row.querySelector('.pnode').onclick=()=>{
+      if(status==='lock'){vib(60);toast('اول درس قبلی رو پاس کن! 🔒');return;}
+      openLesson(idx);
+    };
+    el.appendChild(row);
+  });
+  const done=LESSONS.filter(L=>(prog[L.id]||{}).pass).length;
+  $('doneCount').textContent=toFa(done);
+  $('allCount').textContent=toFa(LESSONS.length);
+  $('doneBanner').classList.toggle('hide',done<LESSONS.length);
+  renderHeaderStars();
+}
+function renderHeaderStars(){
+  const s=totalStars();
+  $('navStars').textContent=toFa(s);
+  let cur=RANKS[0],next=null;
+  RANKS.forEach(r=>{if(s>=r[0])cur=r;});
+  const i=RANKS.indexOf(cur);next=RANKS[i+1]||null;
+  $('rankName').textContent=cur[1];
+  $('rankBar').style.width=next?Math.min(100,Math.round((s-cur[0])/(next[0]-cur[0])*100))+'%':'100%';
+}
+$('resetBtn').onclick=()=>{if(confirm('مطمئنی؟ همهٔ پیشرفت و ستاره‌ها پاک میشه!')){prog={};saveProg();renderPath();toast('از اول شروع شد! 🌱');}};
+
+/* ---------- موتور درس ---------- */
+let cur=null;
+function openLesson(idx){
+  const L=LESSONS[idx];
+  const qs=L.type==='mult'?genMultQs(L.n):L.type==='iran'?genIranQs(REGIONS[L.ri]):genFinalQs();
+  cur={L,qs,steps:['teach',...qs,'result'],i:0,score:0,idx};
+  $('pathScreen').classList.add('hide');
+  $('lessonScreen').classList.remove('hide');
+  window.scrollTo(0,0);
+  renderStep();
+}
+function goPath(){
+  $('lessonScreen').classList.add('hide');
+  $('pathScreen').classList.remove('hide');
+  renderPath();window.scrollTo(0,0);
+}
+$('lback').onclick=goPath;
+
+function renderStep(){
+  const step=cur.steps[cur.i];
+  $('lbarFill').style.width=Math.round(cur.i/(cur.steps.length-1)*100)+'%';
+  $('lstep').textContent = step==='teach'?'آموزش 📖' : step==='result'?'نتیجه 🎁' : `سؤال ${toFa(cur.i)} از ${toFa(cur.qs.length)}`;
+  if(step==='teach')renderTeach();
+  else if(step==='result')renderResult();
+  else renderQ(step,cur.i-1);
+  window.scrollTo(0,0);
+}
+
+/* --- صفحهٔ آموزش --- */
+function renderTeach(){
+  const L=cur.L;let html='';
+  if(L.type==='mult'){
+    const n=L.n,emo=M_EMO[n],a=n<=4?3:2;
+    html=`<div class="fadeup">
+      <h2 style="text-align:center;font-size:2rem;margin:6px 0">✖️ ضرب در ${toFa(n)}</h2>
+      <div class="naghli"><span class="av">⭐</span><span class="bub">ضرب یعنی چند تا دستهٔ یک‌اندازه! ببین: <b>${toFa(a)} × ${toFa(n)}</b> یعنی ${toFa(a)} تا دستهٔ ${toFa(n)} تایی:</span></div>
+      <div class="groups">${Array(a).fill(`<span class="gbox">${emo.repeat(n)}</span>`).join('')}</div>
+      <div class="glabel">${toFa(a)} × ${toFa(n)} = <b style="color:var(--pink)">${toFa(a*n)}</b> 🎉</div>
+      <div class="naghli"><span class="av">⭐</span><span class="bub">حالا جدول کامل ضرب در ${toFa(n)} رو یه بار از رو بخون:</span></div>
+      <div class="mtable">${Array.from({length:10},(_,k)=>`<div class="mcell">${toFa(n)} × ${toFa(k+1)} = <b>${toFa(n*(k+1))}</b></div>`).join('')}</div>
+      <div class="tipbox">💡 ${M_TIP[n]}</div>
+      <button class="btn b-pink" id="goQ">بریم سراغ سؤال‌ها! ▶</button>
+    </div>`;
+  } else if(L.type==='iran'){
+    const R=REGIONS[L.ri];
+    html=`<div class="fadeup">
+      <div class="teach-hero"><img src="https://picsum.photos/seed/${R.seed}/600/300" alt="${R.name}"><span class="tag">${R.emoji} ${R.name}</span></div>
+      <div class="naghli"><span class="av">⭐</span><span class="bub">این منطقه ${toFa(R.provinces.length)} تا استان داره. اول <b>اسم استان و مرکزش</b> رو خوب یاد بگیر، بعد شهرهای مهمش رو!</span></div>
+      ${R.provinces.map(pr=>`<div class="pcard">
+        <div class="top"><span class="pname">🏛️ ${pr.p}</span><span class="pcap">مرکز: <b>${pr.c}</b></span></div>
+        <div class="pcities"><small>شهرهای مهم:</small>${pr.ci.map(c=>`<span class="cchip">${c}</span>`).join('')}</div>
+        <p class="pfact">🌟 ${pr.f}</p>
+      </div>`).join('')}
+      <button class="btn b-turq" id="goQ">یاد گرفتم! بریم سراغ سؤال‌ها ▶</button>
+    </div>`;
+  } else {
+    html=`<div class="fadeup" style="text-align:center">
+      <div style="font-size:4rem;margin:14px 0">🏆</div>
+      <h2 style="font-size:2rem">آزمون بزرگ ایران</h2>
+      <div class="naghli" style="justify-content:center"><span class="av">⭐</span><span class="bub">۱۰ سؤال از <b>همهٔ استان‌ها و شهرها</b>! اگه ${toFa(cur.L.pass)} تا رو درست جواب بدی، آزمون رو پاس می‌کنی. آماده‌ای؟</span></div>
+      <button class="btn b-pink" id="goQ">شروع آزمون! 🚀</button>
+    </div>`;
+  }
+  $('lbody').innerHTML=html;
+  $('goQ').onclick=()=>{beep(500,.07);cur.i++;renderStep();};
+}
+
+/* --- صفحهٔ سؤال --- */
+function renderQ(q,qIdx){
+  const opts=q.options.map((o,i)=>`<button class="opt" data-i="${i}"><span class="onum">${toFa(i+1)}</span><span>${q.num?toFa(o):o}</span></button>`).join('');
+  $('lbody').innerHTML=`<div class="fadeup">
+    <div class="qcount">سؤال ${toFa(qIdx+1)} از ${toFa(cur.qs.length)} — ${cur.L.title}</div>
+    <h2 class="qtext">${q.html}</h2>
+    <div class="opts">${opts}</div>
+    <div class="fb" id="fb"></div>
+  </div>`;
+  let busy=false;
+  $('lbody').querySelectorAll('.opt').forEach(btn=>btn.onclick=e=>{
+    if(busy)return;busy=true;
+    const val=q.options[+btn.dataset.i];
+    const ok = q.num ? val===q.ans : val===q.ans;
+    if(ok){sndOK();vib(35);btn.classList.add('ok');cur.score++;
+      $('fb').className='fb good';
+      $('fb').textContent=['آفرین! 🌟','عالی بود! 🎉','دقیقاً همینه! 💯','ایول! 🥳'][ri(0,3)];
+      confetti(e.clientX||innerWidth/2,e.clientY||300,14);
+    } else {sndBad();vib([40,60,40]);btn.classList.add('bad');
+      $('lbody').querySelectorAll('.opt').forEach(b=>{if(q.options[+b.dataset.i]===q.ans)b.classList.add('ok');});
+      $('fb').className='fb badc';
+      $('fb').textContent='اشکالی نداره! جواب درست سبز شد 💚';
+    }
+    setTimeout(()=>{cur.i++;renderStep();},1500);
+  });
+}
+
+/* --- صفحهٔ نتیجه --- */
+function renderResult(){
+  const L=cur.L,score=cur.score,total=L.total,pass=score>=L.pass;
+  const perfect=score===total;
+  const earned=score+(perfect?2:0);
+  const rec=prog[L.id]||{stars:0,pass:false};
+  if(pass){rec.pass=true;rec.stars=Math.max(rec.stars,earned);prog[L.id]=rec;saveProg();}
+  const next=LESSONS[cur.idx+1];
+  if(pass){sndOK();beep(700,.1);beep(900,.12,'triangle',.14,.1);beep(1200,.2,'triangle',.14,.22);vib([30,40,60]);
+    setTimeout(()=>confetti(innerWidth/2,180,perfect?46:28),200);}
+  const starsHTML=pass?`<div class="stars-win">${Array(Math.min(earned,12)).fill('<span>⭐</span>').map((s,i)=>s.replace('<span>',`<span style="animation-delay:${i*80}ms">`)).join('')}</div>`:'';
+  $('lbody').innerHTML=`<div class="result card fadeup">
+    <div class="rmo">${pass?(perfect?'🏆':'🎉'):'💪'}</div>
+    <h2>${pass?(perfect?'کاملِ کامل بود!':'آفرین! پاس شدی!'):'نزدیک بودی!'}</h2>
+    <p class="score-line">${toFa(score)} جواب درست از ${toFa(total)} تا${perfect?' + ۲ ستارهٔ جایزهٔ کامل‌کاری!':''}</p>
+    ${starsHTML}
+    ${pass?'':`<div class="res-note">برای پاس شدن باید حداقل ${toFa(L.pass)} تا رو درست جواب بدی. نگران نباش، دوباره امتحان کن! 🌈</div>`}
+    <div class="res-btns">
+      ${pass&&next?`<button class="btn b-pink" id="rNext">درس بعدی: ${next.title} ▶</button>`:''}
+      ${pass&&!next?`<button class="btn b-pink" id="rHome">🎓 برگرد به مسیر قهرمانی!</button>`:''}
+      ${pass?`<button class="btn b-white" id="rHome2">🏠 مسیر درس‌ها</button>`
+            :`<button class="btn b-violet" id="rRetry">دوباره تلاش می‌کنم! 🔁</button>
+              <button class="btn b-white" id="rHome3">🏠 فعلاً برگرد به مسیر</button>`}
+    </div>
+  </div>`;
+  renderHeaderStars();
+  const nx=$('rNext');if(nx)nx.onclick=()=>openLesson(cur.idx+1);
+  const h=$('rHome');if(h)h.onclick=goPath;
+  const h2=$('rHome2');if(h2)h2.onclick=goPath;
+  const h3=$('rHome3');if(h3)h3.onclick=goPath;
+  const rt=$('rRetry');if(rt)rt.onclick=()=>openLesson(cur.idx);
+}
+
+renderPath();
+</script>
+</body>
+</html>
