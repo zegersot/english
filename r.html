@@ -15,6 +15,8 @@
     --pink: #ff7eb3;
     --green: #6ac96a;
     --purple: #b388ff;
+    --coral: #ff6b6b;
+    --teal: #00c2a8;
     --ink: #2d3e50;
     --white: #ffffff;
   }
@@ -166,6 +168,7 @@
   .level-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,.18); }
   .level-btn .lvl-num { font-size: 38px; font-weight: 900; line-height: 1; }
   .level-btn .lvl-label { font-size: 15px; font-weight: 700; }
+  .level-btn .lvl-finglish { font-size: 11px; font-weight: 700; opacity: .85; direction: ltr; }
   .lvl-bar { display: block; width: 100%; height: 9px; background: rgba(255,255,255,.45); border-radius: 99px; overflow: hidden; margin-top: 3px; }
   .lvl-bar i { display: block; height: 100%; background: #fff; border-radius: 99px; transition: width .4s ease; }
   .lvl-meta { display: flex; align-items: center; gap: 7px; margin-top: 2px; font-size: 14px; }
@@ -177,6 +180,8 @@
   .c5  { background: var(--pink); }
   .c6  { background: var(--green); }
   .c7  { background: var(--purple); }
+  .c8  { background: var(--coral); }
+  .c9  { background: var(--teal); }
   .level-btn.done { outline: 4px solid #fff; }
 
   .hint-text {
@@ -256,6 +261,17 @@
     background: rgba(0,0,0,.15);
     border-radius: 50%;
     filter: blur(3px);
+  }
+  .fa-word {
+    font-size: 28px;
+    font-weight: 800;
+    color: #a0451e;
+    background: #fff0dc;
+    border: 2px dashed #f4b183;
+    border-radius: 16px;
+    padding: 6px 22px;
+    display: none;
+    margin-bottom: 12px;
   }
   .tap-hint {
     font-size: 14px;
@@ -596,6 +612,7 @@
     padding: 3px 10px;
   }
   .no-review { font-size: 13px; color: #2e9e3f; }
+  .exam-wrong-label { margin-top: 10px; font-size: 14px; color: #d64545; font-weight: 800; margin-bottom: 6px; }
   .reset-row { margin-top: 16px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
   .reset-btn {
     border: none; border-radius: 999px; padding: 10px 18px;
@@ -656,11 +673,21 @@
       <div class="level-grid" id="levelGrid"></div>
     </div>
 
-    <div class="hint-text">
+    <div class="card" style="margin-top:14px; text-align:center;">
+      <div style="font-size:44px; margin-bottom:2px;">🎓</div>
+      <div class="celeb-title" style="font-size:22px;">امتحان نهایی</div>
+      <p style="font-size:15px; color:#555; margin:6px 0 10px;">۱۰ کلمه از همهٔ سطح‌ها — ببین چندتا رو درست می‌نویسی!</p>
+      <div class="btn-row">
+        <button class="big-btn btn-orange" onclick="startExam()">🎓 شروع امتحان</button>
+      </div>
+      <div id="examBestHome" style="font-size:13px; color:#8a6d1d; font-weight:700; margin-top:8px;"></div>
+    </div>
+
+    <!--<div class="hint-text">
       🎯 مثل معلم‌های زبان: اول ببین، بعد بپوشون و از حفظ بنویس (👀 ببین/بنویس)<br>
       یا با گوش بشنو و بنویس (👂 بشنو/بنویس) یا با انگشت روی حرف‌ها بکش (✍️)<br>
       کلمه‌هایی که اشتباه بنویسی، دفعه‌ی بعد اول مرور می‌شن 💪
-    </div>
+    </div>-->
   </section>
 
   <!-- ================= GAME ================= -->
@@ -680,6 +707,7 @@
 
     <div class="card word-card">
       <div class="emoji-box" id="emojiBox" onclick="speakWord()" title="برای شنیدن، روی عکس بزن"><span id="emoji">🐱</span><div class="shadow"></div></div>
+      <div class="fa-word" id="faWord" dir="rtl"></div>
       <div class="tap-hint" id="tapHint">👆 برای شنیدن کلمه، روی عکس یا دکمه 🔊 بزن</div>
       <button class="speak-btn" onclick="speakWord()">🔊 گوش کن</button>
 
@@ -731,6 +759,24 @@
     </div>
   </section>
 
+  <!-- ================= FINAL EXAM RESULT ================= -->
+  <section id="screen-exam" class="screen">
+    <div class="card" style="text-align:center;">
+      <div class="celeb-emoji" id="examEmoji">🏆</div>
+      <div class="stars-big" id="examStars"></div>
+      <div class="celeb-title" id="examTitle">امتحان تموم شد! 🎉</div>
+      <div class="celeb-sub">
+        نمرهٔ تو: <b id="examScore">۰</b> — <b id="examPct">۰٪</b><br>
+        بهترین نمره: <b id="examBestEl">۰٪</b>
+      </div>
+      <div id="examWrong" style="margin-top:10px;"></div>
+      <div class="btn-row" style="margin-top:14px;">
+        <button class="big-btn btn-orange" onclick="startExam()">🔄 امتحان دوباره</button>
+        <button class="big-btn btn-sky" onclick="goHome()">🏠 سطح‌ها</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= PROGRESS ================= -->
   <section id="screen-progress" class="screen">
     <h1 class="big-title">پیشرفت من 📊</h1>
@@ -749,7 +795,7 @@
     </div>
   </section>
 
-  <div class="footer-note">ساخته‌شده برای بچه‌های دوست‌داشتنی 💛</div>
+  <div class="footer-note">تقدیم شما دانش‌آموز عزیز ❤️</div>
 </div>
 
 <script>
@@ -779,7 +825,56 @@ const LEVELS = {
     { w: "hut", e: "⛺" }, { w: "lip", e: "👄" }, { w: "man", e: "👨" },
     { w: "sea", e: "🌊" }, { w: "tub", e: "🛁" }, { w: "axe", e: "🪓" },
     { w: "one", e: "1️⃣" }, { w: "two", e: "2️⃣" }, { w: "six", e: "6️⃣" },
-    { w: "ten", e: "🔟" }, { w: "red", e: "🔴" }
+    { w: "ten", e: "🔟" },    { w: "red", e: "🔴" },
+    { w: "ace", e: "🃏" }, { w: "act", e: "🎭" }, { w: "add", e: "➕" }, { w: "age", e: "🎂" },
+    { w: "aid", e: "🚑" }, { w: "aim", e: "🎯" }, { w: "air", e: "💨" }, { w: "all", e: "🤝" },
+    { w: "and", e: "🧩" }, { w: "any", e: "❓" }, { w: "arc", e: "🌈" }, { w: "art", e: "🎨" },
+    { w: "ask", e: "❓" }, { w: "ate", e: "🍽️" }, { w: "bad", e: "😠" }, { w: "ban", e: "🚫" },
+    { w: "bar", e: "🍫" }, { w: "bay", e: "🌊" }, { w: "beg", e: "🙏" }, { w: "bet", e: "🎲" },
+    { w: "big", e: "🐘" }, { w: "bin", e: "🗑️" }, { w: "bit", e: "🧩" }, { w: "boy", e: "👦" },
+    { w: "bud", e: "🌱" }, { w: "bug", e: "🐛" }, { w: "bun", e: "🥐" }, { w: "but", e: "➡️" },
+    { w: "buy", e: "🛒" }, { w: "cab", e: "🚕" }, { w: "cob", e: "🌽" }, { w: "cod", e: "🐟" },
+    { w: "cop", e: "👮" }, { w: "cry", e: "😢" }, { w: "cub", e: "🐻" }, { w: "cut", e: "✂️" },
+    { w: "dad", e: "👨" }, { w: "dam", e: "🏞️" }, { w: "day", e: "🌞" }, { w: "dig", e: "⛏️" },
+    { w: "dip", e: "🥣" }, { w: "dry", e: "☀️" }, { w: "eat", e: "🍽️" }, { w: "eel", e: "🐍" },
+    { w: "elf", e: "🧝" }, { w: "end", e: "🏁" }, { w: "fan", e: "🪭" }, { w: "far", e: "🗺️" },
+    { w: "fat", e: "🐷" }, { w: "fee", e: "💰" }, { w: "fig", e: "🍇" }, { w: "fin", e: "🐠" },
+    { w: "fit", e: "💪" }, { w: "fix", e: "🔧" }, { w: "fog", e: "🌫️" }, { w: "fry", e: "🍳" },
+    { w: "fur", e: "🧸" }, { w: "gas", e: "⛽" }, { w: "gem", e: "💎" }, { w: "get", e: "🙌" },
+    { w: "gum", e: "🍬" }, { w: "gym", e: "🏋️" }, { w: "hay", e: "🌾" }, { w: "her", e: "👧" },
+    { w: "him", e: "👦" }, { w: "hit", e: "🥊" }, { w: "hog", e: "🐗" }, { w: "hop", e: "🐇" },
+    { w: "hot", e: "🔥" }, { w: "how", e: "❓" }, { w: "hug", e: "🤗" }, { w: "ill", e: "🤒" },
+    { w: "jam", e: "🍓" }, { w: "jaw", e: "🦷" }, { w: "job", e: "💼" }, { w: "jog", e: "🏃" },
+    { w: "joy", e: "😄" }, { w: "jug", e: "🏺" }, { w: "kit", e: "🧰" }, { w: "lab", e: "🔬" },
+    { w: "lad", e: "👦" }, { w: "law", e: "⚖️" }, { w: "lay", e: "🛏️" }, { w: "let", e: "✅" },
+    { w: "lid", e: "🥘" }, { w: "lie", e: "🛌" }, { w: "lit", e: "🔦" }, { w: "log", e: "🪵" },
+    { w: "lot", e: "🏘️" }, { w: "low", e: "📉" }, { w: "mad", e: "😡" }, { w: "mat", e: "🧘" },
+    { w: "may", e: "🌸" }, { w: "men", e: "👨" }, { w: "met", e: "🤝" }, { w: "mix", e: "🥄" },
+    { w: "mom", e: "👩" }, { w: "mop", e: "🧹" }, { w: "mud", e: "🐷" }, { w: "mug", e: "☕" },
+    { w: "nap", e: "😴" }, { w: "new", e: "🆕" }, { w: "nod", e: "👍" }, { w: "not", e: "🚫" },
+    { w: "now", e: "⏰" }, { w: "nut", e: "🌰" }, { w: "oar", e: "🚣" }, { w: "off", e: "🔌" },
+    { w: "oil", e: "🛢️" }, { w: "old", e: "👴" }, { w: "out", e: "🚪" }, { w: "own", e: "🏠" },
+    { w: "pad", e: "📝" }, { w: "pal", e: "🤝" }, { w: "pat", e: "🐾" }, { w: "paw", e: "🐾" },
+    { w: "pay", e: "💳" }, { w: "pea", e: "🟢" }, { w: "pet", e: "🐶" }, { w: "pit", e: "🕳️" },
+    { w: "pop", e: "🎈" }, { w: "pot", e: "🍲" }, { w: "pup", e: "🐶" }, { w: "rag", e: "🧽" },
+    { w: "ram", e: "🐏" }, { w: "ran", e: "🏃" }, { w: "rap", e: "🎤" }, { w: "rat", e: "🐀" },
+    { w: "raw", e: "🥩" }, { w: "ray", e: "☀️" }, { w: "rib", e: "🍖" }, { w: "rim", e: "🛞" },
+    { w: "rip", e: "✂️" }, { w: "rob", e: "🦹" }, { w: "rod", e: "🎣" }, { w: "row", e: "🚣" },
+    { w: "rub", e: "🧽" }, { w: "sad", e: "😢" }, { w: "sap", e: "🍁" }, { w: "sat", e: "🪑" },
+    { w: "saw", e: "🪚" }, { w: "say", e: "💬" }, { w: "see", e: "👀" }, { w: "set", e: "🎬" },
+    { w: "sew", e: "🪡" }, { w: "shy", e: "😊" }, { w: "sip", e: "🥤" }, { w: "sir", e: "🤵" },
+    { w: "sit", e: "🪑" }, { w: "ski", e: "🎿" }, { w: "sly", e: "🦊" }, { w: "sob", e: "😭" },
+    { w: "son", e: "👦" }, { w: "spa", e: "💆" }, { w: "spy", e: "🕵️" }, { w: "sum", e: "➕" },
+    { w: "tab", e: "📑" }, { w: "tag", e: "🏷️" }, { w: "tan", e: "🌞" }, { w: "tap", e: "🚰" },
+    { w: "tax", e: "🧾" }, { w: "tie", e: "👔" }, { w: "tin", e: "🥫" }, { w: "tip", e: "💡" },
+    { w: "ton", e: "⚖️" }, { w: "top", e: "⬆️" }, { w: "tot", e: "👶" }, { w: "tow", e: "🚗" },
+    { w: "try", e: "💪" }, { w: "use", e: "✅" }, { w: "van", e: "🚐" }, { w: "vet", e: "🩺" },
+    { w: "vow", e: "💍" }, { w: "wag", e: "🐕" }, { w: "war", e: "🪖" }, { w: "wax", e: "🕯️" },
+    { w: "way", e: "🛣️" }, { w: "wed", e: "💍" }, { w: "wet", e: "💦" }, { w: "who", e: "❓" },
+    { w: "why", e: "❓" }, { w: "wig", e: "💇" }, { w: "win", e: "🏆" }, { w: "wit", e: "🧠" },
+    { w: "wow", e: "😲" }, { w: "yak", e: "🐂" }, { w: "yam", e: "🍠" }, { w: "yes", e: "👍" },
+    { w: "yet", e: "⏳" }, { w: "you", e: "👉" }, { w: "zap", e: "⚡" }, { w: "zip", e: "🤐" },
+    { w: "zoo", e: "🦁" }
   ],
   4: [
     { w: "fish", e: "🐟" }, { w: "bird", e: "🐦" }, { w: "star", e: "⭐" },
@@ -804,7 +899,42 @@ const LEVELS = {
     { w: "dice", e: "🎲" }, { w: "five", e: "5️⃣" }, { w: "four", e: "4️⃣" },
     { w: "girl", e: "👧" }, { w: "home", e: "🏠" }, { w: "lock", e: "🔒" },
     { w: "nine", e: "9️⃣" }, { w: "time", e: "⏰" }, { w: "week", e: "📅" },
-    { w: "wind", e: "🍃" }, { w: "play", e: "▶️" }, { w: "walk", e: "🚶" }
+    { w: "wind", e: "🍃" }, { w: "play", e: "▶️" },    { w: "walk", e: "🚶" },
+    { w: "able", e: "💪" }, { w: "acid", e: "🧪" }, { w: "also", e: "➕" }, { w: "army", e: "🪖" },
+    { w: "aunt", e: "👩" }, { w: "away", e: "🚶" }, { w: "back", e: "🔙" }, { w: "bake", e: "🍞" },
+    { w: "band", e: "🎸" }, { w: "bank", e: "🏦" }, { w: "barn", e: "🏚️" }, { w: "base", e: "🏟️" },
+    { w: "beak", e: "🐦" }, { w: "beam", e: "🔦" }, { w: "bean", e: "🫘" }, { w: "beat", e: "🥁" },
+    { w: "beef", e: "🥩" }, { w: "bend", e: "🤸" }, { w: "best", e: "🏆" }, { w: "bike", e: "🚲" },
+    { w: "bill", e: "🧾" }, { w: "bite", e: "🦷" }, { w: "blow", e: "💨" }, { w: "blue", e: "🔵" },
+    { w: "boil", e: "♨️" }, { w: "bold", e: "💪" }, { w: "bone", e: "🦴" }, { w: "boot", e: "👢" },
+    { w: "born", e: "👶" }, { w: "bowl", e: "🥣" }, { w: "bulb", e: "💡" }, { w: "bump", e: "🤕" },
+    { w: "burn", e: "🔥" }, { w: "busy", e: "🐝" }, { w: "cage", e: "🦜" }, { w: "calm", e: "🧘" },
+    { w: "calf", e: "🐄" }, { w: "call", e: "📞" }, { w: "camp", e: "⛺" }, { w: "cane", e: "🦯" },
+    { w: "cape", e: "🦸" }, { w: "card", e: "🃏" }, { w: "care", e: "❤️" }, { w: "cart", e: "🛒" },
+    { w: "case", e: "💼" }, { w: "cash", e: "💵" }, { w: "cast", e: "🎭" }, { w: "cave", e: "🕳️" },
+    { w: "cell", e: "🔬" }, { w: "cent", e: "🪙" }, { w: "chef", e: "👨‍🍳" }, { w: "chip", e: "🍟" },
+    { w: "clam", e: "🦪" }, { w: "clap", e: "👏" }, { w: "clay", e: "🧱" }, { w: "clip", e: "📎" },
+    { w: "coat", e: "🧥" }, { w: "code", e: "💻" }, { w: "cold", e: "🥶" }, { w: "colt", e: "🐎" },
+    { w: "comb", e: "🪮" }, { w: "come", e: "👋" }, { w: "cook", e: "👨‍🍳" }, { w: "cool", e: "😎" },
+    { w: "copy", e: "📄" }, { w: "cord", e: "🔌" }, { w: "core", e: "🍎" }, { w: "cost", e: "💰" },
+    { w: "crew", e: "👨‍✈️" }, { w: "crib", e: "🍼" }, { w: "crop", e: "🌾" }, { w: "crow", e: "🦅" },
+    { w: "cube", e: "🧊" }, { w: "curl", e: "🌀" }, { w: "cute", e: "🥰" }, { w: "damp", e: "💧" },
+    { w: "dark", e: "🌑" }, { w: "dart", e: "🎯" }, { w: "dash", e: "🏃" }, { w: "date", e: "📅" },
+    { w: "dawn", e: "🌅" }, { w: "deaf", e: "🦻" }, { w: "deal", e: "🤝" }, { w: "dear", e: "❤️" },
+    { w: "deck", e: "🛳️" }, { w: "deep", e: "🌊" }, { w: "desk", e: "🖥️" }, { w: "dial", e: "☎️" },
+    { w: "dime", e: "🪙" }, { w: "dine", e: "🍽️" }, { w: "dirt", e: "🟫" }, { w: "disc", e: "💿" },
+    { w: "dish", e: "🍽️" }, { w: "dive", e: "🤿" }, { w: "dock", e: "⛵" }, { w: "doll", e: "🪆" },
+    { w: "dome", e: "🕌" }, { w: "done", e: "✅" }, { w: "dove", e: "🕊️" }, { w: "down", e: "⬇️" },
+    { w: "draw", e: "🖍️" }, { w: "drip", e: "💧" }, { w: "drop", e: "💧" }, { w: "dusk", e: "🌆" },
+    { w: "dust", e: "🌫️" }, { w: "each", e: "🧩" }, { w: "earn", e: "💰" }, { w: "east", e: "🧭" },
+    { w: "easy", e: "🍀" }, { w: "edit", e: "✏️" }, { w: "else", e: "🔀" }, { w: "envy", e: "😤" },
+    { w: "epic", e: "🏆" }, { w: "even", e: "⚖️" }, { w: "evil", e: "😈" }, { w: "exit", e: "🚪" },
+    { w: "fact", e: "📖" }, { w: "fail", e: "❌" }, { w: "fair", e: "🎪" }, { w: "fake", e: "🎭" },
+    { w: "fall", e: "🍂" }, { w: "fame", e: "⭐" }, { w: "farm", e: "🚜" }, { w: "fast", e: "⚡" },
+    { w: "fate", e: "🔮" }, { w: "fawn", e: "🦌" }, { w: "fear", e: "😨" }, { w: "feed", e: "🍼" },
+    { w: "feel", e: "🤲" }, { w: "feet", e: "🦶" }, { w: "fell", e: "🌲" }, { w: "felt", e: "🧶" },
+    { w: "fern", e: "🌿" }, { w: "file", e: "📁" }, { w: "fill", e: "🧺" }, { w: "film", e: "🎬" },
+    { w: "find", e: "🔍" }, { w: "fine", e: "👍" }, { w: "firm", e: "🏢" }, { w: "flag", e: "🚩" }
   ],
   5: [
     { w: "apple", e: "🍎" }, { w: "grape", e: "🍇" }, { w: "happy", e: "😊" },
@@ -829,7 +959,68 @@ const LEVELS = {
     { w: "teeth", e: "🦷" }, { w: "clown", e: "🤡" }, { w: "scarf", e: "🧣" },
     { w: "boots", e: "👢" }, { w: "shirt", e: "👕" }, { w: "jeans", e: "👖" },
     { w: "dress", e: "👗" }, { w: "glove", e: "🧤" }, { w: "socks", e: "🧦" },
-    { w: "lunch", e: "🍱" }, { w: "tower", e: "🗼" }
+    { w: "lunch", e: "🍱" },    { w: "tower", e: "🗼" },
+    { w: "acorn", e: "🌰" }, { w: "actor", e: "🎭" }, { w: "adopt", e: "🤗" }, { w: "after", e: "⏭️" },
+    { w: "again", e: "🔁" }, { w: "agree", e: "🤝" }, { w: "alarm", e: "🚨" }, { w: "album", e: "📀" },
+    { w: "alien", e: "👽" }, { w: "angel", e: "😇" }, { w: "anger", e: "😡" }, { w: "ankle", e: "🦶" },
+    { w: "apron", e: "🥣" }, { w: "armor", e: "🛡️" }, { w: "arrow", e: "🏹" }, { w: "atlas", e: "🗺️" },
+    { w: "award", e: "🏆" }, { w: "bacon", e: "🥓" }, { w: "badge", e: "🎖️" }, { w: "bagel", e: "🥯" },
+    { w: "baker", e: "👨‍🍳" }, { w: "bamboo", e: "🎋" }, { w: "banjo", e: "🪕" }, { w: "barge", e: "🚢" },
+    { w: "bark", e: "🐕" }, { w: "basil", e: "🌿" }, { w: "batch", e: "🍪" }, { w: "beads", e: "📿" },
+    { w: "beard", e: "🧔" }, { w: "beast", e: "🐗" }, { w: "beech", e: "🌳" }, { w: "begin", e: "🏁" },
+    { w: "being", e: "🌟" }, { w: "bench", e: "🪑" }, { w: "biker", e: "🏍️" }, { w: "birch", e: "🌳" },
+    { w: "birth", e: "🎂" }, { w: "black", e: "⚫" }, { w: "blank", e: "⬜" }, { w: "blast", e: "💥" },
+    { w: "blaze", e: "🔥" }, { w: "blend", e: "🥤" }, { w: "bless", e: "🙏" }, { w: "blind", e: "🦯" },
+    { w: "blink", e: "😉" }, { w: "bliss", e: "😇" }, { w: "block", e: "🧱" }, { w: "blond", e: "💇" },
+    { w: "bloom", e: "🌸" }, { w: "board", e: "🛹" }, { w: "bonus", e: "🎁" }, { w: "booth", e: "🎪" },
+    { w: "bough", e: "🌿" }, { w: "bound", e: "🦘" }, { w: "boxer", e: "🥊" }, { w: "brace", e: "🦷" },
+    { w: "braid", e: "💇" }, { w: "brain", e: "🧠" }, { w: "brake", e: "🚦" }, { w: "brand", e: "🏷️" },
+    { w: "brave", e: "🦁" }, { w: "break", e: "💔" }, { w: "breed", e: "🐕" }, { w: "brick", e: "🧱" },
+    { w: "bride", e: "👰" }, { w: "brief", e: "📄" }, { w: "bring", e: "🎁" }, { w: "brisk", e: "🏃" },
+    { w: "broom", e: "🧹" }, { w: "broth", e: "🍲" }, { w: "brown", e: "🟤" }, { w: "buddy", e: "🤝" },
+    { w: "build", e: "🧱" }, { w: "bunch", e: "🍇" }, { w: "bunny", e: "🐰" }, { w: "burst", e: "🎆" },
+    { w: "cabin", e: "🛖" }, { w: "cable", e: "🔌" }, { w: "cacao", e: "🍫" }, { w: "cactus", e: "🌵" },
+    { w: "camel", e: "🐫" }, { w: "canary", e: "🐤" }, { w: "canoe", e: "🛶" }, { w: "cargo", e: "🚢" },
+    { w: "carol", e: "🎄" }, { w: "carry", e: "🎒" }, { w: "carve", e: "🔪" }, { w: "catch", e: "🧤" },
+    { w: "cause", e: "🎯" }, { w: "cease", e: "✋" }, { w: "cedar", e: "🌲" }, { w: "cello", e: "🎻" },
+    { w: "chain", e: "⛓️" }, { w: "chalk", e: "🖍️" }, { w: "champ", e: "🏆" }, { w: "chant", e: "🎵" },
+    { w: "chaos", e: "🌪️" }, { w: "chase", e: "🏃" }, { w: "cheap", e: "🏷️" }, { w: "cheat", e: "🃏" },
+    { w: "check", e: "✅" }, { w: "cheek", e: "😊" }, { w: "cheer", e: "🎉" }, { w: "chess", e: "♟️" },
+    { w: "chest", e: "🧰" }, { w: "chick", e: "🐤" }, { w: "chief", e: "👑" }, { w: "child", e: "🧒" },
+    { w: "chill", e: "❄️" }, { w: "chime", e: "🔔" }, { w: "china", e: "🏺" }, { w: "chirp", e: "🐦" },
+    { w: "choir", e: "🎤" }, { w: "choose", e: "✅" }, { w: "chord", e: "🎸" }, { w: "chunk", e: "🍫" },
+    { w: "cider", e: "🍎" }, { w: "civil", e: "🏛️" }, { w: "claim", e: "📢" }, { w: "clamp", e: "🧷" },
+    { w: "clash", e: "⚔️" }, { w: "clasp", e: "🤝" }, { w: "class", e: "🏫" }, { w: "clean", e: "🧼" },
+    { w: "clear", e: "🔮" }, { w: "clerk", e: "🧑‍💼" }, { w: "click", e: "🖱️" }, { w: "cliff", e: "⛰️" },
+    { w: "climb", e: "🧗" }, { w: "cling", e: "🧲" }, { w: "cloak", e: "🧥" }, { w: "close", e: "🚪" },
+    { w: "cloth", e: "🧵" }, { w: "clove", e: "🧄" }, { w: "coach", e: "🚌" }, { w: "coast", e: "🏖️" },
+    { w: "cobra", e: "🐍" }, { w: "cocoa", e: "☕" }, { w: "comic", e: "📖" }, { w: "coral", e: "🪸" },
+    { w: "corgi", e: "🐶" }, { w: "cough", e: "🤧" }, { w: "count", e: "🔢" }, { w: "court", e: "🎾" },
+    { w: "cover", e: "🧢" }, { w: "crack", e: "💥" }, { w: "craft", e: "🛠️" }, { w: "crane", e: "🏗️" },
+    { w: "crash", e: "💥" }, { w: "crate", e: "📦" }, { w: "crawl", e: "🐛" }, { w: "cream", e: "🍦" },
+    { w: "creek", e: "🏞️" }, { w: "creep", e: "🕷️" }, { w: "crime", e: "🕵️" }, { w: "crisp", e: "🍟" },
+    { w: "croak", e: "🐸" }, { w: "cross", e: "❌" }, { w: "crowd", e: "👥" }, { w: "cruel", e: "😈" },
+    { w: "crumb", e: "🍞" }, { w: "crust", e: "🍕" }, { w: "cumin", e: "🌿" }, { w: "curly", e: "🌀" },
+    { w: "curvy", e: "🌀" }, { w: "cycle", e: "🚲" }, { w: "dairy", e: "🥛" }, { w: "daisy", e: "🌼" },
+    { w: "dance", e: "💃" }, { w: "dazed", e: "😵" }, { w: "debut", e: "🎤" }, { w: "decay", e: "🍂" },
+    { w: "decor", e: "🎨" }, { w: "decoy", e: "🦆" }, { w: "delay", e: "⏳" }, { w: "delta", e: "🏞️" },
+    { w: "demon", e: "👿" }, { w: "dense", e: "🌲" }, { w: "depth", e: "🌊" }, { w: "derby", e: "🏇" },
+    { w: "devil", e: "😈" }, { w: "diary", e: "📔" }, { w: "digit", e: "🔢" }, { w: "dingo", e: "🐕" },
+    { w: "dirty", e: "🧼" }, { w: "disco", e: "🪩" }, { w: "ditch", e: "🕳️" }, { w: "diver", e: "🤿" },
+    { w: "dizzy", e: "😵" }, { w: "dodge", e: "🤸" }, { w: "doggy", e: "🐶" }, { w: "doing", e: "✅" },
+    { w: "doubt", e: "🤔" }, { w: "dough", e: "🥖" }, { w: "dozen", e: "🥚" }, { w: "draft", e: "📄" },
+    { w: "drama", e: "🎭" }, { w: "drank", e: "🥤" }, { w: "dream", e: "💭" }, { w: "drift", e: "🌊" },
+    { w: "drill", e: "🔩" }, { w: "drink", e: "🥤" }, { w: "drive", e: "🚗" }, { w: "drone", e: "🛸" },
+    { w: "droop", e: "🥀" }, { w: "drove", e: "🚗" }, { w: "drown", e: "🌊" }, { w: "dune", e: "🏜️" },
+    { w: "dusty", e: "🌫️" }, { w: "dwarf", e: "🧙" }, { w: "dwell", e: "🏠" }, { w: "dying", e: "🥀" },
+    { w: "eager", e: "🤩" }, { w: "early", e: "🌅" }, { w: "earth", e: "🌍" }, { w: "easel", e: "🎨" },
+    { w: "echo", e: "🗣️" }, { w: "elbow", e: "💪" }, { w: "elder", e: "🧓" }, { w: "elect", e: "🗳️" },
+    { w: "email", e: "📧" }, { w: "ember", e: "🔥" }, { w: "empty", e: "📦" }, { w: "enact", e: "🎭" },
+    { w: "ended", e: "🏁" }, { w: "enemy", e: "👾" }, { w: "enjoy", e: "🎉" }, { w: "equal", e: "⚖️" },
+    { w: "erase", e: "🧽" }, { w: "erode", e: "🌊" }, { w: "error", e: "❌" }, { w: "erupt", e: "🌋" },
+    { w: "essay", e: "📝" }, { w: "evade", e: "🏃" }, { w: "event", e: "📅" }, { w: "every", e: "🌟" },
+    { w: "evict", e: "🚪" }, { w: "exact", e: "🎯" }, { w: "exam", e: "📝" }, { w: "excel", e: "🏅" },
+    { w: "exert", e: "💪" }, { w: "exile", e: "🏝️" }, { w: "exist", e: "🌍" }, { w: "extra", e: "➕" }
   ],
   6: [
     { w: "banana", e: "🍌" }, { w: "orange", e: "🍊" }, { w: "school", e: "🏫" },
@@ -851,7 +1042,31 @@ const LEVELS = {
     { w: "ladder", e: "🪜" }, { w: "number", e: "🔢" }, { w: "pickle", e: "🥒" },
     { w: "puzzle", e: "🧩" }, { w: "summer", e: "☀️" }, { w: "sunset", e: "🌇" },
     { w: "winter", e: "❄️" }, { w: "dragon", e: "🐉" }, { w: "police", e: "🚓" },
-    { w: "wizard", e: "🧙" }
+    { w: "wizard", e: "🧙" },
+    { w: "accent", e: "🗣️" }, { w: "action", e: "🎬" }, { w: "admire", e: "😍" }, { w: "advice", e: "💡" },
+    { w: "afford", e: "💰" }, { w: "afraid", e: "😨" }, { w: "agency", e: "🏢" }, { w: "anchor", e: "⚓" },
+    { w: "animal", e: "🦁" }, { w: "answer", e: "❓" }, { w: "antler", e: "🦌" }, { w: "appear", e: "👀" },
+    { w: "around", e: "🔄" }, { w: "asleep", e: "😴" }, { w: "attack", e: "⚔️" }, { w: "avenue", e: "🌳" },
+    { w: "awaken", e: "⏰" }, { w: "badger", e: "🦡" }, { w: "bakery", e: "🥐" }, { w: "balloon", e: "🎈" },
+    { w: "banner", e: "🚩" }, { w: "barrel", e: "🛢️" }, { w: "battle", e: "⚔️" }, { w: "beacon", e: "🗼" },
+    { w: "beaker", e: "🧪" }, { w: "beauty", e: "💐" }, { w: "beaver", e: "🦫" }, { w: "before", e: "⏪" },
+    { w: "behave", e: "🐒" }, { w: "behind", e: "🚪" }, { w: "belong", e: "🔑" }, { w: "beside", e: "📍" },
+    { w: "better", e: "👍" }, { w: "bishop", e: "👑" }, { w: "bitter", e: "😖" }, { w: "blazer", e: "🧥" },
+    { w: "blouse", e: "👚" }, { w: "bouncy", e: "🏀" }, { w: "branch", e: "🌿" }, { w: "breath", e: "🌬️" },
+    { w: "breeze", e: "🍃" }, { w: "bright", e: "☀️" }, { w: "broken", e: "💔" }, { w: "bronze", e: "🥉" },
+    { w: "bucket", e: "🪣" }, { w: "buckle", e: "🔗" }, { w: "budgie", e: "🐦" }, { w: "bundle", e: "📦" },
+    { w: "burden", e: "🎒" }, { w: "button", e: "🔘" }, { w: "cactus", e: "🌵" }, { w: "canopy", e: "⛱️" },
+    { w: "canvas", e: "🖼️" }, { w: "canyon", e: "🏜️" }, { w: "career", e: "💼" }, { w: "carpet", e: "🧶" },
+    { w: "carton", e: "📦" }, { w: "carved", e: "🗿" }, { w: "casual", e: "👕" }, { w: "cattle", e: "🐄" },
+    { w: "cavern", e: "🕳️" }, { w: "celery", e: "🥬" }, { w: "center", e: "🎯" }, { w: "cereal", e: "🥣" },
+    { w: "chance", e: "🎲" }, { w: "change", e: "💱" }, { w: "charge", e: "🔋" }, { w: "choice", e: "🤔" },
+    { w: "chorus", e: "🎤" }, { w: "circus", e: "🎪" }, { w: "clever", e: "🧠" }, { w: "client", e: "🤝" },
+    { w: "climate", e: "🌤️" }, { w: "clinic", e: "🏥" }, { w: "clover", e: "🍀" }, { w: "clumsy", e: "🤸" },
+    { w: "cobweb", e: "🕸️" }, { w: "collar", e: "👔" }, { w: "colony", e: "🐜" }, { w: "combat", e: "🥊" },
+    { w: "common", e: "👥" }, { w: "cotton", e: "☁️" }, { w: "coupon", e: "🎟️" }, { w: "cousin", e: "👨‍👩‍👧" },
+    { w: "cowboy", e: "🤠" }, { w: "cradle", e: "🍼" }, { w: "crayon", e: "🖍️" }, { w: "credit", e: "💳" },
+    { w: "critic", e: "🧐" }, { w: "crystal", e: "💎" }, { w: "cuddle", e: "🤗" }, { w: "custom", e: "🎨" },
+    { w: "cutlet", e: "🍗" }
   ],
   7: [
     { w: "elephant", e: "🐘" }, { w: "butterfly", e: "🦋" }, { w: "umbrella", e: "☂️" },
@@ -871,13 +1086,269 @@ const LEVELS = {
     { w: "necklace", e: "📿" }, { w: "princess", e: "👸" }, { w: "skeleton", e: "💀" },
     { w: "sunflower", e: "🌻" }, { w: "telephone", e: "☎️" }, { w: "telescope", e: "🔭" },
     { w: "television", e: "📺" }, { w: "thunder", e: "⛈️" }, { w: "unicorn", e: "🦄" },
-    { w: "vampire", e: "🧛" }
+    { w: "vampire", e: "🧛" },
+    { w: "ability", e: "💪" }, { w: "absence", e: "🕳️" }, { w: "account", e: "💳" }, { w: "achieve", e: "🏆" },
+    { w: "address", e: "📍" }, { w: "advance", e: "⏩" }, { w: "advisor", e: "🧑‍🏫" }, { w: "algebra", e: "➗" },
+    { w: "allowed", e: "✅" }, { w: "amazing", e: "🤩" }, { w: "ancient", e: "🏛️" }, { w: "animate", e: "🎬" },
+    { w: "antenna", e: "📡" }, { w: "applaud", e: "👏" }, { w: "approve", e: "👍" }, { w: "apricot", e: "🍑" },
+    { w: "arrange", e: "🗂️" }, { w: "arrival", e: "🛬" }, { w: "article", e: "📰" }, { w: "athlete", e: "🏅" },
+    { w: "attempt", e: "🎯" }, { w: "attract", e: "🧲" }, { w: "auction", e: "🔨" }, { w: "avocado", e: "🥑" },
+    { w: "balance", e: "⚖️" }, { w: "bandage", e: "🩹" }, { w: "barrier", e: "🚧" }, { w: "because", e: "💡" },
+    { w: "bedroom", e: "🛏️" }, { w: "beehive", e: "🐝" }, { w: "believe", e: "💭" }, { w: "between", e: "↔️" },
+    { w: "billion", e: "💰" }, { w: "biology", e: "🧬" }, { w: "blanket", e: "🧣" }, { w: "blossom", e: "🌸" },
+    { w: "booklet", e: "📒" }, { w: "boulder", e: "🪨" }, { w: "bouquet", e: "💐" }, { w: "bravery", e: "🦁" },
+    { w: "breathe", e: "🌬️" }, { w: "brought", e: "📦" }, { w: "builder", e: "🧱" }, { w: "bulldog", e: "🐶" },
+    { w: "cabbage", e: "🥬" }, { w: "cabinet", e: "🗄️" }, { w: "camping", e: "⛺" }, { w: "capital", e: "🏛️" },
+    { w: "caravan", e: "🚐" }, { w: "careful", e: "⚠️" }, { w: "catfish", e: "🐟" }, { w: "caution", e: "⚠️" },
+    { w: "ceiling", e: "🏠" }, { w: "central", e: "🎯" }, { w: "century", e: "🏛️" }, { w: "certain", e: "✅" },
+    { w: "chamber", e: "🏛️" }, { w: "champion", e: "🏆" }, { w: "channel", e: "📺" }, { w: "chapter", e: "📖" },
+    { w: "cheerful", e: "😄" }, { w: "cheetah", e: "🐆" }, { w: "circuit", e: "🔌" }, { w: "classic", e: "🎬" },
+    { w: "cluster", e: "🍇" }, { w: "company", e: "🏢" }, { w: "compare", e: "⚖️" },
+    { w: "compass", e: "🧭" }, { w: "compete", e: "🏆" }
+  ],
+  8: [
+    { w: "helma", e: "👧", fa: "حلما" }, { w: "sara", e: "👧", fa: "سارا" }, { w: "narges", e: "👧", fa: "نرگس" }, { w: "mahsa", e: "👧", fa: "مهسا" },
+    { w: "zahra", e: "👧", fa: "زهرا" }, { w: "fatemeh", e: "👧", fa: "فاطمه" }, { w: "mitra", e: "👧", fa: "میترا" }, { w: "shirin", e: "👧", fa: "شیرین" },
+    { w: "negar", e: "👧", fa: "نگار" }, { w: "setareh", e: "👧", fa: "ستاره" }, { w: "bahar", e: "👧", fa: "بهار" }, { w: "leila", e: "👧", fa: "لیلا" },
+    { w: "niloofar", e: "👧", fa: "نیلوفر" }, { w: "parisa", e: "👧", fa: "پریسا" }, { w: "shabnam", e: "👧", fa: "شبنم" }, { w: "taraneh", e: "👧", fa: "ترانه" },
+    { w: "maryam", e: "👧", fa: "مریم" }, { w: "shiva", e: "👧", fa: "شیوا" }, { w: "azadeh", e: "👧", fa: "آزاده" }, { w: "nasrin", e: "👧", fa: "نسرین" },
+    { w: "ghazal", e: "👧", fa: "غزل" }, { w: "hanieh", e: "👧", fa: "هانیه" }, { w: "kimia", e: "👧", fa: "کیمیا" }, { w: "melika", e: "👧", fa: "ملیکا" },
+    { w: "nazanin", e: "👧", fa: "نازنین" }, { w: "shahrzad", e: "👧", fa: "شهرزاد" }, { w: "yeganeh", e: "👧", fa: "یگانه" }, { w: "ziba", e: "👧", fa: "زیبا" },
+    { w: "afsaneh", e: "👧", fa: "افسانه" }, { w: "elham", e: "👧", fa: "الهام" }, { w: "arezoo", e: "👧", fa: "آرزو" }, { w: "roya", e: "👧", fa: "رویا" },
+    { w: "samira", e: "👧", fa: "سمیرا" }, { w: "mojgan", e: "👧", fa: "مژگان" }, { w: "rozita", e: "👧", fa: "رزیتا" }, { w: "marzieh", e: "👧", fa: "مرضیه" },
+    { w: "golshifteh", e: "👧", fa: "گلشیفته" }, { w: "simin", e: "👧", fa: "سیمین" }, { w: "somayeh", e: "👧", fa: "سمیه" }, { w: "mahtab", e: "👧", fa: "مهتاب" },
+    { w: "mina", e: "👧", fa: "مینا" }, { w: "elnaz", e: "👧", fa: "الناز" }, { w: "sadaf", e: "👧", fa: "صدف" }, { w: "sheida", e: "👧", fa: "شیدا" },
+    { w: "farzaneh", e: "👧", fa: "فرزانه" }, { w: "golnaz", e: "👧", fa: "گلناز" }, { w: "yasaman", e: "👧", fa: "یاسمن" },
+    { w: "mohammad", e: "👦", fa: "محمد" }, { w: "ali", e: "👦", fa: "علی" }, { w: "reza", e: "👦", fa: "رضا" }, { w: "hossein", e: "👦", fa: "حسین" },
+    { w: "mahdi", e: "👦", fa: "مهدی" }, { w: "hasan", e: "👦", fa: "حسن" }, { w: "amir", e: "👦", fa: "امیر" }, { w: "arman", e: "👦", fa: "آرمان" },
+    { w: "babak", e: "👦", fa: "بابک" }, { w: "behnam", e: "👦", fa: "بهنام" }, { w: "farhad", e: "👦", fa: "فرهاد" }, { w: "kaveh", e: "👦", fa: "کاوه" },
+    { w: "majid", e: "👦", fa: "مجید" }, { w: "masoud", e: "👦", fa: "مسعود" }, { w: "mehrdad", e: "👦", fa: "مهرداد" }, { w: "navid", e: "👦", fa: "نوید" },
+    { w: "omid", e: "👦", fa: "امید" }, { w: "parham", e: "👦", fa: "پرهام" }, { w: "pouya", e: "👦", fa: "پویا" }, { w: "saman", e: "👦", fa: "سامان" },
+    { w: "shayan", e: "👦", fa: "شایان" }, { w: "sohrab", e: "👦", fa: "سهراب" }, { w: "vahid", e: "👦", fa: "وحید" }, { w: "yashar", e: "👦", fa: "یاشار" },
+    { w: "sina", e: "👦", fa: "سینا" }, { w: "hamid", e: "👦", fa: "حمید" }, { w: "javad", e: "👦", fa: "جواد" }, { w: "kamran", e: "👦", fa: "کامران" },
+    { w: "koroush", e: "👦", fa: "کوروش" }, { w: "payam", e: "👦", fa: "پیام" }, { w: "ramin", e: "👦", fa: "رامین" }, { w: "saeed", e: "👦", fa: "سعید" },
+    { w: "shahram", e: "👦", fa: "شهرام" }, { w: "taha", e: "👦", fa: "طاها" }, { w: "yusef", e: "👦", fa: "یوسف" }, { w: "abbas", e: "👦", fa: "عباس" },
+    { w: "ehsan", e: "👦", fa: "احسان" }, { w: "farzad", e: "👦", fa: "فرزاد" }, { w: "mohsen", e: "👦", fa: "محسن" }, { w: "nader", e: "👦", fa: "نادر" },
+    { w: "tehran", e: "🏙️", fa: "تهران" }, { w: "shiraz", e: "🏙️", fa: "شیراز" }, { w: "boushehr", e: "🏙️", fa: "بوشهر" }, { w: "isfahan", e: "🏙️", fa: "اصفهان" },
+    { w: "mashhad", e: "🏙️", fa: "مشهد" }, { w: "tabriz", e: "🏙️", fa: "تبریز" }, { w: "karaj", e: "🏙️", fa: "کرج" }, { w: "qom", e: "🏙️", fa: "قم" },
+    { w: "ahvaz", e: "🏙️", fa: "اهواز" }, { w: "kermanshah", e: "🏙️", fa: "کرمانشاه" }, { w: "urmia", e: "🏙️", fa: "ارومیه" }, { w: "rasht", e: "🏙️", fa: "رشت" },
+    { w: "zahedan", e: "🏙️", fa: "زاهدان" }, { w: "hamadan", e: "🏙️", fa: "همدان" }, { w: "kerman", e: "🏙️", fa: "کرمان" }, { w: "yazd", e: "🏙️", fa: "یزد" },
+    { w: "ardabil", e: "🏙️", fa: "اردبیل" }, { w: "bandarabbas", e: "🏙️", fa: "بندرعباس" }, { w: "gorgan", e: "🏙️", fa: "گرگان" }, { w: "sari", e: "🏙️", fa: "ساری" },
+    { w: "arak", e: "🏙️", fa: "اراک" }, { w: "abadan", e: "🏙️", fa: "آبادان" }, { w: "kashan", e: "🏙️", fa: "کاشان" }, { w: "neyshabur", e: "🏙️", fa: "نیشابور" },
+    { w: "sabzevar", e: "🏙️", fa: "سبزوار" }, { w: "sanandaj", e: "🏙️", fa: "سنندج" }, { w: "zanjan", e: "🏙️", fa: "زنجان" }, { w: "semnan", e: "🏙️", fa: "سمنان" },
+    { w: "qazvin", e: "🏙️", fa: "قزوین" }, { w: "kish", e: "🏙️", fa: "کیش" }, { w: "qeshm", e: "🏙️", fa: "قشم" }, { w: "khoy", e: "🏙️", fa: "خوی" },
+    { w: "maragheh", e: "🏙️", fa: "مراغه" },
+    { w: "iran", e: "🇮🇷", fa: "ایران" }, { w: "persian", e: "🇮🇷", fa: "پارسی" }, { w: "farsi", e: "🇮🇷", fa: "فارسی" }, { w: "tehrani", e: "🇮🇷", fa: "تهرانی" },
+    { w: "nowruz", e: "🌷", fa: "نوروز" }, { w: "yalda", e: "🌙", fa: "یلدا" }, { w: "haftsin", e: "🧺", fa: "هفت‌سین" }, { w: "caspian", e: "🌊", fa: "خزر" },
+    { w: "alborz", e: "🏔️", fa: "البرز" }, { w: "damavand", e: "🗻", fa: "دماوند" }, { w: "zagros", e: "⛰️", fa: "زاگرس" }, { w: "persepolis", e: "🏛️", fa: "پرسپولیس" },
+    { w: "pomegranate", e: "🍎", fa: "انار" }, { w: "saffron", e: "🌼", fa: "زعفران" }, { w: "pistachio", e: "🥜", fa: "پسته" }, { w: "kabab", e: "🍢", fa: "کباب" },
+    { w: "khoresh", e: "🍲", fa: "خورشت" }, { w: "hafez", e: "📜", fa: "حافظ" }, { w: "saadi", e: "📜", fa: "سعدی" }, { w: "ferdowsi", e: "📜", fa: "فردوسی" },
+    { w: "khayyam", e: "📜", fa: "خیام" }, { w: "shahnameh", e: "📖", fa: "شاهنامه" }, { w: "golestan", e: "🌹", fa: "گلستان" }
   ]
 };
 
+/* =====================================================
+   معنی فارسی کلمه‌های انگلیسی — زیر عکس هر کلمه نشون داده می‌شه
+   ===================================================== */
+const FA = {
+  /* ---- ۳ حرفی ---- */
+  cat: "گربه", dog: "سگ", sun: "خورشید", hat: "کلاه", pig: "خوک", bus: "اتوبوس",
+  cup: "فنجان", pen: "خودکار", fox: "روباه", bee: "زنبور", egg: "تخم‌مرغ", map: "نقشه",
+  key: "کلید", box: "جعبه", owl: "جغد", ant: "مورچه", cow: "گاو", hen: "مرغ",
+  jet: "هواپیما", bed: "تخت", bat: "خفاش", car: "ماشین", toy: "اسباب‌بازی", ice: "یخ",
+  tea: "چای", pie: "پای", web: "تار عنکبوت", net: "تور", bag: "کیف", cap: "کلاه",
+  arm: "بازو", ear: "گوش", leg: "پا", toe: "انگشت پا", sky: "آسمان", run: "دویدن",
+  fun: "تفریح", kid: "بچه", ape: "میمون", fly: "مگس", jar: "شیشه", pan: "تابه",
+  can: "قوطی", pin: "سنجاق", eye: "چشم", bow: "کمان", dot: "نقطه", ham: "ژامبون",
+  hut: "کلبه", lip: "لب", man: "مرد", sea: "دریا", tub: "وان", axe: "تبر",
+  one: "یک", two: "دو", six: "شش", ten: "ده", red: "قرمز", ace: "آس",
+  act: "نمایش", add: "جمع کردن", age: "سن", aid: "کمک", aim: "هدف", air: "هوا",
+  all: "همه", and: "و", any: "هر", arc: "قوس", art: "هنر", ask: "پرسیدن",
+  ate: "خورد", bad: "بد", ban: "ممنوع کردن", bar: "میله", bay: "خلیج", beg: "التماس کردن",
+  bet: "شرط‌بندی", big: "بزرگ", bin: "سطل", bit: "تکه", boy: "پسر", bud: "جوانه",
+  bug: "حشره", bun: "نان شیرین", but: "اما", buy: "خریدن", cab: "تاکسی", cob: "بلال",
+  cod: "ماهی کاد", cop: "پلیس", cry: "گریه کردن", cub: "توله", cut: "بریدن", dad: "بابا",
+  dam: "سد", day: "روز", dig: "کندن", dip: "فرو بردن", dry: "خشک", eat: "خوردن",
+  eel: "مارماهی", elf: "جن", end: "پایان", fan: "پنکه", far: "دور", fat: "چاق",
+  fee: "هزینه", fig: "انجیر", fin: "باله", fit: "جور بودن", fix: "تعمیر کردن", fog: "مه",
+  fry: "سرخ کردن", fur: "خز", gas: "بنزین", gem: "گوهر", get: "گرفتن", gum: "آدامس",
+  gym: "باشگاه", hay: "یونجه", her: "او (زن)", him: "او (مرد)", hit: "زدن", hog: "گراز",
+  hop: "پریدن", hot: "داغ", how: "چطور", hug: "در آغوش گرفتن", ill: "مریض", jam: "مربا",
+  jaw: "فک", job: "شغل", jog: "دویدن آرام", joy: "شادی", jug: "پارچ", kit: "جعبه ابزار",
+  lab: "آزمایشگاه", lad: "پسر جوان", law: "قانون", lay: "گذاشتن", let: "اجازه دادن", lid: "درب",
+  lie: "دروغ", lit: "روشن", log: "کنده درخت", lot: "تعداد زیاد", low: "پایین", mad: "عصبانی",
+  mat: "زیرانداز", may: "ممکن است", men: "مردان", met: "ملاقات کرد", mix: "مخلوط کردن", mom: "مامان",
+  mop: "تی", mud: "گل", mug: "لیوان", nap: "چرت", new: "جدید", nod: "تکان دادن سر",
+  not: "نه", now: "حالا", nut: "آجیل", oar: "پارو", off: "خاموش", oil: "روغن",
+  old: "پیر", out: "بیرون", own: "داشتن", pad: "دفترچه", pal: "رفیق", pat: "نوازش کردن",
+  paw: "پنجه", pay: "پرداخت کردن", pea: "نخود سبز", pet: "حیوان خانگی", pit: "گودال", pop: "ترکیدن",
+  pot: "قابلمه", pup: "توله سگ", rag: "پارچه کهنه", ram: "قوچ", ran: "دوید", rap: "رپ",
+  rat: "موش", raw: "خام", ray: "پرتو", rib: "دنده", rim: "لبه", rip: "پاره کردن",
+  rob: "دزدی کردن", rod: "چوب ماهیگیری", row: "ردیف", rub: "مالیدن", sad: "غمگین", sap: "شیره",
+  sat: "نشست", saw: "اره", say: "گفتن", see: "دیدن", set: "تنظیم", sew: "دوختن",
+  shy: "خجالتی", sip: "جرعه", sir: "آقا", sit: "نشستن", ski: "اسکی", sly: "حیله‌گر",
+  sob: "هق‌هق گریه", son: "پسر", spa: "آب‌گرم", spy: "جاسوس", sum: "جمع", tab: "زبانه",
+  tag: "برچسب", tan: "برنزه", tap: "شیر آب", tax: "مالیات", tie: "کراوات", tin: "قوطی حلبی",
+  tip: "انعام", ton: "تن", top: "بالا", tot: "نوپا", tow: "یدک کشیدن", try: "تلاش کردن",
+  use: "استفاده کردن", van: "ون", vet: "دامپزشک", vow: "عهد", wag: "تکان دادن دم", war: "جنگ",
+  wax: "موم", way: "راه", wed: "ازدواج کردن", wet: "خیس", who: "چه کسی", why: "چرا",
+  wig: "کلاه گیس", win: "بردن", wit: "هوش", wow: "عجب!", yak: "گاو کوهان‌دار", yam: "سیب‌زمینی شیرین",
+  yes: "بله", yet: "هنوز", you: "تو", zap: "برق", zip: "زیپ", zoo: "باغ‌وحش",
+
+  /* ---- ۴ حرفی ---- */
+  fish: "ماهی", bird: "پرنده", star: "ستاره", moon: "ماه", book: "کتاب", tree: "درخت",
+  rain: "باران", cake: "کیک", milk: "شیر", duck: "اردک", frog: "قورباغه", lion: "شیر",
+  hand: "دست", nose: "بینی", kite: "بادبادک", bell: "زنگ", ball: "توپ", door: "در",
+  wolf: "گرگ", pear: "گلابی", seed: "دانه", lamp: "چراغ", boat: "قایق", ship: "کشتی",
+  king: "پادشاه", ring: "انگشتر", fire: "آتش", snow: "برف", leaf: "برگ", corn: "ذرت",
+  bear: "خرس", deer: "آهو", goat: "بز", crab: "خرچنگ", seal: "فک", foot: "پا",
+  face: "صورت", lamb: "بره", pony: "اسب کوچک", rock: "سنگ", sand: "شن", wave: "موج",
+  sing: "آواز خواندن", song: "آهنگ", drum: "طبل", gold: "طلا", coin: "سکه", gift: "هدیه",
+  mask: "ماسک", soap: "صابون", soup: "سوپ", plum: "آلو", kiwi: "کیوی", rice: "برنج",
+  taco: "تاکو", baby: "نوزاد", city: "شهر", dice: "تاس", five: "پنج", four: "چهار",
+  girl: "دختر", home: "خانه", lock: "قفل", nine: "نه", time: "زمان", week: "هفته",
+  wind: "باد", play: "بازی کردن", walk: "راه رفتن", able: "توانا", acid: "اسید", also: "همچنین",
+  army: "ارتش", aunt: "خاله/عمه", away: "دور", back: "پشت", bake: "پختن", band: "گروه موسیقی",
+  bank: "بانک", barn: "انبار", base: "پایه", beak: "منقار", beam: "پرتو", bean: "لوبیا",
+  beat: "ضربان", beef: "گوشت گاو", bend: "خم شدن", best: "بهترین", bike: "دوچرخه", bill: "صورت‌حساب",
+  bite: "گاز گرفتن", blow: "دمیدن", blue: "آبی", boil: "جوشیدن", bold: "جسور", bone: "استخوان",
+  boot: "چکمه", born: "متولد", bowl: "کاسه", bulb: "لامپ", bump: "برآمدگی", burn: "سوختن",
+  busy: "شلوغ", cage: "قفس", calm: "آرام", calf: "گوساله", call: "تماس", camp: "کمپ",
+  cane: "عصا", cape: "شنل", card: "کارت", care: "مراقبت", cart: "گاری", case: "کیف",
+  cash: "پول نقد", cast: "ریخته‌گری", cave: "غار", cell: "سلول", cent: "سنت", chef: "آشپز",
+  chip: "چیپس", clam: "صدف", clap: "دست زدن", clay: "گل رس", clip: "گیره", coat: "کت",
+  code: "کد", cold: "سرد", colt: "کره اسب", comb: "شانه", come: "آمدن", cook: "آشپزی",
+  cool: "خنک", copy: "کپی", cord: "سیم", core: "هسته", cost: "هزینه", crew: "خدمه",
+  crib: "گهواره", crop: "محصول", crow: "کلاغ", cube: "مکعب", curl: "فر", cute: "بامزه",
+  damp: "مرطوب", dark: "تاریک", dart: "دارت", dash: "دویدن سریع", date: "تاریخ", dawn: "سپیده دم",
+  deaf: "ناشنوا", deal: "معامله", dear: "عزیز", deck: "عرشه", deep: "عمیق", desk: "میز",
+  dial: "شماره‌گیری", dime: "سکه ده سنتی", dine: "شام خوردن", dirt: "خاک", disc: "دیسک", dish: "ظرف",
+  dive: "شیرجه", dock: "اسکله", doll: "عروسک", dome: "گنبد", done: "تمام", dove: "کبوتر",
+  down: "پایین", draw: "کشیدن", drip: "چکیدن", drop: "قطره", dusk: "غروب", dust: "گرد و غبار",
+  each: "هرکدام", earn: "درآمدن", east: "شرق", easy: "آسان", edit: "ویرایش", else: "دیگر",
+  envy: "حسادت", epic: "حماسی", even: "حتی", evil: "شر", exit: "خروج", fact: "واقعیت",
+  fail: "شکست خوردن", fair: "منصفانه", fake: "جعلی", fall: "افتادن", fame: "شهرت", farm: "مزرعه",
+  fast: "سریع", fate: "سرنوشت", fawn: "گوزن کوچک", fear: "ترس", feed: "غذا دادن", feel: "احساس کردن",
+  feet: "پاها", fell: "افتاد", felt: "نمد", fern: "سرخس", file: "پرونده", fill: "پر کردن",
+  film: "فیلم", find: "پیدا کردن", fine: "خوب", firm: "شرکت", flag: "پرچم",
+
+  /* ---- ۵ حرفی ---- */
+  apple: "سیب", grape: "انگور", happy: "خوشحال", smile: "لبخند", house: "خانه", cloud: "ابر",
+  sheep: "گوسفند", horse: "اسب", mouse: "موش", chair: "صندلی", clock: "ساعت", robot: "ربات",
+  tiger: "ببر", candy: "آب‌نبات", lemon: "لیمو", water: "آب", panda: "پاندا", pizza: "پیتزا",
+  bread: "نان", sweet: "شیرین", ghost: "روح", snake: "مار", train: "قطار", plane: "هواپیما",
+  watch: "ساعت مچی", phone: "تلفن", music: "موسیقی", radio: "رادیو", paint: "نقاشی", brush: "قلم‌مو",
+  paper: "کاغذ", spoon: "قاشق", plate: "بشقاب", juice: "آبمیوه", honey: "عسل", melon: "خربزه",
+  mango: "انبه", onion: "پیاز", berry: "توت", donut: "دونات", fries: "سیب‌زمینی سرخ‌کرده", salad: "سالاد",
+  tomato: "گوجه", beach: "ساحل", plant: "گیاه", ocean: "اقیانوس", zebra: "گورخر", shark: "کوسه",
+  whale: "نهنگ", eagle: "عقاب", crown: "تاج", laugh: "خنده", hotdog: "سوسیس", eight: "هشت",
+  three: "سه", seven: "هفت", hello: "سلام", teeth: "دندان‌ها", clown: "دلقک", scarf: "شال",
+  boots: "چکمه", shirt: "پیراهن", jeans: "شلوار جین", dress: "لباس", glove: "دستکش", socks: "جوراب",
+  lunch: "ناهار", tower: "برج", acorn: "بلوط", actor: "بازیگر", adopt: "به فرزندی گرفتن", after: "بعد",
+  again: "دوباره", agree: "موافقت کردن", alarm: "زنگ خطر", album: "آلبوم", alien: "بیگانه", angel: "فرشته",
+  anger: "خشم", ankle: "قوزک", apron: "پیش‌بند", armor: "زره", arrow: "تیر", atlas: "اطلس",
+  award: "جایزه", bacon: "بیکن", badge: "نشان", bagel: "نان شیرینی", baker: "نانوا", bamboo: "بامبو",
+  banjo: "بانجو", barge: "بارج", bark: "پارس کردن", basil: "ریحان", batch: "دسته", beads: "مهره‌ها",
+  beard: "ریش", beast: "هیولا", beech: "درخت راش", begin: "شروع کردن", being: "موجود", bench: "نیمکت",
+  biker: "موتورسوار", birch: "درخت توس", birth: "تولد", black: "سیاه", blank: "خالی", blast: "انفجار",
+  blaze: "شعله", blend: "مخلوط کردن", bless: "برکت دادن", blind: "نابینا", blink: "پلک زدن", bliss: "سعادت",
+  block: "بلوک", blond: "بلوند", bloom: "شکوفه", board: "تخته", bonus: "پاداش", booth: "غرفه",
+  bough: "شاخه", bound: "پرش کردن", boxer: "بوکسور", brace: "آتل", braid: "بافته", brain: "مغز",
+  brake: "ترمز", brand: "برند", brave: "شجاع", break: "شکستن", breed: "نژاد", brick: "آجر",
+  bride: "عروس", brief: "مختصر", bring: "آوردن", brisk: "سریع", broom: "جارو", broth: "آبگوشت",
+  brown: "قهوه‌ای", buddy: "رفیق", build: "ساختن", bunch: "دسته", bunny: "خرگوش کوچک", burst: "ترکیدن",
+  cabin: "کلبه", cable: "کابل", cacao: "کاکائو", cactus: "کاکتوس", camel: "شتر", canary: "قناری",
+  canoe: "قایق پارویی", cargo: "بار", carol: "سرود", carry: "حمل کردن", carve: "حکاکی کردن", catch: "گرفتن",
+  cause: "علت", cease: "متوقف کردن", cedar: "درخت سرو", cello: "ویولنسل", chain: "زنجیر", chalk: "گچ",
+  champ: "قهرمان", chant: "سرود خواندن", chaos: "هرج و مرج", chase: "تعقیب کردن", cheap: "ارزان", cheat: "تقلب",
+  check: "بررسی", cheek: "گونه", cheer: "تشویق", chess: "شطرنج", chest: "سینه", chick: "جوجه",
+  chief: "رئیس", child: "کودک", chill: "خنکی", chime: "زنگ", china: "چینی", chirp: "جیک جیک",
+  choir: "گروه هم‌سرایی", choose: "انتخاب کردن", chord: "آکورد", chunk: "تکه بزرگ", cider: "آب سیب", civil: "مدنی",
+  claim: "ادعا", clamp: "گیره", clash: "درگیری", clasp: "قفل", class: "کلاس", clean: "تمیز",
+  clear: "واضح", clerk: "منشی", click: "کلیک", cliff: "صخره", climb: "بالا رفتن", cling: "چسبیدن",
+  cloak: "شنل", close: "بستن", cloth: "پارچه", clove: "میخک", coach: "مربی", coast: "ساحل",
+  cobra: "کبرا", cocoa: "کاکائو", comic: "کمیک", coral: "مرجان", corgi: "کورگی", cough: "سرفه",
+  count: "شمردن", court: "دادگاه", cover: "پوشاندن", crack: "ترک", craft: "صنایع دستی", crane: "جرثقیل",
+  crash: "تصادف", crate: "جعبه چوبی", crawl: "خزیدن", cream: "خامه", creek: "نهر", creep: "خزیدن",
+  crime: "جرم", crisp: "ترد", croak: "قورقور", cross: "صلیب", crowd: "جمعیت", cruel: "ظالم",
+  crumb: "خرده نان", crust: "پوسته", cumin: "زیره", curly: "فرفری", curvy: "منحنی", cycle: "چرخه",
+  dairy: "لبنیات", daisy: "گل مروارید", dance: "رقصیدن", dazed: "گیج", debut: "اولین حضور", decay: "پوسیدگی",
+  decor: "دکور", decoy: "طعمه", delay: "تأخیر", delta: "دلتا", demon: "شیطان", dense: "متراکم",
+  depth: "عمق", derby: "مسابقه", devil: "شیطان", diary: "دفتر خاطرات", digit: "رقم", dingo: "دینگو",
+  dirty: "کثیف", disco: "دیسکو", ditch: "گودال", diver: "غواص", dizzy: "سرگیجه", dodge: "جاخالی دادن",
+  doggy: "سگ کوچک", doing: "انجام دادن", doubt: "شک", dough: "خمیر", dozen: "دوازده تا", draft: "پیش‌نویس",
+  drama: "نمایش", drank: "نوشید", dream: "رویا", drift: "رانش", drill: "مته", drink: "نوشیدنی",
+  drive: "رانندگی", drone: "پهپاد", droop: "پژمرده شدن", drove: "رانندگی کرد", drown: "غرق شدن", dune: "تپه شنی",
+  dusty: "خاک‌آلود", dwarf: "کوتوله", dwell: "سکونت داشتن", dying: "در حال مرگ", eager: "مشتاق", early: "زود",
+  earth: "زمین", easel: "سه‌پایه نقاشی", echo: "پژواک", elbow: "آرنج", elder: "بزرگ‌تر", elect: "انتخاب کردن",
+  email: "ایمیل", ember: "اخگر", empty: "خالی", enact: "اجرا کردن", ended: "تمام شد", enemy: "دشمن",
+  enjoy: "لذت بردن", equal: "مساوی", erase: "پاک کردن", erode: "فرسایش", error: "خطا", erupt: "فوران کردن",
+  essay: "انشا", evade: "فرار کردن", event: "رویداد", every: "هر", evict: "اخراج کردن", exact: "دقیق",
+  exam: "امتحان", excel: "برتری داشتن", exert: "اعمال کردن", exile: "تبعید", exist: "وجود داشتن", extra: "اضافی",
+
+  /* ---- ۶ حرفی ---- */
+  banana: "موز", orange: "پرتقال", school: "مدرسه", window: "پنجره", flower: "گل", pencil: "مداد",
+  garden: "باغ", monkey: "میمون", rabbit: "خرگوش", cherry: "گیلاس", turkey: "بوقلمون", cookie: "کلوچه",
+  circle: "دایره", rocket: "موشک", planet: "سیاره", guitar: "گیتار", pumpkin: "کدو تنبل", turtle: "لاک‌پشت",
+  cheese: "پنیر", butter: "کره", burger: "همبرگر", potato: "سیب‌زمینی", carrot: "هویج", pepper: "فلفل",
+  garlic: "سیر", coconut: "نارگیل", almond: "بادام", coffee: "قهوه", bridge: "پل", castle: "قلعه",
+  forest: "جنگل", island: "جزیره", camera: "دوربین", pillow: "بالش", mirror: "آینه", basket: "سبد",
+  yellow: "زرد", purple: "بنفش", parrot: "طوطی", spider: "عنکبوت", beetle: "سوسک", insect: "حشره",
+  kitten: "بچه گربه", autumn: "پاییز", bubble: "حباب", candle: "شمع", hammer: "چکش", jacket: "کاپشن",
+  ladder: "نردبان", number: "شماره", pickle: "خیارشور", puzzle: "پازل", summer: "تابستان", sunset: "غروب آفتاب",
+  winter: "زمستان", dragon: "اژدها", police: "پلیس", wizard: "جادوگر", accent: "لهجه", action: "عمل",
+  admire: "تحسین کردن", advice: "نصیحت", afford: "توانستن", afraid: "ترسیده", agency: "آژانس", anchor: "لنگر",
+  animal: "حیوان", answer: "جواب", antler: "شاخ گوزن", appear: "ظاهر شدن", around: "دور", asleep: "خواب",
+  attack: "حمله", avenue: "خیابان", awaken: "بیدار شدن", badger: "گورکن", bakery: "نانوایی", balloon: "بادکنک",
+  banner: "بنر", barrel: "بشکه", battle: "نبرد", beacon: "فانوس", beaker: "بشر آزمایشگاهی", beauty: "زیبایی",
+  beaver: "سگ آبی", before: "قبل", behave: "رفتار کردن", behind: "پشت", belong: "متعلق بودن", beside: "کنار",
+  better: "بهتر", bishop: "اسقف", bitter: "تلخ", blazer: "کت", blouse: "بلوز", bouncy: "جهنده",
+  branch: "شاخه", breath: "نفس", breeze: "نسیم", bright: "روشن", broken: "شکسته", bronze: "برنز",
+  bucket: "سطل", buckle: "سگک", budgie: "طوطی کوچک", bundle: "بسته", burden: "بار", button: "دکمه",
+  cactus: "کاکتوس", canopy: "سایبان", canvas: "بوم", canyon: "دره", career: "حرفه", carpet: "فرش",
+  carton: "کارتن", carved: "حکاکی شده", casual: "معمولی", cattle: "گاوها", cavern: "غار", celery: "کرفس",
+  center: "مرکز", cereal: "غلات", chance: "شانس", change: "تغییر", charge: "شارژ", choice: "انتخاب",
+  chorus: "گروه هم‌خوانی", circus: "سیرک", clever: "باهوش", client: "مشتری", climate: "آب و هوا", clinic: "درمانگاه",
+  clover: "شبدر", clumsy: "دست‌وپا چلفتی", cobweb: "تار عنکبوت", collar: "یقه", colony: "مستعمره", combat: "مبارزه",
+  common: "رایج", cotton: "پنبه", coupon: "کوپن", cousin: "پسرعمو/دخترعمو", cowboy: "کابوی", cradle: "گهواره",
+  crayon: "مداد رنگی", credit: "اعتبار", critic: "منتقد", crystal: "کریستال", cuddle: "بغل کردن", custom: "عرف",
+  cutlet: "کتلت",
+
+  /* ---- ۷+ حرفی (حرفه‌ای) ---- */
+  elephant: "فیل", butterfly: "پروانه", umbrella: "چتر", kangaroo: "کانگورو", octopus: "هشت‌پا", rainbow: "رنگین‌کمان",
+  dinosaur: "دایناسور", pineapple: "آناناس", giraffe: "زرافه", watermelon: "هندوانه", helicopter: "هلیکوپتر", caterpillar: "کرم ابریشم",
+  strawberry: "توت‌فرنگی", blueberry: "زغال‌اخته", crocodile: "تمساح", flamingo: "فلامینگو", peacock: "طاووس", squirrel: "سنجاب",
+  hamster: "همستر", dolphin: "دلفین", penguin: "پنگوئن", snowman: "آدم‌برفی", volcano: "آتشفشان", balloon: "بادکنک",
+  cupcake: "کیک کوچک", popcorn: "پاپ‌کورن", chocolate: "شکلات", icecream: "بستنی", sandwich: "ساندویچ", pancake: "پنکیک",
+  mountain: "کوه", airplane: "هواپیما", alphabet: "الفبا", astronaut: "فضانورد", basketball: "بسکتبال", bicycle: "دوچرخه",
+  birthday: "تولد", calendar: "تقویم", fireworks: "آتش‌بازی", football: "فوتبال", hospital: "بیمارستان", mushroom: "قارچ",
+  necklace: "گردنبند", princess: "شاهزاده خانم", skeleton: "اسکلت", sunflower: "آفتابگردان", telephone: "تلفن", telescope: "تلسکوپ",
+  television: "تلویزیون", thunder: "رعد و برق", unicorn: "تک‌شاخ", vampire: "خون‌آشام", ability: "توانایی", absence: "غیبت",
+  account: "حساب", achieve: "موفق شدن", address: "آدرس", advance: "پیشرفت", advisor: "مشاور", algebra: "جبر",
+  allowed: "مجاز", amazing: "شگفت‌انگیز", ancient: "باستانی", animate: "انیمیشن ساختن", antenna: "آنتن", applaud: "کف زدن",
+  approve: "تأیید کردن", apricot: "زردآلو", arrange: "مرتب کردن", arrival: "ورود", article: "مقاله", athlete: "ورزشکار",
+  attempt: "تلاش", attract: "جذب کردن", auction: "حراج", avocado: "آووکادو", balance: "تعادل", bandage: "باند",
+  barrier: "مانع", because: "چون", bedroom: "اتاق خواب", beehive: "کندوی عسل", believe: "باور کردن", between: "بین",
+  billion: "میلیارد", biology: "زیست‌شناسی", blanket: "پتو", blossom: "شکوفه", booklet: "کتابچه", boulder: "سنگ بزرگ",
+  bouquet: "دسته گل", bravery: "شجاعت", breathe: "نفس کشیدن", brought: "آورد", builder: "سازنده", bulldog: "بولداگ",
+  cabbage: "کلم", cabinet: "کمد", camping: "کمپینگ", capital: "پایتخت", caravan: "کاروان", careful: "مراقب",
+  catfish: "گربه‌ماهی", caution: "احتیاط", ceiling: "سقف", central: "مرکزی", century: "قرن", certain: "مطمئن",
+  chamber: "اتاق", champion: "قهرمان", channel: "کانال", chapter: "فصل", cheerful: "خوشحال", cheetah: "یوزپلنگ",
+  circuit: "مدار", classic: "کلاسیک", cluster: "خوشه", company: "شرکت", compare: "مقایسه", compass: "قطب‌نما",
+  compete: "رقابت کردن"
+};
+
 const TILE_COLORS = ["#ff7eb3", "#ff9f1c", "#6ac96a", "#4fa3f7", "#b388ff", "#ff6b6b", "#00c2a8"];
-const LABELS = { 3: "۳ حرفی", 4: "۴ حرفی", 5: "۵ حرفی", 6: "۶ حرفی", 7: "حرفه‌ای ✨" };
-const COLORS = { 3: "c3", 4: "c4", 5: "c5", 6: "c6", 7: "c7" };
+const LABELS = { 3: "۳ حرفی", 4: "۴ حرفی", 5: "۵ حرفی", 6: "۶ حرفی", 7: "حرفه‌ای ✨", 8: "قسمت ۶ ⚡" };
+const FINGLISH = {
+  3: "Se Harfi · 3 Letters",
+  4: "Chahar Harfi · 4 Letters",
+  5: "Panj Harfi · 5 Letters",
+  6: "Shesh Harfi · 6 Letters",
+  7: "Herfei ✨ · Advanced",
+  8: "Ghesmat-e Shish · Esm-haye Irani · Persian Names"
+};
+const COLORS = { 3: "c3", 4: "c4", 5: "c5", 6: "c6", 7: "c7", 8: "c8" };
 
 const $ = (id) => document.getElementById(id);
 
@@ -934,6 +1405,12 @@ let requeued = new Set();
 let mistakes = 0;
 let hintsUsed = 0;
 let celebrating = false;
+let examMode = false;
+let examScore = 0;
+let examWrong = [];
+let examTotal = 10;
+let examBest = 0;
+try { examBest = Number(localStorage.getItem("emla_exam_best") || 0); } catch (e) { examBest = 0; }
 
 /* ===================== audio ===================== */
 let audioCtx = null;
@@ -1008,6 +1485,9 @@ function showScreen(name) {
 }
 
 function goHome() {
+  examMode = false;
+  $("modeToggle").style.display = "";
+  updateExamBestHome();
   buildLevelGrid();
   showScreen("home");
 }
@@ -1038,6 +1518,7 @@ function buildLevelGrid() {
     btn.innerHTML =
       '<span class="lvl-num">' + n + '</span>' +
       '<span class="lvl-label">' + LABELS[n] + ' (' + total + ' کلمه)</span>' +
+      '<span class="lvl-finglish">' + FINGLISH[n] + '</span>' +
       '<span class="lvl-bar"><i style="width:' + pct + '%"></i></span>' +
       '<span class="lvl-meta"><b>' + pct + '٪</b>' +
         '<span class="lvl-stars">' + "⭐".repeat(stars) + '</span>' +
@@ -1060,14 +1541,22 @@ function buildLevelGrid() {
 
 /* ===================== level flow ===================== */
 function startLevel(lv) {
+  examMode = false;
+  $("modeToggle").style.display = "";
   currentLevel = lv;
-  const all = LEVELS[lv];
+  // سطح ۸ (اسم‌های ایرانی): کلمه‌ها از ساده (کوتاه‌ترین) به سخت (بلندترین) مرتب می‌شن
+  const ordered = (lv === 8);
+  const all = ordered
+    ? LEVELS[lv].slice().sort((a, b) => a.w.length - b.w.length || a.w.localeCompare(b.w))
+    : LEVELS[lv];
   const review = (store.review[lv] || []).filter(w => all.some(x => x.w === w));
   const masteredSet = new Set((store.mastered[lv] || []).filter(w => all.some(x => x.w === w)));
-  const rest = all.filter(x => !masteredSet.has(x.w) && !review.includes(x.w));
+  const rest = ordered
+    ? all.filter(x => !masteredSet.has(x.w) && !review.includes(x.w))
+    : shuffle(all.filter(x => !masteredSet.has(x.w) && !review.includes(x.w)));
   // کلمه‌های مرور اول میان (مرور فاصله‌دار)
-  queue = shuffle(review.map(w => all.find(x => x.w === w))).concat(shuffle(rest));
-  if (queue.length === 0) queue = shuffle(all.map(x => ({ ...x })));
+  queue = shuffle(review.map(w => all.find(x => x.w === w))).concat(rest);
+  if (queue.length === 0) queue = ordered ? all.map(x => ({ ...x })) : shuffle(all.map(x => ({ ...x })));
   queuePos = 0;
   requeued = new Set();
   clearInterval(coverTimer);
@@ -1078,10 +1567,16 @@ function startLevel(lv) {
 }
 
 function nextWord() {
-  if (queuePos >= queue.length) return levelComplete();
+  if (queuePos >= queue.length) return examMode ? examComplete() : levelComplete();
   currentWord = queue[queuePos];
   queuePos++;
   $("emoji").textContent = currentWord.e;
+  const faEl = $("faWord");
+  if (faEl) {
+    const fa = currentWord.fa || FA[currentWord.w] || "";
+    if (fa) { faEl.textContent = fa; faEl.style.display = "inline-block"; }
+    else faEl.style.display = "none";
+  }
   $("progressBar").style.width = (queuePos / queue.length * 100) + "%";
   $("wordCount").textContent = queuePos + " / " + queue.length;
   setupCurrentWord();
@@ -1098,7 +1593,7 @@ function setupCurrentWord() {
   $("tricky").style.display = "none";
   $("tipBox").textContent = "";
   $("tipBox").style.display = "none";
-  $("hintBtn").style.display = (mode === "tiles" || mode === "type") ? "" : "none";
+  $("hintBtn").style.display = ((mode === "tiles" || mode === "type") && !examMode) ? "" : "none";
   $("typeInput").value = "";
   if (mode === "tiles") setupTiles();
   if (mode === "cover") startCoverLook();
@@ -1129,6 +1624,63 @@ function levelComplete() {
 
 function restartLevel() { startLevel(currentLevel); }
 function goNextLevel()  { startLevel(currentLevel + 1); }
+
+/* ===================== final exam ===================== */
+function startExam() {
+  examMode = true;
+  examScore = 0;
+  examWrong = [];
+  // کلمه‌های تکراری حذف می‌شن — هر کلمه فقط یک‌بار تو آزمون میاد
+  const seen = new Set();
+  const pool = [];
+  Object.values(LEVELS).forEach(list => list.forEach(x => {
+    if (!seen.has(x.w)) { seen.add(x.w); pool.push({ ...x }); }
+  }));
+  queue = shuffle(pool).slice(0, 10);
+  examTotal = queue.length;
+  queuePos = 0;
+  currentLevel = "exam";
+  mode = "type";
+  $("nextLevelBtn").style.display = "none";
+  $("modeToggle").style.display = "none";
+  document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+  showScreen("game");
+  nextWord();
+}
+
+function examComplete() {
+  examMode = false;
+  const total = examTotal;
+  const pct = Math.round((examScore / total) * 100);
+  if (pct > examBest) {
+    examBest = pct;
+    try { localStorage.setItem("emla_exam_best", String(examBest)); } catch (e) { /* ignore */ }
+  }
+  winSound();
+  confetti();
+  let stars = 3;
+  if (pct < 80) stars = 2;
+  if (pct < 50) stars = 1;
+  $("examEmoji").textContent = stars === 3 ? "🏆" : stars === 2 ? "🎖️" : "💪";
+  $("examStars").textContent = "⭐".repeat(stars) + "☆".repeat(3 - stars);
+  $("examTitle").textContent =
+    stars === 3 ? "آفرین! تو قهرمان املا هستی! 🏆" :
+    stars === 2 ? "خیلی خوب بود! 🎉" :
+    "اشکال نداره، تمرین کن! 💪";
+  $("examScore").textContent = examScore + " از " + total;
+  $("examPct").textContent = pct + "٪";
+  $("examBestEl").textContent = examBest + "٪";
+  $("examWrong").innerHTML = examWrong.length
+    ? "<div class='exam-wrong-label'>کلمه‌هایی که باید مرور کنی:</div><div class='review-chips' style='justify-content:center;'>" +
+      examWrong.map(w => "<span class='review-chip'>" + w + "</span>").join("") + "</div>"
+    : "<div class='no-review' style='margin-top:8px;'>همهٔ کلمه‌ها رو درست نوشتی! 🎉</div>";
+  showScreen("exam");
+}
+
+function updateExamBestHome() {
+  const el = $("examBestHome");
+  if (el) el.textContent = examBest ? "🏅 بهترین نمرهٔ امتحان: " + examBest + "٪" : "🎓 آماده‌ای برای امتحان نهایی؟";
+}
 
 /* ===================== tiles mode ===================== */
 function setupTiles() {
@@ -1238,13 +1790,16 @@ function evaluateTyped() {
   if (!val) return;
   if (val === currentWord.w) {
     goodSound();
+    if (examMode) examScore++;
     if (mode === "dict") dictRevealed = true;
     celebrate(true);
   } else {
     badSound();
-    mistakes++;
-    addToReview(currentWord.w);
-    requeueWord();
+    if (!examMode) {
+      mistakes++;
+      addToReview(currentWord.w);
+      requeueWord();
+    }
     const inp = $("typeInput");
     inp.classList.remove("shake");
     void inp.offsetWidth;
@@ -1257,6 +1812,7 @@ function evaluateTyped() {
       dictRevealed = true;
       fb.textContent = "🙈 اوه نه! به این حرف‌ها دقت کن:";
       $("emojiBox").style.display = "block";
+      $("faWord").style.display = "inline-block";
       speakWord();
     } else if (mode === "cover") {
       fb.textContent = "🙈 نزدیک بود! دوباره خوب نگاه کن:";
@@ -1266,7 +1822,16 @@ function evaluateTyped() {
       fb.textContent = "🙈 اوه نه! دوباره تلاش کن";
     }
     inp.value = "";
-    if (mode !== "cover") inp.focus();
+    if (examMode) {
+      examWrong.push(currentWord.w);
+      fb.innerHTML = "🙈 جواب درست: <span class='word-show'>" + currentWord.w + "</span>";
+      inp.blur();
+      // کلمه‌ی اشتباه دوباره میاد تا درست نوشته بشه
+      queue.push({ ...currentWord });
+      setTimeout(nextWord, 1800);
+    } else if (mode !== "cover") {
+      inp.focus();
+    }
   }
 }
 
@@ -1375,6 +1940,7 @@ function renderMode() {
   $("traceArea").style.display = isTrace ? "flex" : "none";
   $("dictMsg").style.display = isDict ? "block" : "none";
   $("emojiBox").style.display = (isDict && !dictRevealed) ? "none" : "block";
+  $("faWord").style.display = (isDict && !dictRevealed) ? "none" : $("faWord").style.display;
   $("tapHint").textContent =
     isDict ? "👂 با دکمه 🔊 چند بار گوش کن، بعد بنویس!" :
     isCover ? "👀 اول خوب نگاه کن و با دکمه 🔊 بشنو" :
@@ -1396,7 +1962,7 @@ function celebrate(showWord) {
   const fb = $("feedback");
   fb.className = "feedback good";
   fb.innerHTML = "آفرین! 🎉 درسته: <span class='word-show'>" + currentWord.w + "</span>";
-  if (mistakes === 0 && hintsUsed === 0) markMastered(currentWord.w);
+  if (mistakes === 0 && hintsUsed === 0 && !examMode) markMastered(currentWord.w);
   const tip = wordTip(currentWord.w);
   if (tip) {
     $("tipBox").textContent = "🔎 " + tip;
@@ -1469,6 +2035,8 @@ function showProgress() {
 function resetAllProgress() {
   if (!confirm("همه‌ی پیشرفت‌ها و ستاره‌ها پاک بشه؟")) return;
   try { localStorage.removeItem("emla_amoz_store"); } catch (e) { /* ignore */ }
+  try { localStorage.removeItem("emla_exam_best"); } catch (e) { /* ignore */ }
+  examBest = 0;
   store = loadStore();
   goHome();
 }
@@ -1496,6 +2064,7 @@ $("typeInput").addEventListener("input", () => {
 });
 
 buildLevelGrid();
+updateExamBestHome();
 </script>
 </body>
 </html>
